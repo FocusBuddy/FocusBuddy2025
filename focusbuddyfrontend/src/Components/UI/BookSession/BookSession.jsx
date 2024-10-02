@@ -134,7 +134,7 @@ export default function BookSession({
               />
             </div>
             <div className="p-2 border border-[#008080]">
-              <h1 className="">50 minutes</h1>
+              <h1 className="text-xs">50 minutes</h1>
             </div>
 {/*             <Select
               id="eventlength"
@@ -259,7 +259,7 @@ export default function BookSession({
                 <Tooltip content="Matches you with your Favorite partners whenever they are available">
                   <button
                     type="button"
-                    className="w-full flex justify-center gap-2 text-sm border-2 border-greenbg py-2 px-6 text-formgray"
+                    className="w-full flex justify-center gap-1 md:gap-2 text-sm border-2 border-greenbg py-2 px-6 text-formgray"
                     style={
                       activePartnerTab === "favoritePartner"
                         ? tabSelected
