@@ -51,7 +51,7 @@ export default function BookSession({
 }) {
   const { activeEventTab, activePartnerTab } = useContext(myContext);
 
-  const [timeOptions, setTimeOptions] = useState(generateTimeOptions());
+  const [timeOptions, setTimeOptions] = useState(generateTimeOptions(eventDate));
   const [isPastDate, setIsPastDate] = useState(false);
   const [showAdvance, setShowAdvance] = useState(false);
   const [isDoNotRepeat,setIsDoNotRepeat] = useState(false);
@@ -59,6 +59,7 @@ export default function BookSession({
 
   useEffect(() => {
     setTimeOptions(generateTimeOptions(eventDate));
+    setEventTime(timeOptions[0]);
     const now = moment();
     const selectedDate = moment(eventDate, "YYYY-MM-DD");
     setIsPastDate(selectedDate.isBefore(now, "day"));
@@ -134,7 +135,7 @@ export default function BookSession({
               />
             </div>
             <div className="p-2 border border-[#008080]">
-              <h1 className="text-xs">50 minutes</h1>
+              <h1 className="text-xs md:text-[14px]">50 minutes</h1>
             </div>
 {/*             <Select
               id="eventlength"

@@ -4,7 +4,7 @@ const pastEvent = require("../models/pastEventModel");
 const passport = require("passport");
 const router = express.Router();
 const { getIo } = require("../socket");
-const crypto = require("crypto-js");
+const crypto = require("crypto");
 
 // router.get('/dashboard', showEvents);
 router.get("/", async (req, res) => {
