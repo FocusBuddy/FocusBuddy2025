@@ -46,7 +46,8 @@ app.use('/uploads', express.static('uploads'));
 
 // Use the cors middleware
 app.use(cors({
-    origin: process.env.CLIENT_PRO_URL,
+    // origin: process.env.CLIENT_PRO_URL,
+    origin: [process.env.CLIENT_PRO_URL,process.env.BACKEND_PRO_URL],
     // origin: 'https://focusbuddyfrontend.vercel.app',
     methods: "GET,POST,PUT,DELETE",
     credentials: true
@@ -56,7 +57,7 @@ const port = process.env.PORT;
 
 app.use(cookieParser());
 // app.enable('trust proxy');
-app.set('trust proxy', 1);
+// app.set('trust proxy', 1);
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -75,7 +76,8 @@ app.use(
             maxAge: 7 * 24 * 60 * 60 * 1000,
             // maxAge: 60 * 60 * 1000
             secure: true,
-            domain: process.env.CLIENT_PRO_URL,
+            // domain: process.env.CLIENT_PRO_URL,
+            domain: ".focusbuddy.in",
             sameSite: "lax",
         },
         store: MongoStore.create({
