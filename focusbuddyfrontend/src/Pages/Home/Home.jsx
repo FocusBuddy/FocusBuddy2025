@@ -5,7 +5,7 @@ import ErrorTextToast from "../../Components/UI/toast-components/ErrorTextToast"
 import { FaUserFriends } from "react-icons/fa";
 import FAQComponent from "../../Components/FAQComponent/FAQComponent";
 import BrownButtonOnWhite from "../../Components/UI/BrownButtonOnWhite.jsx/BrownButtonOnWhite.jsx";
-
+import Loading from '../../Components/UI/LoadingComponent/Loading.jsx';
 import homehero from '../../assets/home-hero.webp';
 import adaptation from '../../assets/adaptation.webp';
 import map from '../../assets/map.webp';
@@ -47,32 +47,33 @@ export default function Home() {
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [showMessage, setShowMessage] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
 
 
   useEffect(() => {
-
-    const check = async () => {
-      try{
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/auth/checkAuthAndReturnUser`,{
+    const checkAuth = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/auth/checkAuthAndReturnUser`, {
           method: 'GET',
-          credentials: 'include'
-        })
+          credentials: 'include',
+        });
         const data = await response.json();
-
-        if(response.ok){
-          navigate('/dashboard');
-        }else{
-          navigate('/');
+        
+        if (response.ok) {
+          navigate('/dashboard'); // Redirect if authenticated
+        } else {
+          setLoading(false); // Stop loading if not authenticated
         }
-      }catch(err){
+      } catch (err) {
         console.log(err);
+        setLoading(false); // Stop loading on error
       }
-    }
-    check();
+    };
 
-  },[]);
+    checkAuth();
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -108,6 +109,11 @@ export default function Home() {
     setTimeout(() => {
       setShowMessage(false);
     }, 2000);
+  }
+
+
+  if (loading) {
+    return <Loading/>;
   }
 
   return (
