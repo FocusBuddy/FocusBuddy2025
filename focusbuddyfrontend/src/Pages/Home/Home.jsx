@@ -10,7 +10,8 @@ import homehero from '../../assets/home-hero.webp';
 import adaptation from '../../assets/adaptation.webp';
 import map from '../../assets/map.webp';
 import effortless from '../../assets/effortless.webp';
-
+import MainPagesNavbar from '../../Components/navbar/MainPagesNavbar.jsx'
+import Footer from "../../Components/footer/Footer.jsx";
 
 const data = [
   {
@@ -118,6 +119,7 @@ export default function Home() {
 
   return (
     <>
+    <MainPagesNavbar/>
     <div className="mx-6"> 
     <div className="mt-10 mb-32 flex flex-col lg:flex-row md:max-w-screen-md md:mx-auto lg:max-w-screen-2xl bg-white rounded-lg xl:mx-auto shadow-lightbg shadow-2xl">
         <div className="pt-12 pb-20 lg:pt-6 lg:pb-12 px-4 md:px-16 flex flex-col self-center basis-1/2  rounded-s-lg lg:ps-8 xl:ps-16">
@@ -275,6 +277,7 @@ export default function Home() {
           </form>
         </div>
       </div>
+      <Footer/>
       {showMessage ? <ErrorTextToast text={errorMsg} /> : null}
     </>
   );

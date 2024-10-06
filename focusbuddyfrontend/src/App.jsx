@@ -79,8 +79,8 @@ function App() {
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <Suspense fallback={<Loading />}>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
-            <Route index element={<Home />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />
             <Route path="faq" element={<FAQ />} />
