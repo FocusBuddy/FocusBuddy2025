@@ -22,7 +22,7 @@ export default function Features() {
               50 minute sessions
             </h2>
             <p className="text-md xl:text-lg text-formgray mt-4 mb-8">
-              Extend your focus with 50 or 75-minute sessions.
+              Extend your focus with 50-minutes sessions.
             </p>
           </div>
           <div className="basis-1/2 self-center my-8 lg:my-0">
@@ -30,7 +30,7 @@ export default function Features() {
               src={adaptation}
               alt="time slot image"
               loading="lazy"
-              className="h-40 lg:h-56"
+              className="h-56"
             />
           </div>
         </div>
