@@ -55,7 +55,7 @@ export default function Home() {
 
     const check = async () => {
       try{
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_DEV_URL}/auth/checkAuthAndReturnUser`,{
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/auth/checkAuthAndReturnUser`,{
           method: 'GET',
           credentials: 'include'
         })
