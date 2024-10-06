@@ -30,6 +30,7 @@ export default function Features() {
               src={adaptation}
               alt="time slot image"
               loading="lazy"
+              className="h-40 lg:h-56"
             />
           </div>
         </div>
