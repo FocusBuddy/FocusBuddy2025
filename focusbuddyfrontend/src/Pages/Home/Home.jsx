@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import LocalAuth from "../../Components/AuthComponent/LocalAuth";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import ErrorTextToast from "../../Components/UI/toast-components/ErrorTextToast";
 import { FaUserFriends } from "react-icons/fa";
 import FAQComponent from "../../Components/FAQComponent/FAQComponent";
@@ -48,6 +48,31 @@ export default function Home() {
   const [errorMsg, setErrorMsg] = useState("");
   const [showMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
+
+
+
+  useEffect(() => {
+
+    const check = async () => {
+      try{
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_DEV_URL}/auth/checkAuthAndReturnUser`,{
+          method: 'GET',
+          credentials: 'include'
+        })
+        const data = await response.json();
+
+        if(response.ok){
+          navigate('/dashboard');
+        }else{
+          navigate('/');
+        }
+      }catch(err){
+        console.log(err);
+      }
+    }
+    check();
+
+  },[]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
