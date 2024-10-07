@@ -188,16 +188,19 @@ export default function UpcomingEvents({
 
       <div style={{zIndex:3002}} id="joinbuttontooltip" className="flex mt-4 justify-between">
         <Tooltip className={`max-w-[16rem] text-center ${showJoin ? 'hidden': 'block'}`} content="You can join your session 10 minutes before it starts">
+        <button type="button" className="flex items-center gap-1 px-2 font-semibold bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200">
         <Link
           to={`/sessions/${availableEvents[0].callID}`}
           // to={`/videoSDK`}
           state={{ availableEvents }}
           // target="_blank"
-          className="flex items-center gap-1 px-2 font-semibold bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200"
+          className="flex items-center gap-1 "
+          // className="flex items-center gap-1 px-2 font-semibold bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200"
           style={showJoin ? null : { pointerEvents: "none" }}
         >
           <GoArrowRight /> Join
         </Link>
+        </button>
            </Tooltip>
         <div className="flex gap-2 items-center">
           <span>
