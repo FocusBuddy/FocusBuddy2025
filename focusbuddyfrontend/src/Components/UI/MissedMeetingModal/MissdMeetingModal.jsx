@@ -2,8 +2,25 @@ import { BiSolidError } from "react-icons/bi";
 import { Modal } from "flowbite-react";
 import { Link } from "react-router-dom";
 
-export default function MissedMeetingModal({openMissedMeetingModal,setOpenMissedMeetingModal}){
-    
+export default function MissedMeetingModal({openMissedMeetingModal,setOpenMissedMeetingModal,userProfile,setUserProfile}){
+   
+  
+  const handleAttendancefall = async () => {
+    setOpenMissedMeetingModal(false)
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/handleAttendancefall`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({email:userProfile.email})
+    });
+    const data = await response.json();
+    if(response.ok){
+      setUserProfile(data.updatedUser);
+    }
+  } 
+
+
     return(
         <>
 
@@ -13,7 +30,7 @@ export default function MissedMeetingModal({openMissedMeetingModal,setOpenMissed
               show={openMissedMeetingModal}
               style={{ zIndex: 10000 }}
               size="2xl"
-              onClose={() => setOpenMissedMeetingModal(false)}
+              onClose={handleAttendancefall}
               popup
             >
               <Modal.Header />

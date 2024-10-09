@@ -64,7 +64,8 @@ function Dashboard() {
         </div>
       </div>
 
-      { userProfile.attendanceScore === "30%" ? <MissedMeetingModal openMissedMeetingModal={openMissedMeetingModal} setOpenMissedMeetingModal={setOpenMissedMeetingModal}/> : null}
+      { userProfile.attendanceScore === "30%" && userProfile.userSawAttendanceFallModal === false ? <MissedMeetingModal openMissedMeetingModal={openMissedMeetingModal} setOpenMissedMeetingModal={setOpenMissedMeetingModal}
+      userProfile={userProfile} setUserProfile={setUserProfile}/> : null}
 
       <div
       style={{ zIndex: 10000 }}

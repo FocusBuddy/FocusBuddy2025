@@ -110,43 +110,30 @@ router.put(
 async function getAttendanceScrore(foundUser) {
   const no_of_meeting_missed = foundUser.missedMeetingCount;
   let attendance_score;
-  switch (no_of_meeting_missed) {
-    case 0:
-      attendance_score = "100%";
-      break;
-    case 1:
-      attendance_score = "90%";
-      break;
-    case 2:
-      attendance_score = "80%";
-      break;
-    case 3:
-      attendance_score = "70%";
-      break;
-    case 4:
-      attendance_score = "60%";
-      break;
-    case 5:
-      attendance_score = "50%";
-      break;
-    case 6:
-      attendance_score = "40%";
-      break;
-    case 7:
-      attendance_score = "30%";
-      break;
-    case 8:
-      attendance_score = "20%";
-      break;
-    case 9:
-      attendance_score = "10%";
-      break;
-    case 10:
-      attendance_score = "0%";
-      break;
-    default:
-      attendance_score = "---";
-      break;
+  if (no_of_meeting_missed === 0 || no_of_meeting_missed === 1) {
+    attendance_score = "100%";
+  } else if (no_of_meeting_missed === 2 || no_of_meeting_missed === 3) {
+    attendance_score = "90%";
+  } else if (no_of_meeting_missed === 4 || no_of_meeting_missed === 5) {
+    attendance_score = "80%";
+  } else if (no_of_meeting_missed === 6 || no_of_meeting_missed === 7) {
+    attendance_score = "70%";
+  } else if (no_of_meeting_missed === 8 || no_of_meeting_missed === 9) {
+    attendance_score = "60%";
+  } else if (no_of_meeting_missed === 10 || no_of_meeting_missed === 11) {
+    attendance_score = "50%";
+  } else if (no_of_meeting_missed === 12 || no_of_meeting_missed === 13) {
+    attendance_score = "40%";
+  } else if (no_of_meeting_missed === 14 || no_of_meeting_missed === 15) {
+    attendance_score = "30%";
+  } else if (no_of_meeting_missed === 16 || no_of_meeting_missed === 17) {
+    attendance_score = "20%";
+  } else if (no_of_meeting_missed === 18 || no_of_meeting_missed === 19) {
+    attendance_score = "10%";
+  } else if (no_of_meeting_missed === 20) {
+    attendance_score = "0%";
+  } else {
+    attendance_score = "---";
   }
 
   return attendance_score;
@@ -215,6 +202,24 @@ router.post("/updatemissmeetingstatus", async (req, res) => {
     res.status(500).json({ message: "error in updating miss meeting status." });
   }
 });
+
+router.post("/handleAttendancefall", async(req,res) => {
+  const {email} = req.body;
+  try{
+    const user = await userModel.findOneAndUpdate(
+      {email: email},
+      {userSawAttendanceFallModal: true},
+      {new:true}
+    );
+    res.status(200).json({
+      message: "Attendance fall model saw by user and status changed successfully.",
+      updatedUser: user,
+    });
+  }catch(err){
+    res.status(500).json({message: "error while changing attendance fall status to false"});
+  }
+})
+
 
 router.get("/getUserDetails", async (req, res) => {
   const matchedName = req.query.name;

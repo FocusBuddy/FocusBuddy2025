@@ -71,6 +71,8 @@ const VideoSDK = lazy(() => import('./Pages/Video-Session/VideoSDK.jsx'));
 const SessionEnded = lazy(() => import('./Pages/Video-Session/SessionEnded.jsx'));
 const ManageSubscription = lazy(() => import('./Pages/ManageSubscription/ManageSubscription.jsx'));
 const PaymentSuccess = lazy(() => import('./Pages/PaymentSuccess/PaymentSuccess.jsx'));
+const AccountBanned = lazy(() => import('./Pages/AccountBanned/AccountBanned.jsx'));
+
 
 function App() {
 
@@ -91,8 +93,9 @@ function App() {
             <Route path="science" element={<FocusBuddyScience />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="community" element={<Community />} />
-              <Route path="contact" element={<Contact />} />
+            <Route path="contact" element={<Contact />} />
             <Route path="account/trail-ended" element={<TrailEnd />} />  
+            <Route path="/account/account-ban" element={<AccountBanned />} />
           </Route>
 
 

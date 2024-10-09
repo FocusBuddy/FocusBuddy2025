@@ -91,7 +91,12 @@ function PrivateRoutes (){
           // const data = await response.json();
           setAuthenticated(data.status);
         }else if(response.status === 403){
-          navigate('/account/trail-ended',{ state: { profile: data } });
+          if(response.trial_ended === true || response.sub_cancelled === true){
+            navigate('/account/trail-ended',{ state: { profile: data } });
+          }else{
+            navigate('/account/account-ban', { state: { profile: data } });
+          } 
+        
         }
       }catch(err){
         console.log(err);

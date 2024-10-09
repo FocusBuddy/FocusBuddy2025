@@ -78,6 +78,14 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default :0
     },
+    userSawAttendanceFallModal: {
+        type: Boolean,
+        default: false
+    },
+    attendance0BanAccount:{
+        type: Boolean,
+        default: false
+    },
     userProfileLink: {
         type: String,
         unique: true,

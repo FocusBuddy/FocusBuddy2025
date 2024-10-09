@@ -87,6 +87,14 @@ router.get("/checkAuthAndReturnUser", async (req, res) => {
           message: "You have cancelled your subscription. Please subscribe to a new plan to log in.",
           isLoggedIn: false,
         });
+      }else if(user.attendance0BanAccount === true){
+        return res.status(403).json({
+          authenticated: true,
+          user: req.user,
+          status: false,
+          message: "Your Attendance dropped to 0%. So Account ban!.",
+          isLoggedIn: false,
+        });
       }
 
       // If subscription is not canceled, return the authenticated status and user details
