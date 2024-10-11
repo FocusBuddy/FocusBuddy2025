@@ -552,7 +552,7 @@ export default function VideoHeader({ availableEvents, call }) {
                 />
               </Tooltip>
               <span className="text-greenbg font-normal mx-1">|</span>{" "}
-              {matchedUser.totalSessionsAttended}
+              {matchedUser?.totalSessionsAttended}
               <span className="text-greenbg font-normal mx-1">|</span>
             </>
           )}

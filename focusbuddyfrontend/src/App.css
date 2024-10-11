@@ -287,6 +287,14 @@ span.str-video__participant-details__name{
   height: 1.60rem;
 }
 
+ul.str-video__generic-menu{
+  background-color:  white;
+}
+
+li.str-video__generic-menu--item button{
+  color: white;
+}
+
 
 /*Chat related styles*/
 .str-chat.messaging.light.str-chat-channel.str-chat__channel{

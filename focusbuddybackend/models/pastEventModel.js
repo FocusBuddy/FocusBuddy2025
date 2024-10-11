@@ -142,7 +142,7 @@ const pastEventSchema = new mongoose.Schema({
         //user A join  after 5 min callJoin !== 0 and otherPersonMissedCall=true because user B is joining after 
         //5min B will have callJoin !===0 otherPersonMissedCall false
         const eventsWithJoinAndOtherUserLate = pastEvents.filter(
-          (event) => (event.callJoin !== 0 && otherPersonMissedCall === true)
+          (event) => (event.callJoin !== 0 && event.otherPersonMissedCall === true)
         )
 
         eventsWithJoinAndOtherUserLate.forEach((event) => {
@@ -171,7 +171,7 @@ const pastEventSchema = new mongoose.Schema({
 
         //normal scenario both user joined on time
         const eventsWithJoinLeaveDurationAndNoMiss = pastEvents.filter(
-          (event) => (event.callJoin !== 0 && otherPersonMissedCall === false)
+          (event) => (event.callJoin !== 0 && event.otherPersonMissedCall === false)
         )
         
 
