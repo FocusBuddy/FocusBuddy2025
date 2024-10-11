@@ -1031,38 +1031,38 @@ router.post('/getEvent', async(req,res) => {
 })
 
 
-// router.post("/updateUserCallJoinTiming", async (req,res) => {
-//   try{
-//     const { participantsDetails, availableEvents } = req.body;
-//     console.log(participantsDetails);
-//     const joinTime = new Date(
-//       participantsDetails?.participant?.joined_at
-//     ).getTime();
+router.post("/updateUserCallJoinTiming", async (req,res) => {
+  try{
+    const { participantsDetails, availableEvents } = req.body;
+    console.log(participantsDetails);
+    const joinTime = new Date(
+      participantsDetails?.participant?.joined_at
+    ).getTime();
 
 
-//     const updated = await Event.findOneAndUpdate(
-//       {
-//         callID: availableEvents.callID,
-//         fullName: participantsDetails?.participant?.user?.name,
-//       },
-//       {
-//         callJoin: new Date(
-//           participantsDetails?.participant?.joined_at
-//         ).getTime()
-//       },
-//       {new: true}
-//     )
+    const updated = await Event.findOneAndUpdate(
+      {
+        callID: availableEvents.callID,
+        fullName: participantsDetails?.participant?.user?.name,
+      },
+      {
+        callJoin: new Date(
+          participantsDetails?.participant?.joined_at
+        ).getTime()
+      },
+      {new: true}
+    )
 
-//     // console.log("updateTiming", updated);
-//     res.status(200).json({ callDetails: updated });
+    // console.log("updateTiming", updated);
+    res.status(200).json({ callDetails: updated });
 
-//   }catch(err){
-//     console.log(err);
-//     res
-//       .status(500)
-//       .json({ message: "Error while updating call join timing." });
-//   }
-// });
+  }catch(err){
+    console.log(err);
+    res
+      .status(500)
+      .json({ message: "Error while updating call join timing." });
+  }
+});
 
 router.post("/getMatchedUserEvent", async (req,res) => {
   const {callid,matchedUserName} = req.body;
