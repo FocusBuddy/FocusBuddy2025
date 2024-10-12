@@ -72,6 +72,7 @@ const SessionEnded = lazy(() => import('./Pages/Video-Session/SessionEnded.jsx')
 const ManageSubscription = lazy(() => import('./Pages/ManageSubscription/ManageSubscription.jsx'));
 const PaymentSuccess = lazy(() => import('./Pages/PaymentSuccess/PaymentSuccess.jsx'));
 const AccountBanned = lazy(() => import('./Pages/AccountBanned/AccountBanned.jsx'));
+const DemoVideo  = lazy(() => import("./Pages/Video-Session/DemoVideo.jsx"));
 
 
 function App() {
@@ -96,6 +97,8 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="account/trail-ended" element={<TrailEnd />} />  
             <Route path="/account/account-ban" element={<AccountBanned />} />
+            <Route path="/demovideo" element={<DemoVideo />} />
+
           </Route>
 
 
