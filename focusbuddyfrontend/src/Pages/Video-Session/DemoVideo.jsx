@@ -30,7 +30,7 @@ export default function DemoVideo(){
     
           const tokenProvider = async () => {
             const response = await fetch(
-              `${import.meta.env.VITE_BACKEND_DEV_URL}/api/video/generate-token`,
+              `${import.meta.env.VITE_BACKEND_PRO_URL}/api/video/generate-token`,
               {
                 method: "POST",
                 headers: {
