@@ -11,7 +11,7 @@ import {
   CallingState,
   useCallStateHooks
 } from "@stream-io/video-react-sdk";
-
+import CustomScreenShareButton from './CustomScreenShareButton';
 
 const apiKey = "ct9ycfrh4prr";
 
@@ -94,6 +94,7 @@ export default function DemoVideo(){
               {/* <ChatFeature token={token} availableEvents={availableEvents}/>  */}
               <PaginatedGridLayout />
               <CallControls/>
+              <CustomScreenShareButton/>
             </StreamCall>
           )}
         </StreamTheme>
