@@ -5,7 +5,8 @@ import {
   ToggleVideoPublishingButton,
   ScreenShareButton,
   ReactionsButton,
-  useCallStateHooks
+  useCallStateHooks,
+  CallControls
 } from "@stream-io/video-react-sdk";
 import ChatControl from "./ChatControl";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +23,7 @@ export default function VideoFooter({mainToken,testToken,availableEvents,call}) 
 
   return (
     <div id="VideoSDKfooter" className="w-full gap-2 md:gap-6 mt-10 md:mt-14 h-24 md:h-20 bg-[#19232D] flex justify-center items-center">
+      <CallControls/>
       <SpeakingWhileMutedNotification>
         <ToggleAudioPublishingButton />
       </SpeakingWhileMutedNotification>

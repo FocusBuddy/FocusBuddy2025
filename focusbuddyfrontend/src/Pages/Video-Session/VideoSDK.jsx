@@ -160,7 +160,7 @@ export default function VideoSDK() {
   return (
     <div className="min-h-screen min-w-screen bg-[#292D3E] md:px-0">
       <StreamVideo client={client}>
-          {call && (
+          {/* {call && ( */}
             <StreamCall call={call}>
               <MyUILayout
                 call={call}
@@ -169,7 +169,7 @@ export default function VideoSDK() {
                 sessionevent={sessionevent}
               />
             </StreamCall>
-          )}
+          {/* )} */}
       </StreamVideo>
     </div>
   );
@@ -177,6 +177,7 @@ export default function VideoSDK() {
 
 
 export const MyUILayout = (props) => {
+  console.log(props)
   const {
     useCallCallingState,
     // ... other hooks

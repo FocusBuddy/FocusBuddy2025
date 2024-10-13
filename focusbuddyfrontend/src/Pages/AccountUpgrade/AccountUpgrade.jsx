@@ -115,7 +115,7 @@ export default function AccountUpgrade() {
 
   const handleUpdateSubscription = async (newplan) => {
     try{
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_DEV_URL}/api/user/${userProfile.subscription.payment_method === "cards" ? "updateCardSubscription" : "updateUpiSubscription"}`,
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/${userProfile.subscription.payment_method === "cards" ? "updateCardSubscription" : "updateUpiSubscription"}`,
         {
           method: "POST",
             headers: {
