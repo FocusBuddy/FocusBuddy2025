@@ -1,104 +1,55 @@
-import { CallControls } from "@stream-io/video-react-sdk";
-import { useEffect, useState } from "react";
-
-import "@stream-io/video-react-sdk/dist/css/styles.css";
 import {
-  StreamVideoClient,
-  StreamVideo,
-  StreamTheme,
-  StreamCall,
-  PaginatedGridLayout,
+  CallControls,
   CallingState,
-  useCallStateHooks
-} from "@stream-io/video-react-sdk";
-import CustomScreenShareButton from './CustomScreenShareButton';
+  SpeakerLayout,
+  StreamCall,
+  StreamTheme,
+  StreamVideo,
+  StreamVideoClient,
+  useCallStateHooks,
+  User,
+} from '@stream-io/video-react-sdk';
 
-const apiKey = "ct9ycfrh4prr";
+import '@stream-io/video-react-sdk/dist/css/styles.css';
+import './style.css';
 
-export default function DemoVideo(){
+const apiKey = 'mmhfdzb5evj2';
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3Byb250by5nZXRzdHJlYW0uaW8iLCJzdWIiOiJ1c2VyL1NoYWFrX1RpIiwidXNlcl9pZCI6IlNoYWFrX1RpIiwidmFsaWRpdHlfaW5fc2Vjb25kcyI6NjA0ODAwLCJpYXQiOjE3Mjg4MDk3NzMsImV4cCI6MTcyOTQxNDU3M30.chanW8qpELiDfH3R9zBxuJRN9SjwBBSeVDwa3W0DtCg';
+const userId = 'Shaak_Ti';
+const callId = 'IwXQbkelWfoS';
 
-    const [client, setClient] = useState(null);
-  const [call, setCall] = useState(null);
+const user = {
+  id: userId,
+  name: 'Oliver',
+  image: 'https://getstream.io/random_svg/?id=oliver&name=Oliver',
+};
 
-    useEffect(() => {
+const client = new StreamVideoClient({ apiKey, user, token });
+const call = client.call('default', callId);
+call.join({ create: true });
 
-        const user = {
-            id: "test",
-            name: "test",
-            role: "admin",
-          };
-    
-          const tokenProvider = async () => {
-            const response = await fetch(
-              `${import.meta.env.VITE_BACKEND_PRO_URL}/api/video/generate-token`,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ userId: "test" }),
-              }
-            );
-            const data = await response.json();
-            // setMainToken(data.token);
-            return data.token;
-          };
-      
-          const myClient = new StreamVideoClient({ apiKey, user, tokenProvider });
-          setClient(myClient);
-
-    const callType = "default";
-    const callId = "234234234";
-    // const callId = userProfile.familyName;
-
-    const call = myClient.call(callType, callId);
-    call.getOrCreate({
-      data:{
-        name: "default",
-        settings_override: {
-          limits: {
-            max_participants: 2,
-            max_duration_seconds: 3000 //50 * 60
-            // max_duration_seconds: 120 //50 * 60
-          }
-        },
-        // starts_at: "2024-08-31T06:30:00.000Z"
-        // starts_at: availableEvents[0].start
-      }
-    });
-    setCall(call);
-
-    if (call) {
-      call.join();
-  // console.log(session);
-
-    }
-
-    return () => {
-      if (call.state.callingState !== CallingState.LEFT) {
-        call.leave();
-      }
-      setClient(undefined);
-    };
-
-    },[]);
-
-    
-
-    return(
-        <div className="min-h-screen min-w-screen bg-[#292D3E] md:px-0">
-      <StreamVideo client={client}>
-        <StreamTheme>
-          {call && (
-            <StreamCall call={call}>
-              {/* <ChatFeature token={token} availableEvents={availableEvents}/>  */}
-              <PaginatedGridLayout />
-              <CallControls/>
-              <CustomScreenShareButton/>
-            </StreamCall>
-          )}
-        </StreamTheme>
-      </StreamVideo>
-    </div>
-    )
+export default function App() {
+  return (
+    <StreamVideo client={client}>
+      <StreamCall call={call}>
+        <MyUILayout />
+      </StreamCall>
+    </StreamVideo>
+  );
 }
+
+export const MyUILayout = () => {
+  const { useCallCallingState } = useCallStateHooks();
+  const callingState = useCallCallingState();
+
+  if (callingState !== CallingState.JOINED) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <StreamTheme>
+      <SpeakerLayout participantsBarPosition='bottom' />
+      <CallControls />
+    </StreamTheme>
+  );
+};
