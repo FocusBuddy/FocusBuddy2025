@@ -39,6 +39,8 @@ export default function App() {
   const userId = userProfile.displayName.split(" ").join("_");
   const location = useLocation();
   const { availableEvents } = location.state || {};
+  const [client, setClient] = useState(null);
+  const [call, setCall] = useState(null);
 
   const callId = 'IwXQbkelWfoS';
 
@@ -53,7 +55,7 @@ export default function App() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ userId: userID }),
+          body: JSON.stringify({ userId: userId }),
         }
       );
       const data = await response.json();
@@ -69,6 +71,7 @@ export default function App() {
     };
   
     const client = new StreamVideoClient({ apiKey, user, tokenProvider });
+    setClient(client);
     const call = client.call('default', callId);
   
     const createCall = async() => {
@@ -84,7 +87,7 @@ export default function App() {
           },
         }
       });
-      // setCall(call);
+      setCall(call);
   
       if (call) {
         await call.join();
@@ -99,7 +102,7 @@ export default function App() {
       if (call.state.callingState !== CallingState.LEFT) {
         call.leave();
       }
-      // setClient(undefined);
+      setClient(undefined);
     };
 
   },[])
