@@ -31,7 +31,7 @@ const apiKey = import.meta.env.VITE_GETSTREAM_KEY;
 
 // const client = new StreamVideoClient({ apiKey, user, token });
 // const call = client.call('default', callId);
-call.join({ create: true });
+// call.join({ create: true });
 
 export default function App() {
 
@@ -39,8 +39,8 @@ export default function App() {
   const userId = userProfile.displayName.split(" ").join("_");
   const location = useLocation();
   const { availableEvents } = location.state || {};
-  const [client, setClient] = useState(null);
-  const [call, setCall] = useState(null);
+  // const [client, setClient] = useState(null);
+  // const [call, setCall] = useState(null);
 
   const callId = 'IwXQbkelWfoS';
 
@@ -71,7 +71,7 @@ export default function App() {
     };
   
     const client = new StreamVideoClient({ apiKey, user, tokenProvider });
-    setClient(client);
+    // setClient(client);
     const call = client.call('default', callId);
   
     const createCall = async() => {
@@ -87,7 +87,7 @@ export default function App() {
           },
         }
       });
-      setCall(call);
+      // setCall(call);
   
       if (call) {
         await call.join();
@@ -102,7 +102,7 @@ export default function App() {
       if (call.state.callingState !== CallingState.LEFT) {
         call.leave();
       }
-      setClient(undefined);
+      // setClient(undefined);
     };
 
   },[])
