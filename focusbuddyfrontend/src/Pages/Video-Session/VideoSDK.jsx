@@ -6,7 +6,8 @@ import {
   StreamCall,
   PaginatedGridLayout,
   CallingState,
-  useCallStateHooks
+  useCallStateHooks,
+  CallControls
 } from "@stream-io/video-react-sdk";
 // import ChatFeature from "./ChatFeature";
 import { useEffect, useState, useContext } from "react";
@@ -202,6 +203,7 @@ export const MyUILayout = (props) => {
             />
       }
               <PaginatedGridLayout />
+              <CallControls/>
               <VideoFooter call={props.call} mainToken={props.mainToken} availableEvents={props.availableEvents}/>
     </StreamTheme>
   );
