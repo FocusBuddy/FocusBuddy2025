@@ -196,7 +196,7 @@ export default function UpcomingEvents({
           // target="_blank"
           className="flex items-center gap-1 "
           // className="flex items-center gap-1 px-2 font-semibold bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200"
-          style={showJoin ? null : { pointerEvents: "none" }}
+          // style={showJoin ? null : { pointerEvents: "none" }}
         >
           <GoArrowRight /> Join
         </Link>
