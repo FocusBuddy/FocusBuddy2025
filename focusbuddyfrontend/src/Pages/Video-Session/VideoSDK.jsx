@@ -17,7 +17,7 @@ import { useLocation } from "react-router-dom";
 import VideoHeader from "./VideoHeader";
 import VideoFooter from "./VideoFooter";
 import ParticipantsState from "./ParticipantsState";
-import Loading from "../../Components/UI/LoadingComponent/Loading";
+
 
 
 const apiKey = import.meta.env.VITE_GETSTREAM_KEY;
