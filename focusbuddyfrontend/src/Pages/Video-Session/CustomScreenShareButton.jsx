@@ -1,6 +1,6 @@
 import { useCallStateHooks } from '@stream-io/video-react-sdk';
 
-export const CustomScreenShareButton = () => {
+export default function CustomScreenShareButton(){
   const { useScreenShareState, useHasOngoingScreenShare } = useCallStateHooks();
   const { screenShare, isMute: isScreenSharing } = useScreenShareState();
 
