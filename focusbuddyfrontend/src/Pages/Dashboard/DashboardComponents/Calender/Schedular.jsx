@@ -277,6 +277,7 @@ function handleTabChange(tab){
       matchedPersonName: 'Matching...',
       matchedPersonFullName: 'Matching...',
       matchedPersonProfilePic: `${import.meta.env.VITE_BACKEND_PRO_URL}/uploads/search.jpg`,
+      matchedPersonProfileLink: '',
       name: userProfile.givenName + ' ' + userProfile.familyName[0],
       fullName: userProfile.givenName + ' ' + userProfile.familyName,
       profilePic: userProfile.profilePic,

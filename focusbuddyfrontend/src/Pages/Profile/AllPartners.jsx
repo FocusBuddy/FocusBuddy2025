@@ -186,7 +186,7 @@ export default function AllPartners() {
               {reportModal ? (
                 <ReportModal
                   setReportModal={setReportModal}
-                  name={allpartner.name}
+                  name={allpartner.matchedPersonFullName}
                   email={allpartner.matchedPersonFullName}
                   setReportSelect={setReportSelect}
                   setReportText={setReportText}

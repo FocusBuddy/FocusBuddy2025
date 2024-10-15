@@ -265,6 +265,7 @@ cron.schedule('0 0 * * 0', async () => {
 }, {
   timezone: 'Asia/Kolkata' // Adjust according to your timezone, e.g., 'America/New_York'
 });
+
 // cron.schedule('0 0 * * 0', async () => {
 //   try {
 //       // Calculate the current date
