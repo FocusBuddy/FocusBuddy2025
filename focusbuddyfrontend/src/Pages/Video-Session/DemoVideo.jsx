@@ -168,9 +168,9 @@ export const MyUILayout = (props) => {
             />
     <StreamTheme>
       <SpeakerLayout participantsBarPosition='bottom' />
-      <CallControls />
-    </StreamTheme>
+      {/* <CallControls /> */}
     <VideoFooter call={props.call} mainToken={props.mainToken} availableEvents={props.availableEvents}/>
+    </StreamTheme>
     </>
   );
 };
