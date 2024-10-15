@@ -7,7 +7,7 @@ import { myContext } from "../../../../utils/PrivateRoutes";
 
 
 const DashboardHeader = () => {
-  const {columns,setColumns} = useContext(myContext);
+  const {userProfile,columns,setColumns} = useContext(myContext);
   
 
   function showColumns(){
@@ -16,7 +16,7 @@ const DashboardHeader = () => {
 
   
     return(
-        <div className="dashboard-header flex mt-16 md:mt-8 p-6 bg-white rounded-lg shadow">
+        <div className={`dashboard-header flex ${userProfile.welcomeChecklistState.final === true ? 'mt-6' : 'mt-16' } md:mt-8 p-6 bg-white rounded-lg shadow`}>
           <div className="flex items-center gap-4 w-[40%] md:w-[33.33%]">
             <button type="button" onClick={showColumns}>
             <svg

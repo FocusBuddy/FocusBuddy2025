@@ -1,13 +1,13 @@
 import {
   CallControls,
   CallingState,
+  ParticipantView,
   SpeakerLayout,
   StreamCall,
   StreamTheme,
   StreamVideo,
   StreamVideoClient,
   useCallStateHooks,
-  User,
 } from '@stream-io/video-react-sdk';
 import VideoHeader from "./VideoHeader";
 import VideoFooter from "./VideoFooter";
@@ -117,7 +117,7 @@ export default function App() {
   
       if (call) {
         await call.join();
-    console.log(session);
+    // console.log(session);
   
       }
     }
@@ -154,11 +154,11 @@ export const MyUILayout = (props) => {
   const callingState = useCallCallingState();
 
   if (callingState !== CallingState.JOINED) {
-    return <div>Loading...</div>;
+    return <Loading/>;
   }
 
   return (
-    <div className='bg-[#222222]'>
+    <div className='px-4 md:px-0 bg-[#222222] min-h-screen'>
     <ParticipantsState 
        call={props.call} 
        availableEvents={props.availableEvents}/>
@@ -167,8 +167,7 @@ export const MyUILayout = (props) => {
               availableEvents={props.sessionevent}
             />
     <StreamTheme>
-      <SpeakerLayout participantsBarPosition='left' />
-      {/* <CallControls /> */}
+      <SpeakerLayout participantsBarPosition='top' />
     <VideoFooter call={props.call} mainToken={props.mainToken} availableEvents={props.availableEvents}/>
     </StreamTheme>
     </div>

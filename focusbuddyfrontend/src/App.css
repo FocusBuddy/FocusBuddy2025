@@ -283,17 +283,26 @@ span.str-video__participant-details__name{
 }
 
 #VideoSDKfooter .str-video__icon{
-  width: 1.60rem;
-  height: 1.60rem;
+  width: 1.40rem;
+  height: 1.40rem;
 }
 
 ul.str-video__generic-menu{
   background-color:  white;
 }
 
+li.str-video__generic-menu--item button{
+  color: white;
+}
+
 .str-video__menu-container ul.str-video__generic-menu li.str-video__generic-menu--item button{
   color: white;
 }
+
+
+.bg-gray-900\/50.dark\:bg-gray-900\/80.fixed.inset-0.z-30{
+  background-color: transparent;
+  }
 
 
 /*Chat related styles*/

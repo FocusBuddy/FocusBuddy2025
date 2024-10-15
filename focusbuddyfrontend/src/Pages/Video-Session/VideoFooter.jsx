@@ -26,7 +26,14 @@ export default function VideoFooter({mainToken,testToken,availableEvents,call}) 
       </SpeakingWhileMutedNotification>
       <ToggleVideoPublishingButton />
       <ReactionsButton/>
-      <ScreenShareButton/>
+      {
+        window.screen.width < 676 
+        ?
+        null
+        :
+        <ScreenShareButton/>
+
+      }
       <ChatControl mainToken={mainToken} testToken={testToken} availableEvents={availableEvents}/>
       <CancelCallButton onClick={handleCallEnd}/>
     </div>

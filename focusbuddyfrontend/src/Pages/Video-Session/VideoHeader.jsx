@@ -368,8 +368,8 @@ export default function VideoHeader({ availableEvents, call }) {
   console.log(matchedUser);
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between gap-2  w-full mb-8 md:mb-12 h-[8rem] md:h-[5.4rem] py-2 px-4 md:px-10 bg-[#19232D]">
-      <div className="flex  gap-4 bg-white p-3 rounded-md">
+    <div className="flex flex-col md:flex-row items-center justify-between gap-2  w-full mb-8 h-[8rem] md:h-[5.4rem] py-2 px-4 md:px-10 bg-[#19232D]">
+      <div className={`${window.screen.width < 676 ? 'static' : 'fixed top-3 left-10'} flex gap-4 bg-white p-3 rounded-md`}>
         {availableEvents[0].matchedPersonFullName !== "Matching..." && (
           <img
             className="w-9 h-9 rounded-full"
@@ -1010,7 +1010,7 @@ export default function VideoHeader({ availableEvents, call }) {
 
       <div
         id="session-timer"
-        className="flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg"
+        className={`${window.screen.width < 676 ? 'static' : 'fixed top-3 right-10'} flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg`}
       >
         <MdTimer className="my-auto text-xl md:text-3xl" />{" "}
         {Date.now() < new Date(availableEvents[0].start).getTime()
