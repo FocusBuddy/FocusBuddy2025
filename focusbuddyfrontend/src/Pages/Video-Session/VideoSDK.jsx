@@ -158,7 +158,7 @@ export const MyUILayout = (props) => {
   }
 
   return (
-    <>
+    <div className='bg-[#222222]'>
     <ParticipantsState 
        call={props.call} 
        availableEvents={props.availableEvents}/>
@@ -167,11 +167,11 @@ export const MyUILayout = (props) => {
               availableEvents={props.sessionevent}
             />
     <StreamTheme>
-      <SpeakerLayout participantsBarPosition='bottom' />
+      <SpeakerLayout participantsBarPosition='left' />
       {/* <CallControls /> */}
     <VideoFooter call={props.call} mainToken={props.mainToken} availableEvents={props.availableEvents}/>
     </StreamTheme>
-    </>
+    </div>
   );
 };
 

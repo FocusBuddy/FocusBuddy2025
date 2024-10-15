@@ -291,7 +291,7 @@ ul.str-video__generic-menu{
   background-color:  white;
 }
 
-li.str-video__generic-menu--item button{
+.str-video__menu-container ul.str-video__generic-menu li.str-video__generic-menu--item button{
   color: white;
 }
 
