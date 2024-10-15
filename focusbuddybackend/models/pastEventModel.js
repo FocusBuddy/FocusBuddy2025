@@ -147,7 +147,7 @@ const pastEventSchema = new mongoose.Schema({
 
         eventsWithJoinAndOtherUserLate.forEach((event) => {
           const makeChanges = async () => {
-            const otherPersonEventWhoMissedCall = await User.findByIdAndUpdate(
+            const otherPersonEventWhoMissedCall = await User.findOneAndUpdate(
               {displayName: event.matchedPersonFullName},
               {
                 $set: { missedMeeting: true }, // Use $set to update specific fields
