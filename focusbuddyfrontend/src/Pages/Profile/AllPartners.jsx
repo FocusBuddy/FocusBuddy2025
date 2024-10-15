@@ -32,6 +32,7 @@ export default function AllPartners() {
   const [reportText, setReportText] = useState("");
   const [sending, setSending] = useState(false);
   const [allPastSessions, setAllPastSessions] = useState([]);
+  const [reportWho,setReportWho] = useState('');
   console.log(appointments);
 
   useEffect(() => {
@@ -79,6 +80,11 @@ export default function AllPartners() {
       // Handle error (e.g., show error message to the user)
     }
   };
+
+  const handleReport = async (name) => {
+    setReportModal(true);
+    setReportWho(name);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -177,7 +183,7 @@ export default function AllPartners() {
                   <div>
                     <Tooltip  className="w-44 text-center" content={"Report user"}>
 
-                     <Link onClick={() => setReportModal(true)}><MdReportProblem className="text-2xl cursor-pointer text-[#6B7280]"/></Link>
+                     <Link onClick={() => handleReport(allpartner.matchedPersonName)}><MdReportProblem className="text-2xl cursor-pointer text-[#6B7280]"/></Link>
                     </Tooltip>
                   </div>
                 </div>
@@ -186,7 +192,7 @@ export default function AllPartners() {
               {reportModal ? (
                 <ReportModal
                   setReportModal={setReportModal}
-                  name={allpartner.matchedPersonFullName}
+                  name={reportWho}
                   email={allpartner.matchedPersonFullName}
                   setReportSelect={setReportSelect}
                   setReportText={setReportText}
