@@ -62,7 +62,7 @@ const DashboardNavbar = () => {
       </div>
       {
         location.pathname === '/dashboard' && 
-      <div className={`${finalDone ? 'invisible' : 'absolute'} md:static top-24 md:top-20 left-16 md:flex justify-center w-[63%] md:w-[33.33%] cursor-pointer`} onClick={() => setWelcomeCheckListModal(true)}>
+      <div className={`${finalDone ? 'invisible w-0' : 'absolute w-[63%] md:w-[33.33%]'} md:static top-24 md:top-20 left-16 md:flex justify-center  cursor-pointer`} onClick={() => setWelcomeCheckListModal(true)}>
         <div className="flex gap-2 bg-white px-4 py-2 rounded-md">
         <p className="text-[12px] xl:text-lg font-medium text-textcolor my-auto">WELCOME CHECKLIST</p>
         <div className="flex gap-1 text-xs md:text-xl my-auto">
@@ -86,7 +86,7 @@ const DashboardNavbar = () => {
         </div>
       </div>
       }
-      <div className={`${location.pathname === '/dashboard' ? 'w-[70%] md:w-[33.33%]' : 'w-[70%] lg:w-[50%]'} flex gap-2 lg:gap-4 justify-end items-center`}>
+      <div className={`${location.pathname === '/dashboard' && finalDone === true ? 'w-[70%] md:w-[33.33%]' : 'w-[70%] lg:w-[50%]'} flex gap-2 lg:gap-4 justify-end items-center`}>
         <Link to={'/account/upgrade'} className="py-2 rounded-md hover:bg-white hover:text-textcolor px-3 border-2 border-white text-[12px] lg:text-lg">Upgrade</Link>
         <div
           id="helpdropdownbutton"
