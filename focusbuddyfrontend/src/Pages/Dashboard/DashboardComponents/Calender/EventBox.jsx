@@ -23,18 +23,18 @@ function EventBox({ event, handleConfirm }) {
     editEvent,
     setEditEvent,
   } = useContext(myContext);
-  const [join,setJoin] = useState(null);
+  const [join, setJoin] = useState(null);
 
   // console.log("openeditmodal", openEbEditModal);
-  const [isInFav,setIsInFav] = useState(false);
+  const [isInFav, setIsInFav] = useState(false);
   const availableEvents = [event.event];
 
   const start_time = moment(event.event.start).toDate().getTime();
   console.log(start_time);
   const ten_min_before = moment(start_time)
-  .subtract(10, "minutes")
-  .toDate()
-  .getTime();
+    .subtract(10, "minutes")
+    .toDate()
+    .getTime();
   console.log(ten_min_before);
 
   useEffect(() => {
@@ -56,17 +56,18 @@ function EventBox({ event, handleConfirm }) {
     return () => {
       clearInterval(beforeJoinTime);
     };
-  },[event]);
-
+  }, [event]);
 
   useEffect(() => {
     const checkFavorite = () => {
       // const formattedEventName = getFormattedName(event.name);
-      const isFavorite = userProfile.favorites.some(fav => fav.name === event.event.matchedPersonFullName);
+      const isFavorite = userProfile.favorites.some(
+        (fav) => fav.name === event.event.matchedPersonFullName
+      );
       setIsInFav(isFavorite);
     };
     checkFavorite();
-  }, [event.event.name, userProfile.favorites,appointments]);
+  }, [event.event.name, userProfile.favorites, appointments]);
 
   // console.log('new Event',matchPic);
   // console.log('EventBox',event.event, 'user',userProfile);
@@ -97,14 +98,14 @@ function EventBox({ event, handleConfirm }) {
             } //profilepic of person with whom i got match
             alt=""
           />
-          {
-            isInFav ? 
-            <div className="absolute -bottom-0.5 -right-0.5 p-0.5 bg-greenbg rounded-full" style={{zIndex: 2002}}>
-            <FaStar className="text-[13px] text-white" />
-          </div>
-          :null
-          }
-          
+          {isInFav ? (
+            <div
+              className="absolute -bottom-0.5 -right-0.5 p-0.5 bg-greenbg rounded-full"
+              style={{ zIndex: 2002 }}
+            >
+              <FaStar className="text-[13px] text-white" />
+            </div>
+          ) : null}
         </div>
 
         <div className="w-[70%] xl:w-[60%]">
@@ -141,40 +142,48 @@ function EventBox({ event, handleConfirm }) {
           (userProfile.familyName ? userProfile.familyName[0] : " ") ||
       event.event.matchedPersonName !== "Matching..." ? (
         <div className="flex justify-between">
-          <Tooltip id="eventBoxJoin" className={`max-w-[16rem] text-[13px] leading-[16px] text-center ${join ? 'hidden': 'block'}`} content="You can join your session 10 minutes before it starts">
-        <button type="button" className="flex items-center gap-1 px-1 py-[7px] text-[14px] md:px-2 rounded-md bg-white text-textcolor font-semibold border border-bordercolor hover:bg-gray-200">
-        <Link
-          to={`/sessions/${event.event.callID}`}
-          // to={`/videoSDK`}
-          state={{ availableEvents }}
-          // target="_blank"
-          className="flex items-center gap-1 "
-          // className="flex items-center gap-1 px-2 font-semibold bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200"
-          style={join ? null : { pointerEvents: "none" }}
-        >
-          <GoArrowRight className="font-bold" /> Join
-        </Link>
-        </button>
-           </Tooltip>
+          <Tooltip
+            id="eventBoxJoin"
+            className={`max-w-[16rem] text-[13px] leading-[16px] text-center ${
+              join ? "hidden" : "block"
+            }`}
+            content="You can join your session 10 minutes before it starts"
+          >
+            <button
+              type="button"
+              className="flex items-center gap-1 px-1 py-[7px] text-[14px] md:px-2 rounded-md bg-white text-textcolor font-semibold border border-bordercolor hover:bg-gray-200"
+            >
+              <Link
+                to={`/sessions/${event.event.callID}`}
+                // to={`/videoSDK`}
+                state={{ availableEvents }}
+                // target="_blank"
+                className="flex items-center gap-1 "
+                // className="flex items-center gap-1 px-2 font-semibold bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200"
+                style={join ? null : { pointerEvents: "none" }}
+              >
+                <GoArrowRight className="font-bold" /> Join
+              </Link>
+            </button>
+          </Tooltip>
 
-<div className="flex gap-2">
-          <button
-            type="button"
-            className="p-1 text-sm rounded-full bg-white text-textcolor border border-textcolor hover:bg-gray-200"
-            onClick={() => handleEdit(event.event.myID)}
-          >
-            <MdEdit />
-          </button>
-          <button
-            type="button"
-            className="p-1 text-sm rounded-full bg-white text-textcolor border border-textcolor hover:bg-gray-200"
-            onClick={() => handleConfirm(event.event.myID)}
-          >
-            <IoMdClose />
-          </button>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              className="py-1 px-1.5 text-[12px] rounded-md bg-white text-textcolor border border-textcolor hover:bg-gray-200"
+              onClick={() => handleEdit(event.event.myID)}
+            >
+              <MdEdit />
+            </button>
+            <button
+              type="button"
+              className="py-1 px-1.5 text-[12px] rounded-md bg-white text-textcolor border border-textcolor hover:bg-gray-200"
+              onClick={() => handleConfirm(event.event.myID)}
+            >
+              <IoMdClose />
+            </button>
+          </div>
         </div>
-        </div>
-        
       ) : null}
       {openEbEditModal ? (
         <EditEventModal

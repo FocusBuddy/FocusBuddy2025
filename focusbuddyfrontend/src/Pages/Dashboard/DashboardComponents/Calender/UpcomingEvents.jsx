@@ -237,7 +237,7 @@ export default function UpcomingEvents({
         <div className="flex justify-end gap-2">
           <button
             type="button"
-            className="p-1.5 text-sm rounded-full bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200"
+            className="p-1.5 text-sm rounded-md bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200"
             // style={showJoin ? { pointerEvents: "none" } : null}
             onClick={() => setOpenUpEditModal(true)}
           >
@@ -245,7 +245,7 @@ export default function UpcomingEvents({
           </button>
           <button
             type="button"
-            className="p-1.5 text-sm rounded-full bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200"
+            className="p-1.5 text-sm rounded-md bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200"
             onClick={() => handleConfirm(availableEvents[0].myID)}
             // style={showJoin ? { pointerEvents: "none" } : null}
           >

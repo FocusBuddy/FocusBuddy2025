@@ -20,7 +20,7 @@ export default function VideoFooter({mainToken,testToken,availableEvents,call}) 
 
 
   return (
-    <div id="VideoSDKfooter" className="w-full gap-2 md:gap-6 mt-10 md:mt-14 h-24 md:h-20 bg-[#19232D] flex justify-center items-center">
+    <div id="VideoSDKfooter" className={`${window.screen.width < 676 ? 'static' : 'fixed bottom-0'} w-full gap-2 md:gap-6 mt-10 md:mt-14 h-24 md:h-20 bg-[#19232D] flex justify-center items-center`}>
       <SpeakingWhileMutedNotification>
         <ToggleAudioPublishingButton />
       </SpeakingWhileMutedNotification>
