@@ -1010,7 +1010,6 @@ export default function VideoHeader({ availableEvents, call }) {
 
       <div
         id="session-timer"
-        style={{zIndex: 3000}}
         className={`${window.screen.width < 676 ? 'static' : 'fixed top-3 right-10'} flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg`}
       >
         <MdTimer className="my-auto text-xl md:text-3xl" />{" "}
