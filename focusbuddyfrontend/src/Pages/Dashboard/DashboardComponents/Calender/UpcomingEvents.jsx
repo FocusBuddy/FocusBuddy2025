@@ -112,12 +112,11 @@ export default function UpcomingEvents({
       );
     } else {
       return (
-        <div className="text-xs flex gap-2 items-center">
+        <div className="text-[13px] flex gap-1 items-center">
           ends in:
           <div className="flex items-center bg-[#DE3535] px-2 py-1">
             <span>
-              {hours < 10 ? "0" : null}
-              {hours}:{minutes < 10 ? "0" : null}
+              {minutes < 10 ? "0" : null}
               {minutes}:{seconds < 10 ? "0" : null}
               {seconds}
             </span>
@@ -203,7 +202,7 @@ export default function UpcomingEvents({
         </button>
            </Tooltip> */}
         <Tooltip className={`max-w-[16rem] text-center ${showJoin ? 'hidden': 'block'}`} content="You can join your session 10 minutes before it starts">
-        <button type="button" className="flex items-center gap-1 px-1 md:px-2 font-semibold bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200">
+        <button type="button" className="flex items-center gap-1 px-1 font-semibold bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200">
         <Link
           to={`/sessions/${availableEvents[0].callID}`}
           // to={`/videoSDK`}

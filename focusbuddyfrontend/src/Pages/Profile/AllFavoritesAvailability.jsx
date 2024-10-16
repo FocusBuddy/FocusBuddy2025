@@ -196,6 +196,13 @@ const navigate = useNavigate();
           </div>
           <div className="bg-white p-10 h-screen">
             <div className="flex justify-center mt-10">
+            {userProfile.favorites.length === 0 && (
+            <div className="bg-bordercolor py-4 w-full rounded-md">
+              <p className="text-md xl:text-lg font-medium text-textcolor text-center">
+                No Favorites
+              </p>
+            </div>
+          )}
             {
             userProfile.favorites.map((fav) => (
                           <div className="mb-10 space-y-3 w-[50%] text-center">
