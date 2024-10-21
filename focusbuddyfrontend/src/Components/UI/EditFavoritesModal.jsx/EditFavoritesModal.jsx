@@ -72,7 +72,7 @@ export default function EditFavoritesModal({
                         id="everyone-radio-text"
                         className="text-md font-normal text-gray-500 "
                       >
-                        All Focusmate members can book sessions with you.
+                        All FocusBuddy members can book sessions with you.
                       </p>
                     )}
                   </div>

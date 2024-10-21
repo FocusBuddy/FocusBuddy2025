@@ -60,7 +60,7 @@ export default function ReportModal({setReportModal, name, email,setReportSelect
                       </h1>
                       <div className="mt-8 text-formgray text-md xl:text-lg space-y-3">
                         <p>
-                          Thank you for helping us keep Focusmate safe and
+                          Thank you for helping us keep FocusBuddy safe and
                           productive!
                         </p>
                         <p>

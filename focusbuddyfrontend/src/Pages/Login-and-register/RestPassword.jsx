@@ -52,7 +52,7 @@ export default function ResetPassword() {
             {
               linkSend ? "Password reset link send on provided email address." 
               : 
-              "Enter the email address that you use for your Focusmate account and we'll send you a password reset link."
+              "Enter the email address that you use for your FocusBuddy account and we'll send you a password reset link."
             }
             
           </p>

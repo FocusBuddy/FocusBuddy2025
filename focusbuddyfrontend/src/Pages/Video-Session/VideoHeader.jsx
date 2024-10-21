@@ -927,7 +927,7 @@ export default function VideoHeader({ availableEvents, call }) {
               </h1>
               <div className="mt-8 text-formgray text-md xl:text-lg space-y-3">
                 <p>
-                  Thank you for helping us keep Focusmate safe and productive!
+                  Thank you for helping us keep FocusBuddy safe and productive!
                 </p>
                 <p>
                   We will review your report and take action within 48 hours.

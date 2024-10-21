@@ -15,7 +15,7 @@ export default function About() {
       <div className="mt-20 flex flex-col-reverse lg:flex-row items-center gap-8">
         <div className="basis-full lg:basis-[60%] text-md xl:text-lg text-formgray bg-white p-8 lg:p10 xl:p-14 tracking-wide rounded-lg leading-7 lg:leading-8">
           <p>
-            At Focusmate, we're reshaping how you approach work by connecting
+            At FocusBuddy, we're reshaping how you approach work by connecting
             you with like-minded professionals who are dedicated to completing
             their important tasks. You select your preferred work time, and we
             pair you with a partner for a live, virtual coworking session,
@@ -30,7 +30,7 @@ export default function About() {
           <p>
             Our virtual coworking model is built on this foundation of human
             connection, harnessing the power of peer support to fuel your
-            productivity journey. Join us at Focusmate and unlock your full
+            productivity journey. Join us at FocusBuddy and unlock your full
             potential today.
           </p>
         </div>

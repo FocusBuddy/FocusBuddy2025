@@ -308,7 +308,7 @@ router.post("/reset-password-request", async (req, res) => {
       //   text: `That was easy!: http://localhost:5173/reset-password/${findUser.googleId}/${sdkJWT}`,
       html: `
         <p>Hello,</p>
-        <p>Follow this link to reset your Focusmate password for your ${email} account.</p>
+        <p>Follow this link to reset your FocusBuddy password for your ${email} account.</p>
         <a href=${process.env.CLIENT_PRO_URL}/login/reset-password/${findUser.googleId}/${sdkJWT}  target="_blank">${process.env.CLIENT_PRO_URL}/login/reset-password/${findUser.googleId}/${sdkJWT}</a>
         <p>If you didn’t ask to reset your password, you can ignore this email.</p>
         <p>Thanks!</p>
