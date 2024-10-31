@@ -66,7 +66,7 @@ passport.use(
           let firstNameContainSpace = await firstNameHaveSpaceOrNot(profile.name.givenName);
 
           let noLastNameSoNumber = Math.floor(Math.random() * 101);
-
+console.log(profile);
           const userDetails = {
             googleId: profile.id,
             displayName: firstNameContainSpace ? profile.displayName : profile.displayName + ' ' + noLastNameSoNumber,
