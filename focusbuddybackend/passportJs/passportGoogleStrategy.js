@@ -69,7 +69,7 @@ passport.use(
 console.log(profile);
           const userDetails = {
             googleId: profile.id,
-            displayName: firstNameContainSpace ? profile.displayName : profile.displayName + ' ' + noLastNameSoNumber,
+            displayName: firstNameContainSpace || profile.name.familyName === undefined ? profile.displayName + ' ' + noLastNameSoNumber : profile.displayName,
             email: profile.emails[0].value,
             userGender: ["Prefer not to say"],
             matchWithGender: "everyone",
