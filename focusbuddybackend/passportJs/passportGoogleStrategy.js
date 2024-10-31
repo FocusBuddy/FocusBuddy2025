@@ -77,7 +77,7 @@ console.log(profile);
             availabilityStatus: "No one",
             quiteModeMatchAllowed: true,
             givenName: profile.name.givenName,
-            familyName: profile.name.familyName === undefined && firstNameContainSpace === false ? noLastNameSoNumber : profile.name.familyName,
+            familyName: profile.name.familyName === undefined && firstNameContainSpace === false ? noLastNameSoNumber : '',
             profilePic: profile.photos[0].value,
             userLocation: location,
             memberSince: new Date(),
