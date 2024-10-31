@@ -62,7 +62,7 @@ const DashboardNavbar = () => {
       </div>
       {
         location.pathname === '/dashboard' && 
-      <div className={`${finalDone ? 'invisible w-0' : 'absolute w-[63%] md:w-[33.33%]'} md:static top-24 md:top-20 left-16 md:flex justify-center  cursor-pointer`} onClick={() => setWelcomeCheckListModal(true)}>
+      <div className={`${finalDone ? 'invisible w-0' : 'absolute w-[63%] md:w-[60.33%]'} md:static top-24 md:top-20 left-16 md:flex justify-center  cursor-pointer`} onClick={() => setWelcomeCheckListModal(true)}>
         <div className="flex gap-2 bg-white px-4 py-2 rounded-md">
         <p className="text-[12px] xl:text-lg font-medium text-textcolor my-auto">WELCOME CHECKLIST</p>
         <div className="flex gap-1 text-xs md:text-xl my-auto">
