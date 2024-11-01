@@ -55,7 +55,7 @@ const DashboardNavbar = () => {
       className="flex sticky top-0 bg-greenbg py-4 px-2 lg:px-10 h-20 text-white"
       style={{ zIndex: 9999 }}
     >
-      <div className={`${location.pathname === '/dashboard' ? 'my-auto w-[30%] md:w-[33.33%]': 'my-auto w-[30%] lg:w-[50%]'}`}>
+      <div className={`${location.pathname === '/dashboard' ? userProfile.welcomeChecklistState.finalDone === false ? 'my-auto w-[30%] md:w-[33.33%]' : 'my-auto w-[30%] lg:w-[50%]' : 'my-auto w-[30%] lg:w-[50%]'}`}>
         <Link to={"/dashboard"} className="text-white text-2xl lg:text-4xl">
           FocusBuddy
         </Link>
