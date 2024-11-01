@@ -86,7 +86,7 @@ const DashboardNavbar = () => {
         </div>
       </div>
       }
-      <div className={`${location.pathname === '/dashboard' && userProfile.welcomeChecklistState.finalDone === false ? 'w-[70%] md:w-[33.33%]' : 'w-[70%] lg:w-[34%]'} flex gap-2 lg:gap-4 justify-end items-center`}>
+      <div className={`${location.pathname === '/dashboard' && userProfile.welcomeChecklistState.finalDone === false ? 'w-[70%] md:w-[33.33%]' : 'w-[70%] lg:w-[50%]'} flex gap-2 lg:gap-4 justify-end items-center`}>
         <Link to={'/account/upgrade'} className="py-2 rounded-md hover:bg-white hover:text-textcolor px-3 border-2 border-white text-[12px] lg:text-lg">Upgrade</Link>
         <div
           id="helpdropdownbutton"
