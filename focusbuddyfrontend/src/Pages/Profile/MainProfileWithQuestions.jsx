@@ -112,7 +112,7 @@ export default function MainProfileWithQuestions() {
             <div className="flex flex-col w-full md:w-[40%] p-10 bg-greenbg rounded-t-lg md:rounded-s-lg shadow-2xl">
               <div className="relative">
                 <img
-                  className=" w-32 md:w-40 h-32 md:h-40 object-cover border-4 border-white rounded-full mx-auto"
+                  className=" w-32 md:w-36 h-32 md:h-36 object-cover border-4 border-white rounded-full mx-auto"
                   src={otherUserProfile.profilePic}
                   alt="user photo"
                 />
@@ -126,18 +126,18 @@ export default function MainProfileWithQuestions() {
                 ) : null}
               </div>
 
-              <h1 className="capitalize text-2xl md:text-3xl text-white font-medium text-center mt-6 mb-4">
+              <h1 className="capitalize text-2xl text-white font-medium text-center mt-6 mb-4">
                 {otherUserProfile.displayName}
               </h1>
-              <h1 className="text-white text-lg md:text-xl text-center my-1">
+              <h1 className="text-white text-lg text-center my-1">
                 {userProfile.totalSessionsAttended} Sessions
               </h1>
-              <h1 className="flex items-center justify-center gap-2 my-1 text-white text-lg md:text-xl text-center">
+              <h1 className="flex items-center justify-center gap-2 my-1 text-white text-lg text-center">
                 <FaMapMarkerAlt />
                 {otherUserProfile.userLocation.region}/
                 {otherUserProfile.userLocation.country}
               </h1>
-              <h1 className="text-white text-lg md:text-xl text-center my-1">
+              <h1 className="text-white text-lg text-center my-1">
                 Member since:{" "}
                 {moment(otherUserProfile.memberSince)
                   .utc()
