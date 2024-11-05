@@ -406,11 +406,11 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
   }
 
   .str-video__speaker-layout .str-video__participant-view{
-    aspect-ratio: 4/6;
+    aspect-ratio: 4/6 !important;
   }
   .str-video__speaker-layout .str-video__speaker-layout__participants-bar-wrapper .str-video__speaker-layout__participants-bar .str-video__speaker-layout__participant-tile{
-    width: 165px;
-    min-width: 165px;
+    width: 165px !important;
+    min-width: 165px !important;
   }
 
   /* .str-video__speaker-layout .str-video__participant-view{
