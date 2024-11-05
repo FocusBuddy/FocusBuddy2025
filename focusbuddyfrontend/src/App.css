@@ -304,6 +304,20 @@ li.str-video__generic-menu--item button{
   background-color: transparent;
   }
 
+  button.str-video__call-controls__button{
+    display: none;
+  }
+  
+  button.str-video__call-controls__button.str-video__menu-toggle-button{
+    display: block;
+  }
+  
+  button.str-video__call-controls__button.str-video__call-controls__button--variant-danger{
+    display: block;
+  }
+  
+
+
 
 /*Chat related styles*/
 .str-chat.messaging.light.str-chat-channel.str-chat__channel{
@@ -382,12 +396,19 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     font-size: 14.5px;
   }
 
-  .str-video__speaker-layout .str-video__participant-view{
+  .str-video__speaker-layout__participants-bar-buttons-wrapper{
+    position: absolute !important;
+  }
+  .str-video__speaker-layout__spotlight{
+    height: 100vh !important;
+  }
+
+  /* .str-video__speaker-layout .str-video__participant-view{
     aspect-ratio: 9/11 !important;
   }
   .str-video__paginated-grid-layout .str-video__paginated-grid-layout__group{
     flex-direction: column;
-  }
+  } */
 
   #VideoSDKfooter .str-video__icon{
     width: 1.2rem;
