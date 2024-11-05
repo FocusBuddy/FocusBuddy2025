@@ -401,8 +401,8 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
   .str-video__speaker-layout__participants-bar-buttons-wrapper{
     position: absolute !important;
     right: 5px;
-    top: 100px;
-    /* bottom: 120px; */
+    /* top: 100px; */
+    bottom: 120px;
   }
   .str-video__speaker-layout__spotlight{
     height: 62vh !important;
@@ -412,8 +412,13 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     aspect-ratio: 3/4 !important;
   }
   .str-video__speaker-layout .str-video__speaker-layout__participants-bar-wrapper .str-video__speaker-layout__participants-bar .str-video__speaker-layout__participant-tile{
-    width: 120px !important;
-    min-width: 120px !important;
+    width: 110px !important;
+    min-width: 110px !important;
+  }
+
+  img.str-video__video-placeholder__avatar{
+    height: 70px;
+    width: 70px;
   }
 
   /* .str-video__speaker-layout .str-video__participant-view{
