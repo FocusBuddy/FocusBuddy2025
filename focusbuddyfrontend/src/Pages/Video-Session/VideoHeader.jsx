@@ -1012,7 +1012,7 @@ export default function VideoHeader({ availableEvents, call }) {
         id="session-timer"
         className={`${window.screen.width < 676 ? 'static w-full flex items-center justify-center py-3' : 'fixed top-3 right-10'} flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg`}
       >
-        <MdTimer className="my-auto text-xl md:text-3xl" />{" "}
+        <MdTimer className="my-auto text-xl md:text-2xl" />{" "}
         {Date.now() < new Date(availableEvents[0].start).getTime()
           ? "Starts at:"
           : "Ends in:"}
