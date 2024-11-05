@@ -400,8 +400,9 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
 
   .str-video__speaker-layout__participants-bar-buttons-wrapper{
     position: absolute !important;
-    right: 0px;
-    bottom: 120px;
+    right: 5px;
+    top: 100px;
+    /* bottom: 120px; */
   }
   .str-video__speaker-layout__spotlight{
     height: 62vh !important;
