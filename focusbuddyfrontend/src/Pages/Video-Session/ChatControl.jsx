@@ -20,6 +20,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
           aria-controls="video-chat-drawer"
           type="button"
           className="p-[0.6rem] text-white focus:bg-[#005FFF] hover:bg-[#323B44] rounded-full"
+          style={{zIndex: 4000}}
         >
           <MdChat className="text-2xl" />
         </button>

@@ -402,7 +402,7 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     position: absolute !important;
     right: 5px;
     /* top: 100px; */
-    bottom: 120px;
+    bottom: 100px;
   }
   .str-video__speaker-layout__spotlight{
     height: 62vh !important;
@@ -417,8 +417,8 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
   }
 
   img.str-video__video-placeholder__avatar{
-    height: 70px;
-    width: 70px;
+    height: 70px !important;
+    width: 70px !important;
   }
 
   /* .str-video__speaker-layout .str-video__participant-view{
