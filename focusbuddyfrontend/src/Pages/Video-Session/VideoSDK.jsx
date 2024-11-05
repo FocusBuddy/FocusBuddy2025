@@ -158,7 +158,7 @@ export const MyUILayout = (props) => {
   }
 
   return (
-    <div className='px-0 bg-[#222222]'>
+    <div className='px-0 bg-[#222222]' style={{height:'100vh'}}>
     <ParticipantsState 
        call={props.call} 
        availableEvents={props.availableEvents}/>
