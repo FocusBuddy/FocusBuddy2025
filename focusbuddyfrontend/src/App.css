@@ -409,8 +409,8 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     aspect-ratio: 4/6 !important;
   }
   .str-video__speaker-layout .str-video__speaker-layout__participants-bar-wrapper .str-video__speaker-layout__participants-bar .str-video__speaker-layout__participant-tile{
-    width: 165px !important;
-    min-width: 165px !important;
+    width: 140px !important;
+    min-width: 140px !important;
   }
 
   /* .str-video__speaker-layout .str-video__participant-view{
