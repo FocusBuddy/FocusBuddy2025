@@ -405,7 +405,7 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     height: 62vh !important;
   } */
 
-  .str-video__participant-view.str-video__participant-view--dominant-speaker{
+  .str-video__speaker-layout__wrapper{
     height: 95vh !important;
   }
 
