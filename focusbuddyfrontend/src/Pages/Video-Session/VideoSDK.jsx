@@ -158,7 +158,7 @@ export const MyUILayout = (props) => {
   }
 
   return (
-    <div className='px-0 bg-[#222222] min-h-screen'>
+    <div className='px-0 bg-[#222222] min-h-screen overflow-hidden'>
     <ParticipantsState 
        call={props.call} 
        availableEvents={props.availableEvents}/>
