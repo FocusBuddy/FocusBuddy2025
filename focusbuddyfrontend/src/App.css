@@ -407,7 +407,7 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
   .column-text{
     font-size: 14.5px;
   }
-  .str-video__speaker-layout__wrapper{
+.str-video__speaker-layout__wrapper{
     height: 80vh !important;
   }
 
@@ -424,7 +424,7 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     width: 70px !important;
   }
 
-  .str-video__participant-view.str-video__participant-view--dominant-speaker{
+  .str-video__speaker-layout__spotlight .str-video__participant-view.str-video__participant-view--no-video.str-video__participant-view--no-audio{
     height: 90vh !important;
   }
 
