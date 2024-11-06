@@ -314,7 +314,7 @@ li.str-video__generic-menu--item button{
     width: 100% !important;
     height: auto !important;
     max-width: 75vw !important;
-    max-height: 80vh !important;
+    max-height: 90vh !important;
   }
  
   .str-video__speaker-layout__participants-bar-buttons-wrapper{
@@ -431,13 +431,10 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     width: 70px !important;
   }
 
-  .str-video__speaker-layout__spotlight{
-    height: 95vh !important;
-  }
-
+/* 
   .str-video__speaker-layout__spotlight .str-video__participant-view.str-video__participant-view--no-video.str-video__participant-view--no-audio{
     max-height: 90vh !important;
-  }
+  } */
 
   .str-video__participant-view{
     max-width: 100vw !important;
