@@ -319,6 +319,9 @@ li.str-video__generic-menu--item button{
     bottom: 10% !important;
   }
 
+  .str-video__speaker-layout.str-video__speaker-layout--variant-top{
+    position: relative !important;
+  }
 
 
 /*Chat related styles*/
