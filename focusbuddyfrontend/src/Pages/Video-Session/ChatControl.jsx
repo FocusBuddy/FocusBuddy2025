@@ -40,7 +40,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
           Chat
         </h5> */}
         <button
-        style={{zIndex: 1000}}
+        style={{zIndex: 4000}}
           type="button"
           data-drawer-hide="video-chat-drawer"
           aria-controls="video-chat-drawer"
