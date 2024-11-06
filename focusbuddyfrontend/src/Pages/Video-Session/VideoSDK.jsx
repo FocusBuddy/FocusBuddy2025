@@ -163,14 +163,15 @@ export const MyUILayout = (props) => {
        call={props.call} 
        availableEvents={props.availableEvents}/>
     <StreamTheme>
-      <div className='h-screen'>
+      {
+        window.screen.width > 676 && 
     <VideoHeader 
               call={props.call} 
               availableEvents={props.sessionevent}
             />
+      }
       <SpeakerLayout participantsBarPosition='top' />
     <VideoFooter call={props.call} mainToken={props.mainToken} availableEvents={props.availableEvents}/>
-    </div>
     </StreamTheme>
     </div>
   );
