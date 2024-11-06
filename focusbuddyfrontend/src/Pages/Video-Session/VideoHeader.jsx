@@ -371,7 +371,7 @@ export default function VideoHeader({ availableEvents, call }) {
     <div className={'flex flex-col md:flex-row items-center justify-between gap-2 md:h-[5.4rem] w-full py-6 md:py-2 px-4 md:px-10 bg-[#19232D]'}>
       <div
         style={{ zIndex: 3000 }}
-        className='flex gap-4 bg-white p-3 rounded-md'
+        className={`hidden md:flex gap-4 bg-white p-3 rounded-md`}
       >
         {availableEvents[0].matchedPersonFullName !== "Matching..." && (
           <img
