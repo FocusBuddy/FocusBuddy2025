@@ -320,6 +320,12 @@ li.str-video__generic-menu--item button{
     object-fit: cover !important;
   }
 
+  .str-video__speaker-layout__participants-bar-buttons-wrapper{
+    position: absolute;
+    right: 10px;
+    bottom: 10%;
+  }
+
 
 /*Chat related styles*/
 .str-chat.messaging.light.str-chat-channel.str-chat__channel{
