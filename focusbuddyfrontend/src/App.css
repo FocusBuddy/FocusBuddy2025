@@ -327,6 +327,14 @@ li.str-video__generic-menu--item button{
   }
 
 
+  .str-video__participant-view.str-video__participant-view--dominant-speaker{
+    max-width: 70%;
+  }
+
+
+
+
+
 /*Chat related styles*/
 .str-chat.messaging.light.str-chat-channel.str-chat__channel{
   /* background-color: #151D2A !important; */
