@@ -371,11 +371,7 @@ export default function VideoHeader({ availableEvents, call }) {
     <div className={'flex flex-col md:flex-row items-center justify-between gap-2 md:h-[5.4rem] w-full mb-4 md:mb-8 py-6 md:py-2 px-4 md:px-10 bg-[#19232D]'}>
       <div
         style={{ zIndex: 3000 }}
-        className={`${
-          window.screen.width < 676
-            ? "static w-full flex items-center justify-center"
-            : "fixed top-3 left-10"
-        } flex gap-4 bg-white p-3 rounded-md`}
+        className='flex gap-4 bg-white p-3 rounded-md'
       >
         {availableEvents[0].matchedPersonFullName !== "Matching..." && (
           <img
@@ -1017,11 +1013,12 @@ export default function VideoHeader({ availableEvents, call }) {
 
       <div
         id="session-timer"
-        className={`${
-          window.screen.width < 676
-            ? "static w-full flex items-center justify-center py-3"
-            : "fixed top-3 right-10"
-        } flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg`}
+        className='flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg'
+        // className={`${
+        //   window.screen.width < 676
+        //     ? "static w-full flex items-center justify-center py-3"
+        //     : "fixed top-3 right-10"
+        // } flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg`}
       >
         <MdTimer className="my-auto text-xl md:text-3xl" />{" "}
         {Date.now() < new Date(availableEvents[0].start).getTime()
