@@ -162,11 +162,11 @@ export const MyUILayout = (props) => {
     <ParticipantsState 
        call={props.call} 
        availableEvents={props.availableEvents}/>
+    <StreamTheme>
     <VideoHeader 
               call={props.call} 
               availableEvents={props.sessionevent}
             />
-    <StreamTheme>
       <SpeakerLayout participantsBarPosition='top' />
     <VideoFooter call={props.call} mainToken={props.mainToken} availableEvents={props.availableEvents}/>
     </StreamTheme>
