@@ -267,13 +267,6 @@ span.str-video__participant-details__name{
   color: white;
 }
 
-.str-video__paginated-grid-layout__group.str-video__paginated-grid-layout--one{
-  max-width: 92vh !important;
-}
-.str-video__paginated-grid-layout__group.str-video__paginated-grid-layout--two-four{
-  max-width: 180vh !important;
-}
-
 #videoSDKchatcontrol{
   font-weight: 400;
 }
@@ -316,22 +309,11 @@ li.str-video__generic-menu--item button{
     display: block;
   }
   
-  .str-video__video--tall{
-    object-fit: cover !important;
+
+  .str-video__participant-view.str-video__participant-view--dominant-speaker.str-video__participant-view--speaking{
+    max-width: 142vh;
   }
-
-  .str-video__speaker-layout__participants-bar-buttons-wrapper{
-    position: absolute;
-    right: 10px;
-    bottom: 10%;
-  }
-
-
-  .str-video__participant-view.str-video__participant-view--dominant-speaker{
-    max-width: 70% !important;
-  }
-
-
+ 
 
 
 
@@ -412,12 +394,6 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     font-size: 14.5px;
   }
 
-  .str-video__speaker-layout__participants-bar-buttons-wrapper{
-    position: absolute !important;
-    right: 10px;
-    /* top: 100px; */
-    bottom: 100px;
-  }
   /* .str-video__speaker-layout__spotlight{
     height: 62vh !important;
   } */
