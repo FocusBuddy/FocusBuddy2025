@@ -368,7 +368,7 @@ export default function VideoHeader({ availableEvents, call }) {
   console.log(matchedUser);
 
   return (
-    <div className={'flex flex-col md:flex-row items-center justify-between gap-2 md:h-[5.4rem] w-full mb-4 md:mb-8 py-6 md:py-2 px-4 md:px-10 bg-[#19232D]'}>
+    <div className={'flex flex-col md:flex-row items-center justify-between gap-2 md:h-[5.4rem] w-full py-6 md:py-2 px-4 md:px-10 bg-[#19232D]'}>
       <div
         style={{ zIndex: 3000 }}
         className='flex gap-4 bg-white p-3 rounded-md'
@@ -385,7 +385,7 @@ export default function VideoHeader({ availableEvents, call }) {
             availableEvents[0].matchedPersonFullName === "Matching..."
               ? "gap-2 px-2 md:gap-6 md:px-4 md:py-2"
               : "gap-2"
-          } items-center text-[14px] lg:text-md xl:text-lg capitalize text-greenbg m-0`}
+          } items-center text-[14px] lg:text-md capitalize text-greenbg m-0`}
         >
           {availableEvents[0].matchedPersonFullName === "Matching..." ? (
             <>
@@ -580,7 +580,7 @@ export default function VideoHeader({ availableEvents, call }) {
             className="z-10 hidden bg-white divide-y divide-gray-100 rounded-md shadow-lg w-50"
           >
             <ul
-              className="py-2 text-xm xl:text-lg space-y-2 text-formgray"
+              className="py-2 text-xm md:text-md space-y-2 text-formgray"
               aria-labelledby="videodropdownbutton"
             >
               <li>
@@ -928,7 +928,7 @@ export default function VideoHeader({ availableEvents, call }) {
                   {availableEvents[0].matchedPersonName}
                 </span>
               </h1>
-              <div className="mt-8 text-formgray text-md xl:text-lg space-y-3">
+              <div className="mt-8 text-formgray text-md space-y-3">
                 <p>
                   Thank you for helping us keep FocusBuddy safe and productive!
                 </p>
@@ -947,7 +947,7 @@ export default function VideoHeader({ availableEvents, call }) {
               >
                 <select
                   id="countries"
-                  className="bg-gray-50 border border-formgray text-gray-900 text-md xl:text-lg rounded-lg focus:ring-greenbg focus:border-greenbg block w-full p-2.5 "
+                  className="bg-gray-50 border border-formgray text-gray-900 text-md rounded-lg focus:ring-greenbg focus:border-greenbg block w-full p-2.5 "
                   required
                   value={reportSelect}
                   onChange={(e) => setReportSelect(e.target.value)}
@@ -963,7 +963,7 @@ export default function VideoHeader({ availableEvents, call }) {
                 <textarea
                   id="message"
                   rows="4"
-                  className="block p-2.5 w-full text-md xl:text-lg text-gray-900 bg-gray-50 rounded-lg border border-formgray focus:ring-greenbg focus:border-greenbg"
+                  className="block p-2.5 w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-formgray focus:ring-greenbg focus:border-greenbg"
                   placeholder="Please describe your concern..."
                   value={reportText}
                   onChange={(e) => setReportText(e.target.value)}
@@ -974,7 +974,7 @@ export default function VideoHeader({ availableEvents, call }) {
                   <button
                     id="modalButton"
                     type="submit"
-                    className="w-full bg-textcolor py-3 text-md xl:text-lg px-3 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+                    className="w-full bg-textcolor py-3 text-md px-3 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
                   >
                     {sending ? (
                       <div className="flex justify-center gap-2 items-center">
@@ -1013,14 +1013,14 @@ export default function VideoHeader({ availableEvents, call }) {
 
       <div
         id="session-timer"
-        className='flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg'
+        className='flex gap-2 px-10 bg-white py-4 rounded-md text-md text-greenbg'
         // className={`${
         //   window.screen.width < 676
         //     ? "static w-full flex items-center justify-center py-3"
         //     : "fixed top-3 right-10"
         // } flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg`}
       >
-        <MdTimer className="my-auto text-xl md:text-3xl" />{" "}
+        <MdTimer className="my-auto text-xl md:text-2xl" />{" "}
         {Date.now() < new Date(availableEvents[0].start).getTime()
           ? "Starts at:"
           : "Ends in:"}
