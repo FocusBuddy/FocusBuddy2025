@@ -1013,7 +1013,7 @@ export default function VideoHeader({ availableEvents, call }) {
 
       <div
         id="session-timer"
-        style={{ zIndex: 1000 }}
+        // style={{ zIndex: 1000 }}
         className='absolute left-1/2 -translate-x-1/2 md:static flex justify-center gap-2 px-2 md:px-10 bg-white py-4 rounded-md text-[14px] md:text-md text-greenbg'
         // className={`${
         //   window.screen.width < 676
