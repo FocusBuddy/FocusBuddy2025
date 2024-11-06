@@ -28,7 +28,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
 
       <div
         id="video-chat-drawer"
-        className="fixed top-0 right-0 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-[#292D3E] w-full md:w-1/2 lg:w-1/3"
+        className="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-[#292D3E] w-full md:w-1/2 lg:w-1/3"
         tabIndex="-1"
         aria-labelledby="video-chat-drawer-label"
         style={{ zIndex: 4000 }}
