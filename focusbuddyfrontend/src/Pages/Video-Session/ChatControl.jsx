@@ -20,7 +20,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
           aria-controls="video-chat-drawer"
           type="button"
           className="p-[0.6rem] text-white focus:bg-[#005FFF] hover:bg-[#323B44] rounded-full"
-          style={{zIndex: 4000}}
+
         >
           <MdChat className="text-2xl" />
         </button>
@@ -31,7 +31,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
         className="fixed top-0 right-0 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-[#292D3E] w-full md:w-1/2 lg:w-1/3"
         tabIndex="-1"
         aria-labelledby="video-chat-drawer-label"
-        style={{zIndex: 4000}}
+        style={{ zIndex: 4000 }}
       >
         {/* <h5
           id="drawer-right-label"
@@ -42,6 +42,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
         </h5> */}
         <button
           type="button"
+          style={{zIndex: 4000}}
           data-drawer-hide="video-chat-drawer"
           aria-controls="video-chat-drawer"
           className="z-100 text-white bg-[#151D2A] rounded-md text-sm w-8 h-8 absolute top-6 end-6 inline-flex items-center justify-center"

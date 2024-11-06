@@ -311,12 +311,19 @@ li.str-video__generic-menu--item button{
   
 
   .str-video__participant-view{
-    max-width: 142vh !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 75vw !important;
+    max-height: 80vh !important;
   }
  
   .str-video__speaker-layout__participants-bar-buttons-wrapper{
     position: absolute !important;
     bottom: 10% !important;
+  }
+
+  .str-video__speaker-layout.str-video__speaker-layout--variant-bottom{
+    position: relative !important;
   }
 
   .str-video__speaker-layout.str-video__speaker-layout--variant-top{
@@ -400,13 +407,8 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
   .column-text{
     font-size: 14.5px;
   }
-
-  /* .str-video__speaker-layout__spotlight{
-    height: 62vh !important;
-  } */
-
   .str-video__speaker-layout__wrapper{
-    height: 85vh !important;
+    height: 80vh !important;
   }
 
   .str-video__speaker-layout .str-video__participant-view{
@@ -422,12 +424,20 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     width: 70px !important;
   }
 
-  /* .str-video__speaker-layout .str-video__participant-view{
-    aspect-ratio: 9/11 !important;
+  .str-video__participant-view.str-video__participant-view--dominant-speaker{
+    height: 90vh !important;
   }
-  .str-video__paginated-grid-layout .str-video__paginated-grid-layout__group{
-    flex-direction: column;
-  } */
+
+  .str-video__participant-view{
+    max-width: 100vw !important;
+    border-radius: 0px !important;
+    /* height: 90vh !important; */
+  }
+
+  .str-video__video-placeholder .str-video__video-placeholder__initials-fallback{
+    width: 70px;
+    height: 70px;
+  }
 
   #VideoSDKfooter .str-video__icon{
     width: 1.2rem;
