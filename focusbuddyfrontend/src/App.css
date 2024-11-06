@@ -314,6 +314,10 @@ li.str-video__generic-menu--item button{
     max-width: 142vh !important;
   }
  
+  .str-video__speaker-layout__participants-bar-buttons-wrapper{
+    position: absolute !important;
+    bottom: 10% !important;
+  }
 
 
 
