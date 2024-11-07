@@ -332,6 +332,11 @@ li.str-video__generic-menu--item button{
   }
 
 
+  .str-video__speaker-layout .str-video__speaker-layout__participants-bar-wrapper .str-video__speaker-layout__participants-bar{
+    flex-direction: column !important;
+  }
+
+
 /*Chat related styles*/
 .str-chat.messaging.light.str-chat-channel.str-chat__channel{
   /* background-color: #151D2A !important; */
@@ -469,6 +474,9 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     object-fit: cover !important;
   } */
 
+  .str-video__speaker-layout .str-video__speaker-layout__participants-bar-wrapper .str-video__speaker-layout__participants-bar{
+    flex-direction: row !important;
+  }
 
   #VideoSDKfooter .str-video__icon{
     width: 1.2rem;
