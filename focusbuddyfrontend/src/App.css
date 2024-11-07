@@ -352,6 +352,10 @@ li.str-video__generic-menu--item button{
     display: none;
 }
 
+.str-video__speaker-layout .str-video__speaker-layout__participants-bar-buttons-wrapper .str-video__speaker-layout__participants-bar--button-right{
+  display: none !important;
+}
+
 
 /*Chat related styles*/
 .str-chat.messaging.light.str-chat-channel.str-chat__channel{
