@@ -439,12 +439,12 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
   }
 
   .str-video__speaker-layout__spotlight{
-    height: 90vh !important;
+    height: 85vh !important;
   }
 
 
   .str-video__participant-view{
-    max-height: 90vh !important;
+    max-height: 85vh !important;
   }
 
 
