@@ -444,7 +444,7 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
 
 
   .str-video__participant-view{
-    height: 90vh !important;
+    max-height: 90vh !important;
   }
 
 
