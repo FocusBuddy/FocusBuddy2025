@@ -444,7 +444,7 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
 
 
   .str-video__participant-view{
-    max-height: 95vh !important;
+    max-height: 90vh !important;
   }
 
   .str-video__speaker-layout__spotlight .str-video__participant-view.str-video__participant-view--no-video.str-video__participant-view--no-audio{
