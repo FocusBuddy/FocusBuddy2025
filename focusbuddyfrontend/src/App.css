@@ -317,9 +317,6 @@ li.str-video__generic-menu--item button{
     max-height: 80vh !important;
   }
  
-  .str-video__video--tall{
-    object-fit: cover !important;
-  }
 
   .str-video__speaker-layout__participants-bar-buttons-wrapper{
     position: absolute !important;
@@ -465,6 +462,10 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
 
   .bg-gray-900\/50.dark\:bg-gray-900\/80.fixed.inset-0.z-30{
     display: none;
+  }
+
+  .str-video__video--tall{
+    object-fit: cover !important;
   }
 
 
