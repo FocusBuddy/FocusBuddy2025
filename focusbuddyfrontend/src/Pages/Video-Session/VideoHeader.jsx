@@ -369,7 +369,7 @@ export default function VideoHeader({ availableEvents, call }) {
   console.log(matchedUser);
 
   return (
-    <div className={'absolute md:static md:flex md:flex-row items-center justify-between gap-2 md:h-[5.4rem] w-full py-6 md:py-2 px-4 md:px-10 bg-transparent md:bg-[#19232D]'}>
+    <div className={'felx flex-row items-center justify-between gap-2 md:h-[5.4rem] w-full py-4 md:py-2 px-4 md:px-10 bg-transparent md:bg-[#19232D]'}>
       {
         window.screen.width < 676 
         ?

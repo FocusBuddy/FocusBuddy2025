@@ -369,13 +369,13 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
   width: min-content;
 }
 
-#video-chat-drawer{
+/* #video-chat-drawer{
   z-index: 4000;
 }
 
 #session-timer{
   z-index: 1000;
-}
+} */
 
 
 /*hide scroll to top*/
