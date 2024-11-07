@@ -11,7 +11,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
     initFlowbite();
   }, []);
   return (
-    <>
+    <div style={{ zIndex: 4000 }}>
       <Tooltip id="videoSDKchatcontrol" content="Chat" className="bg-[#323B44]">
         <button
           data-drawer-target="video-chat-drawer"
@@ -72,6 +72,6 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
           <ChatFeature token={mainToken} availableEvents={availableEvents}/>
         }
       </div>
-    </>
+    </div>
   );
 }
