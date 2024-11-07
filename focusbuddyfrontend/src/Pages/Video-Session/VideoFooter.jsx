@@ -18,9 +18,9 @@ export default function VideoFooter({mainToken,testToken,availableEvents,call}) 
       navigate('/dashboard');
   }
 
-
+//className={`${window.screen.width < 676 ? 'fixed bottom-0': 'static' } w-full gap-2 md:gap-6 h-16 bg-[#19232D] flex justify-center items-center`}
   return (
-    <div id="VideoSDKfooter" className={`${window.screen.width < 676 ? 'fixed bottom-0': 'static' } w-full gap-2 md:gap-6 h-16 bg-[#19232D] flex justify-center items-center`}>
+    <div id="VideoSDKfooter" className={`w-full gap-2 md:gap-6 h-16 bg-[#19232D] flex justify-center items-center`} >
       <SpeakingWhileMutedNotification>
         <ToggleAudioPublishingButton />
       </SpeakingWhileMutedNotification>
