@@ -328,10 +328,11 @@ li.str-video__generic-menu--item button{
     flex-direction: column !important;
   }
 
-  .str-video__generic-menu li:nth-child(4),
-  .str-video__generic-menu li:nth-child(5),
-  .str-video__generic-menu li:nth-child(6),
-  .str-video__generic-menu li:nth-child(7),
+
+  .str-video__generic-menu--item:has(.str-video__icon--pin) {
+    display: none;
+}
+
   .str-video__generic-menu li:nth-child(8),
 .str-video__generic-menu li:nth-child(9),
 .str-video__generic-menu li:nth-child(10),
