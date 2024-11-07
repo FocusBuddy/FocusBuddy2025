@@ -317,9 +317,13 @@ li.str-video__generic-menu--item button{
     max-height: 80vh !important;
   }
  
+  .str-video__video--tall{
+    object-fit: cover !important;
+  }
+
   .str-video__speaker-layout__participants-bar-buttons-wrapper{
     position: absolute !important;
-    bottom: 15% !important;
+    bottom: 10% !important;
   }
 
   .str-video__speaker-layout.str-video__speaker-layout--variant-bottom{
@@ -417,6 +421,12 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
 /* .str-video__speaker-layout__wrapper{
     height: 90vh !important;
   } */
+
+  .str-video__speaker-layout__participants-bar-buttons-wrapper{
+    position: absolute !important;
+    bottom: 15% !important;
+    right: 2% !important;
+  }
 
   .str-video__speaker-layout .str-video__participant-view{
     aspect-ratio: 3/4 !important;
