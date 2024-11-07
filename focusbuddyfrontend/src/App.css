@@ -464,9 +464,9 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     display: none;
   }
 
-  .str-video__video--tall{
+  /* .str-video__video--tall{
     object-fit: cover !important;
-  }
+  } */
 
 
   #VideoSDKfooter .str-video__icon{
