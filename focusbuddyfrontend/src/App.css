@@ -329,6 +329,20 @@ li.str-video__generic-menu--item button{
   }
 
 
+  .str-video__generic-menu li:nth-child(1),
+.str-video__generic-menu li:nth-child(2),
+.str-video__generic-menu li:nth-child(3),
+.str-video__generic-menu li:nth-child(4),
+.str-video__generic-menu li:nth-child(6)
+.str-video__generic-menu li:nth-child(7)
+.str-video__generic-menu li:nth-child(8)
+.str-video__generic-menu li:nth-child(9)
+.str-video__generic-menu li:nth-child(10)
+.str-video__generic-menu li:nth-child(11) {
+    display: none;
+}
+
+
 /*Chat related styles*/
 .str-chat.messaging.light.str-chat-channel.str-chat__channel{
   /* background-color: #151D2A !important; */
