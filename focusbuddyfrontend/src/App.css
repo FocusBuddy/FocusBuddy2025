@@ -329,7 +329,16 @@ li.str-video__generic-menu--item button{
   }
 
 
-  .str-video__generic-menu--item:has(.str-video__icon--pin) {
+  .str-video__generic-menu--item:has(button > span.str-video__icon--pin) {
+    display: none;
+}
+  .str-video__generic-menu--item:has(button > span.str-video__icon--not-allowed) {
+    display: none;
+}
+  .str-video__generic-menu--item:has(button > span.str-video__icon--camera-off-outline) {
+    display: none;
+}
+  .str-video__generic-menu--item:has(button > span.str-video__icon--no-audio) {
     display: none;
 }
 
