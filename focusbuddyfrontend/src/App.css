@@ -297,7 +297,7 @@ li.str-video__generic-menu--item button{
   background-color: transparent;
   }
 
-  button.str-video__call-controls__button{
+  /* button.str-video__call-controls__button{
     display: none;
   }
   
@@ -307,7 +307,7 @@ li.str-video__generic-menu--item button{
   
   button.str-video__call-controls__button.str-video__call-controls__button--variant-danger{
     display: block;
-  }
+  } */
   
 
   .str-video__participant-view{
