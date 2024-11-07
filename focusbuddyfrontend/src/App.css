@@ -445,9 +445,9 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     height: 95vh !important;
   }
 
-  video.str-video__video.str-video__video--mirror{
+  /* video.str-video__video.str-video__video--mirror{
     height: 95vh !important;
-  }
+  } */
 
   .str-video__speaker-layout__spotlight .str-video__participant-view.str-video__participant-view--no-video.str-video__participant-view--no-audio{
     height: 95vh !important;
