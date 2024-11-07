@@ -425,7 +425,7 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
   .str-video__speaker-layout__participants-bar-buttons-wrapper{
     position: absolute !important;
     bottom: 15% !important;
-    right: 2% !important;
+    right: 5% !important;
   }
 
   .str-video__speaker-layout .str-video__participant-view{
