@@ -45,7 +45,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
           style={{zIndex: 4000}}
           data-drawer-hide="video-chat-drawer"
           aria-controls="video-chat-drawer"
-          className="z-100 text-white bg-[#151D2A] rounded-md text-sm w-8 h-8 absolute top-6 end-6 inline-flex items-center justify-center"
+          className="text-white bg-[#151D2A] rounded-md text-sm w-8 h-8 absolute top-6 end-6 inline-flex items-center justify-center"
         >
           <svg
             className="w-3 h-3"
