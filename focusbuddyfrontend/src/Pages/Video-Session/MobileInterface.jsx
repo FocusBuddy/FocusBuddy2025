@@ -21,7 +21,7 @@ export default function MobileInterface({
   return (
     <div
       // style={{ zIndex: 3000 }}
-      className="absolute md:static flex gap-4 bg-white px-3 py-4 rounded-md"
+      className="flex gap-4 bg-white px-3 py-4 rounded-md"
     >
       <div
         id="videodropdownbutton"
