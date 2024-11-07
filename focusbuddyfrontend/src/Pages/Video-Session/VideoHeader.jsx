@@ -13,6 +13,7 @@ import moment from "moment";
 import { MdTimer } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { initFlowbite } from "flowbite";
+import MobileInterface from "./MobileInterface";
 
 export default function VideoHeader({ availableEvents, call }) {
   // console.log(availableEvents[0])
@@ -369,6 +370,22 @@ export default function VideoHeader({ availableEvents, call }) {
 
   return (
     <div className={'absolute md:static md:flex md:flex-row items-center justify-between gap-2 md:h-[5.4rem] w-full py-6 md:py-2 px-4 md:px-10 bg-transparent md:bg-[#19232D]'}>
+      {
+        window.screen.width < 676 
+        ?
+        <MobileInterface 
+        availableEvents={availableEvents} 
+        reportModal={reportModal}
+        setReportModal={setReportModal}
+        handleReportModalSave={handleReportModalSave}
+        sending={sending}
+        reportSelect={reportSelect}
+        setReportSelect={setReportSelect}
+        reportText={reportText}
+        setReportText={setReportText}
+        />
+       :
+      
       <div
         style={{ zIndex: 3000 }}
         className={`hidden md:flex gap-4 bg-white p-3 rounded-md`}
@@ -888,7 +905,7 @@ export default function VideoHeader({ availableEvents, call }) {
           </div>
         </div>
       </div>
-
+}
       <div
         className={
           reportModal
@@ -1013,7 +1030,7 @@ export default function VideoHeader({ availableEvents, call }) {
 
       <div
         id="session-timer"
-        // style={{ zIndex: 1000 }}
+        style={{ zIndex: 1000 }}
         className='absolute left-1/2 -translate-x-1/2 md:static flex justify-center gap-2 px-2 md:px-10 bg-white py-4 rounded-md text-[14px] md:text-md text-greenbg'
         // className={`${
         //   window.screen.width < 676

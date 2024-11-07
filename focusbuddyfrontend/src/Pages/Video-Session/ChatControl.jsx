@@ -31,7 +31,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
         className="fixed top-0 right-0 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-[#292D3E] w-full md:w-1/2 lg:w-1/3"
         tabIndex="-1"
         aria-labelledby="video-chat-drawer-label"
-        // style={{ zIndex: 4000 }}
+        style={{ zIndex: 4000 }}
       >
         {/* <h5
           id="drawer-right-label"
