@@ -51,14 +51,14 @@ export default function App() {
 
   useEffect(() => {
 
-    // Target the list items once the component has mounted
     document.querySelectorAll('.str-video__generic-menu--item').forEach(item => {
       const button = item.querySelector('button');
-      if (button && button.textContent.trim() !== ('Enter fullscreen' || 'Enter picture-in-picture')) {
+      if (button && !(button.textContent.trim() === 'Enter fullscreen' || button.textContent.trim() === 'Enter picture-in-picture')) {
         item.style.display = 'none';
       }
     });
 
+    
     const getEvent = async () => {
       try {
         const response = await fetch(
