@@ -323,14 +323,6 @@ li.str-video__generic-menu--item button{
     bottom: 10% !important;
   }
 
-  .str-video__speaker-layout.str-video__speaker-layout--variant-bottom{
-    position: relative !important;
-  }
-
-  .str-video__speaker-layout.str-video__speaker-layout--variant-top{
-    position: relative !important;
-  }
-
 
   .str-video__speaker-layout .str-video__speaker-layout__participants-bar-wrapper .str-video__speaker-layout__participants-bar{
     flex-direction: column !important;
@@ -447,6 +439,14 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
     height: 85vh !important;
   }
 
+
+  .str-video__speaker-layout.str-video__speaker-layout--variant-bottom{
+    position: relative !important;
+  }
+
+  .str-video__speaker-layout.str-video__speaker-layout--variant-top{
+    position: relative !important;
+  }
 
   .str-video__participant-view{
     max-height: 85vh !important;
