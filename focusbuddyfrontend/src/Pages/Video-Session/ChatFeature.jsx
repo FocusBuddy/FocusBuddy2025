@@ -53,7 +53,9 @@ export default function ChatFeature({setNewMsgCame, setNewMsgEvent, token, avail
           // console.log('New message received:', event.message);
           setNewMsgEvent(event.message);
           const audio = new Audio(messageCameSound);
-          audio.play();
+          if(userProfile.displayName !== event.message.user.name){
+            audio.play();
+          }
           if(event.message){
             setNewMsgCame(true);
           }
