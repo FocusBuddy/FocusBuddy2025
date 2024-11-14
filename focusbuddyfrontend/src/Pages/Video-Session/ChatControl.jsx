@@ -31,7 +31,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
           aria-controls="video-chat-drawer"
           type="button"
           onClick={handleDrawerOpen}
-          className="p-[0.6rem] text-white focus:bg-[#005FFF] hover:bg-[#323B44] rounded-full"
+          className="relative p-[0.6rem] text-white focus:bg-[#005FFF] hover:bg-[#323B44] rounded-full"
 
         >
           {(newMsgEvent?.user?.name !== userProfile.displayName && newMsgCame) ? <div className="absolute top-0 right-0 w-2 h-2 rounded-full bg-red-700"></div> : null}
