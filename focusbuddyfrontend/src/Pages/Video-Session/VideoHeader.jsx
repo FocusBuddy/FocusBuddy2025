@@ -67,13 +67,13 @@ export default function VideoHeader({ availableEvents, call }) {
       if (!session?.started_at) return;
       // const call_start = new Date(session.started_at).getTime();
       const call_start = new Date(availableEvents[0].start).getTime();
-      // console.log(call_start);
+      console.log(call_start);
 
       // const call_end = call_start.add(3180, "seconds");
       // const call_end = call_start + 3180 * 1000;
       const call_end = call_start + 3600000;
       // const call_end = call_start + 120000;
-      // console.log(call_end);
+      console.log(call_end);
       // const timerEndAt = new Date(session.timer_ends_at);
       // const timerEndAt = new Date(call_end.toISOString());
       // console.log("call_end",timerEndAt);
