@@ -14,6 +14,8 @@ import { MdTimer } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { initFlowbite } from "flowbite";
 import MobileInterface from "./MobileInterface";
+import { FaRegSmile } from "react-icons/fa";
+import sessionsFinised from "../../../public/sessions-finised.mp3";
 
 export default function VideoHeader({ availableEvents, call }) {
   // console.log(availableEvents[0])
@@ -38,6 +40,7 @@ export default function VideoHeader({ availableEvents, call }) {
     availableEvents[0].otherPersonMissedCall
   );
   const [participants, setParticipants] = useState(null);
+  const [sessionDone,setSessionDone] = useState(false);
 
   useEffect(() => {
     initFlowbite();
@@ -68,7 +71,7 @@ export default function VideoHeader({ availableEvents, call }) {
 
       // const call_end = call_start.add(3180, "seconds");
       // const call_end = call_start + 3180 * 1000;
-      const call_end = call_start + 3000000;
+      const call_end = call_start + 3600000;
       // const call_end = call_start + 120000;
       // console.log(call_end);
       // const timerEndAt = new Date(session.timer_ends_at);
@@ -115,6 +118,12 @@ export default function VideoHeader({ availableEvents, call }) {
     }
   };
 
+  const handleSessionFinised = () => {
+    setSessionDone(true);
+    const audio = new Audio(sessionsFinised);
+    audio.play();
+  }
+
   const missedCall = async () => {
     try {
       console.log("API call made");
@@ -144,8 +153,7 @@ export default function VideoHeader({ availableEvents, call }) {
     // console.log("remainingMs",remainingMs, Date.now());
 
     useSessionTimerAlert(remainingMs, 300 * 1000, handleShowAlert);
-    // useSessionTimerAlert(remainingMs, 90 * 1000, handleShowAlert);
-    // useSessionTimerAlert(remainingMs, 60 * 1000, storeCallID);
+    useSessionTimerAlert(remainingMs, 3000 * 1000, handleSessionFinised);// this alert is shown after 50 mins
 
     useEffect(() => {
       if (remainingMs <= 0) {
@@ -1038,11 +1046,24 @@ export default function VideoHeader({ availableEvents, call }) {
         //     : "fixed top-3 right-10"
         // } flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg`}
       >
+        {
+          sessionDone 
+          ?
+          <>
+          <FaRegSmile className="my-auto text-xl md:text-2xl" />{" "}
+          Session Finised!
+          </>
+          :
+          <>
         <MdTimer className="my-auto text-xl md:text-2xl" />{" "}
         {Date.now() < new Date(availableEvents[0].start).getTime()
           ? "Starts at:"
           : "Ends in:"}
         <SessionTimer />
+        </>
+        }
+        
+        
       </div>
 
       {fail ? <ErrorTextToast text={"Removed from favorites."} /> : null}

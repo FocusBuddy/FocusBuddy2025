@@ -116,7 +116,7 @@ export default function App() {
           settings_override: {
             limits: {
               max_participants: 2,
-              max_duration_seconds: 3000 
+              max_duration_seconds: 3600 
             }
           },
         }

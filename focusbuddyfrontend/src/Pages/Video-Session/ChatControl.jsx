@@ -5,11 +5,22 @@ import { useEffect } from "react";
 // import { IoMdChatbubbles } from "react-icons/io";
 import ChatFeature from "./ChatFeature";
 import LauchTestChatFeature from "../Lauch-Test-Session/LauchTestChatFeature";
+import { useState,useContext } from "react";
+import { myContext } from "../../utils/PrivateRoutes";
 
 export default function ChatControls({mainToken,testToken, availableEvents}) {
+  const [newMsgCame,setNewMsgCame] = useState(false);
+  const [newMsgEvent,setNewMsgEvent] = useState(null);
+  const { userProfile } = useContext(myContext);
+  
   useEffect(() => {
     initFlowbite();
   }, []);
+
+  function handleDrawerOpen(){
+    setNewMsgCame(false);
+  }
+
   return (
     <div style={{ zIndex: 4000 }}>
       <Tooltip id="videoSDKchatcontrol" content="Chat" className="bg-[#323B44]">
@@ -19,9 +30,11 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
           data-drawer-placement="right"
           aria-controls="video-chat-drawer"
           type="button"
+          onClick={handleDrawerOpen}
           className="p-[0.6rem] text-white focus:bg-[#005FFF] hover:bg-[#323B44] rounded-full"
 
         >
+          {(newMsgEvent?.user?.name !== userProfile.displayName && newMsgCame) ? <div className="absolute top-0 right-0 w-2 h-2 rounded-full bg-red-700"></div> : null}
           <MdChat className="text-2xl" />
         </button>
       </Tooltip>
@@ -69,7 +82,7 @@ export default function ChatControls({mainToken,testToken, availableEvents}) {
           ?
           <LauchTestChatFeature mainToken={mainToken} testToken={testToken}/>
           :
-          <ChatFeature token={mainToken} availableEvents={availableEvents}/>
+          <ChatFeature setNewMsgCame={setNewMsgCame} setNewMsgEvent={setNewMsgEvent} token={mainToken} availableEvents={availableEvents}/>
         }
       </div>
     </div>

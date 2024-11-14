@@ -13,11 +13,12 @@ import {
 import { useState, useEffect, useContext } from "react";
 import { myContext } from '../../utils/PrivateRoutes';
 import ChatNotAvailable from './ChatNotAvailable';
+import messageCameSound from '../../../public/message-incoming.mp3'
 
 
 const apiKey = import.meta.env.VITE_GETSTREAM_KEY;
 
-export default function ChatFeature({ token, availableEvents }) {
+export default function ChatFeature({setNewMsgCame, setNewMsgEvent, token, availableEvents }) {
   const { userProfile } = useContext(myContext);
   const userID = userProfile.displayName.split(' ').join('_');
   const other_user = availableEvents[0].matchedPersonFullName === 'Matching...' ? 'Matching' : availableEvents[0].matchedPersonFullName.split(' ').join('_');
@@ -46,6 +47,17 @@ export default function ChatFeature({ token, availableEvents }) {
 
         await channel.watch();
         setChannel(channel);
+
+        // Listen for new messages
+        chatClient.on('message.new', (event) => {
+          // console.log('New message received:', event.message);
+          setNewMsgEvent(event.message);
+          const audio = new Audio(messageCameSound);
+          audio.play();
+          if(event.message){
+            setNewMsgCame(true);
+          }
+          });
       }
     };
 
