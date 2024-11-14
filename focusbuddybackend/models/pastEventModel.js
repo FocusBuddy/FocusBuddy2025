@@ -241,7 +241,7 @@ const pastEventSchema = new mongoose.Schema({
 }
 
 // Schedule the task to run every 5 minutes
-cron.schedule('*/5 * * * *', movePastEvents);
+cron.schedule('*/10 * * * *', movePastEvents);
 
 
 // Schedule task to run every Sunday at 12:00 AM
