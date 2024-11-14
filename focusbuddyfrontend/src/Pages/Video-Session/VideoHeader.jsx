@@ -79,7 +79,7 @@ export default function VideoHeader({ availableEvents, call }) {
       // console.log("call_end",timerEndAt);
       if (Date.now() > call_start) {
         handle = setInterval(() => {
-          const now = new Date();
+          const now = new Date().getTime();
           const remainingMs = +call_end - +now;
           setRemainingMs(remainingMs);
         }, 500);
