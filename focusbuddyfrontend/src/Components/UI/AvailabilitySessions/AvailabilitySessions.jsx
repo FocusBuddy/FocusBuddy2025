@@ -35,7 +35,7 @@ const navigate = useNavigate();
       matchedPersonName: session.name,
       matchedPersonFullName: session.fullName,
       matchedPersonProfilePic: session.profilePic,
-      matchedPersonProfilePic: session.profileLink,
+      matchedPersonProfileLink: session.profileLink,
       name: userProfile.givenName + ' ' + userProfile.familyName[0],
       fullName: userProfile.givenName + ' ' + userProfile.familyName,
       profilePic: userProfile.profilePic,

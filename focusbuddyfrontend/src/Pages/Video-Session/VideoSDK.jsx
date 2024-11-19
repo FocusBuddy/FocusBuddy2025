@@ -35,7 +35,7 @@ const apiKey = import.meta.env.VITE_GETSTREAM_KEY;
 // const call = client.call('default', callId);
 // call.join({ create: true });
 
-export default function App() {
+export default function VideoSDK() {
 
   const  {userProfile} = useContext(myContext);
   const userId = userProfile.displayName.split(" ").join("_");
@@ -173,7 +173,7 @@ export const MyUILayout = (props) => {
     <StreamTheme>
     <VideoHeader 
               call={props.call} 
-              availableEvents={props.sessionevent}
+              availableEvents={props.availableEvents}
             />
       <SpeakerLayout participantsBarPosition='top' />
     <VideoFooter call={props.call} mainToken={props.mainToken} availableEvents={props.availableEvents}/>
