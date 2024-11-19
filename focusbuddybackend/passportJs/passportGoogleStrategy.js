@@ -58,8 +58,8 @@ passport.use(
           // If user not found in the database, create a new user
           const location = await getGeoInfo();
           const link = await generateUserProfileLink(
-            profile.name.givenName,
-            profile.name.familyName
+            profile.name.givenName.split(" ").join(''),
+            profile.name.familyName.split(" ").join('')
           );
 
           let subscriptionDetails = await getSubscriptionDetails();
@@ -69,7 +69,7 @@ passport.use(
 console.log(profile);
           const userDetails = {
             googleId: profile.id,
-            displayName: firstNameContainSpace || profile.name.familyName === undefined ? profile.displayName + ' ' + noLastNameSoNumber : profile.displayName,
+            displayName: firstNameContainSpace || profile.name.familyName === undefined ? profile.displayName.split(" ").join('') + ' ' + noLastNameSoNumber : profile.name.givenName.split(" ").join('') + ' ' + profile.name.familyName.split(" ").join(''),
             email: profile.emails[0].value,
             userGender: ["Prefer not to say"],
             matchWithGender: "everyone",
