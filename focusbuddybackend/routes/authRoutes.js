@@ -173,7 +173,6 @@ router.post(
       // console.log(req.body);
       const { email, password, profilePic, oldPic, firstname, lastname } =
         req.body;
-      const full_name = firstname.split(" ").join('') + " " + lastname.split(" ").join('');
       const profile_questons = {
         "today-q1": "",
         "today-q2": "",
@@ -207,10 +206,11 @@ router.post(
 
 
       if (email) {
+      const full_name = firstname.split(" ").join('') + " " + lastname.split(" ").join('');
         console.log("post contain email");
         const location = await getGeoInfo();
         console.log("location local", location);
-        const link = await generateUserProfileLink(firstname, lastname);
+        const link = await generateUserProfileLink(firstname.split(" ").join(''), lastname.split(" ").join(''));
         user = new userModel({
           googleId: crypto.randomUUID(),
           email,
