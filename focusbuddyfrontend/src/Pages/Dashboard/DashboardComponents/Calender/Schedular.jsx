@@ -367,12 +367,12 @@ function handleTabChange(tab){
     // const startDate = new Date(Date.parse(start))
     // const endDate = new Date(Date.parse(end))
     const durationInMinutes = moment(end).diff(start, "minutes");
-    if (
-      moment(start).isBefore(moment(), "day") ||
-      moment(start).isBefore(moment(), "minute")
-    ) {
-      return false;
-    }
+    // if (
+    //   moment(start).isBefore(moment(), "day") ||
+    //   moment(start).isBefore(moment(), "minute")
+    // ) {
+    //   return false;
+    // }
 
     if (durationInMinutes > 60) {
       // setSlotInRange(false);
