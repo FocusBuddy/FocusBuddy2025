@@ -28,20 +28,20 @@ router.get('/getrazorpay', async (req, res) => {
 
 async function storeSubscriptionDetails(id, pid, amount, email, current_start, current_end, status,payment_method) {
   try {
-    let plan_type;
+    // let plan_type;
 
-    // Determine the plan based on the amount
-    if (amount === 99900) {
-      plan_type = 'plus_monthly';
-    } else {
-      plan_type = 'plus_yearly';
-    }
+    // // Determine the plan based on the amount
+    // if (amount === 99900) {
+    //   plan_type = 'plus_monthly';
+    // } else {
+    //   plan_type = 'plus_yearly';
+    // }
 
     const subObj = {
       mainsub_id: id,
       mainpay_id: pid,
       planStatus: status,
-      planType: plan_type,
+      planType: 'plus_monthly',
       planStartDate: current_start,
       planEndDate: current_end,
       paymentMethod:payment_method
@@ -129,30 +129,30 @@ router.post('/razorpay', async (req, res) => {
       }
       break;
 
-      case "subscription.updated": 
-        const {id,plan_id,current_end,current_start} = payload.subscription.entity;
-        let newPlanType;
-        if(plan_id === process.env.RAZORPAY_YEARLY_PLAN_ID){
-          newPlanType = 'plus_yearly'
-        }else{
-          newPlanType = 'plus_monthly'
-        }
+      // case "subscription.updated": 
+      //   const {id,plan_id,current_end,current_start} = payload.subscription.entity;
+      //   let newPlanType;
+      //   if(plan_id === process.env.RAZORPAY_YEARLY_PLAN_ID){
+      //     newPlanType = 'plus_yearly'
+      //   }else{
+      //     newPlanType = 'plus_monthly'
+      //   }
        
         
-        const updateuser = await User.findOneAndUpdate(
-          {"subscription.mainsub_id": id},
-          { $set: { 
-            "subscription.planType": newPlanType,
-            "subscription.planStartDate": current_start,
-            "subscription.planEndDate": current_end
-            } 
-          },
-          {new:true}
-        )
+      //   const updateuser = await User.findOneAndUpdate(
+      //     {"subscription.mainsub_id": id},
+      //     { $set: { 
+      //       "subscription.planType": newPlanType,
+      //       "subscription.planStartDate": current_start,
+      //       "subscription.planEndDate": current_end
+      //       } 
+      //     },
+      //     {new:true}
+      //   )
 
-      res.status(200).json({ success: true, message: 'user updated plan so changed details.' });
+      // res.status(200).json({ success: true, message: 'user updated plan so changed details.' });
 
-        break;
+      //   break;
 
       // case "payment.captured":
       //   const {id,created_at,email} = payload.payment.entity;

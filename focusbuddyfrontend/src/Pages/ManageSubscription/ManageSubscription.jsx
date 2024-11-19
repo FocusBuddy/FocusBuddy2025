@@ -182,11 +182,11 @@ export default function ManageSubscription() {
                   </h1>
                   <div className="flex flex-col md:flex-row justify-between rounded-md p-4 mt-6 border-2 border-bordercolor">
                     <div>
-                      {userProfile.subscription.planType === "plus_monthly" ? (
+                      {/* {userProfile.subscription.planType === "plus_monthly" ? ( */}
                         <div className="text-md xl:text-lg text-greenbg font-semibold">
-                          <p>FocusBuddy Plgs Monthly</p>
+                          <p>FocusBuddy Plus Monthly</p>
                           <p className="my-1 text-xl xl:text-2xl text-darkbrown">
-                            ₹999 per month
+                            ₹750 per month
                           </p>
                           <p>
                             Your plan renews on{" "}
@@ -195,20 +195,20 @@ export default function ManageSubscription() {
                               .format("DD/MM/YYYY")}
                           </p>
                         </div>
-                      ) : (
-                        <div className="text-md xl:text-lg text-greenbg font-semibold">
-                          <p>FocusBuddy Plus Yearly</p>
-                          <p className="my-1 text-xl xl:text-2xl text-darkbrown">
-                            ₹699 per year
-                          </p>
-                          <p>
-                            Your plan renews on{" "}
-                            {moment
-                              .unix(subDetails?.current_end)
-                              .format("DD/MM/YYYY")}
-                          </p>
-                        </div>
-                      )}
+                      {/* // ) : (
+                      //   <div className="text-md xl:text-lg text-greenbg font-semibold">
+                      //     <p>FocusBuddy Plus Yearly</p>
+                      //     <p className="my-1 text-xl xl:text-2xl text-darkbrown">
+                      //       ₹699 per year
+                      //     </p>
+                      //     <p>
+                      //       Your plan renews on{" "}
+                      //       {moment */}
+                      {/* //         .unix(subDetails?.current_end)
+                      //         .format("DD/MM/YYYY")}
+                      //     </p>
+                      //   </div>
+                      // )} */}
                     </div>
                     <div className="mt-6 md:mt-0 flex flex-col md:flex-row gap-4">
                       {/* <div className="bg-darkbrown my-auto text-white px-6 py-3 md:py-4 rounded-md hover:bg-greenbg">

@@ -8,18 +8,18 @@ const getGeoInfo = require("../utils/getGeoInfo.js");
 // const createStripeTrailPlan = require('../stripe/createStripeTrailPlan.js')
 
 
-async function addMonths(date, months) {
-  const newDate = new Date(date);
-  Math.floor(newDate.setMonth(newDate.getMonth() + months) / 1000);
-  return newDate;
-}
+// async function addMonths(date, months) {
+//   const newDate = new Date(date);
+//   Math.floor(newDate.setMonth(newDate.getMonth() + months) / 1000);
+//   return newDate;
+// }
 
 async function getSubscriptionDetails() {
   const today = Math.floor(new Date()/1000);
-  const nextMonthDate = await addMonths(today, 1);
+  const sevenDaysLater = today + 7 * 24 * 60 * 60;
 
   const plan_start_date = today;
-  const plan_end_date = nextMonthDate;
+  const plan_end_date = sevenDaysLater;
   const plan_status = "created";
   const plan_type = "free";
 

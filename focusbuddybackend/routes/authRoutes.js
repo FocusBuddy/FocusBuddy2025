@@ -48,10 +48,11 @@ async function getTodayUnix() {
 
 async function check_today_greater_than_plan_end(user) {
   const plan_end_date = user.subscription.planEndDate;
+  const totalSessions = user.totalSessionsAttended;
   // const plan_end_date_in_unix = await dateToUnix(plan_end_date);
   const now_date_in_unix = await getTodayUnix();
 
-  if (plan_end_date < now_date_in_unix) {
+  if ((plan_end_date < now_date_in_unix) && totalSessions > 10) {
     return "expire";
   } else {
     return "not expire";
@@ -148,10 +149,10 @@ async function addMonths(date, months) {
 
 async function getSubscriptionDetails() {
   const today = Math.floor(new Date()/1000);
-  const nextMonthDate = await addMonths(today, 1);
+  const sevenDaysLater = today + 7 * 24 * 60 * 60;
 
   const plan_start_date = today;
-  const plan_end_date = nextMonthDate;
+  const plan_end_date = sevenDaysLater;
   const plan_status = "created";
   const plan_type = "free";
 

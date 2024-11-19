@@ -11,16 +11,15 @@ export default function AccountUpgrade() {
   const { userProfile } = useContext(myContext);
   const navigate = useNavigate();
   // console.log(userProfile);
-  const [activeTab, setActiveTab] = useState("plus_monthly");
-  const[updateSuccess,setUpdateSuccess] = useState(false);
-  const[updateFail,setUpdateFail] = useState(false);
+  // const[updateSuccess,setUpdateSuccess] = useState(false);
+  // const[updateFail,setUpdateFail] = useState(false);
   // const [loading, setLoading] = useState(false);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
-  const handleSubscription = async () => {
+  const handleSubscription = async (plan) => {
     try {
       // Replace with the user's details collected from your form
       const userDetails = {
@@ -36,7 +35,7 @@ export default function AccountUpgrade() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ plan_type: activeTab, userEmail: userProfile.email }),
+          body: JSON.stringify({ plan_type: plan, userEmail: userProfile.email }),
         }
       );
 
@@ -52,9 +51,9 @@ export default function AccountUpgrade() {
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         subscription_id: data.subscription.id,
-        amount: activeTab === "plus_monthly" ? 99900 : 69900,
+        amount: 75000,
         name: "FocusBuddy",
-        description: `${activeTab} Subscription`,
+        description: `${plan} Subscription`,
         image: logo,
         handler: async function (response) {
           const handlerResponse = response
@@ -113,39 +112,39 @@ export default function AccountUpgrade() {
   };
 
 
-  const handleUpdateSubscription = async (newplan) => {
-    try{
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/${userProfile.subscription.payment_method === "cards" ? "updateCardSubscription" : "updateUpiSubscription"}`,
-        {
-          method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              newPlan: newplan,
-              userEmail: userProfile.email,
-              sub_id:userProfile.subscription.mainsub_id
-            }),
-        }
-      )
-      const data = await response.json();
-      if (response.ok) {
-        setUpdateSuccess(true);
-        setTimeout(() => {
-          setUpdateSuccess(false);
-        }, 2000);
-        setUpdateSub(false);
-      } else {
-        setUpdateFail(true);
-        setTimeout(() => {
-          setUpdateFail(false);
-        }, 1000);
-      }
-    }catch(err){
-      console.log(err);
-      throw new Error("Error while handling update subscription.")
-    }
-  }
+  // const handleUpdateSubscription = async (newplan) => {
+  //   try{
+  //     const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/${userProfile.subscription.payment_method === "cards" ? "updateCardSubscription" : "updateUpiSubscription"}`,
+  //       {
+  //         method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify({
+  //             newPlan: newplan,
+  //             userEmail: userProfile.email,
+  //             sub_id:userProfile.subscription.mainsub_id
+  //           }),
+  //       }
+  //     )
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       setUpdateSuccess(true);
+  //       setTimeout(() => {
+  //         setUpdateSuccess(false);
+  //       }, 2000);
+  //       setUpdateSub(false);
+  //     } else {
+  //       setUpdateFail(true);
+  //       setTimeout(() => {
+  //         setUpdateFail(false);
+  //       }, 1000);
+  //     }
+  //   }catch(err){
+  //     console.log(err);
+  //     throw new Error("Error while handling update subscription.")
+  //   }
+  // }
 
   return (
     <>
@@ -157,23 +156,77 @@ export default function AccountUpgrade() {
           Boost your productivity with{" "}
           <span className="font-medium">endless sessions</span>
         </p>
-        <p className="text-center"><span className="font-semibold">Note:</span></p>
 
         {userProfile.subscription.planType === "free" ? (
           <div className="mt-10 w-full lg:w-[80%] xl:w-[65%] 2xl:w-[58%] mx-auto flex flex-col md:flex-row justify-between gap-4">
             <div className="w-full md:w-[50%] text-center p-10 bg-white text-textcolor rounded-3xl border-2 border-greenbg space-y-2">
               <h3 className="mb-8 text-3xl font-medium">Free</h3>
-              <p className="pb-10 text-md xl:text-xl">
-                unlimited session for a month
+              <p className="pb-10 text-md xl:text-lg">
+              Free 10 sessions for 7 days
               </p>
-              <p className=" text-greenbg font-bold text-md xl:text-xl py-3 px-6 border-2 border-greenbg rounded-md">
+              <p className=" text-greenbg font-bold text-md xl:text-lg py-3 px-6 border-2 border-greenbg rounded-md">
                 Your current plan
               </p>
             </div>
             <div className="w-full md:w-[50%] text-center p-10 bg-greenbg text-white rounded-3xl border-2 border-bordercolor space-y-2">
               <h3 className="mb-4 text-3xl font-medium">Plus</h3>
-
-              <div className=" relative">
+              <div className="relative text-md xl:text-lg bg-white text-textcolor py-3 px-6 rounded-md">Monthly
+                <div
+              class="h-black-friday-discount-tag h-pricing-card__discount--tag"
+              data-v-d4d02fa0=""
+              data-v-f276a9ad=""
+            >
+              <div
+                class="h-black-friday-discount-tag__wrapper"
+                data-v-f276a9ad=""
+              >
+                <span
+                  class="h-black-friday-discount-tag__icon"
+                  data-v-f276a9ad=""
+                >
+                  <svg
+                    width="21"
+                    height="39"
+                    viewBox="0 0 21 39"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    data-v-f276a9ad=""
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M18.0808 0C16.5161 0 15.0277 0.67567 13.9977 1.8535L1.34101 16.3268C-0.480869 18.4102 -0.442043 21.5311 1.4311 23.5685L14.0068 37.247C15.034 38.3642 16.4822 39 17.9998 39H20.2725V0L18.0808 0ZM11.361 23.4843C13.5614 23.2888 15.1868 21.3465 14.9912 19.146C14.7957 16.9455 12.8534 15.3202 10.6529 15.5157C8.45245 15.7113 6.82711 17.6536 7.02263 19.8541C7.21815 22.0545 9.16049 23.6799 11.361 23.4843Z"
+                      fill="#ff0000"
+                      data-v-f276a9ad=""
+                    ></path>
+                  </svg>
+                </span>
+                <span
+                  class="h-black-friday-discount-tag__text--neon h-black-friday-discount-tag__text t-body-2"
+                  data-v-f276a9ad=""
+                >
+                  25% OFF
+                </span>
+              </div>
+            </div>
+                </div>
+              <p className="mt-6 text-md xl:text-lg">Unlimited sessions every month</p>
+            <p className="mt-2 text-gray-200 line-through text-md xl:text-lg">
+              ₹1000/month
+            </p>
+            <p className="my-2 font-bold text-md xl:text-xl">
+              ₹750/month
+            </p>
+            <p className="text-md xl:text-lg">
+              billed monthly
+            </p>
+            <button
+              onClick={() => handleSubscription("plus_monthly")}
+              className="mt-6 w-full text-md xl:text-lg rounded-md bg-textcolor py-4 px-14 text-white hover:-translate-y-1 transition-all duration-500 ease-in-out"
+            >
+              Upgrade
+            </button>
+              {/* <div className=" relative">
                 <ul
                   className="md:container mx-auto text-md xl:text-lg border-2 border-white rounded-md relative flex flex-wrap p-1 list-none"
                   data-tabs="tabs"
@@ -260,13 +313,30 @@ export default function AccountUpgrade() {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         ) : (
           /** if user is subscribed to a plan */
           <div className="flex flex-col gap-4 md:flex-row w-full lg:w-[78%] xl:w-[70%] 2xl:w-[60%] mx-auto">
-            {["plus_monthly", "plus_yearly"].map((items, index) => (
+            <div className="w-full md:max-w-[50%] xl:max-w-[35%] text-center px-10 pt-10 pb-16 bg-white text-textcolor rounded-3xl border-2 border-greenbg">
+              <h3 className="mb-8 text-3xl font-medium">Plus</h3>
+              <div className="relative text-md xl:text-lg bg-greenbg  text-white py-4 px-6 rounded-md">Monthly</div>
+              <p className="mt-6 text-md xl:text-lg">
+                  Unlimited sessions every month
+                </p>
+                <p className="my-2 font-bold text-md xl:text-xl">
+              ₹750/month
+            </p>
+            <p className="text-md xl:text-lg">
+              billed monthly
+            </p>
+              <p className="mt-6 text-greenbg text-md xl:text-lg py-4 px-6 border-2 border-greenbg rounded-md">
+                Your current plan
+              </p>
+            </div>
+            
+            {/* {["plus_monthly", "plus_yearly"].map((items, index) => (
               <div
                 key={index}
                 className={`mt-10 mx-auto text-center  justify-between px-12 md:px-16 py-12 rounded-lg ${
@@ -312,13 +382,13 @@ export default function AccountUpgrade() {
                   </button>
                 )}
               </div>
-            ))}
+            ))} */}
           </div>
 )}
-{updateFail ? (
+{/* {updateFail ? (
         <ErrorTextToast text={"Error wile updating subscription."} />
       ) : null}
-      {updateSuccess ? <SuccessToast text={"Your subcription is updated, It may take a while to reflect."} /> : null}
+      {updateSuccess ? <SuccessToast text={"Your subcription is updated, It may take a while to reflect."} /> : null} */}
       </div>
     </>
   );

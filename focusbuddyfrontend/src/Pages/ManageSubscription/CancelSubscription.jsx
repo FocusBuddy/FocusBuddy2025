@@ -28,10 +28,10 @@ export default function CancelSubscription({
       </h1>
 
       <div>
-        {userProfile.subscription.planType === "plus_monthly" ? (
+        {/* {userProfile.subscription.planType === "plus_monthly" ? ( */}
           <div className="max-w-lg text-md xl:text-lg text-greenbg font-semibold">
             <p>FocusBuddy Plus Monthly</p>
-            <p className="my-1 text-xl xl:text-2xl text-darkbrown">₹999 per month</p>
+            <p className="my-1 text-xl xl:text-2xl text-darkbrown">₹750 per month</p>
             <p>
               Your plan will be canceled, but is still avaiable until the end of
               your billing period on{" "}
@@ -58,8 +58,8 @@ export default function CancelSubscription({
               Cancel plan
             </button>
           </div>
-        ) : (
-          <div className="max-w-lg text-md xl:text-lg text-greenbg font-semibold">
+        {/* ) : ( */}
+          {/* <div className="max-w-lg text-md xl:text-lg text-greenbg font-semibold">
             <p>FocusBuddy Plus Yearly</p>
             <p className="my-1 text-xl xl:text-2xl text-darkbrown">₹699 per year</p>
             <p>
@@ -88,7 +88,7 @@ export default function CancelSubscription({
               Cancel plan
             </button>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

@@ -779,21 +779,21 @@ router.post('/create-subscription',async (req,res) => {
   const {plan_type,userEmail} = req.body;
   try{
 
-    let planID;
-    switch (plan_type) {
-      case "plus_monthly":
-        planID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
-        break;
-      case "plus_yearly":
-        planID = process.env.RAZORPAY_YEARLY_PLAN_ID;
-        break;
-      default:
-        planID = 'free';
-        break;
-    }
+    // let planID;
+    // switch (plan_type) {
+    //   case "plus_monthly":
+    //     planID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
+    //     break;
+    //   case "plus_yearly":
+    //     planID = process.env.RAZORPAY_YEARLY_PLAN_ID;
+    //     break;
+    //   default:
+    //     planID = 'free';
+    //     break;
+    // }
     const subscription = await razorpay_instance.subscriptions.create({
       // plan_id: 'plan_OtPbXyiQAvQ979', //focusbuddy_plus_monthly
-      plan_id: planID, //focusbuddy_plus_monthly
+      plan_id: process.env.RAZORPAY_MONTHLY_PLAN_ID, //focusbuddy_plus_monthly
       total_count: 50, // 0 for unlimited billing cycles
       customer_notify: 1, // Send email notification to the customer
     });
@@ -920,73 +920,73 @@ router.post('/renewSubscription',async (req,res) => {
   }
 })
 
-router.post('/updateCardSubscription', async (req,res) => {
-  const {newPlan,userEmail,sub_id} = req.body;
-  try{
-    let newPlanID;
-    if(newPlan === 'plus_monthly'){
-      newPlanID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
-    }else{
-      newPlanID = process.env.RAZORPAY_YEARLY_PLAN_ID;
-    }
+// router.post('/updateCardSubscription', async (req,res) => {
+//   const {newPlan,userEmail,sub_id} = req.body;
+//   try{
+//     let newPlanID;
+//     if(newPlan === 'plus_monthly'){
+//       newPlanID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
+//     }else{
+//       newPlanID = process.env.RAZORPAY_YEARLY_PLAN_ID;
+//     }
 
-    const options = {
-      plan_id: newPlanID,
-      quantity: 1,
-      remaining_count: 50
-    };
+//     const options = {
+//       plan_id: newPlanID,
+//       quantity: 1,
+//       remaining_count: 50
+//     };
 
-    const updatedsubscription = await razorpay_instance.subscriptions.update(sub_id,options)
-    console.log("updatedsubscription",updatedsubscription)
+//     const updatedsubscription = await razorpay_instance.subscriptions.update(sub_id,options)
+//     console.log("updatedsubscription",updatedsubscription)
 
-   res.status(200).json({message: "subscription updated.",updatedsubscription})
+//    res.status(200).json({message: "subscription updated.",updatedsubscription})
 
-  }catch(err){
-    console.log(err);
-    res.status(500).json({ message: "error while updating subscription." });
-  }
-});
+//   }catch(err){
+//     console.log(err);
+//     res.status(500).json({ message: "error while updating subscription." });
+//   }
+// });
 
 
-router.post('/updateUpiSubscription', async (req,res) => {
-  const {newPlan,userEmail,sub_id} = req.body;
-  try{
+// router.post('/updateUpiSubscription', async (req,res) => {
+//   const {newPlan,userEmail,sub_id} = req.body;
+//   try{
 
-    let newPlanID;
-    if(newPlan === 'plus_monthly'){
-      newPlanID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
-    }else{
-      newPlanID = process.env.RAZORPAY_YEARLY_PLAN_ID;
-    }
+//     let newPlanID;
+//     if(newPlan === 'plus_monthly'){
+//       newPlanID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
+//     }else{
+//       newPlanID = process.env.RAZORPAY_YEARLY_PLAN_ID;
+//     }
   
-//cancel subscription at billing cycle end
-    const cancelsubscription = await razorpay_instance.subscriptions.cancel(sub_id,true)
-    console.log("updatedsubscription",cancelsubscription);
+// //cancel subscription at billing cycle end
+//     const cancelsubscription = await razorpay_instance.subscriptions.cancel(sub_id,true)
+//     console.log("updatedsubscription",cancelsubscription);
 
-    const subscription = await razorpay_instance.subscriptions.create({
-      plan_id: newPlanID, 
-      total_count: 50, 
-      customer_notify: 1, 
-      start_at : cancelsubscription.current_end
-    });
+//     const subscription = await razorpay_instance.subscriptions.create({
+//       plan_id: newPlanID, 
+//       total_count: 50, 
+//       customer_notify: 1, 
+//       start_at : cancelsubscription.current_end
+//     });
 
-    const save_sub = await userModel.findOneAndUpdate(
-      {email: userEmail},
-      {
-        $set: {
-          "subscription.mainsub_id": subscription.id,
-        },
-      },
-      { new: true }
-    )
+//     const save_sub = await userModel.findOneAndUpdate(
+//       {email: userEmail},
+//       {
+//         $set: {
+//           "subscription.mainsub_id": subscription.id,
+//         },
+//       },
+//       { new: true }
+//     )
 
-   res.status(200).json({message: "subscription updated."})
+//    res.status(200).json({message: "subscription updated."})
 
-  }catch(err){
-    console.log(err);
-    res.status(500).json({ message: "error while updating subscription." });
-  }
-});
+//   }catch(err){
+//     console.log(err);
+//     res.status(500).json({ message: "error while updating subscription." });
+//   }
+// });
 
 
 

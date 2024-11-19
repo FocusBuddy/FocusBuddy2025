@@ -24,10 +24,10 @@ export default function RenewSubscription({userProfile,subDetails,setRenewSub,ha
       </h1>
 
       <div>
-        {userProfile.subscription.planType === "plus_monthly" ? (
+        {/* {userProfile.subscription.planType === "plus_monthly" ? ( */}
           <div className="max-w-lg text-md xl:text-lg text-greenbg font-semibold">
             <p>FocusBuddy Plus Monthly</p>
-            <p className="my-1 text-xl xl:text-2xl text-darkbrown">₹999 per month</p>
+            <p className="my-1 text-xl xl:text-2xl text-darkbrown">₹750 per month</p>
             <p>
               Your plan will be renewed and will take effect after your current billing period ends on{" "}
               {moment.unix(subDetails?.current_end).format("DD/MM/YYYY")}.
@@ -53,8 +53,8 @@ export default function RenewSubscription({userProfile,subDetails,setRenewSub,ha
               Renew plan
             </button>
           </div>
-        ) : (
-          <div className="max-w-lg text-md xl:text-lg text-greenbg font-semibold">
+        {/* ) : ( */}
+          {/* <div className="max-w-lg text-md xl:text-lg text-greenbg font-semibold">
             <p>FocusBuddy Plus Yearly</p>
             <p className="my-1 text-xl xl:text-2xl text-darkbrown">₹699 per year</p>
             <p>
@@ -82,7 +82,7 @@ export default function RenewSubscription({userProfile,subDetails,setRenewSub,ha
               Renew plan
             </button>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
