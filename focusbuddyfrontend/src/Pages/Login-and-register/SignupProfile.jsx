@@ -163,6 +163,8 @@ export default function SignupProfile() {
                 id="fname_floating_outlined"
                 className="block p-4 pt-4 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
                 placeholder=" "
+                pattern=".*\S.*" // Ensures the input contains at least one non-space character
+                title="First Name cannot be empty or just spaces."
               />
               <label
                 htmlFor="fname_floating_outlined"
@@ -181,6 +183,8 @@ export default function SignupProfile() {
                 id="lname_floating_outlined"
                 className="block p-4 pt-4 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
                 placeholder=" "
+                pattern=".*\S.*" // Ensures the input contains at least one non-space character
+                title="Last Name cannot be empty or just spaces."
               />
               <label
                 htmlFor="lname_floating_outlined"
