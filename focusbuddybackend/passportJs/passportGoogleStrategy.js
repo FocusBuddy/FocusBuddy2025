@@ -69,14 +69,14 @@ passport.use(
 console.log(profile);
           const userDetails = {
             googleId: profile.id,
-            displayName: firstNameContainSpace || profile.name.familyName === undefined ? profile.displayName.split(" ").join('') + ' ' + noLastNameSoNumber : profile.name.givenName.split(" ").join('') + ' ' + profile.name.familyName.split(" ").join(''),
+            displayName: profile.name.familyName === undefined ? profile.displayName.split(" ").join('') + ' ' + noLastNameSoNumber : profile.name.givenName.split(" ").join('') + ' ' + profile.name.familyName.split(" ").join(''),
             email: profile.emails[0].value,
             userGender: ["Prefer not to say"],
             matchWithGender: "everyone",
             noMatchWithGender: "everyone",
             availabilityStatus: "No one",
             quiteModeMatchAllowed: true,
-            givenName: profile.name.givenName,
+            givenName: profile.name.givenName.split(" ").join(''),
             familyName: profile.name.familyName === undefined ? noLastNameSoNumber : profile.name.familyName,
             profilePic: profile.photos[0].value,
             userLocation: location,
