@@ -173,7 +173,7 @@ router.post(
       // console.log(req.body);
       const { email, password, profilePic, oldPic, firstname, lastname } =
         req.body;
-      const full_name = firstname + " " + lastname;
+      const full_name = firstname.split(" ").join('') + " " + lastname.split(" ").join('');
       const profile_questons = {
         "today-q1": "",
         "today-q2": "",
