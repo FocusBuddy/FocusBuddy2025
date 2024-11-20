@@ -14,12 +14,14 @@ export default function SignupProfile() {
     `${import.meta.env.VITE_BACKEND_PRO_URL}/uploads/defaultImages.png`
   );
   const [uploaded, setUploaded] = useState(false);
-  const [success,setSuccess] = useState(false);
-  const [loading,setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const fileInputRef = useRef();
   const navigate = useNavigate();
-  const [oldPic,setOldPic] = useState(`${import.meta.env.VITE_BACKEND_PRO_URL}/uploads/defaultImages.png`);
-  
+  const [nameIsJustSpace, setNameIsJustSpace] = useState(false);
+  const [oldPic, setOldPic] = useState(
+    `${import.meta.env.VITE_BACKEND_PRO_URL}/uploads/defaultImages.png`
+  );
 
   function handleButtonClick() {
     fileInputRef.current.click();
@@ -27,68 +29,78 @@ export default function SignupProfile() {
 
   function handleFileChange(event) {
     const file = event.target.files[0];
-    if(file){
+    if (file) {
       setUploaded(true);
-      setSelectedFile(event.target.files[0]);  
+      setSelectedFile(event.target.files[0]);
       upload(file);
     }
     // console.log(event.target.files[0]);
-  };
+  }
 
-  const upload = async(file) => {
+  const upload = async (file) => {
     // console.log('file',file)
     const formData = new FormData();
-      formData.append("profilePhoto", file);
-      formData.append('oldPic',oldPic);
-        try{  
-          const response = await uploadProfilePic(`${import.meta.env.VITE_BACKEND_PRO_URL}/auth/local/register`,"POST",formData);
-          console.log(response);
-          setSelectedFile(response.profilePic);
-          setOldPic(response.profilePic);
-        }catch(err){
-          console.log(err);
-        }
-      // try {
-      //   const response = await fetch(
-      //     `${import.meta.env.VITE_BACKEND_PRO_URL}/auth/local/register`,
-      //     {
-      //       method: "POST",
-      //       body: formData,
-      //     }
-      //   );
-      //   const data = await response.json();
-      //   console.log(data);
-      //   setSelectedFile(data.profilePic);
-      //   setOldPic(data.profilePic);
-      //   // console.log(selectedFile);
-      // } catch (err) {
-      //   console.log(err);
-      //   throw new Error("An error occurred while signup!.");
-      // }
-  }
+    formData.append("profilePhoto", file);
+    formData.append("oldPic", oldPic);
+    try {
+      const response = await uploadProfilePic(
+        `${import.meta.env.VITE_BACKEND_PRO_URL}/auth/local/register`,
+        "POST",
+        formData
+      );
+      console.log(response);
+      setSelectedFile(response.profilePic);
+      setOldPic(response.profilePic);
+    } catch (err) {
+      console.log(err);
+    }
+    // try {
+    //   const response = await fetch(
+    //     `${import.meta.env.VITE_BACKEND_PRO_URL}/auth/local/register`,
+    //     {
+    //       method: "POST",
+    //       body: formData,
+    //     }
+    //   );
+    //   const data = await response.json();
+    //   console.log(data);
+    //   setSelectedFile(data.profilePic);
+    //   setOldPic(data.profilePic);
+    //   // console.log(selectedFile);
+    // } catch (err) {
+    //   console.log(err);
+    //   throw new Error("An error occurred while signup!.");
+    // }
+  };
 
   const handleCompleteSignupSubmit = async (e) => {
     e.preventDefault();
     setFirstName("");
-    setLastName('');
+    setLastName("");
     setAgree(false);
-    setLoading(true)
+    setLoading(true);
     console.log(email, password, selectedFile, agree, firstName, lastName);
-    
+
     try {
       const userDetails = {
         email,
         password,
         profilePic: selectedFile,
         firstname: firstName,
-        lastname: lastName
-      }
+        lastname: lastName,
+      };
+
+      if (firstName.trim().length === 0 || lastName.trim().length === 0) {
+        setNameIsJustSpace(true);
+      } else {
+      
+
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_PRO_URL}/auth/local/register`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(userDetails),
         }
@@ -96,16 +108,17 @@ export default function SignupProfile() {
       const data = await response.json();
       console.log(data);
       setSelectedFile(data.profilePic);
-      if(response.ok){
+      if (response.ok) {
         setLoading(false);
         setSuccess(true);
         setTimeout(() => {
-            setSuccess(false);
-            navigate('/login');
-          }, 500); 
-        }
-      } catch (err) {
-        console.log(err);
+          setSuccess(false);
+          navigate("/login");
+        }, 500);
+      }
+    }
+    } catch (err) {
+      console.log(err);
       throw new Error("An error occurred while signup!.");
     }
 
@@ -138,7 +151,8 @@ export default function SignupProfile() {
             {uploaded ? (
               <button
                 type="button"
-                className="mt-4 flex gap-2 items-center justify-center p-3 rounded-md bg-textcolor text-white hover:bg-darkbrown" onClick={handleButtonClick}
+                className="mt-4 flex gap-2 items-center justify-center p-3 rounded-md bg-textcolor text-white hover:bg-darkbrown"
+                onClick={handleButtonClick}
               >
                 Change picture
               </button>
@@ -152,7 +166,7 @@ export default function SignupProfile() {
               </button>
             )}
           </div>
-        
+
           <div className="mt-10 flex gap-4 justify-center">
             <div className="relative">
               <input
@@ -219,39 +233,36 @@ export default function SignupProfile() {
             type="submit"
             className="w-full my-6 bg-greenbg py-3.5 px-10 hover:bg-darkgreen text-md xl:text-lg text-white rounded-lg"
           >
-            {
-                        loading ? 
-                        <div className="flex items-center justify-center">
-                        <svg
-                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        ></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
-                      </svg> 
-                      <p>please wait...</p>
-                      </div>
-                      :
-                      "Complete sign up"
-                      
-                      }
-                      
-            
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <p>please wait...</p>
+              </div>
+            ) : (
+              "Complete sign up"
+            )}
           </button>
         </form>
+        {nameIsJustSpace && <p className="text-center text-red-700">Firstname or Lastname cannot be empty or just space.</p>}
         <p className="text-center text-textcolor">
           Making account for {email}.{" "}
           <Link to={"/signup"} className="hover:text-greenbg">
@@ -260,17 +271,14 @@ export default function SignupProfile() {
         </p>
       </div>
       <div className="w-1/2 bg-greenbg relative p-10">
-        <Link to={"/"} className='absolute -right-8 top-8 lg:left-10 lg:top-10'>
-          <BrownButtonOnBlue
-            text={"Home"}
-          />
+        <Link to={"/"} className="absolute -right-8 top-8 lg:left-10 lg:top-10">
+          <BrownButtonOnBlue text={"Home"} />
         </Link>
       </div>
 
       <div className="w-1/2 py-32"></div>
 
-      {success ? <SuccessToast text={'Account Created.'}/> : null }
-
+      {success ? <SuccessToast text={"Account Created."} /> : null}
     </div>
   );
 }
