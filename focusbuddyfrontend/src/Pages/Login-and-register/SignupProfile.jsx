@@ -18,7 +18,6 @@ export default function SignupProfile() {
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef();
   const navigate = useNavigate();
-  const [nameIsJustSpace, setNameIsJustSpace] = useState(false);
   const [oldPic, setOldPic] = useState(
     `${import.meta.env.VITE_BACKEND_PRO_URL}/uploads/defaultImages.png`
   );
@@ -86,14 +85,9 @@ export default function SignupProfile() {
         email,
         password,
         profilePic: selectedFile,
-        firstname: firstName,
-        lastname: lastName,
+        firstname: firstName.split(" ").join(''),
+        lastname: lastName.split(" ").join(''),
       };
-
-      if (firstName.trim().length === 0 || lastName.trim().length === 0) {
-        setNameIsJustSpace(true);
-      } else {
-      
 
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_PRO_URL}/auth/local/register`,
@@ -116,7 +110,7 @@ export default function SignupProfile() {
           navigate("/login");
         }, 500);
       }
-    }
+  
     } catch (err) {
       console.log(err);
       throw new Error("An error occurred while signup!.");

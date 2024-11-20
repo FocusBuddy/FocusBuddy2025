@@ -206,11 +206,11 @@ router.post(
 
 
       if (email) {
-      const full_name = firstname.split(" ").join('') + " " + lastname.split(" ").join('');
+      const full_name = firstname + " " + lastname;
         console.log("post contain email");
         const location = await getGeoInfo();
         console.log("location local", location);
-        const link = await generateUserProfileLink(firstname.split(" ").join(''), lastname.split(" ").join(''));
+        const link = await generateUserProfileLink(firstname, lastname);
         user = new userModel({
           googleId: crypto.randomUUID(),
           email,
@@ -223,8 +223,8 @@ router.post(
           noMatchWithGender: "everyone",
           availabilityStatus: "No one",
           quiteModeMatchAllowed: true,
-          givenName: firstname.split(" ").join(''),
-          familyName: lastname.split(" ").join(''),
+          givenName: firstname,
+          familyName: lastname,
           userProfileLink: link,
           userProfileQuestions: profile_questons,
           favorites: [],

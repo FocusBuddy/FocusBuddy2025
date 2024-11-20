@@ -31,13 +31,13 @@ async function getSubscriptionDetails() {
   };
 }
 
-async function firstNameHaveSpaceOrNot(firstName){
-  if (firstName.includes(" ")) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// async function firstNameHaveSpaceOrNot(firstName){
+//   if (firstName.includes(" ")) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
 
 passport.use(
@@ -57,27 +57,28 @@ passport.use(
         if (!user) {
           // If user not found in the database, create a new user
           const location = await getGeoInfo();
-          const link = await generateUserProfileLink(
-            profile.name.givenName.split(" ").join(''),
-            profile.name.familyName.split(" ").join('')
-          );
+
+          const firstName = profile.name.givenName.split(" ").join('');
+          const lastName = profile.name.familyName.split(" ").join('');
+
+          const link = await generateUserProfileLink(firstName,lastName);
 
           let subscriptionDetails = await getSubscriptionDetails();
-          let firstNameContainSpace = await firstNameHaveSpaceOrNot(profile.name.givenName);
+          // let firstNameContainSpace = await firstNameHaveSpaceOrNot(profile.name.givenName);
 
           let noLastNameSoNumber = Math.floor(Math.random() * 101);
-console.log(profile);
+          console.log(profile);
           const userDetails = {
             googleId: profile.id,
-            displayName: profile.name.familyName === undefined ? profile.displayName.split(" ").join('') + ' ' + noLastNameSoNumber : profile.name.givenName.split(" ").join('') + ' ' + profile.name.familyName.split(" ").join(''),
+            displayName: profile.name.familyName === undefined ? firstName + ' ' + noLastNameSoNumber : firstName + ' ' + lastName,
             email: profile.emails[0].value,
             userGender: ["Prefer not to say"],
             matchWithGender: "everyone",
             noMatchWithGender: "everyone",
             availabilityStatus: "No one",
             quiteModeMatchAllowed: true,
-            givenName: profile.name.givenName.split(" ").join(''),
-            familyName: profile.name.familyName === undefined ? noLastNameSoNumber : profile.name.familyName,
+            givenName: firstName,
+            familyName: profile.name.familyName === undefined ? noLastNameSoNumber : lastName,
             profilePic: profile.photos[0].value,
             userLocation: location,
             memberSince: new Date(),

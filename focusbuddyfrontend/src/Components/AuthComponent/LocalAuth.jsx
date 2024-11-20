@@ -33,6 +33,8 @@ export default function LocalAuth({text ,email, setEmail, password, setPassword,
           id="password_floating_outlined"
           className="block p-4 pt-4 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
           placeholder=" "
+           pattern="^\S*$" // Regex to disallow spaces
+           title="Password cannot contain spaces."
         />
         <label
           htmlFor="password_floating_outlined"
