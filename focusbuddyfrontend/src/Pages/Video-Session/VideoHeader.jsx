@@ -168,7 +168,7 @@ export default function VideoHeader({ availableEvents, call }) {
       navigate("/session-ended");
     };
 
-    const end = Date.now() + remainingMs;
+    const end = (Date.now() + remainingMs)-600000;
     // console.log(end, Date.now());
     const duration = moment.duration(end - Date.now());
     const minutes = duration.minutes();

@@ -202,7 +202,7 @@ export default function UpcomingEvents({
         </button>
            </Tooltip> */}
         <Tooltip className={`max-w-[16rem] text-center ${showJoin ? 'hidden': 'block'}`} content="You can join your session 10 minutes before it starts">
-        <button type="button" className="flex items-center gap-1 px-1 font-semibold bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200">
+        <button type="button" className="flex items-center gap-1 font-semibold bg-white text-textcolor border-2 border-bordercolor hover:bg-gray-200">
         <Link
           to={`/sessions/${availableEvents[0].callID}`}
           // to={`/videoSDK`}
