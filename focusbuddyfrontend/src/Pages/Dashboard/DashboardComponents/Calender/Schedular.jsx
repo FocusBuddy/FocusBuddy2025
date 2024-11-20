@@ -483,7 +483,7 @@ function handleTabChange(tab){
             className="hidden lg:block px-5 py-1.5 text-sm lg:text-lg  border bg-white border-bordercolor text-greenbg "
             onClick={() => handleTabChange("week")}
           >
-            {weekView ? "day" : "week"}
+            {weekView ? "Day" : "Week"}
           </button>
 {/*           <button
             style={active === "30 minutes" ? activeTrueCSS : activeFalseCSS}
