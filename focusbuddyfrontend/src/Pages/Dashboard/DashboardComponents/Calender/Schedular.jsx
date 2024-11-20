@@ -479,13 +479,27 @@ function handleTabChange(tab){
     </svg>
 </button>
 
-          <button
-            style={active === "next" ? activeTrueCSS : activeFalseCSS}
-            className="px-2 md:px-5 py-1.5 "
-            onClick={() => handleDateChange("next")}
-          >
-            next
-          </button>
+        <button
+    style={active === "next" ? activeTrueCSS : activeFalseCSS}
+    className="px-2 md:px-5 py-1.5"
+    onClick={() => handleDateChange("next")}
+>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="rgb(0, 128, 128)" /* Teal color */
+        className="w-6 h-6"
+    >
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 4.5l7.5 7.5-7.5 7.5"
+        />
+    </svg>
+</button>
+
         </div>
 
         <div className="w-fit px-4 lg:w-[30%] xl:w-[33.33%] flex items-center justify-center py-1 mb-4 text-center bg-white shadow">
