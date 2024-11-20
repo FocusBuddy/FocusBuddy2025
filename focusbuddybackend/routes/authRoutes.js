@@ -48,11 +48,11 @@ async function getTodayUnix() {
 
 async function check_today_greater_than_plan_end(user) {
   const plan_end_date = user.subscription.planEndDate;
-  const totalSessions = user.totalSessionsAttended;
+  // const totalSessions = user.totalSessionsAttended;
   // const plan_end_date_in_unix = await dateToUnix(plan_end_date);
   const now_date_in_unix = await getTodayUnix();
 
-  if ((plan_end_date < now_date_in_unix) && totalSessions > 10) {
+  if (plan_end_date < now_date_in_unix) {
     return "expire";
   } else {
     return "not expire";

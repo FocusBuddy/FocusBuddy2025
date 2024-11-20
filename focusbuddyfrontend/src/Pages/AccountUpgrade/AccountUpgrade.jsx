@@ -162,7 +162,7 @@ export default function AccountUpgrade() {
             <div className="w-full md:w-[50%] text-center p-10 bg-white text-textcolor rounded-3xl border-2 border-greenbg space-y-2">
               <h3 className="mb-8 text-3xl font-medium">Free</h3>
               <p className="pb-10 text-md xl:text-lg">
-              Free 10 sessions for 7 days
+              Free sessions for 7 days
               </p>
               <p className=" text-greenbg font-bold text-md xl:text-lg py-3 px-6 border-2 border-greenbg rounded-md">
                 Your current plan

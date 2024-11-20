@@ -36,7 +36,7 @@ export default function Pricing() {
 <div className="mt-12 flex flex-col lg:flex-row justify-center gap-4">
           <div className="group basis-1/3 text-center bg-white py-16 px-10 lg:p-16 rounded-lg shadow-md">
             <h1 className="text-4xl text-greenbg">Free</h1>
-            <p className="mt-8 text-md md:text-lg">Free <b>10 sessions</b></p>
+            <p className="mt-8 text-md md:text-lg">Free <b>sessions</b></p>
             <p className="mt-2 mb-8 text-md md:text-lg">for <b>7 days</b>.</p>
             <Link to={"/signup"}>
               <button
