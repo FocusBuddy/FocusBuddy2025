@@ -13,11 +13,13 @@ function Login() {
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     setEmail("");
     setPassword("");
-    e.preventDefault();
+    setLoading(true);
     console.log(email,password);
     try{
       const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/auth/local/login`,{
@@ -31,7 +33,7 @@ function Login() {
       const data = await response.json();
       console.log(data);
       if(response.ok){
-
+        setLoading(false);
         navigate('/dashboard');
       }else if(response.status === 400){
         setIsError(true);
@@ -74,6 +76,7 @@ function Login() {
           password={password} 
           setPassword={setPassword}
           showPassword={showPassword}
+          loading={loading}
           setShowPassword={setShowPassword}/>
         </form>
 

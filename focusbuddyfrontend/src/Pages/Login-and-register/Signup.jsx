@@ -12,6 +12,7 @@ function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg,setErrorMsg] = useState('');
   const [showMessage,setShowMessage] = useState(false);
+  const [loading,setLoading] = useState(false);
   const [showSignupProfile,setShowSignupProfile] = useState(false);
   const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ function Signup() {
     console.log(email, password);
     setEmail("");
     setPassword("");
+    setLoading(true);
       try{
         const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/auth/local/checkregister`,{
           method: 'POST',
@@ -30,7 +32,8 @@ function Signup() {
         })
         const data = await response.json();
         if(response.ok){
-          setShowSignupProfile(true)
+          setShowSignupProfile(true);
+          setLoading(false);
           navigate('/signup/profile', {state: {email,password}});
           console.log(data.message);
         }else if(response.status === 400){
@@ -79,6 +82,7 @@ function Signup() {
                 password={password}
                 setPassword={setPassword}
                 showPassword={showPassword}
+                loading={loading}
                 setShowPassword={setShowPassword}
               />
             </form>
