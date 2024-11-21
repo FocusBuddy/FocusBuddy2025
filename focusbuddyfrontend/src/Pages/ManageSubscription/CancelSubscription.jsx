@@ -42,7 +42,7 @@ export default function CancelSubscription({
             </p>
             <p className="mt-10 text-[12px] md:text-[15px] text-darkbrown">
               By canceling your plan, you agree to FocusBuddy's 
-              <Link to={"/terms"} target="_blank">
+              <Link className="ps-1" to={"/terms"} target="_blank">
                  Terms of Service
               </Link>{" "}
               and{" "}

@@ -33,11 +33,15 @@ export default function Pricing() {
           text={"Streamlined pricing for a clear focus on your priorities."}
         />
 
-<div className="mt-12 flex flex-col lg:flex-row justify-center gap-4">
+        <div className="mt-12 flex flex-col lg:flex-row justify-center gap-4">
           <div className="group basis-1/3 text-center bg-white py-16 px-10 lg:p-16 rounded-lg shadow-md">
             <h1 className="text-4xl text-greenbg">Free</h1>
-            <p className="mt-8 text-md md:text-lg">Free <b>sessions</b></p>
-            <p className="mt-2 mb-8 text-md md:text-lg">for <b>7 days</b>.</p>
+            <p className="mt-8 text-md md:text-lg">
+              Free <b>sessions</b>
+            </p>
+            <p className="mt-2 mb-8 text-md md:text-lg">
+              for <b>7 days</b>.
+            </p>
             <Link to={"/signup"}>
               <button
                 type="button"
@@ -49,49 +53,50 @@ export default function Pricing() {
           </div>
           <div className="shadow-md basis-1/3 text-center bg-white py-16 px-10 lg:p-16 rounded-lg">
             <h1 className="text-4xl text-greenbg">Plus</h1>
-            <div className="relative text-md md:text-lg mt-8 mb-2 line-through text-gray-700">₹1000 per month
-            <div
-              class="h-black-friday-discount-tag h-pricing-card__discount--tag"
-              data-v-d4d02fa0=""
-              data-v-f276a9ad=""
-            >
+            <div className="relative text-md md:text-lg mt-8 mb-2 line-through text-gray-700">
+              ₹1000 per month
               <div
-                class="h-black-friday-discount-tag__wrapper"
+                className="h-black-friday-discount-tag h-pricing-card__discount--tag"
+                data-v-d4d02fa0=""
                 data-v-f276a9ad=""
               >
-                <span
-                  class="h-black-friday-discount-tag__icon"
+                <div
+                  className="h-black-friday-discount-tag__wrapper"
                   data-v-f276a9ad=""
                 >
-                  <svg
-                    width="21"
-                    height="39"
-                    viewBox="0 0 21 39"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <span
+                    className="h-black-friday-discount-tag__icon"
                     data-v-f276a9ad=""
                   >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M18.0808 0C16.5161 0 15.0277 0.67567 13.9977 1.8535L1.34101 16.3268C-0.480869 18.4102 -0.442043 21.5311 1.4311 23.5685L14.0068 37.247C15.034 38.3642 16.4822 39 17.9998 39H20.2725V0L18.0808 0ZM11.361 23.4843C13.5614 23.2888 15.1868 21.3465 14.9912 19.146C14.7957 16.9455 12.8534 15.3202 10.6529 15.5157C8.45245 15.7113 6.82711 17.6536 7.02263 19.8541C7.21815 22.0545 9.16049 23.6799 11.361 23.4843Z"
-                      fill="#ff0000"
+                    <svg
+                      width={21}
+                      height={39}
+                      viewBox="0 0 21 39"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                       data-v-f276a9ad=""
-                    ></path>
-                  </svg>
-                </span>
-                <span
-                  class="h-black-friday-discount-tag__text--neon h-black-friday-discount-tag__text t-body-2"
-                  data-v-f276a9ad=""
-                >
-                  25% OFF
-                </span>
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M18.0808 0C16.5161 0 15.0277 0.67567 13.9977 1.8535L1.34101 16.3268C-0.480869 18.4102 -0.442043 21.5311 1.4311 23.5685L14.0068 37.247C15.034 38.3642 16.4822 39 17.9998 39H20.2725V0L18.0808 0ZM11.361 23.4843C13.5614 23.2888 15.1868 21.3465 14.9912 19.146C14.7957 16.9455 12.8534 15.3202 10.6529 15.5157C8.45245 15.7113 6.82711 17.6536 7.02263 19.8541C7.21815 22.0545 9.16049 23.6799 11.361 23.4843Z"
+                        fill="#ff0000"
+                        data-v-f276a9ad=""
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    className="h-black-friday-discount-tag__text--neon h-black-friday-discount-tag__text t-body-2"
+                    data-v-f276a9ad=""
+                  >
+                    25% OFF
+                  </span>
+                </div>
               </div>
-            </div>
             </div>
             <p className="mb-2 text-md md:text-lg">Unlimited sessions</p>
             <p className="mb-8 text-md md:text-xl font-bold">₹750 per month</p>
-            
+
             <Link to={"/signup"}>
               <button
                 type="button"

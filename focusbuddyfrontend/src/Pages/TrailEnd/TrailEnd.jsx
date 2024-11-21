@@ -149,43 +149,38 @@ export default function TrailEnded() {
             <div className="relative bg-white border-2 rounded-lg mb-6 text-formgray border-white py-2 text-md xl:text-lg">
               Monthly
               <div
-              class="h-black-friday-discount-tag h-pricing-card__discount--tag"
-              data-v-d4d02fa0=""
-              data-v-f276a9ad=""
-            >
-              <div
-                class="h-black-friday-discount-tag__wrapper"
-                data-v-f276a9ad=""
-              >
-                <span
-                  class="h-black-friday-discount-tag__icon"
-                  data-v-f276a9ad=""
-                >
-                  <svg
-                    width="21"
-                    height="39"
-                    viewBox="0 0 21 39"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    data-v-f276a9ad=""
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M18.0808 0C16.5161 0 15.0277 0.67567 13.9977 1.8535L1.34101 16.3268C-0.480869 18.4102 -0.442043 21.5311 1.4311 23.5685L14.0068 37.247C15.034 38.3642 16.4822 39 17.9998 39H20.2725V0L18.0808 0ZM11.361 23.4843C13.5614 23.2888 15.1868 21.3465 14.9912 19.146C14.7957 16.9455 12.8534 15.3202 10.6529 15.5157C8.45245 15.7113 6.82711 17.6536 7.02263 19.8541C7.21815 22.0545 9.16049 23.6799 11.361 23.4843Z"
-                      fill="#ff0000"
-                      data-v-f276a9ad=""
-                    ></path>
-                  </svg>
-                </span>
-                <span
-                  class="h-black-friday-discount-tag__text--neon h-black-friday-discount-tag__text t-body-2"
-                  data-v-f276a9ad=""
-                >
-                  25% OFF
-                </span>
-              </div>
-            </div>
+  className="h-black-friday-discount-tag h-pricing-card__discount--tag"
+  data-v-d4d02fa0=""
+  data-v-f276a9ad=""
+>
+  <div className="h-black-friday-discount-tag__wrapper" data-v-f276a9ad="">
+    <span className="h-black-friday-discount-tag__icon" data-v-f276a9ad="">
+      <svg
+        width={21}
+        height={39}
+        viewBox="0 0 21 39"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        data-v-f276a9ad=""
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M18.0808 0C16.5161 0 15.0277 0.67567 13.9977 1.8535L1.34101 16.3268C-0.480869 18.4102 -0.442043 21.5311 1.4311 23.5685L14.0068 37.247C15.034 38.3642 16.4822 39 17.9998 39H20.2725V0L18.0808 0ZM11.361 23.4843C13.5614 23.2888 15.1868 21.3465 14.9912 19.146C14.7957 16.9455 12.8534 15.3202 10.6529 15.5157C8.45245 15.7113 6.82711 17.6536 7.02263 19.8541C7.21815 22.0545 9.16049 23.6799 11.361 23.4843Z"
+          fill="#ff0000"
+          data-v-f276a9ad=""
+        />
+      </svg>
+    </span>
+    <span
+      className="h-black-friday-discount-tag__text--neon h-black-friday-discount-tag__text t-body-2"
+      data-v-f276a9ad=""
+    >
+      25% OFF
+    </span>
+  </div>
+</div>
+
             </div>
             <p className="text-md xl:text-xl">Unlimited sessions every month</p>
             <p className="mt-2 line-through text-md xl:text-xl">

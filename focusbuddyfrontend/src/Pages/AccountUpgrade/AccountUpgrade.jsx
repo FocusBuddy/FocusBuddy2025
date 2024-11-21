@@ -6,7 +6,6 @@ import logo from "../../assets/FocusBuddy_Logo.png";
 import SuccessToast from "../../Components/UI/toast-components/SuccessToast";
 import ErrorTextToast from "../../Components/UI/toast-components/ErrorTextToast";
 
-
 export default function AccountUpgrade() {
   const { userProfile } = useContext(myContext);
   const navigate = useNavigate();
@@ -35,7 +34,10 @@ export default function AccountUpgrade() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ plan_type: plan, userEmail: userProfile.email }),
+          body: JSON.stringify({
+            plan_type: plan,
+            userEmail: userProfile.email,
+          }),
         }
       );
 
@@ -56,35 +58,37 @@ export default function AccountUpgrade() {
         description: `${plan} Subscription`,
         image: logo,
         handler: async function (response) {
-          const handlerResponse = response
-          try{
-          // Handle successful payment here
-          console.log("payment-succcess", handlerResponse);
-          // Send payment details to the server for verification
-          const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/verifypayment`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              payment_id: handlerResponse.razorpay_payment_id,
-              // subscription_id: data.subscription.id, // Use the subscription ID you created on the server
-              razorpay_signature: handlerResponse.razorpay_signature,
-              userEmail: userProfile.email
-            }),
-          })
+          const handlerResponse = response;
+          try {
+            // Handle successful payment here
+            console.log("payment-succcess", handlerResponse);
+            // Send payment details to the server for verification
+            const response = await fetch(
+              `${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/verifypayment`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  payment_id: handlerResponse.razorpay_payment_id,
+                  // subscription_id: data.subscription.id, // Use the subscription ID you created on the server
+                  razorpay_signature: handlerResponse.razorpay_signature,
+                  userEmail: userProfile.email,
+                }),
+              }
+            );
             const data = await response.json();
-            if(data.success){
+            if (data.success) {
               console.log(data.message);
-              navigate('/account/plan/success');
-            }else{
-              navigate('/account/plan/payment-failed');
+              navigate("/account/plan/success");
+            } else {
+              navigate("/account/plan/payment-failed");
             }
-        }catch(err){
-          console.log(err);
-          throw new Error("Error while verifying payment.")
-        }
-
+          } catch (err) {
+            console.log(err);
+            throw new Error("Error while verifying payment.");
+          }
         },
         prefill: {
           name: userProfile.displayName,
@@ -99,7 +103,7 @@ export default function AccountUpgrade() {
           netbanking: true, // Enables netbanking
           wallet: true, // Enables wallet payments
           emi: false, // Enables EMI
-      },
+        },
       };
 
       // Open Razorpay Checkout
@@ -110,7 +114,6 @@ export default function AccountUpgrade() {
       alert("Error creating subscription.");
     }
   };
-
 
   // const handleUpdateSubscription = async (newplan) => {
   //   try{
@@ -162,7 +165,7 @@ export default function AccountUpgrade() {
             <div className="w-full md:w-[50%] text-center p-10 bg-white text-textcolor rounded-3xl border-2 border-greenbg space-y-2">
               <h3 className="mb-8 text-3xl font-medium">Free</h3>
               <p className="pb-10 text-md xl:text-lg">
-              Free sessions for 7 days
+                Free sessions for 7 days
               </p>
               <p className=" text-greenbg font-bold text-md xl:text-lg py-3 px-6 border-2 border-greenbg rounded-md">
                 Your current plan
@@ -170,62 +173,61 @@ export default function AccountUpgrade() {
             </div>
             <div className="w-full md:w-[50%] text-center p-10 bg-greenbg text-white rounded-3xl border-2 border-bordercolor space-y-2">
               <h3 className="mb-4 text-3xl font-medium">Plus</h3>
-              <div className="relative text-md xl:text-lg bg-white text-textcolor py-3 px-6 rounded-md">Monthly
+              <div className="relative text-md xl:text-lg bg-white text-textcolor py-3 px-6 rounded-md">
+                Monthly
                 <div
-              class="h-black-friday-discount-tag h-pricing-card__discount--tag"
-              data-v-d4d02fa0=""
-              data-v-f276a9ad=""
-            >
-              <div
-                class="h-black-friday-discount-tag__wrapper"
-                data-v-f276a9ad=""
-              >
-                <span
-                  class="h-black-friday-discount-tag__icon"
+                  className="h-black-friday-discount-tag h-pricing-card__discount--tag"
+                  data-v-d4d02fa0=""
                   data-v-f276a9ad=""
                 >
-                  <svg
-                    width="21"
-                    height="39"
-                    viewBox="0 0 21 39"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <div
+                    className="h-black-friday-discount-tag__wrapper"
                     data-v-f276a9ad=""
                   >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M18.0808 0C16.5161 0 15.0277 0.67567 13.9977 1.8535L1.34101 16.3268C-0.480869 18.4102 -0.442043 21.5311 1.4311 23.5685L14.0068 37.247C15.034 38.3642 16.4822 39 17.9998 39H20.2725V0L18.0808 0ZM11.361 23.4843C13.5614 23.2888 15.1868 21.3465 14.9912 19.146C14.7957 16.9455 12.8534 15.3202 10.6529 15.5157C8.45245 15.7113 6.82711 17.6536 7.02263 19.8541C7.21815 22.0545 9.16049 23.6799 11.361 23.4843Z"
-                      fill="#ff0000"
+                    <span
+                      className="h-black-friday-discount-tag__icon"
                       data-v-f276a9ad=""
-                    ></path>
-                  </svg>
-                </span>
-                <span
-                  class="h-black-friday-discount-tag__text--neon h-black-friday-discount-tag__text t-body-2"
-                  data-v-f276a9ad=""
-                >
-                  25% OFF
-                </span>
-              </div>
-            </div>
+                    >
+                      <svg
+                        width={21}
+                        height={39}
+                        viewBox="0 0 21 39"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        data-v-f276a9ad=""
+                      >
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M18.0808 0C16.5161 0 15.0277 0.67567 13.9977 1.8535L1.34101 16.3268C-0.480869 18.4102 -0.442043 21.5311 1.4311 23.5685L14.0068 37.247C15.034 38.3642 16.4822 39 17.9998 39H20.2725V0L18.0808 0ZM11.361 23.4843C13.5614 23.2888 15.1868 21.3465 14.9912 19.146C14.7957 16.9455 12.8534 15.3202 10.6529 15.5157C8.45245 15.7113 6.82711 17.6536 7.02263 19.8541C7.21815 22.0545 9.16049 23.6799 11.361 23.4843Z"
+                          fill="#ff0000"
+                          data-v-f276a9ad=""
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      className="h-black-friday-discount-tag__text--neon h-black-friday-discount-tag__text t-body-2"
+                      data-v-f276a9ad=""
+                    >
+                      25% OFF
+                    </span>
+                  </div>
                 </div>
-              <p className="mt-6 text-md xl:text-lg">Unlimited sessions every month</p>
-            <p className="mt-2 text-gray-200 line-through text-md xl:text-lg">
-              ₹1000/month
-            </p>
-            <p className="my-2 font-bold text-md xl:text-xl">
-              ₹750/month
-            </p>
-            <p className="text-md xl:text-lg">
-              billed monthly
-            </p>
-            <button
-              onClick={() => handleSubscription("plus_monthly")}
-              className="mt-6 w-full text-md xl:text-lg rounded-md bg-textcolor py-4 px-14 text-white hover:-translate-y-1 transition-all duration-500 ease-in-out"
-            >
-              Upgrade
-            </button>
+              </div>
+              <p className="mt-6 text-md xl:text-lg">
+                Unlimited sessions every month
+              </p>
+              <p className="mt-2 text-gray-200 line-through text-md xl:text-lg">
+                ₹1000/month
+              </p>
+              <p className="my-2 font-bold text-md xl:text-xl">₹750/month</p>
+              <p className="text-md xl:text-lg">billed monthly</p>
+              <button
+                onClick={() => handleSubscription("plus_monthly")}
+                className="mt-6 w-full text-md xl:text-lg rounded-md bg-textcolor py-4 px-14 text-white hover:-translate-y-1 transition-all duration-500 ease-in-out"
+              >
+                Upgrade
+              </button>
               {/* <div className=" relative">
                 <ul
                   className="md:container mx-auto text-md xl:text-lg border-2 border-white rounded-md relative flex flex-wrap p-1 list-none"
@@ -321,21 +323,19 @@ export default function AccountUpgrade() {
           <div className="mt-14 flex justify-center">
             <div className="w-full md:max-w-[50%] xl:max-w-[35%] text-center px-10 pt-10 pb-16 bg-white text-textcolor rounded-3xl border-2 border-greenbg">
               <h3 className="mb-8 text-3xl font-medium">Plus</h3>
-              <div className="relative text-md xl:text-lg bg-greenbg  text-white py-4 px-6 rounded-md">Monthly</div>
+              <div className="relative text-md xl:text-lg bg-greenbg  text-white py-4 px-6 rounded-md">
+                Monthly
+              </div>
               <p className="mt-6 text-md xl:text-lg">
-                  Unlimited sessions every month
-                </p>
-                <p className="my-2 font-bold text-md xl:text-xl">
-              ₹750/month
-            </p>
-            <p className="text-md xl:text-lg">
-              billed monthly
-            </p>
+                Unlimited sessions every month
+              </p>
+              <p className="my-2 font-bold text-md xl:text-xl">₹750/month</p>
+              <p className="text-md xl:text-lg">billed monthly</p>
               <p className="mt-6 text-greenbg text-md xl:text-lg py-4 px-6 border-2 border-greenbg rounded-md">
                 Your current plan
               </p>
             </div>
-            
+
             {/* {["plus_monthly", "plus_yearly"].map((items, index) => (
               <div
                 key={index}
@@ -384,8 +384,8 @@ export default function AccountUpgrade() {
               </div>
             ))} */}
           </div>
-)}
-{/* {updateFail ? (
+        )}
+        {/* {updateFail ? (
         <ErrorTextToast text={"Error wile updating subscription."} />
       ) : null}
       {updateSuccess ? <SuccessToast text={"Your subcription is updated, It may take a while to reflect."} /> : null} */}
