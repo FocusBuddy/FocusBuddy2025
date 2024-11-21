@@ -256,7 +256,7 @@ export default function SignupProfile() {
             )}
           </button>
         </form>
-        {nameIsJustSpace && <p className="text-center text-red-700">Firstname or Lastname cannot be empty or just space.</p>}
+        {/* {nameIsJustSpace && <p className="text-center text-red-700">Firstname or Lastname cannot be empty or just space.</p>} */}
         <p className="text-center text-textcolor">
           Making account for {email}.{" "}
           <Link to={"/signup"} className="hover:text-greenbg">
