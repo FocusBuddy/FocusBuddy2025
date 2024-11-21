@@ -318,7 +318,7 @@ export default function AccountUpgrade() {
           </div>
         ) : (
           /** if user is subscribed to a plan */
-          <div className="flex flex-col gap-4 md:flex-row w-full lg:w-[78%] xl:w-[70%] 2xl:w-[60%] mx-auto">
+          <div className="mt-14 flex justify-center">
             <div className="w-full md:max-w-[50%] xl:max-w-[35%] text-center px-10 pt-10 pb-16 bg-white text-textcolor rounded-3xl border-2 border-greenbg">
               <h3 className="mb-8 text-3xl font-medium">Plus</h3>
               <div className="relative text-md xl:text-lg bg-greenbg  text-white py-4 px-6 rounded-md">Monthly</div>

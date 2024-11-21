@@ -41,9 +41,9 @@ export default function CancelSubscription({
               If you change your mind, you can renew your subscription.
             </p>
             <p className="mt-10 text-[12px] md:text-[15px] text-darkbrown">
-              By canceling your plan, you agree to FocusBuddy's
+              By canceling your plan, you agree to FocusBuddy's 
               <Link to={"/terms"} target="_blank">
-                Terms of Service
+                 Terms of Service
               </Link>{" "}
               and{" "}
               <Link to={"/privacy"} target="_blank">

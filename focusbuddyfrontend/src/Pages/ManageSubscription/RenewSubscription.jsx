@@ -36,7 +36,7 @@ export default function RenewSubscription({userProfile,subDetails,setRenewSub,ha
               We are happy to see you back!.
             </p>
             <p className="mt-10 text-[12px] md:text-[15px] text-darkbrown">
-              By renewing your plan, you agree to FocusBuddy's
+              By renewing your plan, you agree to FocusBuddy's 
               <Link to={"/terms"} target="_blank">
                 Terms of Service
               </Link>{" "}
