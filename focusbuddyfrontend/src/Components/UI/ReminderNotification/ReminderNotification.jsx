@@ -1,4 +1,4 @@
-export default function ReminderNotification(){
+export default function ReminderNotification({handleCloseReminderNotification}){
     return(
     <>
       <div
@@ -19,6 +19,7 @@ export default function ReminderNotification(){
         </div>
         <button
           type="button"
+          onClick={handleCloseReminderNotification}
           className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-600 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-2.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
           data-dismiss-target="#toast-default"
           aria-label="Close"

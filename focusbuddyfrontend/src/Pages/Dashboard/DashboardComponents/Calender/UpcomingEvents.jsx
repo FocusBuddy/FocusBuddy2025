@@ -14,8 +14,7 @@ import { IoMdMicOff } from "react-icons/io";
 import { FaStar } from "react-icons/fa6";
 import { Tooltip } from "flowbite-react";
 import ReminderNotification from "../../../../Components/UI/ReminderNotification/ReminderNotification";
-
-
+import reminderbell from "../../../../../public/reminder-bell.mp3";
 
 export default function UpcomingEvents({
   availableEvents,
@@ -65,18 +64,31 @@ export default function UpcomingEvents({
 
   // console.log('isInFav',isInFav)
 
+
+  const handleCloseReminderNotification = () => {
+    setShowReminder(false);
+    audio.pause();          // Pause the audio
+    audio.currentTime = 0;
+  }
+
   useEffect(() => {
     const checkBeforeTime = () => {
       const now = new Date().getTime();
+      const audio = new Audio(reminderbell);
+
       // console.log("before");
       // console.log("before", now, ten_min_before);
-      // if(now >= eleven_min_before){
-      //   setShowReminder(true);
-      // }
+      if(now >= eleven_min_before){
+        setShowReminder(true);
+        audio.loop = true;  // Set audio to loop
+        audio.play();       // Play the audio
+      }
 
       if (now >= ten_min_before) {
         // console.log("10 min left");
         setShowJoin(true);
+        audio.pause();          // Pause the audio
+        audio.currentTime = 0;
         clearInterval(beforeIntervalId);
       } else {
         setShowJoin(false);
@@ -275,7 +287,7 @@ export default function UpcomingEvents({
       ) : null}
 
       {
-        showReminder ? ( <ReminderNotification/>) : null
+        showReminder ? ( <ReminderNotification handleCloseReminderNotification={handleCloseReminderNotification}/>) : null
       }
     </div>
   );
