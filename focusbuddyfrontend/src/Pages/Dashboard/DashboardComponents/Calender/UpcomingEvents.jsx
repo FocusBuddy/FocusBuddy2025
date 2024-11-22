@@ -131,7 +131,7 @@ export default function UpcomingEvents({
       <div className="flex justify-between font-semibold tracking-wide">
         <p>{moment(availableEvents[0].start).format("MMMM Do")}</p>
         <div className="flex gap-2 items-center">
-          <p>{availableEvents[0].duration.slice(0, 6)}</p>
+          <p>{availableEvents[0].duration.slice(0, 5)}</p>
           <div className="flex text-lg">
             {availableEvents[0].quiteModeOn ? <IoMdMicOff /> : null}
             {availableEvents[0].taskType === "deskEvent" ? (

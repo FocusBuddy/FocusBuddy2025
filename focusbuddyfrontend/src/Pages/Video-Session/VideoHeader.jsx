@@ -68,15 +68,8 @@ export default function VideoHeader({ availableEvents, call }) {
       // const call_start = new Date(session.started_at).getTime();
       const call_start = new Date(availableEvents[0].start).getTime();
       console.log(call_start);
-
-      // const call_end = call_start.add(3180, "seconds");
-      // const call_end = call_start + 3180 * 1000;
-      const call_end = call_start + 3600000;
-      // const call_end = call_start + 120000;
+      const call_end = call_start + 3000000; //50min
       console.log(call_end);
-      // const timerEndAt = new Date(session.timer_ends_at);
-      // const timerEndAt = new Date(call_end.toISOString());
-      // console.log("call_end",timerEndAt);
       if (Date.now() > call_start) {
         handle = setInterval(() => {
           const now = new Date().getTime();
@@ -153,22 +146,22 @@ export default function VideoHeader({ availableEvents, call }) {
     console.log("remainingMs",remainingMs, Date.now());
 
     useSessionTimerAlert(remainingMs, 300 * 1000, handleShowAlert);
-    useSessionTimerAlert(remainingMs, 600 * 1000, handleSessionFinised);// this alert is shown after 50 mins
+    // useSessionTimerAlert(remainingMs, 600 * 1000, handleSessionFinised);// this alert is shown 10min before end
 
     useEffect(() => {
       if (remainingMs <= 0) {
-        endCall();
+        handleSessionFinised();
       }
     }, [remainingMs]);
 
-    const endCall = async () => {
-      await call.endCall();
-      // storeCallID();
-      // moveEventToPast()
-      navigate("/session-ended");
-    };
+    // const endCall = async () => {
+    //   await call.endCall();
+    //   // storeCallID();
+    //   // moveEventToPast()
+    //   navigate("/session-ended");
+    // };
 
-    const end = (Date.now() + remainingMs)-600000;
+    const end = Date.now() + remainingMs;
     // console.log(end, Date.now());
     const duration = moment.duration(end - Date.now());
     const minutes = duration.minutes();
@@ -220,20 +213,6 @@ export default function VideoHeader({ availableEvents, call }) {
             </div>
           </div>
         </div>
-        {/* {showAlert && (
-          <div className="session-timer-alert">
-            Less than 5 minutes remaining
-            <button
-              type="button"
-              onClick={() => {
-                setShowAlert(false);
-                localStorage.setItem("alertDismissed", "true");
-              }}
-            >
-              Dismiss
-            </button>
-          </div>
-        )} */}
       </>
     );
   };
@@ -1040,11 +1019,7 @@ export default function VideoHeader({ availableEvents, call }) {
         id="session-timer"
         // style={{ zIndex: 1000 }}
         className='flex justify-center gap-2 px-2 md:px-10 bg-white py-4 rounded-md text-[14px] md:text-md text-greenbg'
-        // className={`${
-        //   window.screen.width < 676
-        //     ? "static w-full flex items-center justify-center py-3"
-        //     : "fixed top-3 right-10"
-        // } flex gap-2 px-10 bg-white py-4 rounded-md text-md xl:text-lg text-greenbg`}
+    
       >
         {
           sessionDone 

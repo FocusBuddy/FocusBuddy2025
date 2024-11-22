@@ -32,7 +32,7 @@ const data = [
   {
     question: "Is FocusBuddy free?",
     answer:
-      "We have 1 month Trial period after that you need to buy subscription.",
+      "We have 7 days Trial period after that you need to buy subscription.",
   },
   {
     question: "Do I have to download another video call app?",

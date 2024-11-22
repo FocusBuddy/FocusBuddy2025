@@ -22,7 +22,7 @@ const data = [
     {
       question: "Is FocusBuddy free?",
       answer:
-        "Yes of course, it is very possible to create an accordion component with another framework.",
+        "We have 7 days Trial period after that you need to buy subscription.",
     },
     {
       question: "What’s it like working with a stranger?",
@@ -32,7 +32,7 @@ const data = [
     {
       question: "What if I'm feeling anxious or hesitant to give it a try?",
       answer:
-        "It's normal to feel nervous, but our community is welcoming and understanding. We encourage you to take the leap and try a 30-minute session.",
+        "It's normal to feel nervous, but our community is welcoming and understanding. We encourage you to take the leap and try a 50-minutes session.",
     },
     {
       question: "Do I need to keep the video on the whole time?",
