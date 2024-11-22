@@ -68,24 +68,39 @@ export default function UpcomingEvents({
   // console.log('isInFav',isInFav)
 
 
-  // const handleCloseReminderNotification = () => {
-  //   setShowReminder(false);
-  //   audio.pause();          // Pause the audio
-  //   audio.currentTime = 0;
-  // }
+  const handleCloseReminderNotification = () => {
+    setShowReminder(false);
+    audio.pause();          // Pause the audio
+    audio.currentTime = 0;  // Reset audio playback position
+  };
+  
+  useEffect(() => {
+    const checkReminderTime = () => {
+      const now = new Date().getTime();
+  
+      if (now >= eleven_min_before && now < ten_min_before) {
+        setShowReminder(true); // Show the reminder
+        if (audio.paused) {    // Prevent multiple audio play triggers
+          audio.loop = true;   // Enable looping
+          audio.play();        // Play the audio
+        }
+      } else if (now >= ten_min_before) {
+        setShowReminder(false); // Hide the reminder after 10 minutes before
+        audio.pause();          // Stop the audio
+        audio.currentTime = 0;  // Reset audio
+      }
+    };
+  
+    // Check every second to evaluate the time
+    const intervalId = setInterval(checkReminderTime, 1000);
+  
+    return () => {
+      clearInterval(intervalId); // Clear interval on component unmount
+    };
+  }, [eleven_min_before, ten_min_before]);
+  
 
   useEffect(() => {
-    // if(new Date().getTime() >= eleven_min_before){
-    //   setShowReminder(true);
-    //   audio.loop = true;  // Set audio to loop
-    //   audio.play();       // Play the audio
-    // }else if (new Date().getTime() >= ten_min_before){
-    //   setShowReminder(false);
-    //   audio.pause();          // Pause the audio
-    //   audio.currentTime = 0;
-    // }
-
-
     const checkBeforeTime = () => {
       const now = new Date().getTime();
 
@@ -293,9 +308,9 @@ export default function UpcomingEvents({
         />
       ) : null}
 
-      {/* {
+      {
         showReminder ? ( <ReminderNotification handleCloseReminderNotification={handleCloseReminderNotification}/>) : null
-      } */}
+      }
     </div>
   );
 }
