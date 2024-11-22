@@ -67,9 +67,9 @@ export default function VideoHeader({ availableEvents, call }) {
       if (!session?.started_at) return;
       // const call_start = new Date(session.started_at).getTime();
       const call_start = new Date(availableEvents[0].start).getTime();
-      console.log(call_start);
+      // console.log(call_start);
       const call_end = call_start + 3000000; //50min
-      console.log(call_end);
+      // console.log(call_end);
       if (Date.now() > call_start) {
         handle = setInterval(() => {
           const now = new Date().getTime();
@@ -96,7 +96,7 @@ export default function VideoHeader({ availableEvents, call }) {
 
   const handleShowAlert = () => {
     if (participants < 2) {
-      console.log("Show alert");
+      // console.log("Show alert");
       setShowAlert(true);
     }
 
@@ -106,7 +106,7 @@ export default function VideoHeader({ availableEvents, call }) {
       participants < 2
     ) {
       apiCallMade.current = true; // Ensure API call is made only once
-      console.log("notify");
+      // console.log("notify");
       missedCall(); // Make the API call
     }
   };
@@ -119,7 +119,7 @@ export default function VideoHeader({ availableEvents, call }) {
 
   const missedCall = async () => {
     try {
-      console.log("API call made");
+      // console.log("API call made");
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/missedsession`,
         {
@@ -134,7 +134,7 @@ export default function VideoHeader({ availableEvents, call }) {
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setOtherMissedStatus(data.missedStatus);
     } catch (error) {
       console.error("Error while handling missed session:", error);
@@ -143,7 +143,7 @@ export default function VideoHeader({ availableEvents, call }) {
 
   const SessionTimer = () => {
     const remainingMs = useSessionTimer();
-    console.log("remainingMs",remainingMs, Date.now());
+    // console.log("remainingMs",remainingMs, Date.now());
 
     useSessionTimerAlert(remainingMs, 300 * 1000, handleShowAlert);
     // useSessionTimerAlert(remainingMs, 600 * 1000, handleSessionFinised);// this alert is shown 10min before end
@@ -236,7 +236,7 @@ export default function VideoHeader({ availableEvents, call }) {
           }
         );
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setMatchedUserEvent(data.event);
       } catch (err) {
         console.log(err);
@@ -260,7 +260,7 @@ export default function VideoHeader({ availableEvents, call }) {
           }
         );
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setMatchedUser(data.user);
       } catch (err) {
         console.log(err);
@@ -353,7 +353,7 @@ export default function VideoHeader({ availableEvents, call }) {
       // Handle error (e.g., show error message to the user)
     }
   };
-  console.log(matchedUser);
+  // console.log(matchedUser);
 
   return (
     <div className={'flex items-center justify-between gap-2 md:h-[5.4rem] w-full py-4 md:py-2 px-4 md:px-10 bg-transparent md:bg-[#19232D]'}>

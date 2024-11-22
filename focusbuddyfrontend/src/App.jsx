@@ -98,7 +98,14 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="account/trail-ended" element={<TrailEnd />} />  
             <Route path="/account/account-ban" element={<AccountBanned />} />
-
+            <Route
+            path="notify"
+            element={<ReminderNotification/>}
+            />
+            <Route
+            path="error"
+            element={<ErrorFallback/>}
+            />
           </Route>
 
 
@@ -128,14 +135,7 @@ function App() {
               element={<SignupProfile />}
               errorElement={<ErrorPage />}
             />
-            <Route
-            path="notify"
-            element={<ReminderNotification/>}
-            />
-            <Route
-            path="error"
-            element={<ErrorFallback/>}
-            />
+            
           </Route>
 
          
