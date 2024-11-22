@@ -30,7 +30,7 @@ export default function UpcomingEvents({
     userProfile, showJoin, setShowJoin, startEvent, setStartEvent
   } = useContext(myContext);
   const [isInFav1, setIsInFav1] = useState(false);
-  const [showReminder,setShowReminder] = useState(false);
+  // const [showReminder,setShowReminder] = useState(false);
 
   const target_time = moment(availableEvents[0].start).toDate().getTime();
   const end_time = moment(availableEvents[0].end).toDate().getTime();
@@ -46,7 +46,7 @@ export default function UpcomingEvents({
     .getTime();
   const event_id = availableEvents[0].myID;
   const audio = new Audio(reminderbell);
-  const [isManuallyClosed, setIsManuallyClosed] = useState(false);
+  // const [isManuallyClosed, setIsManuallyClosed] = useState(false);
 
 
 
@@ -70,38 +70,45 @@ export default function UpcomingEvents({
   // console.log('isInFav',isInFav)
 
 
-  const handleCloseReminderNotification = () => {
-    setShowReminder(false);
-    setIsManuallyClosed(true); 
-    audio.pause();          // Pause the audio
-    audio.currentTime = 0;  // Reset audio playback position
-    clearInterval(intervalId);
-  };
+  // const handleCloseReminderNotification = () => {
+  //   setShowReminder(false);
+  //   setIsManuallyClosed(true); // Mark the reminder as manually closed
+  //   if (!audio.paused) {      // Ensure audio is playing before stopping
+  //     audio.pause();          // Stop the audio
+  //     audio.currentTime = 0;  // Reset audio playback position
+  //   }
+  // };
   
-  useEffect(() => {
-    const checkReminderTime = () => {
-      const now = new Date().getTime();
+  // useEffect(() => {
+  //   const checkReminderTime = () => {
+  //     const now = new Date().getTime();
   
-      if (now >= eleven_min_before && now < ten_min_before && !isManuallyClosed) {
-        setShowReminder(true); // Show the reminder
-        if (audio.paused) {    // Prevent multiple audio play triggers
-          audio.loop = true;   // Enable looping
-          audio.play();        // Play the audio
-        }
-      } else if (now >= ten_min_before) {
-        setShowReminder(false); // Hide the reminder after 10 minutes before
-        audio.pause();          // Stop the audio
-        audio.currentTime = 0;  // Reset audio
-      }
-    };
+  //     if (now >= eleven_min_before && now < ten_min_before && !isManuallyClosed) {
+  //       setShowReminder(true); // Show the reminder
+  //       if (audio.paused) {    // Prevent multiple audio play triggers
+  //         audio.loop = true;   // Enable looping
+  //         audio.play();        // Play the audio
+  //       }
+  //     } else if (now >= ten_min_before || isManuallyClosed) {
+  //       setShowReminder(false); // Hide the reminder after 10 minutes before or manual close
+  //       if (!audio.paused) {    // Ensure audio is playing before stopping
+  //         audio.pause();        // Stop the audio
+  //         audio.currentTime = 0; // Reset audio
+  //       }
+  //     }
+  //   };
   
-    // Check every second to evaluate the time
-    const intervalId = setInterval(checkReminderTime, 1000);
+  //   // Check every second to evaluate the time
+  //   const intervalId = setInterval(checkReminderTime, 1000);
   
-    return () => {
-      clearInterval(intervalId); // Clear interval on component unmount
-    };
-  }, [eleven_min_before, ten_min_before,isManuallyClosed]);
+  //   return () => {
+  //     clearInterval(intervalId); // Clear interval on component unmount
+  //     if (!audio.paused) {       // Ensure audio stops when component unmounts
+  //       audio.pause();
+  //       audio.currentTime = 0;
+  //     }
+  //   };
+  // }, [eleven_min_before, ten_min_before,isManuallyClosed]);
   
 
   useEffect(() => {
@@ -312,9 +319,9 @@ export default function UpcomingEvents({
         />
       ) : null}
 
-      {
+      {/* {
         showReminder ? ( <ReminderNotification handleCloseReminderNotification={handleCloseReminderNotification}/>) : null
-      }
+      } */}
     </div>
   );
 }
