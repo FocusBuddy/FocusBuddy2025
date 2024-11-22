@@ -50,10 +50,6 @@ const Schedular = () => {
 
 
   useEffect(() => {
-      localStorage.setItem("alertDismissed", "false");
-      localStorage.setItem("notifiedaboutcallmiss", "false");
-      localStorage.setItem("updateAttendance", "false");
-      // console.log(localStorage.getItem("alertDismissed"));
     const updateView = () => {
       if (window.screen.width < 768) {
         setView('day');
@@ -108,43 +104,6 @@ function handleTabChange(tab){
   setWeekView(!weekView);
 }
   
-  // function handleTabChange(tab) {
-  //   if (tab === "30 minutes") {
-  //     setActive(tab);
-  //     setFilteredEvents(
-  //       appointments.filter((appointment) => (
-  //         appointment.duration === tab && 
-  //         (appointment.matchedPersonName === 'Matching...') || 
-  //         (appointment.matchedPersonName === (userProfile.givenName + " " + (userProfile.familyName ? userProfile.familyName[0] : " ")) || appointment.name === (userProfile.givenName + " " + (userProfile.familyName ? userProfile.familyName[0] : " ")))
-  //       ))
-  //     );
-  //   } else if (tab === "50 minutes") {
-  //     setActive(tab);
-  //     setFilteredEvents(
-  //       appointments.filter((appointment) => (
-  //         appointment.duration === tab && 
-  //         (appointment.matchedPersonName === 'Matching...') || 
-  //         (appointment.matchedPersonName === (userProfile.givenName + " " + (userProfile.familyName ? userProfile.familyName[0] : " ")) || appointment.name === (userProfile.givenName + " " + (userProfile.familyName ? userProfile.familyName[0] : " ")))
-  //       ))
-  //     );
-  //   } else if (tab === "70 minutes") {
-  //     setActive(tab);
-  //     setFilteredEvents(
-  //       appointments.filter((appointment) => (
-  //         appointment.duration === tab && 
-  //         (appointment.matchedPersonName === 'Matching...') || 
-  //         (appointment.matchedPersonName === (userProfile.givenName + " " + (userProfile.familyName ? userProfile.familyName[0] : " ")) || appointment.name === (userProfile.givenName + " " + (userProfile.familyName ? userProfile.familyName[0] : " ")))
-  //       ))
-  //     );
-  //   } else {
-  //     if (view === "week") {
-  //       setView("day");
-  //     } else if (view === "day") {
-  //       setView("week");
-  //     }
-  //     setWeekView(!weekView);
-  //   }
-  // }
 
   function handleDateChange(tab) {
 
@@ -175,41 +134,6 @@ function handleTabChange(tab){
     }
   }
 
-  // function handleConfirm(eventId) {
-  //   setShowConfirmation(true);
-  //   setEventIdToDelete(eventId);
-  // }
-
-  // function handleEventCancel(){
-  //     const updatedEvents = filteredEvents.filter((events) => events.id !== eventIdToDelete);
-  //     setFilteredEvents(updatedEvents);
-  //     setShowConfirmation(false);
-  //     setEventIdToDelete(null);
-  // }
-
-  // Custom Event Component
-  //for event style all users who have booked event will be shown but in my dashboard my events are showned with different style, so i will show diff component based on name property
-  // const EventComponent = ({ event }) => {
-  //   return (
-  //     <>
-  //       {showConfirmation ?
-  //         event.id === eventIdToDelete ?
-  //         <>
-  //         <div className="text-center text-md xl:text-lg">Cancel ?</div>
-  //         <div className="flex justify-between">
-  //           <button type="button" className="w-[50%] p-3 hover:bg-white hover:text-textcolor transition-all duration-500 ease-in-out" onClick={() => setShowConfirmation(false)}>No</button>
-  //           <button type="button" className="w-[50%] p-3 hover:bg-white hover:text-textcolor transition-all duration-500 ease-in-out" onClick={handleEventCancel}>Yes</button>
-  //         </div>
-  //         </>
-  //         :
-  //         <EventBox event={event} handleConfirm={handleConfirm}/>
-  //        :
-  //        <EventBox event={event} handleConfirm={handleConfirm}/>
-  //       }
-  //     </>
-  //   );
-  // };
-
   const eventStyleGetter = (event, start, end, isSelected) => {
     // console.log(event._id,userProfile.givenName + ' ' + userProfile.familyName[0]);
     const style = {
@@ -229,12 +153,6 @@ function handleTabChange(tab){
     if((userProfile.givenName + ' ' + (userProfile.familyName ? userProfile.familyName[0] : ' ')) === event.name){
       style.zIndex = 2000;
     }
-
-    // if(event.matchedPersonName !== 'Matching...'){
-    //   style.backgroundColor = "#4caf50";
-    //   style.border = "none";
-    //   style.color = '#ffffff'
-    // }
 
     if (showConfirmation) {
       if (event.myID === eventIdToDelete) {
@@ -325,41 +243,6 @@ function handleTabChange(tab){
     }
 
 
-
-    // switch (active) {
-    //   case "30 minutes":
-    //     // console.log((end-start)/1000);
-    //     // console.log('check if slots 30')
-    //     if ((end - start) / 1000 < 2400) {
-    //       setIsThereError(true);
-    //       setWaiting(false);
-    //     } else {
-    //       setWaiting(true);
-    //       addEvent();
-    //     }
-    //     break;
-    //   case "50 minutes":
-    //     // console.log('check if slots 50')
-    //     if ((end - start) / 1000 < 3600) {
-    //       setIsThereError(true);
-    //       setWaiting(false);
-    //     } else {
-    //       setWaiting(true);
-    //       addEvent();
-    //     }
-    //     break;
-    //   case "70 minutes":
-    //     // console.log('check if slots 70')
-    //     if ((end - start) / 1000 < 4800) {
-    //       setIsThereError(true);
-    //       setWaiting(false);
-    //     } else {
-    //       addEvent();
-    //       setWaiting(true);
-    //     }
-    //     break;
-    // }
-    // }
   }
 
   const handleSelecting = ({ event,start, end }) => {
@@ -380,34 +263,7 @@ function handleTabChange(tab){
     } else {
       return true;
     }
-    // switch (active) {
-    //   case "30 minutes":
-    //     if (durationInMinutes > 40) {
-    //       // setSlotInRange(false);
-    //       return false;
-    //     } else {
-    //       return true;
-    //     }
-    //   // break;
-    //   case "50 minutes":
-    //     if (durationInMinutes > 60) {
-    //       // setSlotInRange(false);
-    //       return false;
-    //     } else {
-    //       return true;
-    //     }
-    //   // break;
-    //   case "70 minutes":
-    //     if (durationInMinutes > 80) {
-    //       // setSlotInRange(false);
-    //       return false;
-    //     } else {
-    //       return true;
-    //     }
-    //   // break;
-    //   default:
-    //     null;
-    // }
+
   };
 
   if (isThereError) {

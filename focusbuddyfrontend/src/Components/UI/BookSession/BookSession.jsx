@@ -134,8 +134,8 @@ export default function BookSession({
                 className="text-md font-normal"
               />
             </div>
-            <div className="p-2 border border-[#008080]">
-              <h1 className="text-xs md:text-[14px]">50 minutes</h1>
+            <div className="px-2 py-3 border border-[#008080]">
+              <h1 className="text-gray-900 text-xs md:text-[14px]">50 minutes</h1>
             </div>
 {/*             <Select
               id="eventlength"
