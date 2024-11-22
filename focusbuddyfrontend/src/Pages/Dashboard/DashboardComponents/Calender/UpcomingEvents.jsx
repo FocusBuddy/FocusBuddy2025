@@ -30,7 +30,7 @@ export default function UpcomingEvents({
     userProfile, showJoin, setShowJoin, startEvent, setStartEvent
   } = useContext(myContext);
   const [isInFav1, setIsInFav1] = useState(false);
-  const [showReminder,setShowReminder] = useState(false);
+  // const [showReminder,setShowReminder] = useState(false);
 
   const target_time = moment(availableEvents[0].start).toDate().getTime();
   const end_time = moment(availableEvents[0].end).toDate().getTime();
@@ -68,22 +68,22 @@ export default function UpcomingEvents({
   // console.log('isInFav',isInFav)
 
 
-  const handleCloseReminderNotification = () => {
-    setShowReminder(false);
-    audio.pause();          // Pause the audio
-    audio.currentTime = 0;
-  }
+  // const handleCloseReminderNotification = () => {
+  //   setShowReminder(false);
+  //   audio.pause();          // Pause the audio
+  //   audio.currentTime = 0;
+  // }
 
   useEffect(() => {
-    if(new Date().getTime() >= eleven_min_before){
-      setShowReminder(true);
-      audio.loop = true;  // Set audio to loop
-      audio.play();       // Play the audio
-    }else if (new Date().getTime() >= ten_min_before){
-      setShowReminder(false);
-      audio.pause();          // Pause the audio
-      audio.currentTime = 0;
-    }
+    // if(new Date().getTime() >= eleven_min_before){
+    //   setShowReminder(true);
+    //   audio.loop = true;  // Set audio to loop
+    //   audio.play();       // Play the audio
+    // }else if (new Date().getTime() >= ten_min_before){
+    //   setShowReminder(false);
+    //   audio.pause();          // Pause the audio
+    //   audio.currentTime = 0;
+    // }
 
 
     const checkBeforeTime = () => {
@@ -293,9 +293,9 @@ export default function UpcomingEvents({
         />
       ) : null}
 
-      {
+      {/* {
         showReminder ? ( <ReminderNotification handleCloseReminderNotification={handleCloseReminderNotification}/>) : null
-      }
+      } */}
     </div>
   );
 }
