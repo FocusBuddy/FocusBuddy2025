@@ -50,7 +50,8 @@ export default function VideoHeader({ availableEvents, call }) {
     const { useCallSession, useParticipantCount } = useCallStateHooks();
     const session = useCallSession();
     const participants = useParticipantCount();
-    const [remainingMs, setRemainingMs] = useState(Number.NaN);
+    // const [remainingMs, setRemainingMs] = useState(Number.NaN);
+    const [remainingMs, setRemainingMs] = useState(new Date(availableEvents[0].end).getTime() - new Date().getTime());
     // console.log(Date.now(),new Date(availableEvents[0].start).getTime());
 
     useEffect(() => {
