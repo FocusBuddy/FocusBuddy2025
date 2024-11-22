@@ -45,6 +45,9 @@ export default function UpcomingEvents({
     .toDate()
     .getTime();
   const event_id = availableEvents[0].myID;
+  const audio = new Audio(reminderbell);
+
+
 
   useEffect(() => {
     const checkFavorite = () => {
@@ -72,24 +75,27 @@ export default function UpcomingEvents({
   }
 
   useEffect(() => {
+    if(now >= eleven_min_before){
+      setShowReminder(true);
+      audio.loop = true;  // Set audio to loop
+      audio.play();       // Play the audio
+    }else if (now >= ten_min_before){
+      setShowReminder(false);
+      audio.pause();          // Pause the audio
+      audio.currentTime = 0;
+    }
+
+
     const checkBeforeTime = () => {
       const now = new Date().getTime();
-      const audio = new Audio(reminderbell);
 
       // console.log("before");
       // console.log("before", now, ten_min_before);
-      if(now >= eleven_min_before){
-        setShowReminder(true);
-        audio.loop = true;  // Set audio to loop
-        audio.play();       // Play the audio
-      }
-
+      
       if (now >= ten_min_before) {
         // console.log("10 min left");
-        setShowReminder(false);
+
         setShowJoin(true);
-        audio.pause();          // Pause the audio
-        audio.currentTime = 0;
         clearInterval(beforeIntervalId);
       } else {
         setShowJoin(false);
