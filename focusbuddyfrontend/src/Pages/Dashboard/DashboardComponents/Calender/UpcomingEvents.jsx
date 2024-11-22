@@ -75,11 +75,11 @@ export default function UpcomingEvents({
   }
 
   useEffect(() => {
-    if(now >= eleven_min_before){
+    if(new Date().getTime() >= eleven_min_before){
       setShowReminder(true);
       audio.loop = true;  // Set audio to loop
       audio.play();       // Play the audio
-    }else if (now >= ten_min_before){
+    }else if (new Date().getTime() >= ten_min_before){
       setShowReminder(false);
       audio.pause();          // Pause the audio
       audio.currentTime = 0;
