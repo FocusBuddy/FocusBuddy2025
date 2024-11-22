@@ -8,6 +8,7 @@ import NotFoundPage from "./Pages/NotFound/NotFoundPage.jsx";
 import Loading from "./Components/UI/LoadingComponent/Loading.jsx";
 import Allpartners from "./Pages/Profile/AllPartners.jsx";
 import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
+import ReminderNotification from "./Components/UI/ReminderNotification/ReminderNotification.jsx";
 
 const DashBoardContextWrapper = lazy(() =>
   import("./Pages/Dashboard/Dashboard-Context/DashboardContextWrapper.jsx")
@@ -126,6 +127,14 @@ function App() {
               path="profile"
               element={<SignupProfile />}
               errorElement={<ErrorPage />}
+            />
+            <Route
+            path="notify"
+            element={<ReminderNotification/>}
+            />
+            <Route
+            path="error"
+            element={<ErrorFallback/>}
             />
           </Route>
 

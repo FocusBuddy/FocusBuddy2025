@@ -13,6 +13,9 @@ import EditEventModal from "./EditEventModal";
 import { IoMdMicOff } from "react-icons/io";
 import { FaStar } from "react-icons/fa6";
 import { Tooltip } from "flowbite-react";
+import ReminderNotification from "../../../../Components/UI/ReminderNotification/ReminderNotification";
+
+
 
 export default function UpcomingEvents({
   availableEvents,
@@ -28,6 +31,7 @@ export default function UpcomingEvents({
     userProfile, showJoin, setShowJoin, startEvent, setStartEvent
   } = useContext(myContext);
   const [isInFav1, setIsInFav1] = useState(false);
+  // const [showReminder,setShowReminder] = useState(false);
 
   const target_time = moment(availableEvents[0].start).toDate().getTime();
   const end_time = moment(availableEvents[0].end).toDate().getTime();
@@ -35,6 +39,10 @@ export default function UpcomingEvents({
   const diff = end_time - new Date().getTime();
   const ten_min_before = moment(target_time)
     .subtract(10, "minutes")
+    .toDate()
+    .getTime();
+  const eleven_min_before = moment(target_time)
+    .subtract(11, "minutes")
     .toDate()
     .getTime();
   const event_id = availableEvents[0].myID;
@@ -62,6 +70,10 @@ export default function UpcomingEvents({
       const now = new Date().getTime();
       // console.log("before");
       // console.log("before", now, ten_min_before);
+      // if(now >= eleven_min_before){
+      //   setShowReminder(true);
+      // }
+
       if (now >= ten_min_before) {
         // console.log("10 min left");
         setShowJoin(true);
@@ -261,6 +273,10 @@ export default function UpcomingEvents({
           eventToEdit={availableEvents}
         />
       ) : null}
+
+      {/* {
+        showReminder ? ( <ReminderNotification/>) : null
+      } */}
     </div>
   );
 }
