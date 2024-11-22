@@ -46,6 +46,8 @@ export default function UpcomingEvents({
     .getTime();
   const event_id = availableEvents[0].myID;
   const audio = new Audio(reminderbell);
+  const [isManuallyClosed, setIsManuallyClosed] = useState(false);
+
 
 
 
@@ -70,15 +72,17 @@ export default function UpcomingEvents({
 
   const handleCloseReminderNotification = () => {
     setShowReminder(false);
+    setIsManuallyClosed(true); 
     audio.pause();          // Pause the audio
     audio.currentTime = 0;  // Reset audio playback position
+    clearInterval(intervalId);
   };
   
   useEffect(() => {
     const checkReminderTime = () => {
       const now = new Date().getTime();
   
-      if (now >= eleven_min_before && now < ten_min_before) {
+      if (now >= eleven_min_before && now < ten_min_before && !isManuallyClosed) {
         setShowReminder(true); // Show the reminder
         if (audio.paused) {    // Prevent multiple audio play triggers
           audio.loop = true;   // Enable looping
@@ -97,7 +101,7 @@ export default function UpcomingEvents({
     return () => {
       clearInterval(intervalId); // Clear interval on component unmount
     };
-  }, [eleven_min_before, ten_min_before]);
+  }, [eleven_min_before, ten_min_before,isManuallyClosed]);
   
 
   useEffect(() => {
