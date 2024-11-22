@@ -127,13 +127,21 @@ export default function WelcomeCheckList({
       quiteMode
     );
     // console.log(eventTime.slice(0,2));
+    // const startDateTime = moment(
+    //   `${eventDate} ${eventTime}`,
+    //   "MMMM Do YYYY hh:mma"
+    // ).toDate();
+
+    // const endDateTime = moment(startDateTime)
+    //   .add("50 minutes".slice(0, 2), "minutes")
+    //   .toDate();
     const startDateTime = moment(
       `${eventDate} ${eventTime}`,
-      "MMMM Do YYYY hh:mma"
+      "YYYY-MM-DD h:mma"
     ).toDate();
 
     const endDateTime = moment(startDateTime)
-      .add("50 minutes".slice(0, 2), "minutes")
+      .add(50, "minutes")
       .toDate();
 
      console.log(startDateTime,endDateTime); 

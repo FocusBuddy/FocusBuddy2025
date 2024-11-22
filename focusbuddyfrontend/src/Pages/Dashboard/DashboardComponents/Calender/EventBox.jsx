@@ -41,9 +41,9 @@ function EventBox({ event, handleConfirm }) {
     const checkBeforeJoinTime = () => {
       const now = new Date().getTime();
       // console.log("before");
-      console.log("before", now, ten_min_before);
+      // console.log("before", now, ten_min_before);
       if (now >= ten_min_before) {
-        console.log("10 min left");
+        // console.log("10 min left");
         setJoin(true);
         clearInterval(beforeJoinTime);
       } else {

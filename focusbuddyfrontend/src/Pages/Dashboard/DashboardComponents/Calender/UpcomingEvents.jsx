@@ -63,7 +63,7 @@ export default function UpcomingEvents({
       // console.log("before");
       // console.log("before", now, ten_min_before);
       if (now >= ten_min_before) {
-        console.log("10 min left");
+        // console.log("10 min left");
         setShowJoin(true);
         clearInterval(beforeIntervalId);
       } else {
@@ -79,7 +79,7 @@ export default function UpcomingEvents({
       const now = new Date().getTime();
       // console.log('interval',now,target_time);
       if (now >= target_time) {
-        console.log("time equal");
+        // console.log("time equal");
         setStartEvent(true);
         setOnGoing(true);
         clearInterval(startIntervalId);
