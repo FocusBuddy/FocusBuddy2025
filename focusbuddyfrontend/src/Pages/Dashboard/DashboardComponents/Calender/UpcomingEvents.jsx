@@ -86,6 +86,7 @@ export default function UpcomingEvents({
 
       if (now >= ten_min_before) {
         // console.log("10 min left");
+        setShowReminder(false);
         setShowJoin(true);
         audio.pause();          // Pause the audio
         audio.currentTime = 0;
