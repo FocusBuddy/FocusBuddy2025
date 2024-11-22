@@ -146,6 +146,7 @@ const pastEventSchema = new mongoose.Schema({
         )
 
         eventsWithJoinAndOtherUserLate.forEach((event) => {
+          
           const makeChanges = async () => {
             const otherPersonEventWhoMissedCall = await User.findOneAndUpdate(
               {displayName: event.matchedPersonFullName},
@@ -166,7 +167,10 @@ const pastEventSchema = new mongoose.Schema({
               io.emit("sessionMissedNotify", updated);
             }
           }
-          makeChanges();
+
+          if(event.matchedPersonFullName !== 'Matching...'){
+            makeChanges();
+          }
         })
 
         //normal scenario both user joined on time
