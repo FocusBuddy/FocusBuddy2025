@@ -31,7 +31,7 @@ export default function UpcomingEvents({
     userProfile, showJoin, setShowJoin, startEvent, setStartEvent
   } = useContext(myContext);
   const [isInFav1, setIsInFav1] = useState(false);
-  // const [showReminder,setShowReminder] = useState(false);
+  const [showReminder,setShowReminder] = useState(true);
 
   const target_time = moment(availableEvents[0].start).toDate().getTime();
   const end_time = moment(availableEvents[0].end).toDate().getTime();
@@ -274,9 +274,9 @@ export default function UpcomingEvents({
         />
       ) : null}
 
-      {/* {
+      {
         showReminder ? ( <ReminderNotification/>) : null
-      } */}
+      }
     </div>
   );
 }

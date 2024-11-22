@@ -145,7 +145,7 @@ export default function VideoHeader({ availableEvents, call }) {
     const remainingMs = useSessionTimer();
     // console.log("remainingMs",remainingMs, Date.now());
 
-    useSessionTimerAlert(remainingMs, 300 * 1000, handleShowAlert);
+    useSessionTimerAlert(remainingMs, 2400 * 1000, handleShowAlert);
     // useSessionTimerAlert(remainingMs, 600 * 1000, handleSessionFinised);// this alert is shown 10min before end
 
     useEffect(() => {
