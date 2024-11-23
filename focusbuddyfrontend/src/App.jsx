@@ -84,7 +84,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
+          <Route path="/" element={<Layout />} >
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />
             <Route path="faq" element={<FAQ />} />
@@ -112,28 +112,28 @@ function App() {
           <Route
             path="login"
             element={<Login />}
-            errorElement={<ErrorPage />}
+            
           />
           <Route
             path="login/reset-password-request"
             element={<RestPassword />}
-            errorElement={<ErrorPage />}
+            
           />
           <Route
             path="/login/reset-password/:id/:token"
             // path="/login/reset-password/"
             element={<ConfirmPassword />}
-            errorElement={<ErrorPage />}
+            
           />
           <Route
             path="signup"
             element={<Signup />}
-            errorElement={<ErrorPage />}
+            
           >
             <Route
               path="profile"
               element={<SignupProfile />}
-              errorElement={<ErrorPage />}
+              
             />
             
           </Route>
@@ -147,7 +147,7 @@ function App() {
             <Route
               path="dashboard"
               element={<Dashboard />}
-              errorElement={<ErrorPage />}
+              
             />
             <Route
               path="/session/test-session"
@@ -160,7 +160,7 @@ function App() {
             <Route
               path="profile"
               element={<UserProfile />}
-              errorElement={<ErrorPage />}
+              
             />
             <Route path="/profile/edit" element={<EditProfileQuestions />} />
             <Route path="/profile/settings" element={<Settings />} />
@@ -176,7 +176,7 @@ function App() {
             <Route
               path="/sessions/:sessionId"
               element={<VideoSDK />}
-              errorElement={<ErrorPage />}
+              
             />
             <Route path="/user/:name" element={<MainProfileWithQuestions />} />
             <Route
@@ -192,7 +192,7 @@ function App() {
           <Route
             path="*"
             element={<NotFoundPage />}
-            errorElement={<ErrorPage />}
+            
           />
         </Routes>
       </Suspense>
