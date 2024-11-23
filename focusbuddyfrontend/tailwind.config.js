@@ -26,6 +26,15 @@ export default {
         'formblack': '#111827',
         'errorred': '#DE3535'
       },
+      keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        }
+      },
+      animation: {
+        'horizontal-scroll': 'scroll 25s linear infinite',
+      },
     },
   },
   plugins: [
