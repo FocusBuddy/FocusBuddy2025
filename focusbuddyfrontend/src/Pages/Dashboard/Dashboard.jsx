@@ -7,7 +7,7 @@ import { myContext } from "../../utils/PrivateRoutes";
 import { MdMissedVideoCall } from "react-icons/md";
 import io from 'socket.io-client';
 import MissedMeetingModal from "../../Components/UI/MissedMeetingModal/MissdMeetingModal";
-import MessageToUsers from "../../Components/UI/MessageToUsers/MessageToUsers";
+// import MessageToUsers from "../../Components/UI/MessageToUsers/MessageToUsers";
 
 
 const socket = io(`${import.meta.env.VITE_BACKEND_PRO_URL}`);
@@ -61,7 +61,7 @@ function Dashboard() {
       <div className="main-dashboard mt-4 pb-10 ">
         <DashboardHeader/>
         <DashboardColumns/>
-        {
+        {/* {
         userProfile.email === "rupeshchincholkar14@gmail.com" ||
         userProfile.email === "varalakshmi.v1199@gmail.com" ||
         userProfile.email === "anuradhaanuyy@gmail.com" ||
@@ -71,7 +71,7 @@ function Dashboard() {
         userProfile.email === "anuroop.m3@gmail.com" ||
         userProfile.email === "vamsivijay007@gmail.com" 
         ? 
-        <MessageToUsers/> : null}
+        <MessageToUsers/> : null} */}
         <div className="mt-10">
           <Schedular/>
         </div>
