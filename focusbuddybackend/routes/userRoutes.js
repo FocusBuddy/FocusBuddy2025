@@ -145,7 +145,8 @@ router.put(
         if (
           findUser.profilePic &&
           findUser.profilePic !== 'https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/defaultImages_mauluu.png' && // Ensure not to delete default image
-          findUser.password === null
+          findUser.password === null &&
+          findUser.profilePic.includes(`${process.env.BACKEND_PRO_URL}`)
         ) {
           const publicId = findUser.profilePic.split('/').pop().split('.')[0];
           try {
