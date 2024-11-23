@@ -40,8 +40,8 @@ export default function UpcomingEvents({
     .subtract(10, "minutes")
     .toDate()
     .getTime();
-  const eleven_min_before = moment(target_time)
-    .subtract(11, "minutes")
+  const one_min_before = moment(target_time)
+    .subtract(1, "minutes")
     .toDate()
     .getTime();
   const event_id = availableEvents[0].myID;
@@ -83,13 +83,13 @@ export default function UpcomingEvents({
     const checkReminderTime = () => {
       const now = new Date().getTime();
   
-      if (now >= eleven_min_before && now < ten_min_before && !isManuallyClosed) {
+      if (now >= one_min_before && now < target_time && !isManuallyClosed) {
         setShowReminder(true); // Show the reminder
         if (audio.paused) {    // Prevent multiple audio play triggers
           audio.loop = true;   // Enable looping
           audio.play();        // Play the audio
         }
-      } else if (now >= ten_min_before || isManuallyClosed) {
+      } else if (now >= target_time || isManuallyClosed) {
         setShowReminder(false); // Hide the reminder after 10 minutes before or manual close
         if (!audio.paused) {    // Ensure audio is playing before stopping
           audio.pause();        // Stop the audio
@@ -108,7 +108,7 @@ export default function UpcomingEvents({
         audio.currentTime = 0;
       }
     };
-  }, [eleven_min_before, ten_min_before,isManuallyClosed]);
+  }, [one_min_before, target_time,isManuallyClosed]);
   
 
   useEffect(() => {
