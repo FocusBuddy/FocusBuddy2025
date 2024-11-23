@@ -72,7 +72,7 @@ const pastEventSchema = new mongoose.Schema({
               {displayName: event.fullName},
               {
                 $set: { missedMeeting: true }, // Use $set to update specific fields
-                $inc: { missedMeetingCount: 1 } // Use $inc to increment the count
+                // $inc: { missedMeetingCount: 1 } // Use $inc to increment the count
               },
               { new: true } 
             );
@@ -152,7 +152,7 @@ const pastEventSchema = new mongoose.Schema({
               {displayName: event.matchedPersonFullName},
               {
                 $set: { missedMeeting: true }, // Use $set to update specific fields
-                $inc: { missedMeetingCount: 1 } // Use $inc to increment the count
+                // $inc: { missedMeetingCount: 1 } // Use $inc to increment the count
               },
               { new: true } 
             );

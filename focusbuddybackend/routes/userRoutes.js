@@ -74,24 +74,40 @@ router.put(
         return res.status(404).json({ message: "User not found" });
       }
 
+      // Handle profile picture replacement
       if (req.file) {
+        const oldFilePath = findUser.profilePic?.replace(
+          `${process.env.BACKEND_PRO_URL}/`,
+          ""
+        );
+
+        // Delete old file if it exists and meets conditions
         if (
           findUser.profilePic &&
-          findUser.profilePic !==
-            `${process.env.BACKEND_PRO_URL}/uploads/defaultImages.png`
+          findUser.profilePic !== `${process.env.BACKEND_PRO_URL}/uploads/defaultImages.png` &&
+          findUser.password === null
         ) {
-          fs.unlink(
-            findUser.profilePic.replace(`${process.env.BACKEND_PRO_URL}/`, ""),
-            (err) => {
+          if (fs.existsSync(oldFilePath)) {
+            fs.unlink(oldFilePath, (err) => {
               if (err) {
-                console.log("Error deleting the previous profile pic.", err);
+                console.log(
+                  "Error deleting the previous profile picture:",
+                  err
+                );
+              } else {
+                console.log("Previous profile picture deleted:", oldFilePath);
               }
-            }
-          );
+            });
+          } else {
+            console.log("Previous profile picture does not exist:", oldFilePath);
+          }
         }
-      }
 
-      findUser.profilePic = `${process.env.BACKEND_PRO_URL}/uploads/${req.file.filename}`;
+        // Update user's profile picture with the new file
+        findUser.profilePic = `${process.env.BACKEND_PRO_URL}/uploads/${req.file.filename}`;
+        console.log("New profile picture path:", findUser.profilePic);
+      }
+      
       const updatedUser = await findUser.save();
 
       await changeEveryWereThatImageIs(findUser);
