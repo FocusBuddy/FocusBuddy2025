@@ -249,26 +249,26 @@ cron.schedule('*/10 * * * *', movePastEvents);
 
 
 // Schedule task to run every Sunday at 12:00 AM
-cron.schedule('0 0 * * 0', async () => {
-  try {
-      // Calculate the current date
-      const currentDate = new Date();
+// cron.schedule('0 0 * * 0', async () => {
+//   try {
+//       // Calculate the current date
+//       const currentDate = new Date();
 
-      // Remove past events
-      const result = await pastEvent.updateOne(
-          // Filter for events where at least one event in the array has a start date in the past
-          { 'allpastevents.start': { $lt: currentDate } },
-          // Pull events from the array that have a start date in the past
-          { $pull: { allpastevents: { start: { $lt: currentDate } } } }
-      );
+//       // Remove past events
+//       const result = await pastEvent.updateOne(
+//           // Filter for events where at least one event in the array has a start date in the past
+//           { 'allpastevents.start': { $lt: currentDate } },
+//           // Pull events from the array that have a start date in the past
+//           { $pull: { allpastevents: { start: { $lt: currentDate } } } }
+//       );
 
-      console.log(`Removed ${result.modifiedCount} past events.`);
-  } catch (err) {
-      console.error('Error removing past events:', err);
-  }
-}, {
-  timezone: 'Asia/Kolkata' // Adjust according to your timezone, e.g., 'America/New_York'
-});
+//       console.log(`Removed ${result.modifiedCount} past events.`);
+//   } catch (err) {
+//       console.error('Error removing past events:', err);
+//   }
+// }, {
+//   timezone: 'Asia/Kolkata' // Adjust according to your timezone, e.g., 'America/New_York'
+// });
 
 // cron.schedule('0 0 * * 0', async () => {
 //   try {
