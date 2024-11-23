@@ -50,8 +50,10 @@ export default function VideoHeader({ availableEvents, call }) {
     const { useCallSession, useParticipantCount } = useCallStateHooks();
     const session = useCallSession();
     const participants = useParticipantCount();
-    // const [remainingMs, setRemainingMs] = useState(Number.NaN);
-    const [remainingMs, setRemainingMs] = useState(new Date(availableEvents[0].end).getTime() - new Date().getTime());
+  //50 min  
+  const [remainingMs, setRemainingMs] = useState(new Date(availableEvents[0].end).getTime() - new Date().getTime());
+ //60min   
+  const [remainingMs2,setRemainingMs2] = useState(Number.NaN);
     // console.log(Date.now(),new Date(availableEvents[0].start).getTime());
 
     useEffect(() => {
@@ -70,18 +72,21 @@ export default function VideoHeader({ availableEvents, call }) {
       const call_start = new Date(availableEvents[0].start).getTime();
       // console.log(call_start);
       const call_end = call_start + 3000000; //50min
+      const call_end_60 = call_start + 3600000; //60min
       // console.log(call_end);
       if (Date.now() > call_start) {
         handle = setInterval(() => {
           const now = new Date().getTime();
           const remainingMs = +call_end - +now;
+          const remainingMs2 = +call_end_60 - +now;
           setRemainingMs(remainingMs);
+          setRemainingMs2(remainingMs2)
         }, 500);
       }
       return () => clearInterval(handle);
     }, [session]);
 
-    return remainingMs;
+    return {remainingMs,remainingMs2};
   };
 
   // console.log("PARTICIPANT", participants);
@@ -143,7 +148,7 @@ export default function VideoHeader({ availableEvents, call }) {
   };
 
   const SessionTimer = () => {
-    const remainingMs = useSessionTimer();
+    const {remainingMs,remainingMs2} = useSessionTimer();
     // console.log("remainingMs",remainingMs, Date.now());
 
     useSessionTimerAlert(remainingMs, 2400 * 1000, handleShowAlert);
@@ -155,12 +160,16 @@ export default function VideoHeader({ availableEvents, call }) {
       }
     }, [remainingMs]);
 
-    // const endCall = async () => {
-    //   await call.endCall();
-    //   // storeCallID();
-    //   // moveEventToPast()
-    //   navigate("/session-ended");
-    // };
+    useEffect(() => {
+      if (remainingMs2 <= 0) {
+        endCall();
+      }
+    }, [remainingMs]);
+
+    const endCall = async () => {
+      await call.endCall();
+      navigate("/session-ended");
+    };
 
     const end = Date.now() + remainingMs;
     // console.log(end, Date.now());
