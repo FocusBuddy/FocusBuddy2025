@@ -109,7 +109,7 @@ export default function UserProfile() {
                 onClick={handleButtonClick}
               >
                 <MdEdit />
-                Didn't like change again
+                Didn't like, change again
               </button>
             ) : (
               <button
@@ -133,11 +133,11 @@ export default function UserProfile() {
               <MdEmail />
               {userProfile.email}
             </h3>
-            <p className="my-2 flex gap-2 items-center text-sm md:text-md xl:text-lg">
+            {/* <p className="my-2 flex gap-2 items-center text-sm md:text-md xl:text-lg">
               <FaMapMarkerAlt />
               {userProfile.userLocation.region}/
               {userProfile.userLocation.country}
-            </p>
+            </p> */}
             <Link
               to={`/user/${name}`}
               className="text-md underline text-sm md:text-md xl:text-lg flex gap-2 items-center"

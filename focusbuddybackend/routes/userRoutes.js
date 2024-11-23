@@ -65,7 +65,7 @@ router.put(
   upload.single("profilePhoto"),
   async (req, res) => {
     console.log("file", req.file);
-    // console.log('filename',req.file.filename);
+    console.log('filename',req.file.filename);
     try {
       const io = getIo();
       const findUser = await userModel.findOne({ googleId: req.body.googleID });
