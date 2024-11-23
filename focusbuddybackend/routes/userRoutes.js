@@ -16,6 +16,7 @@ const generateUserProfileLink = require("../utils/generateUserProfileLink.js");
 const crypto = require('crypto')
 const Razorpay = require('razorpay');
 const cron = require('node-cron');
+const cloudinary = require("../cloudinary/cloudinary.js");
 // const { getIo } = require('../socket');
 
 var transporter = nodemailer.createTransport({
@@ -60,6 +61,70 @@ async function changeEveryWereThatImageIs(userWhoIsChangingImage) {
 }
 
 //upload.single('profilePhoto')
+// router.put(
+//   "/uploadProfilePic",
+//   upload.single("profilePhoto"),
+//   async (req, res) => {
+//     console.log("file", req.file);
+//     console.log('filename',req.file.filename);
+//     try {
+//       const io = getIo();
+//       const findUser = await userModel.findOne({ googleId: req.body.googleID });
+//       console.log(findUser.profilePic);
+//       if (!findUser) {
+//         return res.status(404).json({ message: "User not found" });
+//       }
+
+//       // Handle profile picture replacement
+//       if (req.file) {
+//         // Upload new profile picture to Cloudinary
+//         const result = await cloudinary.uploader.upload(req.file.path, {
+//           folder: "profile_pics", // Cloudinary folder for profile pictures
+//           public_id: `user_${findUser._id}`, // Unique identifier for the image
+//           overwrite: true, // Replace the image if it exists
+//         });
+
+//         // Delete old file if it exists and meets conditions
+//         if (
+//           findUser.profilePic &&
+//           findUser.profilePic !== `${process.env.BACKEND_PRO_URL}/uploads/defaultImages.png` &&
+//           findUser.password === null
+//         ) {
+//           if (fs.existsSync(oldFilePath)) {
+//             fs.unlink(oldFilePath, (err) => {
+//               if (err) {
+//                 console.log(
+//                   "Error deleting the previous profile picture:",
+//                   err
+//                 );
+//               } else {
+//                 console.log("Previous profile picture deleted:", oldFilePath);
+//               }
+//             });
+//           } else {
+//             console.log("Previous profile picture does not exist:", oldFilePath);
+//           }
+//         }
+
+//         // Update user's profile picture with the new file
+//         findUser.profilePic = `${process.env.BACKEND_PRO_URL}/uploads/${req.file.filename}`;
+//         console.log("New profile picture path:", findUser.profilePic);
+//       }
+      
+//       const updatedUser = await findUser.save();
+
+//       await changeEveryWereThatImageIs(findUser);
+
+//       res
+//         .status(201)
+//         .json({ message: "Profile picture updated.", data: updatedUser });
+//     } catch (err) {
+//       res
+//         .status(500)
+//         .json({ message: "something went wrong with file upload", error: err });
+//     }
+//   }
+// );
 router.put(
   "/uploadProfilePic",
   upload.single("profilePhoto"),
@@ -76,36 +141,43 @@ router.put(
 
       // Handle profile picture replacement
       if (req.file) {
-        const oldFilePath = findUser.profilePic?.replace(
-          `${process.env.BACKEND_PRO_URL}/`,
-          ""
-        );
-
-        // Delete old file if it exists and meets conditions
+        // Delete old profile picture from Cloudinary if it exists
         if (
           findUser.profilePic &&
-          findUser.profilePic !== `${process.env.BACKEND_PRO_URL}/uploads/defaultImages.png` &&
+          findUser.profilePic !== 'https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/defaultImages_mauluu.png' && // Ensure not to delete default image
           findUser.password === null
         ) {
-          if (fs.existsSync(oldFilePath)) {
-            fs.unlink(oldFilePath, (err) => {
-              if (err) {
-                console.log(
-                  "Error deleting the previous profile picture:",
-                  err
-                );
-              } else {
-                console.log("Previous profile picture deleted:", oldFilePath);
-              }
-            });
-          } else {
-            console.log("Previous profile picture does not exist:", oldFilePath);
+          const publicId = findUser.profilePic.split('/').pop().split('.')[0];
+          try {
+            await cloudinary.uploader.destroy(publicId);
+            console.log("Old profile picture deleted:", publicId);
+          } catch (err) {
+            console.log("Error deleting old Cloudinary image:", err);
           }
         }
 
-        // Update user's profile picture with the new file
-        findUser.profilePic = `${process.env.BACKEND_PRO_URL}/uploads/${req.file.filename}`;
-        console.log("New profile picture path:", findUser.profilePic);
+        
+         // Upload new profile picture to Cloudinary
+         const result = await cloudinary.uploader.upload(req.file.path, {
+          folder: "profile_pics", // Cloudinary folder for profile pictures
+          public_id: `user_${findUser._id}`, // Unique identifier for the image
+          overwrite: true, // Replace the image if it exists
+        });
+
+        console.log("Cloudinary upload response:", result);
+
+        // Update user's profile picture URL
+        findUser.profilePic = result.secure_url;
+        console.log("New profile picture URL:", findUser.profilePic);
+
+        // Remove the temporary file
+        fs.unlink(req.file.path, (err) => {
+          if (err) {
+            console.log("Error deleting temporary file:", err);
+          } else {
+            console.log("Temporary file deleted.");
+          }
+        });
       }
       
       const updatedUser = await findUser.save();

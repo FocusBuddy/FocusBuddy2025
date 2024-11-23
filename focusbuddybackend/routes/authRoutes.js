@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const userModel = require("../models/UsersModel");
 const upload = require("../multer/multer");
+const cloudinary = require("../cloudinary/cloudinary.js");
 const fs = require("fs");
 const generateUserProfileLink = require("../utils/generateUserProfileLink.js");
 const getGeoInfo = require("../utils/getGeoInfo.js");
@@ -201,7 +202,7 @@ router.post(
         booking: false,
         final: false,
       };
-
+      let updated_pic;
       let subscriptionDetails = await getSubscriptionDetails();
 
 
@@ -211,13 +212,37 @@ router.post(
         const location = await getGeoInfo();
         console.log("location local", location);
         const link = await generateUserProfileLink(firstname, lastname);
+
+        const id = crypto.randomUUID();
+
+        // Upload new profile picture to Cloudinary
+        const result = await cloudinary.uploader.upload(profilePic.replace(`${process.env.BACKEND_DEV_URL}/`, ""), {
+          folder: "profile_pics", // Cloudinary folder for profile pictures
+          public_id: `user_${id}`, // Unique identifier for the image
+          overwrite: true, // Replace the image if it exists
+        });
+
+        console.log("Cloudinary upload response:", result);
+        console.log("New profile picture URL:", result.secure_url);
+        updated_pic = result.secure_url;
+
+
+        // Remove the temporary file
+        fs.unlink(profilePic.replace(`${process.env.BACKEND_DEV_URL}/`, ""), (err) => {
+          if (err) {
+            console.log("Error deleting temporary file:", err);
+          } else {
+            console.log("Temporary file deleted.");
+          }
+        });
+
         user = new userModel({
           googleId: crypto.randomUUID(),
           email,
           password,
           displayName: full_name,
           userLocation: location,
-          profilePic,
+          profilePic: updated_pic,
           genderPresent: ["Prefer not to say"],
           matchWithGender: "everyone",
           noMatchWithGender: "everyone",
@@ -245,14 +270,15 @@ router.post(
           .status(201)
           .json({
             message: "User registered successfully.",
-            profilePic: profilePic,
+            profilePic: updated_pic,
           });
       } else {
         console.log("post not contain email");
         if (req.file) {
+          
           if (
             oldPic &&
-            oldPic !== `${process.env.BACKEND_PRO_URL}/uploads/defaultImages.png`
+            oldPic !== `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/defaultImages_mauluu.png`
           ) {
             fs.unlink(oldPic.replace(`${process.env.BACKEND_PRO_URL}/`, ""), (err) => {
               if (err) {

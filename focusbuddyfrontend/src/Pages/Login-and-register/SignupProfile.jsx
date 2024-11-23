@@ -11,7 +11,7 @@ export default function SignupProfile() {
   const [lastName, setLastName] = useState("");
   const [agree, setAgree] = useState(false);
   const [selectedFile, setSelectedFile] = useState(
-    `${import.meta.env.VITE_BACKEND_PRO_URL}/uploads/defaultImages.png`
+    `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/defaultImages_mauluu.png`
   );
   const [uploaded, setUploaded] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -19,7 +19,7 @@ export default function SignupProfile() {
   const fileInputRef = useRef();
   const navigate = useNavigate();
   const [oldPic, setOldPic] = useState(
-    `${import.meta.env.VITE_BACKEND_PRO_URL}/uploads/defaultImages.png`
+    `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/defaultImages_mauluu.png`
   );
 
   function handleButtonClick() {

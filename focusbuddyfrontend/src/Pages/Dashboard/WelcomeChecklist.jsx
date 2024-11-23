@@ -156,7 +156,7 @@ export default function WelcomeCheckList({
       matchedPersonName: 'Matching...',
       matchedPersonFullName: 'Matching...',
       matchedPersonProfileLink: '',
-      matchedPersonProfilePic: `${import.meta.env.VITE_BACKEND_PRO_URL}/uploads/search.jpg`,
+      matchedPersonProfilePic: `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/search_rydjkq.jpg`,
       name: userProfile.givenName + ' ' + userProfile.familyName[0],
       fullName: userProfile.givenName + ' ' + userProfile.familyName,
       profilePic: userProfile.profilePic,

@@ -130,13 +130,13 @@ export default function MainProfileWithQuestions() {
                 {otherUserProfile.displayName}
               </h1>
               <h1 className="text-white text-lg text-center my-1">
-                {userProfile.totalSessionsAttended} Sessions
+                {otherUserProfile.totalSessionsAttended} Sessions
               </h1>
-              <h1 className="flex items-center justify-center gap-2 my-1 text-white text-lg text-center">
+              {/* <h1 className="flex items-center justify-center gap-2 my-1 text-white text-lg text-center">
                 <FaMapMarkerAlt />
                 {otherUserProfile.userLocation.region}/
                 {otherUserProfile.userLocation.country}
-              </h1>
+              </h1> */}
               <h1 className="text-white text-lg text-center my-1">
                 Member since:{" "}
                 {moment(otherUserProfile.memberSince)
