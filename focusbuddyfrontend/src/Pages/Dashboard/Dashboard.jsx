@@ -62,6 +62,7 @@ function Dashboard() {
         <DashboardHeader/>
         <DashboardColumns/>
         {
+        userProfile.email === "rupeshchincholkar14@gmail.com" ||
         userProfile.email === "varalakshmi.v1199@gmail.com" ||
         userProfile.email === "anuradhaanuyy@gmail.com" ||
         userProfile.email === "thoratganesh775@gmail.com" ||
