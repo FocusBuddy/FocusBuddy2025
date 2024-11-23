@@ -49,7 +49,6 @@ export default function UserProfile() {
 
   const uploadPic = async (file) => {
     setUpload(true);
-    setPicUpdated(true);
     const formData = new FormData();
     formData.append("googleID", userProfile.googleId);
     formData.append("profilePhoto", file);
@@ -61,6 +60,8 @@ export default function UserProfile() {
       );
       console.log(response);
       setUpdatedImg(response.data.profilePic);
+    setPicUpdated(true);
+
     } catch (err) {
       console.log(err);
     }
