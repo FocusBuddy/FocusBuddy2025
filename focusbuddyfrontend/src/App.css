@@ -440,6 +440,10 @@ span.str-video__participant-details__connection-quality.str-video__participant-d
 }
 
 
+button.str-chat__message-simple__actions__action.str-chat__message-simple__actions__action--thread.str-chat__message-reply-in-thread-button{
+  display: none;
+}
+
 /*hide scroll to top*/
 @media (max-width: 767px) {
   #scrollToTop {
