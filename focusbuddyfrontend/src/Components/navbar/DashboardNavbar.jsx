@@ -119,14 +119,14 @@ const DashboardNavbar = () => {
                 Community Guidelines
               </Link>
             </li>
-            <li>
+            {/* <li>
               <a
                 href="mailto:rupeshchincholkar14@gmail.com"
                 className="flex cursor-pointer items-center gap-2 px-4  py-2 hover:bg-greenbg hover:text-white"
               >
                 Report a Bug
               </a>
-            </li>
+            </li> */}
             <li>
               <Link
                 to={"/contact"}
