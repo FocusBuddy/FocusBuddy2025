@@ -22,7 +22,14 @@ export default function AvailabilitySessions({ favEvents, activeEventTab, quiteM
 const navigate = useNavigate();
 
 
-    let filtered_events = favEvents.filter((fav) => fav.matchedPersonFullName !== userProfile.displayName);
+    let filtered_events = favEvents.filter((fav) => {
+      const startTime = moment(fav.start).toDate().getTime();
+      const ten_min_before = moment(startTime).subtract(10, "minutes").toDate().getTime();
+      return (
+        fav.matchedPersonFullName !== userProfile.displayName &&
+        !(Date.now() >= ten_min_before && Date.now() < startTime)
+      );
+    });
 
   const handleLockSession = async (session) => {
     console.log("session", session);

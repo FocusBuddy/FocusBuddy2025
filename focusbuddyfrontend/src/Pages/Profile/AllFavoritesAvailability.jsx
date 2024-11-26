@@ -210,25 +210,32 @@ const navigate = useNavigate();
                               {fav.name}
                             </h1>
                             {appointments.filter(
-                              (sessions) =>
-                                sessions.fullName === fav.name &&
-                                sessions.matchedPersonFullName !==
-                                  userProfile.displayName &&
-                                sessions.duration === "50 minutes"
-                            ).length === 0 ? (
+                              (sessions) => {
+                                const startTime = moment(sessions.start).toDate().getTime();
+                                const ten_min_before = moment(startTime).subtract(10, "minutes").toDate().getTime();
+
+                                return(
+                                  sessions.fullName === fav.name &&
+                                  sessions.matchedPersonFullName !== userProfile.displayName &&
+                                  !(Date.now() >= ten_min_before && Date.now() < startTime)
+                                )
+                              }).length === 0 ? (
                               <h1 className="text-md text-textcolor bg-bordercolor p-4 rounded-md">
                                 No sessions
                               </h1>
                             ) : (
                               appointments
                                 .filter(
-                                  (sessions) =>
-                                    sessions.fullName === fav.name &&
-                                    sessions.matchedPersonFullName !==
-                                      userProfile.displayName &&
-                                    sessions.duration === "50 minutes"
+                                  (sessions) =>{
+                                    const startTime = moment(sessions.start).toDate().getTime();
+                                const ten_min_before = moment(startTime).subtract(10, "minutes").toDate().getTime();
+
+                                return(
+                                  sessions.fullName === fav.name &&
+                                  sessions.matchedPersonFullName !== userProfile.displayName &&
+                                  !(Date.now() >= ten_min_before && Date.now() < startTime)
                                 )
-                                .map((items) => (
+                              }).map((items) => (
                                   <div
                                     key={items.myID}
                                     onClick={() =>

@@ -35,6 +35,9 @@ const eventSchema = mongoose.Schema({
     profilePic: {
         type: String,
     },
+    profileLink:{
+        type: String,
+    },
     taskType: {
         type: String,
     },
@@ -63,18 +66,6 @@ const eventSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    callToken: {
-        type: String,
-        default: ''
-    },
-    // callLeave: {
-    //     type: Number,
-    //     default: 0
-    // },
-    // totalCallDuration: {
-    //     type: Number,
-    //     default: 0
-    // },
     otherPersonMissedCall: {
         type: Boolean,
         default: false

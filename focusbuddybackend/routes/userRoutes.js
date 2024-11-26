@@ -326,41 +326,6 @@ router.get("/getUserDetails", async (req, res) => {
 });
 
 
-router.post("/sessionCompleted", async (req, res) => {
-  const { meetInfo } = req.body;
-  console.log(meetInfo);
-  try {
-    const io = getIo();
-
-    io.emit("updateSessionAttendance", updated);
-
-    res.status(200).json({ message: "session attendance", user: updated });
-
-
-  } catch (err) {
-    console.log(err);
-  }
-});
-// router.post("/updaterecentcall", async (req, res) => {
-//   const { personeventname, callid } = req.body;
-//   console.log(personeventname, callid);
-//   try {
-   
-//     const user = await userModel.findOneAndUpdate(
-//       {
-//         displayName: personeventname,
-//       },
-//       {
-//         recentCallID: callid
-//       }
-//     )
-//     res.status(200).json({ message: "recent call id added"});
-
-
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
 
 router.post("/reset-password-request", async (req, res) => {
   const { email } = req.body;

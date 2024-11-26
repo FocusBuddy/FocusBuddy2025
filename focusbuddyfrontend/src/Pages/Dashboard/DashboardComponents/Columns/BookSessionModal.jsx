@@ -101,7 +101,8 @@ export default function BookSessionModal() {
           start,
           end
         }
-        setBulkEvents(bulkEvents.push(newEvent))
+        // setBulkEvents(bulkEvents.push(newEvent))
+        setBulkEvents((prevEvents) => [...prevEvents, newEvent]);
       })
       // setBulkEvents(events)
       console.log(bulkEvents);

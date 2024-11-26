@@ -24,19 +24,21 @@ function Dashboard() {
     socket.on('sessionMissedNotify', (data)=>{
       // console.log(data);
       if(data.missedMeeting){
-        setUserProfile(data);
+        if(userProfile.email === data.email){
+          setUserProfile(data);
+        }
       }
     })
-    socket.on('updateSessionAttendance', (data)=>{
-      console.log(data);
-      // if(data.missedMeeting){
-      //   setUserProfile(data);
-      // }
-    })
+    // socket.on('updateSessionAttendance', (data)=>{
+    //   console.log(data);
+    //   // if(data.missedMeeting){
+    //   //   setUserProfile(data);
+    //   // }
+    // })
 
     return () => {
       socket.off('sessionMissedNotify');
-      socket.off('updateSessionAttendance');
+      // socket.off('updateSessionAttendance');
     }
   },[]);
 

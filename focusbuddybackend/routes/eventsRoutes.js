@@ -64,6 +64,7 @@ async function updatenewMatchedEvent(body) {
     body.foundUser,
     "newUser",
     body.newUserName,
+    body.newUserFullName,
     body.newUserPic,
     body.newUserProfileLink,
     body.newUserCallID
@@ -194,16 +195,11 @@ router.post("/recurring_events", async (req, res) => {
         console.log("data after put", updatedEvent);
 
         allUpdatedEvents.push(firstUserChange, updatedEvent);
-        // return res.status(201).json({updatedEvent:allUpdatedEvents})
-        // return res.status(201).json({
-        //   messge: "Session created successfully.",
-        //   updatedEvent: updatedEvent,
-        //   firstUserChange: firstUserChange,
-        // });
       } else {
+        //not same task type
         const if_already_someuser_is_present_but_other_task = await Event.find({
           start: event.start,
-          end: event.end, //try to find event which has similar task type
+          end: event.end, 
           matchedPersonName: "Matching...",
         })
           .sort()
@@ -247,15 +243,6 @@ router.post("/recurring_events", async (req, res) => {
           //   firstUserChange: firstUserChange,
           // });
         } else {
-          //   const response = await fetch(`${process.env.BACKEND_PRO_URL}/api/zoom/createzoommeeting`,{
-          //     method: 'POST',
-          //     headers: {
-          //       "Content-Type": "application/json"
-          //     },
-          //     body: JSON.stringify({meetDuration: duration,meetStart: start})
-          // });
-          // const data = await response.json();
-          // console.log(data);
 
           const newEvent = {
             myID: event.myID,
@@ -276,21 +263,13 @@ router.post("/recurring_events", async (req, res) => {
             callID: crypto.randomUUID(),
             callJoin,
             otherPersonMissedCall
-            // meetingID: data.meeting.id,
-            // meetingPwd: data.meeting.encrypted_password,
-            // meetingSig: data.signature
           };
 
           const eventModel = new Event(newEvent);
           const savedEvent = await eventModel.save();
 
           allUpdatedEvents.push(savedEvent);
-          // return res.status(201).json({updatedEvent:allUpdatedEvents})
-
-          // return res.status(200).json({
-          //   messge: "Session created successfully.",
-          //   updatedEvent: newEvent,
-          // });
+      
         }
       }
     }
@@ -454,21 +433,6 @@ router.post("/", async (req, res) => {
       } else {
         //else means we couldn't find any match so create a meet and put matching and search image.
 
-
-          // const userID = userProfile.displayName.split(" ").join("_");
-
-          // const response = await fetch(
-          //   `${process.env.BACKEND_PRO_URL}/api/video/generate-token`,
-          //   {
-          //     method: "POST",
-          //     headers: {
-          //       "Content-Type": "application/json",
-          //     },
-          //     body: JSON.stringify({ userId: name }),
-          //   }
-          // );
-          // const calltoken = await response.json();
-
         newEvent = {
           myID: myID,
           duration: duration,
@@ -531,7 +495,7 @@ router.delete("/deletesession", async (req, res) => {
         start: deleteevent.start,
         end: deleteevent.end,
       });
-      console.log("findevent", findevent);
+      console.log("findevent", findevent);//m
 
       //find if there is any person with matching... status and similar taskType for findevent
       const findUser = await Event.find({
@@ -543,7 +507,7 @@ router.delete("/deletesession", async (req, res) => {
         .sort()
         .limit(1);
 
-      console.log("what now findevent", findUser);
+      console.log("what now findevent", findUser);//s
 
       if (findUser.length === 0) {
         //if there are event with same start and end but not same taskType then find any other taskType person
@@ -559,20 +523,20 @@ router.delete("/deletesession", async (req, res) => {
 
         if (findUserWithOtherTaskType.length > 0) {
           requestBody = {
-            foundUser: findevent[0], //event who had session with
-            newUserName: findUserWithOtherTaskType[0].name, //new found user with same taskType
-            newUserFullName: findUserWithOtherTaskType[0].fullName,
-            newUserPic: findUserWithOtherTaskType[0].profilePic,
-            newUserProfileLink: findUserWithOtherTaskType[0].profileLink,
-            newUserCallID: findUserWithOtherTaskType[0].callID
-          };
-
-          firstUserChange = await updateMatchedEvent({
-            foundUser: findUserWithOtherTaskType[0], //new person with same taskTypee
-            newUserName: findevent[0].name,
+            foundUser: findUserWithOtherTaskType[0], //new found user with same taskType
+            newUserName: findevent[0].name, //event who had session with
             newUserFullName: findevent[0].fullName,
             newUserPic: findevent[0].profilePic,
             newUserProfileLink: findevent[0].profileLink,
+            newUserCallID: findevent[0].callID
+          };
+
+          firstUserChange = await updateMatchedEvent({
+            foundUser: findevent[0], 
+            newUserName: findUserWithOtherTaskType[0].name,
+            newUserFullName: findUserWithOtherTaskType[0].fullName,
+            newUserPic: findUserWithOtherTaskType[0].profilePic,
+            newUserProfileLink: findUserWithOtherTaskType[0].profileLink,
           });
           console.log("data after firstUserChange", firstUserChange);
 
@@ -590,7 +554,7 @@ router.delete("/deletesession", async (req, res) => {
             foundUser: findevent[0],
             newUserName: "Matching...",
             newUserFullName: "Matching...",
-            newUserPic: `${process.env.BACKEND_PRO_URL}/uploads/search.jpg`,
+            newUserPic: `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/search_rydjkq.jpg`,
             newUserProfileLink: '',
             newUserCallID: findevent[0].callID,
           };
@@ -603,20 +567,21 @@ router.delete("/deletesession", async (req, res) => {
       } else {
         requestBody = {
           //rupesh with & test
-          foundUser: findevent[0], //event who had session with
-          newUserName: findUser[0].name, //new found user with same taskType
-          newUserFullName: findUser[0].fullName,
-          newUserPic: findUser[0].profilePic,
-          newUserCallID: findUser[0].callID
+          foundUser: findUser[0], //event who had session with
+          newUserName: findevent[0].name, //new found user with same taskType
+          newUserFullName: findevent[0].fullName,
+          newUserPic: findevent[0].profilePic,
+          newUserProfileLink: findevent[0].profileLink,
+          newUserCallID: findevent[0].callID
         };
 
         firstUserChange = await updateMatchedEvent({
           //test with rupesh
-          foundUser: findUser[0], //new person with same taskTypee
-          newUserName: findevent[0].name,
-          newUserFullName: findevent[0].fullName,
-          newUserPic: findevent[0].profilePic,
-          newUserProfileLink: findevent[0].profileLink,
+          foundUser: findevent[0], //new person with same taskTypee
+          newUserName: findUser[0].name,
+          newUserFullName: findUser[0].fullName,
+          newUserPic: findUser[0].profilePic,
+          newUserProfileLink: findUser[0].profileLink,
         });
         console.log("data after firstUserChange", firstUserChange);
         //found the new event with same task type and then change matched person details of it with findevent
@@ -641,20 +606,6 @@ router.delete("/deletesession", async (req, res) => {
   }
 });
 
-//deleting event new request from upcoming event
-
-router.delete("/deleteupcomingsession", async (req, res) => {
-  try {
-    const { eventId } = req.body;
-    const event = await Event.findOneAndDelete({ myID: eventId });
-    console.log(event);
-
-    res.status(201).json({ message: "Session done so deleted" });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: err.message });
-  }
-});
 
 router.post("/findupcomingevent", async (req, res) => {
   // console.log(req.body.username);
@@ -845,7 +796,7 @@ async function check_locked_in_person_is_matching_or_already_booked(
             {
               matchedPersonName: "Matching...",
               matchedPersonFullName: "Matching...",
-              matchedPersonProfilePic: `${process.env.BACKEND_PRO_URL}/uploads/search.jpg`,
+              matchedPersonProfilePic: `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/search_rydjkq.jpg`,
               matchedPersonProfileLink: ''
             },
             { new: true }
@@ -966,7 +917,7 @@ router.post("/locksession", async (req, res) => {
             {
               matchedPersonName: "Matching...",
               matchedPersonFullName: "Matching...",
-              matchedPersonProfilePic: `${process.env.BACKEND_PRO_URL}/uploads/search.jpg`,
+              matchedPersonProfilePic: `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/search_rydjkq.jpg`,
               matcherPersonProfileLink: ''
             },
             { new: true }
