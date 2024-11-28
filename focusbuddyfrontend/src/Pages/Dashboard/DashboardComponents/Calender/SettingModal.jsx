@@ -28,14 +28,14 @@ export default function SettingModal({openSettingModal,setOpenSettingModal}){
                 About Session Settings
             </h3>
 
-            <div>
+            {/* <div>
                 <p className="text-formgray text-md xl:text-lg"><span className="text-textcolor font-medium">My Task: </span>Tell us what you're up to, and we'll connect you with someone doing the same thing.</p>
                 <ul className="mt-4 space-y-2 text-formgray text-md xl:text-lg marker:text-textcolor list-disc ms-6">
                     <li><span className="text-greenbg font-medium">Desk: </span>Ideal for writing, emailing, coding, and other tasks</li>
                     <li><span className="text-greenbg font-medium">Moving: </span>Perfect for workouts, household chores, and other active tasks</li>
                     <li><span className="text-greenbg font-medium">Anything: </span>When you're multitasking or still making decisions</li>
                 </ul>
-            </div>
+            </div> */}
 
             <div className="my-6 py-4 border-y border-formgray">
             <p className="text-formgray text-md xl:text-lg"><span className="text-textcolor font-medium">Quiet Mode: </span>Perfect for situations where you don’t have a mic or can’t talk, like in libraries or shared spaces. Keep your camera on and use the text chat to communicate with your partners.</p>
