@@ -218,7 +218,7 @@ function DashboardColumns() {
               </div>
             </div> */}
 
-          <div className="mt-2 w-full flex flex-col gap-2 formTabs">
+          <div className="mt-2 w-full flex gap-2 formTabs">
             <p className="my-auto text-center text-textcolor">PARTNER:</p>
             <div className="w-full mt-1 flex gap-2">
               <div className="w-[50%]">
