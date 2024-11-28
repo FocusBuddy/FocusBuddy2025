@@ -245,7 +245,7 @@ export default function BookSessionModal() {
     <>
       <button
         type="button"
-        className="flex justify-center items-center gap-2 py-3 px-10 xl:px-8 lg:text-md  text-white bg-greenbg"
+        className="flex justify-center items-center gap-2 py-3 px-10 xl:px-8 lg:text-lg text-white font-semibold bg-greenbg shadow-2xl shadow-darkbrown"
         onClick={() => setOpenModal(true)}
       >
         <FaPlus />

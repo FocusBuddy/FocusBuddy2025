@@ -143,8 +143,8 @@ function DashboardColumns() {
               setOnGoing={setOnGoing}
             />
           ) : (
-            <p className=" mt-6 px-3 py-3 text-center text-white bg-greenbg ">
-              No session available
+            <p className=" mt-6 px-3 py-3 text-center text-darkbrown bg-[#e9e7e7] ">
+              No upcoming sessions
             </p>
           )}
         </div>
