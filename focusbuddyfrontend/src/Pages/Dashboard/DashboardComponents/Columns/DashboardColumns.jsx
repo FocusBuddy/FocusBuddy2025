@@ -96,23 +96,7 @@ function DashboardColumns() {
     color: "#008080",
   };
 
-  // function handleTabSetting(tabSetting) {
-  //   if (tabSetting === "deskEvent") {
-  //     setActiveEventTab("deskEvent");
-  //   } else if (tabSetting === "movingEvent") {
-  //     setActiveEventTab("movingEvent");
-  //   } else if (tabSetting === "anythingEvent") {
-  //     setActiveEventTab("anythingEvent");
-  //   } else if (tabSetting === "anyonePartner") {
-  //     setActivePartnerTab("anyonePartner");
-  //   } else if (tabSetting === "favoritePartner") {
-  //     setActivePartnerTab("favoritePartner");
-  //   }
-  // }
 
-  // const handleToggleChange = () => {
-  //   setQuiteMode(!quiteMode)
-  // }
   return (
     <div
       className="min-h-6 flex flex-col gap-4 lg:flex-row lg:flex-wrap xl:flex-nowrap xl:flex-row lg:gap-4 mt-4 p-1 overflow-y-hidden"
@@ -149,7 +133,7 @@ function DashboardColumns() {
           )}
         </div>
       </div>
-      <div className="md:w-[80%] md:mx-auto lg:w-full xl:w-[53%] p-6 bg-white rounded-lg shadow">
+      <div className="flex md:w-[80%] md:mx-auto lg:w-full xl:w-[53%] p-6 bg-white rounded-lg shadow">
         <div className="flex justify-between items-center gap-2 text-textcolor">
           <div className="flex items-center gap-2">
           <p className="column-text">SESSION SETTING</p>
@@ -170,8 +154,8 @@ function DashboardColumns() {
                 </label>
         </div>
 
-        <div className="mt-4 lg:mt-2 flex flex-col lg:flex-row gap-6 lg:gap-2 xl:gap-4 justify-between">
-            <div className="mt-2 flex flex-col w-full lg:w-[52%] gap-2  formTabs">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-2 xl:gap-4 justify-between">
+            {/* <div className="mt-2 flex flex-col w-full lg:w-[52%] gap-2  formTabs">
               <p className="text-center text-textcolor">MY TASK</p>
               <div className="mt-1 flex gap-2">
                 <div className="w-[33.33%]">
@@ -232,9 +216,9 @@ function DashboardColumns() {
                   </Tooltip>
                 </div>
               </div>
-            </div>
+            </div> */}
 
-          <div className="mt-2 w-full lg:w-[48%] flex flex-col gap-2 formTabs">
+          <div className="mt-2 w-full flex flex-col gap-2 formTabs">
             <p className="text-center text-textcolor">PARTNER</p>
             <div className="mt-1 flex gap-2">
               <div className="w-[60%]">
