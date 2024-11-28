@@ -133,7 +133,7 @@ function DashboardColumns() {
           )}
         </div>
       </div>
-      <div className="flex md:w-[80%] md:mx-auto lg:w-full xl:w-[53%] p-6 bg-white rounded-lg shadow">
+      <div className="flex flex-col md:w-[80%] md:mx-auto lg:w-full xl:w-[53%] p-6 bg-white rounded-lg shadow">
         <div className="flex justify-between items-center gap-2 text-textcolor">
           <div className="flex items-center gap-2">
           <p className="column-text">SESSION SETTING</p>
@@ -219,9 +219,9 @@ function DashboardColumns() {
             </div> */}
 
           <div className="mt-2 w-full flex flex-col gap-2 formTabs">
-            <p className="text-center text-textcolor">PARTNER</p>
-            <div className="mt-1 flex gap-2">
-              <div className="w-[60%]">
+            <p className="text-center text-textcolor">PARTNER:</p>
+            <div className="w-full mt-1 flex gap-2">
+              <div className="w-[50%]">
                 <Tooltip content="Matches you with your Favorite partners whenever they are available">
                   <button
                     className="column-text w-full flex gap-2 justify-center bg-greenbg px-2 py-3"
@@ -238,7 +238,7 @@ function DashboardColumns() {
                   </button>
                 </Tooltip>
               </div>
-              <div className="w-[40%]">
+              <div className="w-[50%]">
                 <Tooltip content="Matches you with the first available person">
                   <button
                     className="column-text w-full flex gap-2 justify-center px-2 py-3"
