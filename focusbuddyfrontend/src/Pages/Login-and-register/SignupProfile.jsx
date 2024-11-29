@@ -3,6 +3,9 @@ import BrownButtonOnBlue from "../../Components/UI/BrownButtonOnBlue/BrownButton
 import { useState, useRef } from "react";
 import uploadProfilePic from "../../utils/uploadProfilePic/uploadProfilePic";
 import SuccessToast from "../../Components/UI/toast-components/SuccessToast";
+import ErrorTextToast from "../../Components/UI/toast-components/ErrorTextToast";
+import {stateDistrictMap} from "../../utils/state_city_list/list";
+
 
 export default function SignupProfile() {
   const location = useLocation();
@@ -15,12 +18,23 @@ export default function SignupProfile() {
   );
   const [uploaded, setUploaded] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [selectedState, setSelectedState] = useState("");
+  const [districtsArr, setDistrictsArr] = useState([]);
+  const [district,setDistrict] = useState("");
   const fileInputRef = useRef();
   const navigate = useNavigate();
   const [oldPic, setOldPic] = useState(
     `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/defaultImages_mauluu.png`
   );
+
+
+  const handleStateChange = (event) => {
+    const state = event.target.value;
+    setSelectedState(state);
+    setDistrictsArr(stateDistrictMap[state] || []);
+  };
 
   function handleButtonClick() {
     fileInputRef.current.click();
@@ -53,40 +67,36 @@ export default function SignupProfile() {
     } catch (err) {
       console.log(err);
     }
-    // try {
-    //   const response = await fetch(
-    //     `${import.meta.env.VITE_BACKEND_PRO_URL}/auth/local/register`,
-    //     {
-    //       method: "POST",
-    //       body: formData,
-    //     }
-    //   );
-    //   const data = await response.json();
-    //   console.log(data);
-    //   setSelectedFile(data.profilePic);
-    //   setOldPic(data.profilePic);
-    //   // console.log(selectedFile);
-    // } catch (err) {
-    //   console.log(err);
-    //   throw new Error("An error occurred while signup!.");
-    // }
   };
 
   const handleCompleteSignupSubmit = async (e) => {
     e.preventDefault();
+    try{
+
+      if((selectedState === "" || district === "") || (selectedState === "Select State" || district === "Select District")){
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 1000);
+  }else{
+
     setFirstName("");
     setLastName("");
     setAgree(false);
     setLoading(true);
-    console.log(email, password, selectedFile, agree, firstName, lastName);
+    setSelectedState("");
+    setDistrictsArr([]);
+    setDistrict("");
+    console.log(email, password, selectedFile,selectedState,district, agree, firstName, lastName);
 
-    try {
       const userDetails = {
         email,
         password,
         profilePic: selectedFile,
         firstname: firstName.split(" ").join(''),
         lastname: lastName.split(" ").join(''),
+        state: selectedState,
+        district: district
       };
 
       const response = await fetch(
@@ -110,7 +120,7 @@ export default function SignupProfile() {
           navigate("/login");
         }, 500);
       }
-  
+    }
     } catch (err) {
       console.log(err);
       throw new Error("An error occurred while signup!.");
@@ -122,7 +132,7 @@ export default function SignupProfile() {
   return (
     <div className="relative min-w-screen min-h-screen flex">
       <div className="mt-28 lg:mt-0 z-10 p-10 absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 bg-white w-full md:w-full lg:w-[70%] xl:w-[45%] shadow-2xl rounded-lg">
-        <h1 className=" mb-8 text-3xl text-center text-greenbg">
+        <h1 className=" mb-8 text-4xl text-center text-greenbg">
           Almost done ....
         </h1>
         <form
@@ -169,7 +179,7 @@ export default function SignupProfile() {
                 type="text"
                 required
                 id="fname_floating_outlined"
-                className="block p-4 pt-4 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
+                className="block p-4 pt-3 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
                 placeholder=" "
                 pattern=".*\S.*" // Ensures the input contains at least one non-space character
                 title="First Name cannot be empty or just spaces."
@@ -189,7 +199,7 @@ export default function SignupProfile() {
                 type="text"
                 required
                 id="lname_floating_outlined"
-                className="block p-4 pt-4 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
+                className="block p-4 pt-3 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
                 placeholder=" "
                 pattern=".*\S.*" // Ensures the input contains at least one non-space character
                 title="Last Name cannot be empty or just spaces."
@@ -200,6 +210,39 @@ export default function SignupProfile() {
               >
                 Last Name
               </label>
+            </div>
+          </div>
+          <div className="peer-focus:text-textcolor peer-focus:dark:text-textcolor mt-8 flex gap-4 justify-center">
+            <div className="text-textcolor w-[50%] form-group col-md-4">
+              <select
+                className="form-control block p-4 pt-2 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer text-md xl:text-lg"
+                id="inputState"
+                onChange={handleStateChange}
+                
+              >
+                <option value="" className="">
+                  Select State
+                </option>
+                {Object.keys(stateDistrictMap).map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="text-md xl:text-lg text-textcolor w-[50%] form-group col-md-4">
+              <select
+                className="form-control block p-4 pt-2 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer text-md xl:text-lg"
+                id="inputDistrict"
+                onChange={(e) => setDistrict(e.target.value)}
+              >
+                <option value="">Select District</option>
+                {districtsArr.map((district) => (
+                  <option key={district} value={district}>
+                    {district}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div>
@@ -272,7 +315,8 @@ export default function SignupProfile() {
 
       <div className="w-1/2 py-32"></div>
 
-      {success ? <SuccessToast text={"Account Created."} /> : null}
+      {success ? <SuccessToast text={"Account created."} /> : null}
+      {error ? <ErrorTextToast text={"Selected state or district is not valid."} /> : null}
     </div>
   );
 }

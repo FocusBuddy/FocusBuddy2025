@@ -4,15 +4,6 @@ const dotenv = require("dotenv");
 const User = require("../models/UsersModel");
 dotenv.config();
 const generateUserProfileLink = require("../utils/generateUserProfileLink.js");
-const getGeoInfo = require("../utils/getGeoInfo.js");
-// const createStripeTrailPlan = require('../stripe/createStripeTrailPlan.js')
-
-
-// async function addMonths(date, months) {
-//   const newDate = new Date(date);
-//   Math.floor(newDate.setMonth(newDate.getMonth() + months) / 1000);
-//   return newDate;
-// }
 
 async function getSubscriptionDetails() {
   const today = Math.floor(new Date()/1000);
@@ -56,7 +47,7 @@ passport.use(
 
         if (!user) {
           // If user not found in the database, create a new user
-          const location = await getGeoInfo();
+          // const location = await getGeoInfo();
 
           const firstName = profile.name.givenName.split(" ").join('');
           const lastName = profile.name.familyName.split(" ").join('');
@@ -77,10 +68,10 @@ passport.use(
             noMatchWithGender: "everyone",
             availabilityStatus: "No one",
             quiteModeMatchAllowed: true,
+            //userLocation not included it will automatically get null
             givenName: firstName,
             familyName: profile.name.familyName === undefined ? noLastNameSoNumber : lastName,
             profilePic: profile.photos[0].value,
-            userLocation: location,
             memberSince: new Date(),
             userProfileLink: link,
             userProfileQuestions: {

@@ -380,7 +380,7 @@ export default function WelcomeCheckList({
                     </div>
                   </div>
                     <button
-                      className="flex justify-center items-center gap-4 mt-10 w-full bg-textcolor py-3 md:py-4 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+                      className="flex justify-center items-center gap-4 mt-10 w-full bg-textcolor py-3 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
                       // onClick={() => {
                       //   setActiveTab("guidelines");
                       //   setWorksDone(true);
@@ -434,7 +434,7 @@ export default function WelcomeCheckList({
                   </div>
                   <div className="my-8 rounded-b">
                     <button
-                      className="flex justify-center items-center gap-4 w-full bg-textcolor py-3 md:py-4 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+                      className="flex justify-center items-center gap-4 w-full bg-textcolor py-3 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
                       // onClick={() => {
                       //   setActiveTab("booking");
                       //   setGuidelinesDone(true);
@@ -519,7 +519,7 @@ export default function WelcomeCheckList({
                   </div>
                   <div className="my-8 rounded-b">
                     <button
-                      className="closeWelcomeCheckList mt-4 w-full bg-textcolor py-3 md:py-4 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+                      className="closeWelcomeCheckList mt-4 w-full bg-textcolor py-3 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
                       
                     >
                       Got it!

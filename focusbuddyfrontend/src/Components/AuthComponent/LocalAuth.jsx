@@ -13,7 +13,7 @@ export default function LocalAuth({text ,email, setEmail, password, setPassword,
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           id="email_floating_outlined"
-          className="block p-4 pt-4 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
+          className="block p-4 pt-3 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
           placeholder=" "
         />
         <label
@@ -31,7 +31,7 @@ export default function LocalAuth({text ,email, setEmail, password, setPassword,
           onChange={(e) => setPassword(e.target.value)}
           type={showPassword ? "text" : "password"}
           id="password_floating_outlined"
-          className="block p-4 pt-4 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
+          className="block p-4 pt-3 w-full text-textcolor bg-white rounded-lg border-1 border-textcolor appearance-none focus:outline-none focus:ring-0 focus:border-textcolor peer"
           placeholder=" "
            pattern="^\S*$" // Regex to disallow spaces
            title="Password cannot contain spaces."

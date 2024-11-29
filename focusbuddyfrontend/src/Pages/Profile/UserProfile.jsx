@@ -9,15 +9,17 @@ import SuccessToast from "../../Components/UI/toast-components/SuccessToast";
 import uploadProfilePic from "../../utils/uploadProfilePic/uploadProfilePic";
 import { FaLink } from "react-icons/fa6";
 import DashboardInnerNav from "../../Components/navbar/DashboardInnerNav";
+import AddLocationModal from "../../Components/UI/AddLocationModal/AddLocationModal";
 
 export default function UserProfile() {
-  const { userProfile, updatedImg, setUpdatedImg } = useContext(myContext);
+  const { userProfile, setUserProfile, updatedImg, setUpdatedImg } = useContext(myContext);
   console.log(userProfile);
   const [selectedFile, setSelectedFile] = useState(null);
   const [upload, setUpload] = useState(false);
   const [name, setName] = useState("");
   const [picUpdated, setPicUpdated] = useState(false);
   const fileInputRef = useRef();
+  const [openAddLocationModal, setOpenAddLocationModal] = useState(false);
 
   useEffect(() => {
     const url = userProfile.userProfileLink;
@@ -65,17 +67,6 @@ export default function UserProfile() {
     } catch (err) {
       console.log(err);
     }
-    // try{
-    //    const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/uploadProfilePic`,{
-    //     method: 'PUT',
-    //     body: formData,
-    //   })
-    //   const data = await response.json();
-    //   setUpdatedImg(data.data.profilePic);
-    // }catch(error){
-    //   console.log(error);
-    //   throw new Error('An error occurred while uploading the file. Please try again later.')
-    // }
   };
   // console.log(userProfile);
   if (picUpdated) {
@@ -134,14 +125,21 @@ export default function UserProfile() {
               <MdEmail />
               {userProfile.email}
             </h3>
-            {/* <p className="my-2 flex gap-2 items-center text-sm md:text-md xl:text-lg">
+            <p className="my-2 flex gap-2 items-center text-sm md:text-md xl:text-lg">
               <FaMapMarkerAlt />
-              {userProfile.userLocation.region}/
-              {userProfile.userLocation.country}
-            </p> */}
+              {
+                userProfile.userLocation.district === null 
+                ?
+
+                <button onClick={() => setOpenAddLocationModal(true)} className="text-md lg:text-lg underline underline-offset-4">Click here to add location</button>
+
+                :
+                userProfile.userLocation.district / userProfile.userLocation.state
+              }
+            </p>
             <Link
               to={`/user/${name}`}
-              className="text-md underline text-sm md:text-md xl:text-lg flex gap-2 items-center"
+              className="text-md underline underline-offset-4 text-sm md:text-md xl:text-lg flex gap-2 items-center"
             >
               <FaLink />
               {userProfile.userProfileLink}
@@ -194,6 +192,25 @@ export default function UserProfile() {
           </div>
         </div>
       </div>
+
+      <Modal
+                id="AddLocationModal"
+                className="settingsModal"
+                show={openAddLocationModal}
+                style={{ zIndex: 10000 }}
+                size="2xl"
+                onClose={() => setOpenAddLocationModal(false)}
+                popup
+              >
+                <Modal.Header />
+                <Modal.Body id="AddLocationModalBody">
+                  <AddLocationModal
+                    setOpenAddLocationModal={setOpenAddLocationModal}
+                    userProfile={userProfile}
+                    setUserProfile={setUserProfile}
+                  />
+                </Modal.Body>
+              </Modal>
       {picUpdated ? <SuccessToast text={"Profile picture updated."} /> : null}
     </>
   );

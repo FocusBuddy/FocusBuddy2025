@@ -670,6 +670,31 @@ router.put("/setting_change_name", async (req, res) => {
   }
 });
 
+router.post("/add_user_location", async(req,res) => {
+  const {email,userState,userDistrict} = req.body;
+  try{
+    const user = await userModel.findOneAndUpdate(
+      { email: email }, // Find the user by email
+      {
+        $set: {
+          userLocation: {
+            state: userState,
+            district: userDistrict,
+          },
+        },
+      }, 
+      { new: true } 
+    )
+
+    res
+      .status(201)
+      .json({ message: "user's location added successfully", updatedUser: user });
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: "Error while adding location." });
+  }
+});
+
 router.put("/setting_change_gender", async (req, res) => {
   const { email, gender } = req.body;
   try {

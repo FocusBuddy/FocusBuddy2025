@@ -240,7 +240,7 @@ const handleCheckboxChange = (value) => {
           
           <button
             type="submit"
-            className="w-full bg-textcolor py-4 text-md xl:text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+            className="w-full bg-textcolor py-3 text-md xl:text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
           >
             Save Gender(s)
           </button>

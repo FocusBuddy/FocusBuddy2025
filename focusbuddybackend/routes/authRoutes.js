@@ -5,7 +5,7 @@ const upload = require("../multer/multer");
 const cloudinary = require("../cloudinary/cloudinary.js");
 const fs = require("fs");
 const generateUserProfileLink = require("../utils/generateUserProfileLink.js");
-const getGeoInfo = require("../utils/getGeoInfo.js");
+
 // const createStripeTrailPlan = require('../stripe/createStripeTrailPlan.js');
 require('../passportJs/passportGoogleStrategy.js');
 
@@ -172,7 +172,7 @@ router.post(
     console.log(req.file, req.body);
     try {
       // console.log(req.body);
-      const { email, password, profilePic, oldPic, firstname, lastname } =
+      const { email, password, profilePic, oldPic, firstname, lastname, state, district } =
         req.body;
       const profile_questons = {
         "today-q1": "",
@@ -202,18 +202,21 @@ router.post(
         booking: false,
         final: false,
       };
-      let updated_pic;
+      let updated_pic = `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/defaultImages_mauluu.png`;
       let subscriptionDetails = await getSubscriptionDetails();
 
 
       if (email) {
       const full_name = firstname + " " + lastname;
         console.log("post contain email");
-        const location = await getGeoInfo();
-        console.log("location local", location);
+        // const location = await getGeoInfo();
+        // console.log("location local", location);
         const link = await generateUserProfileLink(firstname, lastname);
 
         const id = crypto.randomUUID();
+
+        if(profilePic !== `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/defaultImages_mauluu.png`){
+
 
         // Upload new profile picture to Cloudinary
         const result = await cloudinary.uploader.upload(profilePic.replace(`${process.env.BACKEND_DEV_URL}/`, ""), {
@@ -236,12 +239,14 @@ router.post(
           }
         });
 
+      }
+
         user = new userModel({
           googleId: crypto.randomUUID(),
           email,
           password,
           displayName: full_name,
-          userLocation: location,
+          userLocation: {district:district,state:state},
           profilePic: updated_pic,
           genderPresent: ["Prefer not to say"],
           matchWithGender: "everyone",

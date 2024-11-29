@@ -55,8 +55,8 @@ const userSchema = new mongoose.Schema({
         // default: 'http://localhost:8000/uploads/defaultImages.png'
     },
     userLocation: {
-        'region': {type: String, default:null},
-        'country': {type: String, default:null}
+        'district': {type: String, default:null},
+        'state': {type: String, default:null}
     },
     memberSince: {
         type: Date,

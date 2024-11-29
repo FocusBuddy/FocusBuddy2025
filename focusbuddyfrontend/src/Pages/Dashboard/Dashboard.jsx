@@ -25,16 +25,12 @@ function Dashboard() {
       // console.log(data);
       if(data.missedMeeting){
         if(userProfile.email === data.email){
+          setOpenModal(true);
           setUserProfile(data);
         }
       }
     })
-    // socket.on('updateSessionAttendance', (data)=>{
-    //   console.log(data);
-    //   // if(data.missedMeeting){
-    //   //   setUserProfile(data);
-    //   // }
-    // })
+
 
     return () => {
       socket.off('sessionMissedNotify');
@@ -43,6 +39,7 @@ function Dashboard() {
   },[]);
 
   const handleModalClose = () =>{
+    openModal(false);
     const updateStatus = async () =>{
       const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/updatemissmeetingstatus`,{
         method: 'POST',
@@ -63,17 +60,6 @@ function Dashboard() {
       <div className="main-dashboard mt-4 pb-10 ">
         <DashboardHeader/>
         <DashboardColumns/>
-        {/* {
-        userProfile.email === "rupeshchincholkar14@gmail.com" ||
-        userProfile.email === "varalakshmi.v1199@gmail.com" ||
-        userProfile.email === "anuradhaanuyy@gmail.com" ||
-        userProfile.email === "thoratganesh775@gmail.com" ||
-        userProfile.email === "snnawaz72@gmail.com" ||
-        userProfile.email === "aspirantabhimanyu82@gmail.com" ||
-        userProfile.email === "anuroop.m3@gmail.com" ||
-        userProfile.email === "vamsivijay007@gmail.com" 
-        ? 
-        <MessageToUsers/> : null} */}
         <div className="mt-10">
           <Schedular/>
         </div>
@@ -84,8 +70,7 @@ function Dashboard() {
 
       <div
       style={{ zIndex: 10000 }}
-        className={userProfile.missedMeeting ? "flex  bg-[#00000047] fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full" : "hidden"}
-        // style={zoomLoaded ? {display: 'flex'} : {display: 'none'}}
+        className={openModal ? "flex  bg-[#00000047] fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full" : "hidden"}
      >
         <div className="relative p-4 w-full max-w-2xl max-h-full">
           <div className="relative bg-white rounded-lg shadow">
@@ -98,7 +83,7 @@ function Dashboard() {
                 </p>
             </div>
             <div className="p-4 md:p-5 border-t border-gray-200 rounded-b">
-            <button id="modalButton" onClick={handleModalClose} className="w-full bg-textcolor py-4 text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out" >Close</button>
+            <button id="modalButton" onClick={handleModalClose} className="w-full bg-textcolor py-3 text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out" >Close</button>
             </div>
           </div>
         </div>

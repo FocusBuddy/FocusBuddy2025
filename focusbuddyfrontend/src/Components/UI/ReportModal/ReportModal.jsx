@@ -109,7 +109,7 @@ export default function ReportModal({setReportModal, name, email,setReportSelect
                           <button
                             id="modalButton"
                             type="submit"
-                            className="w-full bg-textcolor py-4 text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+                            className="w-full bg-textcolor py-3 text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
                           >
                             {sending ? (
                               <div className="flex justify-center gap-2 items-center">

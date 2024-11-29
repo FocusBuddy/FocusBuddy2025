@@ -132,11 +132,17 @@ export default function MainProfileWithQuestions() {
               <h1 className="text-white text-lg text-center my-1">
                 {otherUserProfile.totalSessionsAttended} Sessions
               </h1>
-              {/* <h1 className="flex items-center justify-center gap-2 my-1 text-white text-lg text-center">
+              {
+                otherUserProfile.userLocation.district === null 
+                ?
+                null:
+                <h1 className="flex items-center justify-center gap-2 my-1 text-white text-lg text-center">
                 <FaMapMarkerAlt />
-                {otherUserProfile.userLocation.region}/
-                {otherUserProfile.userLocation.country}
-              </h1> */}
+                {otherUserProfile.userLocation.district}/
+                {otherUserProfile.userLocation.state}
+              </h1>
+              }
+              
               <h1 className="text-white text-lg text-center my-1">
                 Member since:{" "}
                 {moment(otherUserProfile.memberSince)

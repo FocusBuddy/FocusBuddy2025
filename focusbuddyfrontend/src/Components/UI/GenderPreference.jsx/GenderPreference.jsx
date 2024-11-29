@@ -70,7 +70,7 @@ export default function GenderPreference({
             <button
               type="button"
               onClick={handleSetGender}
-              className="w-full bg-textcolor py-4 text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+              className="w-full bg-textcolor py-3 text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
             >
               Save Gender(s)
             </button>
@@ -131,7 +131,7 @@ export default function GenderPreference({
           <div className="pt-10  rounded-b">
                   <button
                     type="submit"
-                    className="w-full bg-textcolor py-4 text-md xl:text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+                    className="w-full bg-textcolor py-3 text-md xl:text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
                   >
                     Save gender preference
                   </button>
@@ -261,7 +261,7 @@ export default function GenderPreference({
                   <button
                     type="submit"
                     disabled={!preference}
-                    className="w-full bg-textcolor py-4 text-md xl:text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+                    className="w-full bg-textcolor py-3 text-md xl:text-lg px-3.5 hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
                   >
                     Save gender preference
                   </button>
