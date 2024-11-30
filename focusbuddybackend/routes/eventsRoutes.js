@@ -108,7 +108,7 @@ router.post("/recurring_events", async (req, res) => {
     matchedPersonProfileLink,
     profilePic,
     profileLink,
-    taskType,
+    // taskType,
     partner,
     quiteModeOn,
     callID,
@@ -152,7 +152,7 @@ router.post("/recurring_events", async (req, res) => {
         matchedPersonProfileLink,
         profilePic,
         profileLink,
-        taskType,
+        // taskType,
         partner,
         quiteModeOn,
         callID: crypto.randomUUID(),
@@ -163,7 +163,7 @@ router.post("/recurring_events", async (req, res) => {
       const if_already_someuser_is_present = await Event.find({
         start: event.start,
         end: event.end,
-        taskType: taskType, //try to find event which has similar task type
+        // taskType: taskType, //try to find event which has similar task type
         matchedPersonName: "Matching...",
       })
         .sort()
@@ -197,52 +197,52 @@ router.post("/recurring_events", async (req, res) => {
         allUpdatedEvents.push(firstUserChange, updatedEvent);
       } else {
         //not same task type
-        const if_already_someuser_is_present_but_other_task = await Event.find({
-          start: event.start,
-          end: event.end, 
-          matchedPersonName: "Matching...",
-        })
-          .sort()
-          .limit(1);
+        // const if_already_someuser_is_present_but_other_task = await Event.find({
+        //   start: event.start,
+        //   end: event.end, 
+        //   matchedPersonName: "Matching...",
+        // })
+        //   .sort()
+        //   .limit(1);
 
-        if (if_already_someuser_is_present_but_other_task.length > 0) {
-          const eventModel = new Event(newEvent);
-          const savedEvent = await eventModel.save();
+        // if (if_already_someuser_is_present_but_other_task.length > 0) {
+        //   const eventModel = new Event(newEvent);
+        //   const savedEvent = await eventModel.save();
 
-          requestBody = {
-            foundUser: newEvent, //event who had session with
-            newUserName: if_already_someuser_is_present_but_other_task[0].name, //new found user with same taskType
-            newUserFullName:
-              if_already_someuser_is_present_but_other_task[0].fullName,
-            newUserPic:
-              if_already_someuser_is_present_but_other_task[0].profilePic,
-            newUserProfileLink:
-              if_already_someuser_is_present_but_other_task[0].profileLink,
-            newUserCallID: if_already_someuser_is_present_but_other_task[0].callID,
-          };
+        //   requestBody = {
+        //     foundUser: newEvent, //event who had session with
+        //     newUserName: if_already_someuser_is_present_but_other_task[0].name, //new found user with same taskType
+        //     newUserFullName:
+        //       if_already_someuser_is_present_but_other_task[0].fullName,
+        //     newUserPic:
+        //       if_already_someuser_is_present_but_other_task[0].profilePic,
+        //     newUserProfileLink:
+        //       if_already_someuser_is_present_but_other_task[0].profileLink,
+        //     newUserCallID: if_already_someuser_is_present_but_other_task[0].callID,
+        //   };
 
-          firstUserChange = await updateMatchedEvent({
-            foundUser: if_already_someuser_is_present_but_other_task[0], //new person with same taskTypee
-            newUserName: newEvent.name,
-            newUserFullName: newEvent.fullName,
-            newUserPic: newEvent.profilePic,
-            newUserProfileLink: newEvent.profileLink,
-          });
-          console.log("data after firstUserChange", firstUserChange);
+        //   firstUserChange = await updateMatchedEvent({
+        //     foundUser: if_already_someuser_is_present_but_other_task[0], //new person with same taskTypee
+        //     newUserName: newEvent.name,
+        //     newUserFullName: newEvent.fullName,
+        //     newUserPic: newEvent.profilePic,
+        //     newUserProfileLink: newEvent.profileLink,
+        //   });
+        //   console.log("data after firstUserChange", firstUserChange);
 
-          const updatedEvent = await updatenewMatchedEvent(requestBody);
-          console.log("data after put", updatedEvent);
+        //   const updatedEvent = await updatenewMatchedEvent(requestBody);
+        //   console.log("data after put", updatedEvent);
 
-          allUpdatedEvents.push(firstUserChange, updatedEvent);
+        //   allUpdatedEvents.push(firstUserChange, updatedEvent);
 
-          // return res.status(201).json({updatedEvent:allUpdatedEvents})
+        //   // return res.status(201).json({updatedEvent:allUpdatedEvents})
 
-          // return res.status(201).json({
-          //   messge: "Session created successfully.",
-          //   updatedEvent: updatedEvent,
-          //   firstUserChange: firstUserChange,
-          // });
-        } else {
+        //   // return res.status(201).json({
+        //   //   messge: "Session created successfully.",
+        //   //   updatedEvent: updatedEvent,
+        //   //   firstUserChange: firstUserChange,
+        //   // });
+        // } else {
 
           const newEvent = {
             myID: event.myID,
@@ -257,7 +257,7 @@ router.post("/recurring_events", async (req, res) => {
             matchedPersonProfileLink,
             profilePic,
             profileLink,
-            taskType,
+            // taskType,
             partner,
             quiteModeOn,
             callID: crypto.randomUUID(),
@@ -270,7 +270,7 @@ router.post("/recurring_events", async (req, res) => {
 
           allUpdatedEvents.push(savedEvent);
       
-        }
+        // }
       }
     }
     return res.status(201).json({ updatedEvent: allUpdatedEvents });
@@ -299,12 +299,10 @@ router.post("/", async (req, res) => {
     matchedPersonFullName,
     matchedPersonProfilePic,
     profilePic,
-    taskType,
+    // taskType,
     partner,
     quiteModeOn,
     callID,
-    callJoin,
-    otherPersonMissedCall,
     matchedPersonProfileLink,
   } = req.body;
   console.log(start, end);
@@ -336,7 +334,7 @@ router.post("/", async (req, res) => {
     const overlappingEventsButOtherUser = await Event.find({
       start: start,
       end: end,
-      taskType: taskType, //try to find event which has similar task type
+      // taskType: taskType, //try to find event which has similar task type
       matchedPersonName: "Matching...",
     })
       .sort()
@@ -371,91 +369,94 @@ router.post("/", async (req, res) => {
         matchedPersonProfileLink: matchedWithWhomLink,
         profilePic: profilePic,
         profileLink: profileLink,
-        taskType: taskType,
+        // taskType: taskType,
         partner: partner,
         quiteModeOn: quiteModeOn,
         callID: overlappingEventsButOtherUser[0].callID,
         callJoin: 0,
         otherPersonMissedCall: false,
       };
+    }else{
+
+      newEvent = {
+        myID: myID,
+        duration: duration,
+        start: start,
+        end: end,
+        name: name,
+        fullName: fullName,
+        //didn't found any events so will place matching and searching and wait for match
+        matchedPersonName: matchedWithWhom,
+        matchedPersonFullName: matchedWithWhomFullName,
+        matchedPersonProfilePic: matchedWithLook,
+        matchedPersonProfileLink: matchedWithWhomLink,
+        profilePic: profilePic,
+        profileLink: profileLink,
+        // taskType: taskType,
+        partner: partner,
+        quiteModeOn: quiteModeOn,
+        callID: callID,
+        callJoin: 0,
+        otherPersonMissedCall: false,
+      // };
+    }
     }
 
     //have event with same start and end but doesn't have same task type then match with person of any other task type
-    if (overlappingEventsButOtherUser.length === 0) {
-      const overlappingEventsButOtherUserDifferentTaskType = await Event.find({
-        start: start,
-        end: end, //now task type doesn't matter
-        matchedPersonName: "Matching...",
-      })
-        .sort()
-        .limit(1);
+    // if (overlappingEventsButOtherUser.length === 0) {
+      // const overlappingEventsButOtherUserDifferentTaskType = await Event.find({
+      //   start: start,
+      //   end: end, //now task type doesn't matter
+      //   matchedPersonName: "Matching...",
+      // })
+      //   .sort()
+      //   .limit(1);
 
-      if (overlappingEventsButOtherUserDifferentTaskType.length > 0) {
-        //i found the event to make a match
-        //this function will update mine details in their event
-        updatedEvent = await updateMatchedEvent({
-          foundUser: overlappingEventsButOtherUserDifferentTaskType[0], //the person with same task type
-          newUserName: name,
-          newUserFullName: fullName,
-          newUserPic: profilePic,
-          newUserProfileLink: profileLink,
-        });
+      // if (overlappingEventsButOtherUserDifferentTaskType.length > 0) {
+      //   //i found the event to make a match
+      //   //this function will update mine details in their event
+      //   updatedEvent = await updateMatchedEvent({
+      //     foundUser: overlappingEventsButOtherUserDifferentTaskType[0], //the person with same task type
+      //     newUserName: name,
+      //     newUserFullName: fullName,
+      //     newUserPic: profilePic,
+      //     newUserProfileLink: profileLink,
+      //   });
 
-        //i found the event to make a match i will place there details in mine event
-        matchedWithWhom =
-          overlappingEventsButOtherUserDifferentTaskType[0].name;
-        matchedWithWhomFullName =
-          overlappingEventsButOtherUserDifferentTaskType[0].fullName;
-        matchedWithLook =
-          overlappingEventsButOtherUserDifferentTaskType[0].profilePic;
-          matchedWithWhomLink = overlappingEventsButOtherUserDifferentTaskType[0].profileLink;
+      //   //i found the event to make a match i will place there details in mine event
+      //   matchedWithWhom =
+      //     overlappingEventsButOtherUserDifferentTaskType[0].name;
+      //   matchedWithWhomFullName =
+      //     overlappingEventsButOtherUserDifferentTaskType[0].fullName;
+      //   matchedWithLook =
+      //     overlappingEventsButOtherUserDifferentTaskType[0].profilePic;
+      //     matchedWithWhomLink = overlappingEventsButOtherUserDifferentTaskType[0].profileLink;
 
-        newEvent = {
-          myID: myID,
-          duration: duration,
-          start: start,
-          end: end,
-          name: name,
-          fullName: fullName,
-          matchedPersonName: matchedWithWhom,
-          matchedPersonFullName: matchedWithWhomFullName,
-          matchedPersonProfilePic: matchedWithLook,
-          matchedPersonProfileLink: matchedWithWhomLink,
-          profilePic: profilePic,
-          profileLink: profileLink,
-          taskType: taskType,
-          partner: partner,
-          quiteModeOn: quiteModeOn,
-          callID: overlappingEventsButOtherUserDifferentTaskType[0].callID,
-          callJoin: 0,
-        otherPersonMissedCall: false,
-        };
-      } else {
+      //   newEvent = {
+      //     myID: myID,
+      //     duration: duration,
+      //     start: start,
+      //     end: end,
+      //     name: name,
+      //     fullName: fullName,
+      //     matchedPersonName: matchedWithWhom,
+      //     matchedPersonFullName: matchedWithWhomFullName,
+      //     matchedPersonProfilePic: matchedWithLook,
+      //     matchedPersonProfileLink: matchedWithWhomLink,
+      //     profilePic: profilePic,
+      //     profileLink: profileLink,
+      //     taskType: taskType,
+      //     partner: partner,
+      //     quiteModeOn: quiteModeOn,
+      //     callID: overlappingEventsButOtherUserDifferentTaskType[0].callID,
+      //     callJoin: 0,
+      //   otherPersonMissedCall: false,
+      //   };
+      // } else {
         //else means we couldn't find any match so create a meet and put matching and search image.
 
-        newEvent = {
-          myID: myID,
-          duration: duration,
-          start: start,
-          end: end,
-          name: name,
-          fullName: fullName,
-          //didn't found any events so will place matching and searching and wait for match
-          matchedPersonName: matchedWithWhom,
-          matchedPersonFullName: matchedWithWhomFullName,
-          matchedPersonProfilePic: matchedWithLook,
-          matchedPersonProfileLink: matchedWithWhomLink,
-          profilePic: profilePic,
-          profileLink: profileLink,
-          taskType: taskType,
-          partner: partner,
-          quiteModeOn: quiteModeOn,
-          callID: callID,
-          callJoin: 0,
-          otherPersonMissedCall: false,
-        };
-      }
-    }
+        
+    // }
 
     // console.log(newEvent);
     const event = new Event(newEvent);
@@ -502,7 +503,7 @@ router.delete("/deletesession", async (req, res) => {
         matchedPersonName: "Matching...",
         start: findevent[0].start,
         end: findevent[0].end,
-        taskType: findevent[0].taskType,
+        // taskType: findevent[0].taskType,
       })
         .sort()
         .limit(1);
@@ -513,42 +514,42 @@ router.delete("/deletesession", async (req, res) => {
         //if there are event with same start and end but not same taskType then find any other taskType person
         // console.log(findevent, "line158");
 
-        const findUserWithOtherTaskType = await Event.find({
-          matchedPersonName: "Matching...",
-          start: findevent[0].start,
-          end: findevent[0].end,
-        })
-          .sort()
-          .limit(1);
+        // const findUserWithOtherTaskType = await Event.find({
+        //   matchedPersonName: "Matching...",
+        //   start: findevent[0].start,
+        //   end: findevent[0].end,
+        // })
+        //   .sort()
+        //   .limit(1);
 
-        if (findUserWithOtherTaskType.length > 0) {
-          requestBody = {
-            foundUser: findUserWithOtherTaskType[0], //new found user with same taskType
-            newUserName: findevent[0].name, //event who had session with
-            newUserFullName: findevent[0].fullName,
-            newUserPic: findevent[0].profilePic,
-            newUserProfileLink: findevent[0].profileLink,
-            newUserCallID: findevent[0].callID
-          };
+        // if (findUserWithOtherTaskType.length > 0) {
+        //   requestBody = {
+        //     foundUser: findUserWithOtherTaskType[0], //new found user with same taskType
+        //     newUserName: findevent[0].name, //event who had session with
+        //     newUserFullName: findevent[0].fullName,
+        //     newUserPic: findevent[0].profilePic,
+        //     newUserProfileLink: findevent[0].profileLink,
+        //     newUserCallID: findevent[0].callID
+        //   };
 
-          firstUserChange = await updateMatchedEvent({
-            foundUser: findevent[0], 
-            newUserName: findUserWithOtherTaskType[0].name,
-            newUserFullName: findUserWithOtherTaskType[0].fullName,
-            newUserPic: findUserWithOtherTaskType[0].profilePic,
-            newUserProfileLink: findUserWithOtherTaskType[0].profileLink,
-          });
-          console.log("data after firstUserChange", firstUserChange);
+        //   firstUserChange = await updateMatchedEvent({
+        //     foundUser: findevent[0], 
+        //     newUserName: findUserWithOtherTaskType[0].name,
+        //     newUserFullName: findUserWithOtherTaskType[0].fullName,
+        //     newUserPic: findUserWithOtherTaskType[0].profilePic,
+        //     newUserProfileLink: findUserWithOtherTaskType[0].profileLink,
+        //   });
+        //   console.log("data after firstUserChange", firstUserChange);
 
-          const updatedEvent = await updatenewMatchedEvent(requestBody);
-          console.log("data after put", updatedEvent);
+        //   const updatedEvent = await updatenewMatchedEvent(requestBody);
+        //   console.log("data after put", updatedEvent);
 
-          return res.status(200).json({
-            messge: "Session remove successfully.",
-            updatedEvent: updatedEvent,
-            firstUserChange: firstUserChange,
-          });
-        } else {
+        //   return res.status(200).json({
+        //     messge: "Session remove successfully.",
+        //     updatedEvent: updatedEvent,
+        //     firstUserChange: firstUserChange,
+        //   });
+        // } else {
           //still found 0 matched event so changing the person with whom i had event to matching... and search pic
           requestBody = {
             foundUser: findevent[0],
@@ -563,7 +564,7 @@ router.delete("/deletesession", async (req, res) => {
           return res
             .status(200)
             .json({ messge: "Session remove successfully.", updatedEvent: [] });
-        }
+        // }
       } else {
         requestBody = {
           //rupesh with & test
