@@ -18,7 +18,7 @@ export default function AllFavoritesAvailability() {
   const {
     appointments,
     userProfile,
-    activeEventTab,
+    // activeEventTab,
     quiteMode,
     handleTabSetting,
     handleToggleChange,
@@ -65,7 +65,7 @@ const navigate = useNavigate();
       fullName: userProfile.givenName + ' ' + userProfile.familyName,
       profilePic: userProfile.profilePic,
       profileLink: userProfile.userProfileLink,
-      taskType: activeEventTab,
+      // taskType: activeEventTab,
       partner: "favoritePartner",
       quiteModeOn: quiteMode,
       callID: crypto.randomUUID(),
@@ -112,7 +112,7 @@ const navigate = useNavigate();
       <div className="flex max-w-screen-md min-h-screen mx-auto pt-10">
         <div className="relative w-[10%] z-20">
           <div className="fixed space-y-4">
-            <div className="flex cursor-pointer justify-center">
+            {/* <div className="flex cursor-pointer justify-center">
               <Tooltip
                 content="Select your task type and quite mode"
                 className="text-center w-[200px]"
@@ -121,8 +121,8 @@ const navigate = useNavigate();
                   <BsInfoCircle />
                 </p>
               </Tooltip>
-            </div>
-            <Tooltip
+            </div> */}
+            {/* <Tooltip
               placement="left"
               className="w-[200px]"
               content="Ideal for writing, emailing, coding, and other tasks."
@@ -170,7 +170,7 @@ const navigate = useNavigate();
               >
                 <FaPersonWalking />
               </div>
-            </Tooltip>
+            </Tooltip> */}
 
             <Tooltip
               placement="left"
@@ -283,14 +283,14 @@ const navigate = useNavigate();
                                           {items.quiteModeOn ? (
                                             <IoMdMicOff />
                                           ) : null}
-                                          {items.taskType === "deskEvent" ? (
+                                          {/* {items.taskType === "deskEvent" ? (
                                             <LuLampDesk />
                                           ) : items.taskType ===
                                             "movingEvent" ? (
                                             <FaPersonWalking />
                                           ) : (
                                             <IoShuffle />
-                                          )}
+                                          )} */}
                                         </span>
                                       </div>
                                     )}

@@ -11,7 +11,7 @@ import SuccessToast from "../toast-components/SuccessToast";
 import ErrorTextToast from "../toast-components/ErrorTextToast";
 import { useNavigate } from "react-router-dom";
 
-export default function AvailabilitySessions({ favEvents, activeEventTab, quiteMode }) {
+export default function AvailabilitySessions({ favEvents, quiteMode }) {
 
   const { userProfile} = useContext(myContext);
   console.log(userProfile);
@@ -47,13 +47,11 @@ const navigate = useNavigate();
       fullName: userProfile.givenName + ' ' + userProfile.familyName,
       profilePic: userProfile.profilePic,
       profileLink: userProfile.userProfileLink,
-      taskType: activeEventTab,
+      // taskType: activeEventTab,
       partner: "favoritePartner",
       quiteModeOn: quiteMode,
       callID: crypto.randomUUID(),
       callJoin: 0,
-      // callLeave: 0,
-      // totalCallDuration:0,
       otherPersonMissedCall: false
     };
     try{
@@ -129,13 +127,13 @@ const navigate = useNavigate();
               </p>
               <div className="flex gap-1 text-greenbg group-hover:text-white text-md xl:text-xl ">
                 {session.quiteModeOn ? <IoMdMicOff /> : null}
-                {session.taskType === "deskEvent" ? (
+                {/* {session.taskType === "deskEvent" ? (
                   <LuLampDesk />
                 ) : session.taskType === "movingEvent" ? (
                   <FaPersonWalking />
                 ) : (
                   <IoShuffle />
-                )}
+                )} */}
               </div>
             </div>
           </>

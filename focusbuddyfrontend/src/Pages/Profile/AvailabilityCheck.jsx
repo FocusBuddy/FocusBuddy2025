@@ -16,10 +16,10 @@ export default function AvailabilityCheck() {
   const {
     userProfile,
     appointments,
-    activeEventTab,
+    // activeEventTab,
     quiteMode,
     setQuiteMode,
-    setActiveEventTab,
+    // setActiveEventTab,
     handleTabSetting,
     handleToggleChange,
   } = useContext(myContext);
@@ -74,7 +74,7 @@ export default function AvailabilityCheck() {
       <div className="flex max-w-screen-md min-h-screen mx-auto pt-10">
         <div className="relative w-[10%] z-20">
           <div className="fixed space-y-4">
-            <div className="flex cursor-pointer justify-center">
+            {/* <div className="flex cursor-pointer justify-center">
               <Tooltip
                 content="Select your task type and quite mode"
                 className="text-center w-[200px]"
@@ -132,7 +132,7 @@ export default function AvailabilityCheck() {
               >
                 <FaPersonWalking />
               </div>
-            </Tooltip>
+            </Tooltip> */}
 
             <Tooltip
               placement="left"
@@ -177,7 +177,7 @@ export default function AvailabilityCheck() {
             <div className="flex justify-center mt-10">
             <AvailabilitySessions
                     favEvents={favEvents}
-                    activeEventTab={activeEventTab}
+                    // activeEventTab={activeEventTab}
                     quiteMode={quiteMode}
                   />
             </div>
