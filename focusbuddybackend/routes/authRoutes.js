@@ -265,6 +265,7 @@ router.post(
             missedMeeting: false,
             missedMeetingCount: 0,
           subscription: subscriptionDetails,
+          automaticallyPopUpWelcome:true
         });
         const saved_user = await user.save();
 

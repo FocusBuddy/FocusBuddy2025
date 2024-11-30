@@ -90,6 +90,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         unique: true,
     },
+    automaticallyPopUpWelcome: { type: Boolean, default: false },
     userProfileQuestions: {
         "today-q1": { type: String, default: '' },
         "today-q2": { type: String, default: '' },

@@ -71,15 +71,14 @@ export default function SignupProfile() {
 
   const handleCompleteSignupSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!selectedState || !district || selectedState === "Select State" || district === "Select District") {
+      setError(true);
+      setTimeout(() => setError(false), 1000);
+      return;
+    }
+    
     try{
-
-      if((selectedState === "" || district === "") || (selectedState === "Select State" || district === "Select District")){
-        setError(true);
-        setTimeout(() => {
-          setError(false);
-        }, 1000);
-  }else{
-
     setFirstName("");
     setLastName("");
     setAgree(false);
@@ -120,7 +119,6 @@ export default function SignupProfile() {
           navigate("/login");
         }, 500);
       }
-    }
     } catch (err) {
       console.log(err);
       throw new Error("An error occurred while signup!.");

@@ -854,6 +854,21 @@ router.post('/delete-account',async (req,res) => {
   }
 })
 
+router.post("/automaticallypopupchecklist", async(req,res) => {
+  const {email} = req.body;
+  try{
+    const user = await userModel.findOneAndUpdate(
+      {email: email},
+      {automaticallyPopUpWelcome: true},
+      {new: true}
+    );
+    res.status(201).json({updateduser: user});
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: "error in closing welcome checklist." });
+  }
+})
+
 
 router.post('/create-subscription',async (req,res) => {
   const {plan_type,userEmail} = req.body;

@@ -12,16 +12,10 @@ import postEvents from "../../utils/postEvents/postEvents";
 import { FaArrowRight } from "react-icons/fa6";
 
 export default function WelcomeCheckList({
-  welcomeCheckListModal,
   setWelcomeCheckListModal,
-  worksDone,
-  setWorksDone,
-  guidelinesDone,
-  setGuidelinesDone,
-  bookingDone,
+  setOpenChecklistAutomatically,
   setBookingDone,
-  finalDone,
-  setFinalDone}) {
+  finalDone,}) {
   const [activeTab, setActiveTab] = useState("works");
   
   const [eventDate, setEventDate] = useState(moment().format("YYYY-MM-DD"));
@@ -194,15 +188,40 @@ export default function WelcomeCheckList({
     setIsSuccess(true);
   }
 
+  const handleClose = async() => {
+    console.log('handle close');
+    setWelcomeCheckListModal(false);
+    try{
+      if(userProfile.automaticallyPopUpWelcome){
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/automaticallypopupchecklist`,{
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({email: userProfile.email})
+      });
+      const data = await response.json();
+      console.log(data);
+      if(response.ok){
+        setUserProfile(data.updateduser);
+        setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome)
+      }
+    }
+    }catch(err){
+      console.log(err);
+      throw new Error("Error while closing welcome checklist.")
+    }
+  }
 
 
-  useEffect(() => {
-    document.querySelectorAll(".closeWelcomeCheckList").forEach((items) => {
-      items.addEventListener("click" , () => {
-        setWelcomeCheckListModal(false);
-      })
-    })
-  },[])
+  // useEffect(() => {
+  //   document.querySelectorAll(".closeWelcomeCheckList").forEach((items) => {
+  //     items.addEventListener("click" , () => {
+  //       setWelcomeCheckListModal(false);
+  //       // setOpenChecklistAutomatically(false)
+  //     })
+  //   })
+  // },[])
 
 
   const handleTabClick = (tab) => {
@@ -301,7 +320,7 @@ export default function WelcomeCheckList({
               <div>
                 <button
                   type="button"
-                  // onClick={handleClose}
+                  onClick={handleClose}
                  
                   className="closeWelcomeCheckList z-50 absolute top-3 right-4 text-white bg-textcolor hover:bg-darkbrown rounded-md w-8 h-8 md:w-10 md:h-10 ms-auto inline-flex justify-center items-center"
                   >

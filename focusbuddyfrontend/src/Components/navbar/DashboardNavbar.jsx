@@ -12,10 +12,8 @@ const DashboardNavbar = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
   // const [dropdown, setDropdown] = useState(false);
   const [welcomeCheckListModal,setWelcomeCheckListModal] = useState(false);
-  // const [worksDone, setWorksDone] = useState(userProfile.welcomeChecklistState.works);
-  // const [guidelinesDone, setGuidelinesDone] = useState(userProfile.welcomeChecklistState.guidelines);
-  // const [bookingDone, setBookingDone] = useState(userProfile.welcomeChecklistState.booking);
   const [finalDone, setFinalDone] = useState(userProfile.welcomeChecklistState.final);
+  const [openChecklistAutomatically,setOpenChecklistAutomatically] = useState(userProfile.automaticallyPopUpWelcome) ;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -51,6 +49,7 @@ const DashboardNavbar = () => {
 // console.log(location.pathname);
 
   return (
+    <>
     <nav
       className="flex sticky top-0 bg-greenbg py-4 px-2 lg:px-10 h-20 text-white"
       style={{ zIndex: 9999 }}
@@ -71,18 +70,6 @@ const DashboardNavbar = () => {
           <IoCheckbox className={`hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer ${userProfile.welcomeChecklistState.booking ? "text-greenbg" : "text-bordercolor"}`}/>
           <IoCheckbox className={`hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer ${finalDone ? "text-greenbg" : "text-bordercolor"}`}/>
           </div>
-        {welcomeCheckListModal && 
-        <WelcomeCheckList 
-          welcomeCheckListModal={welcomeCheckListModal} 
-          setWelcomeCheckListModal={setWelcomeCheckListModal}
-          // worksDone={worksDone}
-          // setWorksDone={setWorksDone}
-          // guidelinesDone={guidelinesDone} 
-          // setGuidelinesDone={setGuidelinesDone}
-          // bookingDone={bookingDone} 
-          // setBookingDone={setBookingDone}
-          finalDone={finalDone} 
-          setFinalDone={setFinalDone} />}
         </div>
       </div>
       }
@@ -204,6 +191,15 @@ const DashboardNavbar = () => {
         </div>
       </div>
     </nav>
+
+    {(welcomeCheckListModal || openChecklistAutomatically) && 
+        <WelcomeCheckList 
+          setWelcomeCheckListModal={setWelcomeCheckListModal}
+          finalDone={finalDone} 
+          setFinalDone={setFinalDone} 
+          setOpenChecklistAutomatically={setOpenChecklistAutomatically}
+          />}
+    </>
   );
 };
 

@@ -104,6 +104,7 @@ passport.use(
               final: false,
             },
           subscription: subscriptionDetails,
+          automaticallyPopUpWelcome: true
           };
 
           user = new User(userDetails);
