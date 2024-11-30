@@ -17,14 +17,13 @@ function PrivateRoutes (){
   const [showJoin, setShowJoin] = useState(false);
   const [startEvent, setStartEvent] = useState(false);
   const [missedEvent, setMissedEvent] = useState(null);
-  const [location,setLocation] = useState({loading:'Loading location...',region:'',country:''});
   const [appointments , setAppointments] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
   const [showDeleteMsg,setShowDeleteMsg] = useState(false);
   const [showEditMsg,setShowEditMsg] = useState(false);
   const [columns, setColumns] = useState(true);
-  const [activeEventTab, setActiveEventTab] = useState("deskEvent");
+  // const [activeEventTab, setActiveEventTab] = useState("deskEvent");
   const [activePartnerTab, setActivePartnerTab] = useState("anyonePartner");
   const [isThereError, setIsThereError] = useState(false);
 
@@ -38,13 +37,14 @@ function PrivateRoutes (){
 
 
   function handleTabSetting(tabSetting) {
-    if (tabSetting === "deskEvent") {
-      setActiveEventTab("deskEvent");
-    } else if (tabSetting === "movingEvent") {
-      setActiveEventTab("movingEvent");
-    } else if (tabSetting === "anythingEvent") {
-      setActiveEventTab("anythingEvent");
-    } else if (tabSetting === "anyonePartner") {
+    // if (tabSetting === "deskEvent") {
+    //   setActiveEventTab("deskEvent");
+    // } else if (tabSetting === "movingEvent") {
+    //   setActiveEventTab("movingEvent");
+    // } else if (tabSetting === "anythingEvent") {
+    //   setActiveEventTab("anythingEvent");
+    // } else 
+    if (tabSetting === "anyonePartner") {
       setActivePartnerTab("anyonePartner");
     } else if (tabSetting === "favoritePartner") {
       setActivePartnerTab("favoritePartner");
@@ -113,8 +113,6 @@ function PrivateRoutes (){
     <myContext.Provider 
       value={{
         authenticated ,
-        location,
-        setLocation, 
         missedEvent, 
         setMissedEvent,
         userProfile, 

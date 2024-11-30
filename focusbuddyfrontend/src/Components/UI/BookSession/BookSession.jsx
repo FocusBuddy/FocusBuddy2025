@@ -137,26 +137,10 @@ export default function BookSession({
             <div className="px-2 py-3 border border-[#008080]">
               <h1 className="text-gray-900 text-xs md:text-[14px]">50 minutes</h1>
             </div>
-{/*             <Select
-              id="eventlength"
-              name="eventlength"
-              value={eventLength}
-              onChange={(e) => setEventLength(e.target.value)}
-              style={{
-                border: "1px solid #008080",
-                borderRadius: "0px",
-                backgroundColor: "white",
-              }}
-              required
-            >
-              <option>30 minutes</option>
-              <option>50 minutes</option>
-              <option>70 minutes</option>
-            </Select> */}
           </div>
         </div>
         
-        <div className="w-full">
+        {/* <div className="w-full">
           <div className="mb-1 block">
             <Label
               htmlFor="taskType"
@@ -164,7 +148,7 @@ export default function BookSession({
               className="text-md font-normal"
             />
           </div>
-          <div className="flex gap-2 formTabs">
+           <div className="flex gap-2 formTabs">
             <div className="w-[33.33%]">
               <Tooltip content="Ideal for writing, emailing, coding, and other tasks.">
                 <button
@@ -225,8 +209,8 @@ export default function BookSession({
                 </button>
               </Tooltip>
             </div>
-          </div>
-        </div>
+          </div> 
+        </div> */}
 
         <div className="w-full">
         <div className="flex gap-2">

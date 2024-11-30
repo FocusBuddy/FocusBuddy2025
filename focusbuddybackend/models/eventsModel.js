@@ -38,9 +38,9 @@ const eventSchema = mongoose.Schema({
     profileLink:{
         type: String,
     },
-    taskType: {
-        type: String,
-    },
+    // taskType: {
+    //     type: String,
+    // },
     partner :{
         type: String,
     } ,

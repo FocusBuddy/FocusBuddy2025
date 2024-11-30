@@ -365,7 +365,7 @@ export default function WelcomeCheckList({
                         <p className="font-medium text-lg">Book a session</p>
                       </div>
                       <p className="mt-2 text-md">
-                        Choose between 30, 50, and 70 minute sessions; sessions
+                        Choose a 50 minute session; sessions
                         are available 24/7
                       </p>
                     </div>

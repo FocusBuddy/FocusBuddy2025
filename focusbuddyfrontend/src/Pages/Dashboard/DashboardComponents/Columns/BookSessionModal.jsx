@@ -13,11 +13,11 @@ export default function BookSessionModal() {
     userProfile,
     filteredEvents,
     setFilteredEvents,
-    activeEventTab,
+    // activeEventTab,
     activePartnerTab,
     quiteMode,setQuiteMode,
     setActivePartnerTab,
-    setActiveEventTab,
+    // setActiveEventTab,
     setIsThereError,
     setIsThereTextError,
     setWaiting,
@@ -28,7 +28,7 @@ export default function BookSessionModal() {
   // const [eventLength, setEventLength] = useState("30 minutes");
   const [repeatType,setRepeatType] = useState("Do not repeat")
   const [endTimes,setEndTimes] = useState("");
-  const [recurringEventStartTimes,setRecurringEventStartTimes] = useState([]);
+  // const [recurringEventStartTimes,setRecurringEventStartTimes] = useState([]);
   const [bulkEvents,setBulkEvents] = useState([]);
 
   
@@ -49,13 +49,14 @@ export default function BookSessionModal() {
   };
 
   function handleTabSetting(tabSetting) {
-    if (tabSetting === "deskEvent") {
-      setActiveEventTab("deskEvent");
-    } else if (tabSetting === "movingEvent") {
-      setActiveEventTab("movingEvent");
-    } else if (tabSetting === "anythingEvent") {
-      setActiveEventTab("anythingEvent");
-    } else if (tabSetting === "anyonePartner") {
+    // if (tabSetting === "deskEvent") {
+    //   setActiveEventTab("deskEvent");
+    // } else if (tabSetting === "movingEvent") {
+    //   setActiveEventTab("movingEvent");
+    // } else if (tabSetting === "anythingEvent") {
+    //   setActiveEventTab("anythingEvent");
+    // } else 
+    if (tabSetting === "anyonePartner") {
       setActivePartnerTab("anyonePartner");
     } else if (tabSetting === "favoritePartner") {
       setActivePartnerTab("favoritePartner");
@@ -73,7 +74,7 @@ export default function BookSessionModal() {
       eventDate,
       // eventLength,
       eventTime,
-      activeEventTab,
+      // activeEventTab,
       activePartnerTab,
       quiteMode,
       repeatType, endTimes
@@ -81,7 +82,7 @@ export default function BookSessionModal() {
 
     // setEventLength("30 minutes");
     setEventTime('12:00am');
-    setActiveEventTab('deskEvent');
+    // setActiveEventTab('deskEvent');
     setActivePartnerTab('anyonePartner');
     setQuiteMode(false);
     setRepeatType("Do not repeat");
@@ -113,11 +114,8 @@ export default function BookSessionModal() {
       // console.log(recurringTimes[0]);
       // console.log(moment(recurringTimes[0]).toDate())
       const newEvent = {
-        // myID: eventID,
         duration: "50 minutes",
-        // start: start.toISOString(),
         recurringEventsArray: bulkEvents,
-        // end: endDateTime.toISOString(),
         matchedPersonName: 'Matching...',
         matchedPersonFullName: 'Matching...',
         matchedPersonProfileLink: '',
@@ -126,13 +124,11 @@ export default function BookSessionModal() {
       fullName: userProfile.givenName + ' ' + userProfile.familyName,
         profilePic: userProfile.profilePic,
         profileLink: userProfile.userProfileLink,
-        taskType: activeEventTab,
+        // taskType: activeEventTab,
         partner: activePartnerTab,
         quiteModeOn: quiteMode,
         callID: crypto.randomUUID(),
       callJoin: 0,
-      // callLeave: 0,
-      // totalCallDuration:0,
       otherPersonMissedCall: false
       };
 
@@ -202,13 +198,11 @@ export default function BookSessionModal() {
         fullName: userProfile.givenName + ' ' + userProfile.familyName,
         profilePic: userProfile.profilePic,
         profileLink: userProfile.userProfileLink,
-        taskType: activeEventTab,
+        // taskType: activeEventTab,
         partner: activePartnerTab,
         quiteModeOn: quiteMode,
         callID: crypto.randomUUID(),
       callJoin: 0,
-      // callLeave: 0,
-      // totalCallDuration:0,
       otherPersonMissedCall: false
       };
   
