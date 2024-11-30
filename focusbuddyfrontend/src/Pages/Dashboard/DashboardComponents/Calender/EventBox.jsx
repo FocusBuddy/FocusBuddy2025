@@ -30,12 +30,12 @@ function EventBox({ event, handleConfirm }) {
   const availableEvents = [event.event];
 
   const start_time = moment(event.event.start).toDate().getTime();
-  console.log(start_time);
+  // console.log(start_time);
   const ten_min_before = moment(start_time)
     .subtract(10, "minutes")
     .toDate()
     .getTime();
-  console.log(ten_min_before);
+  // console.log(ten_min_before);
 
   useEffect(() => {
     const checkBeforeJoinTime = () => {
@@ -126,13 +126,13 @@ function EventBox({ event, handleConfirm }) {
         </div>
         <div className="flex gap-1 text-sm xl:text-lg absolute right-0 top-1">
           {event.event.quiteModeOn ? <IoMdMicOff /> : null}
-          {event.event.taskType === "deskEvent" ? (
+          {/* {event.event.taskType === "deskEvent" ? (
             <LuLampDesk />
           ) : event.event.taskType === "movingEvent" ? (
             <FaPersonWalking />
           ) : (
             <IoShuffle />
-          )}
+          )} */}
         </div>
       </div>
 

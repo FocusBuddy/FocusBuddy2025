@@ -191,13 +191,13 @@ export default function UpcomingEvents({
           <p>{availableEvents[0].duration.slice(0, 6)}</p>
           <div className="flex text-lg">
             {availableEvents[0].quiteModeOn ? <IoMdMicOff /> : null}
-            {availableEvents[0].taskType === "deskEvent" ? (
+            {/* {availableEvents[0].taskType === "deskEvent" ? (
               <LuLampDesk />
             ) : availableEvents[0].taskType === "movingEvent" ? (
               <FaPersonWalking />
             ) : (
               <IoShuffle />
-            )}
+            )} */}
           </div>
         </div>
       </div>

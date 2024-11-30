@@ -649,11 +649,11 @@ router.get("/getpastevents", async (req, res) => {
 });
 
 router.put("/editsession", async (req, res) => {
-  const { eventid, task, partner, quite } = req.body;
+  const { eventid, partner, quite } = req.body;
   try {
     const event = await Event.findOneAndUpdate(
       { myID: eventid },
-      { taskType: task, partner: partner, quiteModeOn: quite },
+      { partner: partner, quiteModeOn: quite },
       { new: true }
     );
     console.log(event);

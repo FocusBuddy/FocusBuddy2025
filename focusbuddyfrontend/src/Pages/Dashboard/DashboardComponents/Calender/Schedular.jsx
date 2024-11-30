@@ -23,8 +23,8 @@ const Schedular = () => {
   const {
     userProfile,
     appointments,  
-    activeEventTab,
-    setActiveEventTab,
+    // activeEventTab,
+    // setActiveEventTab,
     activePartnerTab,
     setActivePartnerTab,
     filteredEvents,
@@ -67,7 +67,6 @@ const Schedular = () => {
         data.filter(
           (appointment) => (
             (appointment.duration === "50 minutes") && 
-            (appointment.taskType === 'deskEvent') &&
             (appointment.matchedPersonName === 'Matching...') || 
             (appointment.matchedPersonName === (userProfile.givenName + " " + (userProfile.familyName ? userProfile.familyName[0] : " ")) || appointment.name === (userProfile.givenName + " " + (userProfile.familyName ? userProfile.familyName[0] : " ")))
           )
@@ -181,7 +180,7 @@ function handleTabChange(tab){
   console.log(filteredEvents);
   function handleSelectSlot({ start, end }) {
 
-    setActiveEventTab('deskEvent');
+    // setActiveEventTab('deskEvent');
     setActivePartnerTab('anyonePartner');
     setQuiteMode(false);
     const eventID = crypto.randomUUID()
@@ -191,7 +190,6 @@ function handleTabChange(tab){
       duration: active,
       start: start,
       end: moment(end - (10 * 60000)).toDate(),
-      // end: end,
       matchedPersonName: 'Matching...',
       matchedPersonFullName: 'Matching...',
       matchedPersonProfilePic: `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/search_rydjkq.jpg`,
@@ -200,13 +198,11 @@ function handleTabChange(tab){
       fullName: userProfile.givenName + ' ' + userProfile.familyName,
       profilePic: userProfile.profilePic,
       profileLink: userProfile.userProfileLink,
-      taskType: activeEventTab,
+      // taskType: activeEventTab,
       partner: activePartnerTab,
       quiteModeOn: quiteMode,
       callID: crypto.randomUUID(),
       callJoin: 0,
-      // callLeave: 0,
-      // totalCallDuration:0,
       otherPersonMissedCall: false
     };
 
@@ -369,26 +365,12 @@ function handleTabChange(tab){
           >
             {weekView ? "Day" : "Week"}
           </button>
-{/*           <button
-            style={active === "30 minutes" ? activeTrueCSS : activeFalseCSS}
-            className="px-2 md:px-5 py-1.5 text-sm lg:text-lg"
-            onClick={() => handleTabChange("30 minutes")}
-          >
-            30min
-          </button> */}
           <button
             className="bg-greenbg text-white px-2 md:px-5 py-1.5 text-sm lg:text-lg pointer-events-none"
             // onClick={() => handleTabChange("50 minutes")}
           >
             50min
           </button>
-{/*           <button
-            style={active === "70 minutes" ? activeTrueCSS : activeFalseCSS}
-            className="px-2 md:px-5 py-1.5 text-sm lg:text-lg"
-            onClick={() => handleTabChange("70 minutes")}
-          >
-            70min
-          </button> */}
         </div>
       </div>
       <BigCalender

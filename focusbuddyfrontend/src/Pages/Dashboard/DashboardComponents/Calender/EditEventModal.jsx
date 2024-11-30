@@ -26,24 +26,25 @@ export default function EditEventModal({
   eventToEdit,
 }) {
   const {
-    activeEventTab,
+    // activeEventTab,
     setShowEditMsg,
     activePartnerTab,
     quiteMode,setQuiteMode,
     setActivePartnerTab,
-    setActiveEventTab,
+    // setActiveEventTab,
   } = useContext(myContext);
 
   console.log('eventtoedit',eventToEdit);
 
   function handleTabSetting(tabSetting) {
-    if (tabSetting === "deskEvent") {
-      setActiveEventTab("deskEvent");
-    } else if (tabSetting === "movingEvent") {
-      setActiveEventTab("movingEvent");
-    } else if (tabSetting === "anythingEvent") {
-      setActiveEventTab("anythingEvent");
-    } else if (tabSetting === "anyonePartner") {
+    // if (tabSetting === "deskEvent") {
+    //   setActiveEventTab("deskEvent");
+    // } else if (tabSetting === "movingEvent") {
+    //   setActiveEventTab("movingEvent");
+    // } else if (tabSetting === "anythingEvent") {
+    //   setActiveEventTab("anythingEvent");
+    // } else 
+    if (tabSetting === "anyonePartner") {
       setActivePartnerTab("anyonePartner");
     } else if (tabSetting === "favoritePartner") {
       setActivePartnerTab("favoritePartner");
@@ -72,7 +73,7 @@ export default function EditEventModal({
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({eventid:eventToEdit[0].myID, task: activeEventTab, partner: activePartnerTab, quite: quiteMode})
+          body: JSON.stringify({eventid:eventToEdit[0].myID, partner: activePartnerTab, quite: quiteMode})
         })
         const data = await response.json();
         console.log(data);
@@ -84,7 +85,7 @@ export default function EditEventModal({
     }
     editEvent();
 
-    setActiveEventTab('deskEvent');
+    // setActiveEventTab('deskEvent');
     setActivePartnerTab('anyonePartner');
     setQuiteMode(false);
   };
@@ -133,7 +134,7 @@ export default function EditEventModal({
                 </h2>
               </div>
             </div>
-            <div className="my-6 w-full">
+            {/* <div className="my-6 w-full">
               <div className="mb-1 block">
                 <Label
                   htmlFor="taskType"
@@ -200,7 +201,7 @@ export default function EditEventModal({
                   </Tooltip>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="w-full flex gap-2">
               <div className="w-[78%] flex flex-col">
