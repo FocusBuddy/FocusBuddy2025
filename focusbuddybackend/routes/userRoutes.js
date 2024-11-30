@@ -859,7 +859,7 @@ router.post("/automaticallypopupchecklist", async(req,res) => {
   try{
     const user = await userModel.findOneAndUpdate(
       {email: email},
-      {automaticallyPopUpWelcome: true},
+      {automaticallyPopUpWelcome: false},
       {new: true}
     );
     res.status(201).json({updateduser: user});
