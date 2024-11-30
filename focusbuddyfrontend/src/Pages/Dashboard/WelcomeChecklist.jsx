@@ -29,11 +29,11 @@ export default function WelcomeCheckList({
     setUserProfile,
     filteredEvents,
     setFilteredEvents,
-    activeEventTab,
+    // activeEventTab,
     activePartnerTab,
     quiteMode,setQuiteMode,
     setActivePartnerTab,
-    setActiveEventTab,
+    // setActiveEventTab,
     setIsThereError,
     setIsThereTextError,
     setWaiting,
@@ -54,13 +54,14 @@ export default function WelcomeCheckList({
   };
 
   function handleTabSetting(tabSetting) {
-    if (tabSetting === "deskEvent") {
-      setActiveEventTab("deskEvent");
-    } else if (tabSetting === "movingEvent") {
-      setActiveEventTab("movingEvent");
-    } else if (tabSetting === "anythingEvent") {
-      setActiveEventTab("anythingEvent");
-    } else if (tabSetting === "anyonePartner") {
+    // if (tabSetting === "deskEvent") {
+    //   setActiveEventTab("deskEvent");
+    // } else if (tabSetting === "movingEvent") {
+    //   setActiveEventTab("movingEvent");
+    // } else if (tabSetting === "anythingEvent") {
+    //   setActiveEventTab("anythingEvent");
+    // } else 
+    if (tabSetting === "anyonePartner") {
       setActivePartnerTab("anyonePartner");
     } else if (tabSetting === "favoritePartner") {
       setActivePartnerTab("favoritePartner");
@@ -116,7 +117,7 @@ export default function WelcomeCheckList({
       eventDate,
       // eventLength,
       eventTime,
-      activeEventTab,
+      // activeEventTab,
       activePartnerTab,
       quiteMode
     );
@@ -155,13 +156,11 @@ export default function WelcomeCheckList({
       fullName: userProfile.givenName + ' ' + userProfile.familyName,
       profilePic: userProfile.profilePic,
       profileLink: userProfile.userProfileLink,
-      taskType: activeEventTab,
+      // taskType: activeEventTab,
       partner: activePartnerTab,
       quiteModeOn: quiteMode,
       callID: crypto.randomUUID(),
       callJoin: 0,
-      // callLeave: 0,
-      // totalCallDuration:0,
       otherPersonMissedCall: false
     };
     const addEvent = async () => {

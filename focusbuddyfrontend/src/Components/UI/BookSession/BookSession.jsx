@@ -49,7 +49,7 @@ export default function BookSession({
   handleToggleChange,
   handleModalSubmit,
 }) {
-  const { activeEventTab, activePartnerTab } = useContext(myContext);
+  const { activePartnerTab } = useContext(myContext);
 
   const [timeOptions, setTimeOptions] = useState(generateTimeOptions(eventDate));
   const [isPastDate, setIsPastDate] = useState(false);
