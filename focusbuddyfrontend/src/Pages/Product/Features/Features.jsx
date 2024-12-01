@@ -30,7 +30,7 @@ export default function Features() {
               src={adaptation}
               alt="time slot image"
               loading="lazy"
-              className="h-56"
+              className="h-56 mx-auto"
             />
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function Features() {
             <img src={video} alt="video interface feature image" loading="lazy" className="h-56 object-cover"/>
           </div>
         </div>
-        <div className="my-20 lg:my-36 flex flex-col-reverse lg:flex-row gap-10 lg:gap-4">
+        {/* <div className="my-20 lg:my-36 flex flex-col-reverse lg:flex-row gap-10 lg:gap-4">
           <div className="my-8 lg:my-0 basis-1/2 self-center flex justify-center">
             <img src={taskmode} alt="task mode image" loading="lazy" className="h-10 lg:h-12"/>
           </div>
@@ -66,17 +66,18 @@ export default function Features() {
             Whether you're coding, cooking, or multitasking, we've got you covered with our diverse task modes. Opt for Desk Mode for focused coding sessions, Moving for meal preparation, or Anything for a versatile approach—whatever suits your needs.
             </p>
           </div>
-        </div>
+        </div> */}
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-4">
+        <div className="my-8 lg:my-0 basis-1/2 self-center flex justify-center">
+            <img src={quitemode} alt="quite mode image" loading="lazy" className="h-52 lg:h-60"/>
+          </div>
           <div className="basis-1/2 flex flex-col self-center text-start bg-white rounded-lg p-10 shadow-2xl shadow-lightbg ">
             <h2 className="text-2xl font-medium text-greenbg">Quite Mode</h2>
             <p className="text-md xl:text-lg text-formgray mt-4 mb-8">
             Activate Quiet Mode for uninterrupted concentration in libraries, cafes, shared offices, or any noise-sensitive environment where using a microphone isn't feasible.
             </p>
           </div>
-          <div className="my-8 lg:my-0 basis-1/2 self-center flex justify-center">
-            <img src={quitemode} alt="quite mode image" loading="lazy" className="h-52 lg:h-60"/>
-          </div>
+          
         </div>
 
         <FooterJoinButton />

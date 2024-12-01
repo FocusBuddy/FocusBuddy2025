@@ -134,7 +134,7 @@ export default function UserProfile() {
                 <button onClick={() => setOpenAddLocationModal(true)} className="text-md lg:text-lg underline underline-offset-4">Click here to add location</button>
 
                 :
-                userProfile.userLocation.district / userProfile.userLocation.state
+                userProfile.userLocation.district + " " + "/" +  " " + userProfile.userLocation.state
               }
             </p>
             <Link
