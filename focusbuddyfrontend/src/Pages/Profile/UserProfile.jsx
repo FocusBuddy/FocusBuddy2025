@@ -10,6 +10,7 @@ import uploadProfilePic from "../../utils/uploadProfilePic/uploadProfilePic";
 import { FaLink } from "react-icons/fa6";
 import DashboardInnerNav from "../../Components/navbar/DashboardInnerNav";
 import AddLocationModal from "../../Components/UI/AddLocationModal/AddLocationModal";
+import { Modal } from "flowbite-react";
 
 export default function UserProfile() {
   const { userProfile, setUserProfile, updatedImg, setUpdatedImg } = useContext(myContext);

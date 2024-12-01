@@ -20,7 +20,7 @@ export default function EditNameModal({
 
 
 
-  const handleEditNameSubmit = async (e) => {
+  const handleAddLocation = async (e) => {
     e.preventDefault();
     console.log(selectedState, district);
     try {
@@ -62,7 +62,7 @@ export default function EditNameModal({
       <p className="mt-3 stext-md xl:text-lg text-formgray text-center">
         Let other users know where you are from.
       </p>
-      <form className="mt-8 space-y-6" onSubmit={handleEditNameSubmit}>
+      <form className="mt-8 space-y-6" onSubmit={handleAddLocation}>
         <div className="peer-focus:text-textcolor peer-focus:dark:text-textcolor mt-8 flex gap-4 justify-center">
           <div className="text-textcolor w-[50%] form-group col-md-4">
             <select
