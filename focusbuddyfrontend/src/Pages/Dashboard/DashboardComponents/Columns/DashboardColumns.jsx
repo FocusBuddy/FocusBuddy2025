@@ -19,8 +19,6 @@ function DashboardColumns() {
     showDeleteMsg,
     columns,
     filteredEvents,
-    // setActiveEventTab,
-    // activeEventTab,
     setActivePartnerTab,
     activePartnerTab,
     handleTabSetting,

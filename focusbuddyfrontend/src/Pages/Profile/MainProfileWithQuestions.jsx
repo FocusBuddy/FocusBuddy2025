@@ -136,11 +136,12 @@ export default function MainProfileWithQuestions() {
                 otherUserProfile.userLocation.district === null 
                 ?
                 null:
+                <>
                 <h1 className="flex items-center justify-center gap-2 my-1 text-white text-lg text-center">
                 <FaMapMarkerAlt />
-                {otherUserProfile.userLocation.district}/
-                {otherUserProfile.userLocation.state}
+                {`${userProfile.userLocation.district} / ${userProfile.userLocation.state}`}
               </h1>
+              </>
               }
               
               <h1 className="text-white text-lg text-center my-1">

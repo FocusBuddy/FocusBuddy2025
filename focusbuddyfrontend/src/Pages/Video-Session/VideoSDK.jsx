@@ -44,9 +44,31 @@ export default function VideoSDK() {
   const [client, setClient] = useState(null);
   const [call, setCall] = useState(null);
   const [mainToken, setMainToken] = useState(null);
-  const [sessionevent,setSessionevent] = useState(null);
+  const [myEvent,setMyEvent] = useState(availableEvents);
 
   const callId = availableEvents[0].callID;
+
+
+  const getEvent = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_DEV_URL}/api/events/getEvent`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ callid: availableEvents[0].callID, fullname: availableEvents[0].fullName }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+      setMyEvent(data.event);
+    } catch (err) {
+      console.log(err);
+      throw new Error("Error while fetching matched user details.");
+    }
+  };
 
 
   useEffect(() => {
@@ -58,28 +80,8 @@ export default function VideoSDK() {
       }
     });
 
-    
-    const getEvent = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_PRO_URL}/api/events/getEvent`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ callid: availableEvents[0].callID, fullname: availableEvents[0].fullName }),
-          }
-        );
-        const data = await response.json();
-        console.log(data);
-        setSessionevent(data.event);
-      } catch (err) {
-        console.log(err);
-        throw new Error("Error while fetching matched user details.");
-      }
-    };
     getEvent();
+    
 
     const tokenProvider = async () => {
       const response = await fetch(
@@ -150,7 +152,8 @@ export default function VideoSDK() {
                 call={call}
                 availableEvents={availableEvents}
                 mainToken={mainToken}
-                sessionevent={sessionevent}
+                myEvent={myEvent}
+                getEvent={getEvent}
               />
       </StreamCall>
     </StreamVideo>
@@ -169,14 +172,16 @@ export const MyUILayout = (props) => {
     <div className='px-0 bg-[#19232D] md:bg-[#222222] min-h-screen overflow-hidden'>
     <ParticipantsState 
        call={props.call} 
-       availableEvents={props.availableEvents}/>
+       availableEvents={props.myEvent}
+       getEvent={props.getEvent}
+       />
     <StreamTheme>
     <VideoHeader 
               call={props.call} 
-              availableEvents={props.availableEvents}
+              availableEvents={props.myEvent}
             />
       <SpeakerLayout participantsBarPosition='top' />
-    <VideoFooter call={props.call} mainToken={props.mainToken} availableEvents={props.availableEvents}/>
+    <VideoFooter call={props.call} mainToken={props.mainToken} availableEvents={props.myEvent}/>
     </StreamTheme>
     </div>
   );

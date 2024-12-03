@@ -254,7 +254,7 @@ export default function VideoHeader({ availableEvents, call }) {
       }
     };
     fetchOtherUserEvent();
-  }, []);
+  }, [availableEvents]);
 
   useEffect(() => {
     const fetchMatchUserDetails = async () => {
@@ -278,7 +278,7 @@ export default function VideoHeader({ availableEvents, call }) {
       }
     };
     fetchMatchUserDetails();
-  }, []);
+  }, [availableEvents]);
 
   useEffect(() => {
     const checkFavorite = () => {

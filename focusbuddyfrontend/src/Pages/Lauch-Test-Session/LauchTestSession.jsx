@@ -73,7 +73,7 @@ export default function LauchTestSession() {
       // Test user configuration
       const testUser = {
         id: testUserID,
-        name: "Test User",
+        name: "Anonymous",
         role: "user",
       };
 
@@ -132,7 +132,7 @@ export default function LauchTestSession() {
         <StreamTheme>
           {call && (
             <StreamCall call={call}>
-              <div className=" w-full mb-8 md:mb-12 h-[5.4rem] px-10 bg-[#19232D]"></div>
+              <div className=" w-full h-[5.4rem] px-10 bg-[#19232D]"></div>
               {/* <LauchTestChatFeature mainToken={mainToken} testToken={testToken} availableEvents={''} /> */}
               <PaginatedGridLayout />
               <VideoFooter call={call} mainToken={mainToken} testToken={testToken} availableEvents={''} />

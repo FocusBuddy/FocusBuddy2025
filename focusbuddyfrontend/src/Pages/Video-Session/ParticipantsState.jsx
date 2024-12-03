@@ -2,7 +2,7 @@ import { useCallStateHooks } from "@stream-io/video-react-sdk";
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 
-export default function ParticipantsState({ availableEvents,call }) {
+export default function ParticipantsState({ getEvent,availableEvents,call }) {
   const useParticipantState = () => {
     const { useParticipants, useParticipantCount } = useCallStateHooks();
     const participants = useParticipants();
@@ -62,6 +62,7 @@ export default function ParticipantsState({ availableEvents,call }) {
         console.log(event);
         // Handle the participant left event
         handleParticipantJoin(event);
+        getEvent();
       };
 
       // Register the listener
