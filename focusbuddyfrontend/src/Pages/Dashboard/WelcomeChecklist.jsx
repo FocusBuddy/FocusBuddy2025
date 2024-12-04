@@ -190,8 +190,9 @@ export default function WelcomeCheckList({
   const handleClose = async() => {
     console.log('handle close');
     setWelcomeCheckListModal(false);
+    if(userProfile.automaticallyPopUpWelcome){
     try{
-      if(userProfile.automaticallyPopUpWelcome){
+     
       const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/automaticallypopupchecklist`,{
         method: 'POST',
         headers: {
@@ -205,11 +206,11 @@ export default function WelcomeCheckList({
         setUserProfile(data.updateduser);
         setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome)
       }
-    }
     }catch(err){
       console.log(err);
       throw new Error("Error while closing welcome checklist.")
     }
+  }
   }
 
 
@@ -261,7 +262,7 @@ export default function WelcomeCheckList({
                         onClick={() => handleTabClick("works")}
                       >
                         <span className="ml-1">
-                          <IoCheckbox className="hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer text-lg md:text-2xl" />
+                          <IoCheckbox className="hover:-translate-y-1 transition-all duration-200 ease-in-out cursor-pointer text-lg md:text-2xl" />
                         </span>
                       </a>
                     </li>
@@ -277,7 +278,7 @@ export default function WelcomeCheckList({
                         onClick={() => handleTabClick("guidelines")}
                       >
                         <span className="ml-1">
-                          <IoCheckbox className="hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer text-lg md:text-2xl" />
+                          <IoCheckbox className="hover:-translate-y-1 transition-all duration-200 ease-in-out cursor-pointer text-lg md:text-2xl" />
                         </span>
                       </a>
                     </li>
@@ -293,7 +294,7 @@ export default function WelcomeCheckList({
                         onClick={() => handleTabClick("booking")}
                       >
                         <span className="ml-1">
-                          <IoCheckbox className="hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer text-lg md:text-2xl" />
+                          <IoCheckbox className="hover:-translate-y-1 transition-all duration-200 ease-in-out cursor-pointer text-lg md:text-2xl" />
                         </span>
                       </a>
                     </li>
@@ -309,7 +310,7 @@ export default function WelcomeCheckList({
                         onClick={() => handleTabClick("final")}
                       >
                         <span className="ml-1">
-                          <IoCheckbox className="hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer text-lg md:text-2xl" />
+                          <IoCheckbox className="hover:-translate-y-1 transition-all duration-200 ease-in-out cursor-pointer text-lg md:text-2xl" />
                         </span>
                       </a>
                     </li>
@@ -398,7 +399,7 @@ export default function WelcomeCheckList({
                     </div>
                   </div>
                     <button
-                      className="flex justify-center items-center gap-4 mt-10 w-full bg-textcolor py-3 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+                      className="flex justify-center items-center gap-4 mt-10 w-full bg-textcolor py-3 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-200 ease-in-out"
                       // onClick={() => {
                       //   setActiveTab("guidelines");
                       //   setWorksDone(true);
@@ -452,7 +453,7 @@ export default function WelcomeCheckList({
                   </div>
                   <div className="my-8 rounded-b">
                     <button
-                      className="flex justify-center items-center gap-4 w-full bg-textcolor py-3 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
+                      className="flex justify-center items-center gap-4 w-full bg-textcolor py-3 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-200 ease-in-out"
                       // onClick={() => {
                       //   setActiveTab("booking");
                       //   setGuidelinesDone(true);
@@ -537,8 +538,8 @@ export default function WelcomeCheckList({
                   </div>
                   <div className="my-8 rounded-b">
                     <button
-                      className="closeWelcomeCheckList mt-4 w-full bg-textcolor py-3 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
-                      
+                      className="closeWelcomeCheckList mt-4 w-full bg-textcolor py-3 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-200 ease-in-out"
+                      onClick={handleClose}
                     >
                       Got it!
                     </button>
