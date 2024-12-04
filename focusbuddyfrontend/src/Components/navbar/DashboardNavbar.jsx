@@ -7,7 +7,7 @@ import WelcomeCheckList from "../../Pages/Dashboard/WelcomeChecklist";
 import {initFlowbite} from 'flowbite';
 
 const DashboardNavbar = () => {
-  const { userProfile, setAuthenticated, updatedImg } = useContext(myContext);
+  const { userProfile,setUserProfile, setAuthenticated, updatedImg } = useContext(myContext);
   // console.log(updatedImg);
   const [openDropdown, setOpenDropdown] = useState(false);
   // const [dropdown, setDropdown] = useState(false);
