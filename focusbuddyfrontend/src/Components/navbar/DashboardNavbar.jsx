@@ -195,6 +195,7 @@ const DashboardNavbar = () => {
     {(welcomeCheckListModal || openChecklistAutomatically) && 
         <WelcomeCheckList 
           setWelcomeCheckListModal={setWelcomeCheckListModal}
+          welcomeCheckListModal={welcomeCheckListModal}
           finalDone={finalDone} 
           setFinalDone={setFinalDone} 
           setOpenChecklistAutomatically={setOpenChecklistAutomatically}

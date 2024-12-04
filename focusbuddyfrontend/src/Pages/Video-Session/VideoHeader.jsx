@@ -164,7 +164,7 @@ export default function VideoHeader({ availableEvents, call }) {
       if (remainingMs2 <= 0) {
         endCall();
       }
-    }, [remainingMs]);
+    }, [remainingMs2]);
 
     const endCall = async () => {
       await call.endCall();

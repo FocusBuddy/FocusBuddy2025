@@ -14,6 +14,7 @@ import { FaArrowRight } from "react-icons/fa6";
 export default function WelcomeCheckList({
   setWelcomeCheckListModal,
   setOpenChecklistAutomatically,
+  welcomeCheckListModal,
   setBookingDone,
   finalDone,}) {
   const [activeTab, setActiveTab] = useState("works");
@@ -233,11 +234,14 @@ export default function WelcomeCheckList({
 
   const handleClose = async() => {
     console.log('handle close');
+    console.log('state before', welcomeCheckListModal)
     setWelcomeCheckListModal(false);
+    console.log('state after', welcomeCheckListModal)
     setUserProfile({...userProfile,automaticallyPopUpWelcome: false})
     if(userProfile.automaticallyPopUpWelcome){
     try{
      
+      console.log("fetch call");
       const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/automaticallypopupchecklist`,{
         method: 'POST',
         headers: {
