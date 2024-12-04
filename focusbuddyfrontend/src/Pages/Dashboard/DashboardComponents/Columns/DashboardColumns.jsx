@@ -102,7 +102,7 @@ function DashboardColumns() {
       <div className="w-full lg:w-[49%] xl:w-[25%] md:mx-auto lg:mx-0 text-center p-6 bg-white rounded-lg flex flex-col justify-center items-center shadow">
         <BookSessionModal />
         <Link to={'/profile/favorites/availability'} className=" mt-4 text-textcolor hover:text-greenbg ">
-          See Favorites Availbility
+          See Favorites Availability
         </Link>
       </div>
       <div className="w-full lg:w-[49%] xl:w-[25%] flex flex-col justify-between gap-4 md:mx-auto lg:mx-0 p-6 bg-white rounded-lg shadow">
