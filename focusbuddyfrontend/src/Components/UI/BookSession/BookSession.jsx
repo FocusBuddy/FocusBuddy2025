@@ -216,7 +216,7 @@ export default function BookSession({
         <div className="flex gap-2">
             <label className="w-full inline-flex gap-3 items-center justify-between cursor-pointer">
               <span className="text-md text-black font-normal">
-                Quite Mode
+                Quiet Mode
               </span>
               <input
                 onClick={handleToggleChange}
