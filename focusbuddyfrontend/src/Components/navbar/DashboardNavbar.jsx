@@ -48,34 +48,35 @@ const DashboardNavbar = () => {
   };
 // console.log(location.pathname);
 
-const handleClose = async() => {
-  console.log('handle close');
-  console.log('state before', welcomeCheckListModal)
+const handleClose = async () => {
+  // Immediately close the modal by setting the state
   setWelcomeCheckListModal(false);
-  console.log('state after', welcomeCheckListModal)
-  if(userProfile.automaticallyPopUpWelcome){
-  try{
-   
+
+  // Then perform the fetch call
+  if (userProfile.automaticallyPopUpWelcome) {
     console.log("fetch call");
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/automaticallypopupchecklist`,{
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({email: userProfile.email})
-    });
-    const data = await response.json();
-    console.log(data);
-    if(response.ok){
-      setUserProfile(data.updateduser);
-      setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome)
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/automaticallypopupchecklist`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: userProfile.email })
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        setUserProfile(data.updateduser);
+        setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome);
+      }
+    } catch (err) {
+      console.log(err);
+      throw new Error("Error while closing welcome checklist.");
     }
-  }catch(err){
-    console.log(err);
-    throw new Error("Error while closing welcome checklist.")
   }
-}
-}
+};
+
 
 
   return (
