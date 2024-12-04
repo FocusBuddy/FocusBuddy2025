@@ -258,7 +258,7 @@ export default function EditEventModal({
               <div className="w-[22%] flex flex-col gap-2">
                 <label className="inline-flex flex-col gap-3 items-center cursor-pointer">
                   <span className="ms-3 text-sm text-black font-normal">
-                    Quite Mode
+                    Quiet Mode
                   </span>
                   <input onChange={handleToggleChange} type="checkbox" value="" className="sr-only peer" checked={quiteMode}/>
                   <div className="relative w-12 h-7 bg-gray-200 border-2 border-greenbg peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-greenbg"></div>

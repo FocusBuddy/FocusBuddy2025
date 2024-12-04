@@ -102,7 +102,7 @@ function DashboardColumns() {
       <div className="w-full lg:w-[49%] xl:w-[25%] md:mx-auto lg:mx-0 text-center p-6 bg-white rounded-lg flex flex-col justify-center items-center shadow">
         <BookSessionModal />
         <Link to={'/profile/favorites/availability'} className=" mt-4 text-textcolor hover:text-greenbg ">
-          See Favorites Availbility
+          See Favorites Availability
         </Link>
       </div>
       <div className="w-full lg:w-[49%] xl:w-[25%] flex flex-col justify-between gap-4 md:mx-auto lg:mx-0 p-6 bg-white rounded-lg shadow">
@@ -144,7 +144,7 @@ function DashboardColumns() {
           
            <label className="inline-flex gap-2 md:gap-3 items-center cursor-pointer">
                   <span className="column-text ms-0 md:ms-3  text-black font-normal">
-                    Quite Mode
+                    Quiet Mode
                   </span>
                   <input onChange={handleToggleChange} type="checkbox" value="" className="sr-only peer" />
                   <div className="relative w-10 h-6 md:w-12 md:h-7 bg-gray-200 border-2 border-greenbg peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 md:after:h-5 md:after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-greenbg"></div>
