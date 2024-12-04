@@ -232,7 +232,7 @@ const handleClose = async () => {
       </div>
     </nav>
 
-    {(welcomeCheckListModal || openChecklistAutomatically) && 
+    {(welcomeCheckListModal || openChecklistAutomatically || !closeCheckList) && 
         <WelcomeCheckList 
           // setWelcomeCheckListModal={setWelcomeCheckListModal}
           // welcomeCheckListModal={welcomeCheckListModal}
