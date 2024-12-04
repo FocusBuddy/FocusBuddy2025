@@ -234,6 +234,7 @@ export default function WelcomeCheckList({
   const handleClose = async() => {
     console.log('handle close');
     setWelcomeCheckListModal(false);
+    setUserProfile({...userProfile,automaticallyPopUpWelcome: false})
     if(userProfile.automaticallyPopUpWelcome){
     try{
      
@@ -257,15 +258,6 @@ export default function WelcomeCheckList({
   }
   }
 
-
-  // useEffect(() => {
-  //   document.querySelectorAll(".closeWelcomeCheckList").forEach((items) => {
-  //     items.addEventListener("click" , () => {
-  //       setWelcomeCheckListModal(false);
-  //       // setOpenChecklistAutomatically(false)
-  //     })
-  //   })
-  // },[])
 
 
   const handleTabClick = (tab) => {
