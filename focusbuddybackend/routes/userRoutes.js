@@ -229,6 +229,20 @@ async function getAttendanceScrore(foundUser) {
   return attendance_score;
 }
 
+
+router.get("/automaticchecklistpopup",async(req,res) => {
+  try{
+    const email = req.query;
+    const user = await userModel.findOne({email : email});
+    res.status(201).json({updateduser: user});
+
+
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: "error in welcomechecklist" });
+  }
+});
+
 /** Video Session routes */
 router.post("/missedsession", async (req, res) => {
   try {

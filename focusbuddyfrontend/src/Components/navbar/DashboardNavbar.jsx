@@ -14,10 +14,36 @@ const DashboardNavbar = () => {
   const [welcomeCheckListModal,setWelcomeCheckListModal] = useState(false);
   const [finalDone, setFinalDone] = useState(userProfile.welcomeChecklistState.final);
   const [closeCheckList,setCloseCheckList] = useState(false);
-  const [openChecklistAutomatically,setOpenChecklistAutomatically] = useState(userProfile.automaticallyPopUpWelcome) ;
+  const [openChecklistAutomatically,setOpenChecklistAutomatically] = useState(true) ;
+  // const [openChecklistAutomatically,setOpenChecklistAutomatically] = useState(userProfile.automaticallyPopUpWelcome) ;
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    const checkautopopup = async() => {
+      try{
+        const response = await fetch(
+          `${
+            import.meta.env.VITE_BACKEND_PRO_URL
+          }/api/user/automaticchecklistpopup?email=${
+            userProfile.email
+          }`,
+          {
+            method: "GET",
+          }
+        );
+        const data = await response.json();
+        if (response.ok) {
+          // setUserProfile(data.updateduser);
+          setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome);
+        }
+      }catch(err){
+        console.log(err);
+        throw new Error("Error while closing welcome checklist.");
+      }
+    }
+    checkautopopup();
+  },[]);
   // console.log(welcomeCheckListModal);
 
   useEffect(() => {
