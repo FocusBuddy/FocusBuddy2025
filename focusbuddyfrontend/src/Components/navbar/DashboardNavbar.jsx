@@ -13,6 +13,7 @@ const DashboardNavbar = () => {
   // const [dropdown, setDropdown] = useState(false);
   const [welcomeCheckListModal,setWelcomeCheckListModal] = useState(false);
   const [finalDone, setFinalDone] = useState(userProfile.welcomeChecklistState.final);
+  const [closeCheckList,setCloseCheckList] = useState(false);
   const [openChecklistAutomatically,setOpenChecklistAutomatically] = useState(userProfile.automaticallyPopUpWelcome) ;
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,6 +27,34 @@ const DashboardNavbar = () => {
   useEffect(() => {
     initFlowbite();
   },[])
+
+  useEffect(() => {
+    const close_automatic_popup = async() => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/automaticallypopupchecklist`, {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: userProfile.email })
+        });
+  
+        const data = await response.json();
+        console.log(data);
+  
+        if (response.ok) {
+          setUserProfile(data.updateduser);
+          setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome);
+        }
+      } catch (err) {
+        console.log(err);
+        throw new Error("Error while closing welcome checklist.");
+      }
+    }
+
+    if (userProfile.automaticallyPopUpWelcome && closeCheckList) {
+     close_automatic_popup(); 
+    }
+
+  },[closeCheckList])
 
 
   const handleSignOut = async () => {
@@ -48,33 +77,13 @@ const DashboardNavbar = () => {
   };
 // console.log(location.pathname);
 
+
+
 const handleClose = async () => {
-  // Immediately close the modal by setting the state
   setWelcomeCheckListModal(false);
+  setCloseCheckList(true);
 
-  // Then perform the fetch call
-  if (userProfile.automaticallyPopUpWelcome) {
-    console.log("fetch call");
-
-    try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/automaticallypopupchecklist`, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: userProfile.email })
-      });
-
-      const data = await response.json();
-      console.log(data);
-
-      if (response.ok) {
-        setUserProfile(data.updateduser);
-        setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome);
-      }
-    } catch (err) {
-      console.log(err);
-      throw new Error("Error while closing welcome checklist.");
-    }
-  }
+  
 };
 
 
