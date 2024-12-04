@@ -71,42 +71,86 @@ export default function WelcomeCheckList({
   const handleToggleChange = () => {
     setQuiteMode(!quiteMode)
   }
-  
-  const checklistGotIt = async (whatDone) => {
-    switch(whatDone){
-      case 'works': setActiveTab("guidelines")
-                    break;
-      case 'guidelines': setActiveTab("booking")
-                    break;
-      case 'booking': setActiveTab("final")
-                    break;
-          default: setActiveTab("works");
-                  break;
-    }
 
-    try{
-      if(userProfile.welcomeChecklistState[whatDone] === false){
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/welcomecheckliststate`,{
-          method: 'PUT',
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({whatdone:whatDone,whichuser:userProfile.email})
-        });
-        const data = await response.json();
-        console.log(data);
-        if(response.ok){
-          setUserProfile(data.updatedProfile);
-        }else{
-          setUserProfile(userProfile)
-        }
-      }
-      
-    }catch(err){
-      console.log(err);
-      throw new Error("Error while updating welcome checklist state")
+  const checklistGotIt = async (whatDone) => {
+    // Optimistic UI update
+    const updatedChecklistState = { ...userProfile.welcomeChecklistState, [whatDone]: true };
+    setUserProfile({ ...userProfile, welcomeChecklistState: updatedChecklistState });
+  
+    // Navigate to the next tab
+    switch (whatDone) {
+      case "works":
+        setActiveTab("guidelines");
+        break;
+      case "guidelines":
+        setActiveTab("booking");
+        break;
+      case "booking":
+        setActiveTab("final");
+        break;
+      default:
+        setActiveTab("works");
+        break;
     }
-  }
+  
+    // Send update to backend
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/welcomecheckliststate`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ whatdone: whatDone, whichuser: userProfile.email }),
+        }
+      );
+      const data = await response.json();
+  
+      if (!response.ok) {
+        console.error("Error updating checklist state:", data);
+      }
+    } catch (err) {
+      console.error("Error while updating welcome checklist state:", err);
+    }
+  };
+  
+  
+  // const checklistGotIt = async (whatDone) => {
+  //   switch(whatDone){
+  //     case 'works': setActiveTab("guidelines")
+  //                   break;
+  //     case 'guidelines': setActiveTab("booking")
+  //                   break;
+  //     case 'booking': setActiveTab("final")
+  //                   break;
+  //         default: setActiveTab("works");
+  //                 break;
+  //   }
+
+  //   try{
+  //     if(userProfile.welcomeChecklistState[whatDone] === false){
+  //       const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/welcomecheckliststate`,{
+  //         method: 'PUT',
+  //         headers: {
+  //           "Content-Type": "application/json"
+  //         },
+  //         body: JSON.stringify({whatdone:whatDone,whichuser:userProfile.email})
+  //       });
+  //       const data = await response.json();
+  //       console.log(data);
+  //       if(response.ok){
+  //         setUserProfile(data.updatedProfile);
+  //       }else{
+  //         setUserProfile(userProfile)
+  //       }
+  //     }
+      
+  //   }catch(err){
+  //     console.log(err);
+  //     throw new Error("Error while updating welcome checklist state")
+  //   }
+  // }
 
 
   function handleModalSubmit(e) {
