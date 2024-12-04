@@ -231,8 +231,8 @@ async function getAttendanceScrore(foundUser) {
 
 
 router.get("/automaticchecklistpopup",async(req,res) => {
+  const email = req.query.email;
   try{
-    const email = req.query;
     const user = await userModel.findOne({email : email});
     res.status(201).json({updateduser: user});
 
