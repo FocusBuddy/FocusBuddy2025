@@ -12,8 +12,9 @@ export default function DashboardInnerNav() {
   const location = useLocation();
 
   useEffect(() => {
+    // Reinitialize Flowbite dropdowns on mount or when route changes
     initFlowbite();
-  },[]);
+  }, [location.key]);
 
   return (
     <>
