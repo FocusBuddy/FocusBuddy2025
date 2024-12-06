@@ -16,6 +16,7 @@ export default function AllPartners() {
     useContext(myContext);
   const [dropdown, setDropdown] = useState();
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(true); // State to manage loading
   const [fail, setFail] = useState(false);
   const [favClick, setFavClick] = useState(() => {
     const initialFavClick = {};
@@ -109,6 +110,8 @@ export default function AllPartners() {
         setAllPastSessions(finalEvents);
       } catch (error) {
         console.error("Error fetching data:", error);
+      }finally {
+        setLoading(false); // Ensure loading stops regardless of success or failure
       }
     };
 
@@ -130,80 +133,91 @@ export default function AllPartners() {
           All Partners
         </div>
         <div className="bg-white p-10">
-          {allPastSessions.length === 0 && (
-            <div className="bg-bordercolor py-4 rounded-md">
-              <p className="text-md xl:text-lg font-medium text-textcolor text-center">
-                No past sessions
-              </p>
-            </div>
-          )}
-          {allPastSessions.map((allpartner) => (
-            <div key={allpartner.matchedPersonFullName}>
-              <div className="mt-6 flex">
-                <div className=" flex gap-4 basis-1/2">
-                  <div className="relative">
-                    <img
-                      className="w-14 h-14 border-2 border-greenbg rounded-full"
-                      src={allpartner.matchPersonProfilePic}
-                      alt="profile pic"
-                      loading="lazy"
-                    />
-                    {favClick[allpartner.matchedPersonFullName] ? (
-                      <div
-                        className="absolute -bottom-0.5 -right-0.5 p-1 bg-greenbg rounded-full"
-                        style={{ zIndex: 2002 }}
-                      >
-                        <FaStar className="text-[18px] text-white" />
-                      </div>
-                    ) : null}
-                  </div>
-
-                  <div className="flex items-center">
-                    <h2 className="text-xl">{allpartner.matchedPersonName}</h2>
-                  </div>
-                </div>
-                <div className="flex relative gap-6 basis-1/2 justify-end items-center">
-                  <Tooltip content={
-                      favClick[allpartner.matchedPersonFullName] ? "Remove from favorites" : "Add to favorites"
-                    } className="w-44 text-center">
-                      <FaStar
-                        className="text-2xl cursor-pointer"
-                        onClick={() => handleFavIconClick(allpartner.matchedPersonFullName)}
-                        style={
-                          favClick[allpartner.matchedPersonFullName] ? { color: "#008080" } : { color: "#6B7280" }
-                        }
-                      />
-                  </Tooltip>
-                  <div>
-                    <Tooltip  className="w-44 text-center" content={"View profile"}>
-
-                     <Link to={allpartner.matchedPersonProfileLink} target="_blank"><FaLink className="text-2xl cursor-pointer text-[#6B7280]"/></Link>
-                    </Tooltip>
-                  </div>
-                  <div>
-                    <Tooltip  className="w-44 text-center" content={"Report user"}>
-
-                     <Link onClick={() => handleReport(allpartner.matchedPersonName)}><MdReportProblem className="text-2xl cursor-pointer text-[#6B7280]"/></Link>
-                    </Tooltip>
-                  </div>
-                </div>
+          {
+            loading ? (
+              // Show loading indicator while data is being fetched
+              <div className="text-center text-textcolor">
+                <p className="text-lg font-medium">Loading...</p>
               </div>
-
-              {reportModal ? (
-                <ReportModal
-                  setReportModal={setReportModal}
-                  name={reportWho}
-                  email={allpartner.matchedPersonFullName}
-                  setReportSelect={setReportSelect}
-                  setReportText={setReportText}
-                  sending={sending}
-                  setSending={setSending}
-                  reportSelect={reportSelect}
-                  reportText={reportText}
-                />
-              ) : null}
-            </div>
-          ))}
+            ) : allPastSessions.length === 0 ? (
+              <div className="bg-bordercolor py-4 rounded-md">
+                <p className="text-md xl:text-lg font-medium text-textcolor text-center">
+                  No past sessions
+                </p>
+              </div>
+            ):(
+              
+            allPastSessions.map((allpartner) => (
+              <div key={allpartner.matchedPersonFullName}>
+                <div className="mt-6 flex">
+                  <div className=" flex gap-4 basis-1/2">
+                    <div className="relative">
+                      <img
+                        className="w-14 h-14 border-2 border-greenbg rounded-full"
+                        src={allpartner.matchPersonProfilePic}
+                        alt="profile pic"
+                        loading="lazy"
+                      />
+                      {favClick[allpartner.matchedPersonFullName] ? (
+                        <div
+                          className="absolute -bottom-0.5 -right-0.5 p-1 bg-greenbg rounded-full"
+                          style={{ zIndex: 2002 }}
+                        >
+                          <FaStar className="text-[18px] text-white" />
+                        </div>
+                      ) : null}
+                    </div>
+  
+                    <div className="flex items-center">
+                      <h2 className="text-xl">{allpartner.matchedPersonName}</h2>
+                    </div>
+                  </div>
+                  <div className="flex relative gap-6 basis-1/2 justify-end items-center">
+                    <Tooltip content={
+                        favClick[allpartner.matchedPersonFullName] ? "Remove from favorites" : "Add to favorites"
+                      } className="w-44 text-center">
+                        <FaStar
+                          className="text-2xl cursor-pointer"
+                          onClick={() => handleFavIconClick(allpartner.matchedPersonFullName)}
+                          style={
+                            favClick[allpartner.matchedPersonFullName] ? { color: "#008080" } : { color: "#6B7280" }
+                          }
+                        />
+                    </Tooltip>
+                    <div>
+                      <Tooltip  className="w-44 text-center" content={"View profile"}>
+  
+                       <Link to={allpartner.matchedPersonProfileLink} target="_blank"><FaLink className="text-2xl cursor-pointer text-[#6B7280]"/></Link>
+                      </Tooltip>
+                    </div>
+                    <div>
+                      <Tooltip  className="w-44 text-center" content={"Report user"}>
+  
+                       <Link onClick={() => handleReport(allpartner.matchedPersonName)}><MdReportProblem className="text-2xl cursor-pointer text-[#6B7280]"/></Link>
+                      </Tooltip>
+                    </div>
+                  </div>
+                </div>
+  
+                {reportModal ? (
+                  <ReportModal
+                    setReportModal={setReportModal}
+                    name={reportWho}
+                    email={allpartner.matchedPersonFullName}
+                    setReportSelect={setReportSelect}
+                    setReportText={setReportText}
+                    sending={sending}
+                    setSending={setSending}
+                    reportSelect={reportSelect}
+                    reportText={reportText}
+                  />
+                ) : null}
+              </div>
+            ))
+            
+          )}
+          
+          
         </div>
         {fail ? <ErrorTextToast text={"Removed from favorite."} /> : null}
         {success ? <SuccessToast text={"Added to favorite"} /> : null}
