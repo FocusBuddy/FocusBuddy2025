@@ -94,6 +94,7 @@ console.log(openNav,openDropdown)
               <div
                 id="productdropdown"
                 className={`z-10 ${openDropdown ? 'block' : 'hidden'} divide-y bg-white divide-gray-100 rounded-lg shadow w-80`}
+                style={{ minWidth: '10rem', top: '100%' }}
               >
                 <ul
                   aria-labelledby="productdropdownbutton"
