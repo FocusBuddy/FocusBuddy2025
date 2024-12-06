@@ -80,7 +80,7 @@ const DashboardNavbar = () => {
       }
     }
 
-    if (localStorage.getItem("automaticallyPopUpWelcome") && closeCheckList) {
+    if (localStorage.getItem("automaticallyPopUpWelcome") === true && closeCheckList) {
      close_automatic_popup(); 
     }
 
