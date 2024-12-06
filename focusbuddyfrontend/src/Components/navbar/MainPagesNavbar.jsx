@@ -15,22 +15,23 @@ export default function RegisterPagesNavbar() {
     setOpenNav(false);
   },[location.key]);
   
-useEffect(() => {
-  initFlowbite();
-},[]);
+  useEffect(() => {
+    // Reinitialize Flowbite dropdowns on mount or when route changes
+    initFlowbite();
+  }, [location.key]);
 
 
-useEffect(() => {
-  // Close all dropdowns when route changes
-  const dropdowns = document.querySelectorAll("[data-dropdown-toggle]");
-  dropdowns.forEach((dropdown) => {
-    const dropdownId = dropdown.getAttribute("data-dropdown-toggle");
-    const targetDropdown = document.getElementById(dropdownId);
-    if (targetDropdown) {
-      targetDropdown.classList.add("hidden"); // Ensure dropdown is hidden
-    }
-  });
-}, [location.key]);
+// useEffect(() => {
+//   // Close all dropdowns when route changes
+//   const dropdowns = document.querySelectorAll("[data-dropdown-toggle]");
+//   dropdowns.forEach((dropdown) => {
+//     const dropdownId = dropdown.getAttribute("data-dropdown-toggle");
+//     const targetDropdown = document.getElementById(dropdownId);
+//     if (targetDropdown) {
+//       targetDropdown.classList.add("hidden"); // Ensure dropdown is hidden
+//     }
+//   });
+// }, [location.key]);
 
 console.log(openNav,openDropdown)
   return (

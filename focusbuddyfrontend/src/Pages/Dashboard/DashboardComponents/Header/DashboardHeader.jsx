@@ -1,14 +1,20 @@
 import { useContext } from "react";
 import React from "react";
-import { Link } from "react-router-dom";
-import { useState,useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect,useRef } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import { myContext } from "../../../../utils/PrivateRoutes";
+import { initFlowbite } from "flowbite";
 
 
 const DashboardHeader = () => {
   const {userProfile,columns,setColumns} = useContext(myContext);
-  
+  const location = useLocation();
+
+  useEffect(() => {
+    // Reinitialize Flowbite dropdowns on mount or when route changes
+    initFlowbite();
+  }, [location.key]);
 
   function showColumns(){
     setColumns(!columns);
@@ -54,9 +60,10 @@ const DashboardHeader = () => {
           <Link
             id="calendarheaderbutton"
             data-dropdown-toggle="calendarheaderdropdown"
+            data-dropdown-placement="bottom-start"
             // className={({ isActive }) => (isActive ? 'active' : 'inactive')}
             className="inline-flex items-center text-textcolor mx-4 hover:text-greenbg text-md xl:text-lg"
-            type="button"
+            // type="button"
             // onClick={() => setDropdown(!dropdown)}
           >
             <span className="sr-only">Open user menu</span>
