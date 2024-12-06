@@ -39,10 +39,11 @@ export default function DashboardInnerNav() {
           <NavLink
           id="innerDashboardNavbar"
           data-dropdown-toggle="innerDashboarddropdown"
+          data-dropdown-placement="bottom-start"
             className={(location.pathname.startsWith("/profile")) ? "active" : "inactive"}
             // style={{marginRight: '40px'}}
             // className="inline-flex text-textcolor mx-4 hover:text-greenbg text-md xl:text-lg"
-            type="button"
+            // type="button"
             // onClick={() => setDropdown(!dropdown)}
           >
             <span className="sr-only">Open user menu</span>

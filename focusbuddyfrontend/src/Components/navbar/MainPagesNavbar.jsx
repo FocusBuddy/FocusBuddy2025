@@ -11,13 +11,26 @@ export default function RegisterPagesNavbar() {
   console.log(location);
 
   useEffect(() => {
-    setOpenDropdown(false);
+    // setOpenDropdown(false);
     setOpenNav(false);
   },[location.key]);
   
 useEffect(() => {
   initFlowbite();
 },[]);
+
+
+useEffect(() => {
+  // Close all dropdowns when route changes
+  const dropdowns = document.querySelectorAll("[data-dropdown-toggle]");
+  dropdowns.forEach((dropdown) => {
+    const dropdownId = dropdown.getAttribute("data-dropdown-toggle");
+    const targetDropdown = document.getElementById(dropdownId);
+    if (targetDropdown) {
+      targetDropdown.classList.add("hidden"); // Ensure dropdown is hidden
+    }
+  });
+}, [location.key]);
 
 console.log(openNav,openDropdown)
   return (
