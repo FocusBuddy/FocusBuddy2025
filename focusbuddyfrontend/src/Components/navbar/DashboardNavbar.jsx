@@ -13,7 +13,7 @@ const DashboardNavbar = () => {
   // const [dropdown, setDropdown] = useState(false);
   const [welcomeCheckListModal,setWelcomeCheckListModal] = useState(false);
   const [finalDone, setFinalDone] = useState(userProfile.welcomeChecklistState.final);
-  const [closeCheckList,setCloseCheckList] = useState(false);
+  // const [closeCheckList,setCloseCheckList] = useState(false);
   // const [openChecklistAutomatically,setOpenChecklistAutomatically] = useState(true) ;
   const [openChecklistAutomatically,setOpenChecklistAutomatically] = useState(userProfile.automaticallyPopUpWelcome) ;
   const navigate = useNavigate();
@@ -57,34 +57,34 @@ const DashboardNavbar = () => {
     }
   },[])
 
-  useEffect(() => {
-    const close_automatic_popup = async() => {
-      try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/automaticallypopupchecklist`, {
-          method: 'POST',
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: userProfile.email })
-        });
+  // useEffect(() => {
+  //   const close_automatic_popup = async() => {
+  //     try {
+  //       const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/automaticallypopupchecklist`, {
+  //         method: 'POST',
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({ email: userProfile.email })
+  //       });
   
-        const data = await response.json();
-        console.log(data);
+  //       const data = await response.json();
+  //       console.log(data);
   
-        if (response.ok) {
-          // setUserProfile(data.updateduser);
-          // setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome);
-          localStorage.setItem("automaticallyPopUpWelcome",false);
-        }
-      } catch (err) {
-        console.log(err);
-        throw new Error("Error while closing welcome checklist.");
-      }
-    }
+  //       if (response.ok) {
+  //         // setUserProfile(data.updateduser);
+  //         // setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome);
+  //         localStorage.setItem("automaticallyPopUpWelcome",false);
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //       throw new Error("Error while closing welcome checklist.");
+  //     }
+  //   }
 
-    if (localStorage.getItem("automaticallyPopUpWelcome") === "true" && closeCheckList) {
-     close_automatic_popup(); 
-    }
+  //   if (localStorage.getItem("automaticallyPopUpWelcome") === "true" && closeCheckList) {
+  //    close_automatic_popup(); 
+  //   }
 
-  },[closeCheckList])
+  // },[closeCheckList])
 
 
   const handleSignOut = async () => {
@@ -107,13 +107,39 @@ const DashboardNavbar = () => {
   };
 // console.log(location.pathname);
 
-console.log("WCLM",welcomeCheckListModal,"OCLA",openChecklistAutomatically,"CCL",closeCheckList,"local",localStorage.getItem("automaticallyPopUpWelcome"))
+console.log("WCLM",welcomeCheckListModal,"OCLA",openChecklistAutomatically,"local",localStorage.getItem("automaticallyPopUpWelcome"))
 
 const handleClose = async () => {
   console.log("handle close")
   setWelcomeCheckListModal(false);
-  setCloseCheckList(true);
-  setOpenChecklistAutomatically(false)
+  // setCloseCheckList(true);
+  setOpenChecklistAutomatically(false);
+
+  const close_automatic_popup = async() => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/automaticallypopupchecklist`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: userProfile.email })
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        // setUserProfile(data.updateduser);
+        // setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome);
+        localStorage.setItem("automaticallyPopUpWelcome",false);
+      }
+    } catch (err) {
+      console.log(err);
+      throw new Error("Error while closing welcome checklist.");
+    }
+  }
+
+  if (localStorage.getItem("automaticallyPopUpWelcome") === "true") {
+   close_automatic_popup(); 
+  }
   
 };
 
@@ -263,7 +289,7 @@ const handleClose = async () => {
       </div>
     </nav>
 
-    {(welcomeCheckListModal || openChecklistAutomatically || !closeCheckList) && 
+    {(welcomeCheckListModal || openChecklistAutomatically) && 
         <WelcomeCheckList 
           // setWelcomeCheckListModal={setWelcomeCheckListModal}
           // welcomeCheckListModal={welcomeCheckListModal}
