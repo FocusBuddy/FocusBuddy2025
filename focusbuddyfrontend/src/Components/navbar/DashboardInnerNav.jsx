@@ -83,8 +83,8 @@ export default function DashboardInnerNav() {
             </ul>
           </div>
         </div>
-        <div className="w-[45%] md:w-[50%] text-end">
-          <Link to={'/session/test-session'} target={'_blank'} rel="noopener noreferrer"  className="text-textcolor px-4 hover:text-greenbg ">
+        <div className="w-[40%] md:w-[50%] text-end">
+          <Link to={'/session/test-session'} target={'_blank'} rel="noopener noreferrer"  className="text-textcolor px-0 md:px-4 hover:text-greenbg ">
             Lauch Test Session
           </Link>
         </div>

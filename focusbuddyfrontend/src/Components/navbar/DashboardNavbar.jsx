@@ -227,6 +227,7 @@ const handleClose = async () => {
         <button
         id="imagedropdownbutton"
           data-dropdown-toggle="imagedropdown"
+          data-dropdown-placement="bottom-start"
           className="flex text-sm bg-white rounded-full md:me-0 border-4 border-white"
           type="button"
           onClick={() => setOpenDropdown(!openDropdown)}
@@ -241,11 +242,13 @@ const handleClose = async () => {
 
         <div
         id="imagedropdown"
-          className={
-            openDropdown
-              ? "z-10 left-0 top-[72px] absolute bg-white divide-y divide-gray-100 rounded-md shadow w-50"
-              : "z-10 hidden bg-white divide-y divide-gray-100 rounded-md shadow w-50"
-          }
+          // className={
+          //   openDropdown
+          //     ? "z-10 left-0 top-[72px] absolute bg-white divide-y divide-gray-100 rounded-md shadow w-50"
+          //     : "z-10 hidden bg-white divide-y divide-gray-100 rounded-md shadow w-50"
+          // }
+          className={`z-10 ${openDropdown ? 'block' : 'hidden'} divide-y bg-white divide-gray-100 rounded-lg shadow w-80`}
+                style={{ minWidth: '10rem', top: '100%' }}
         >
           <div  className="px-4 py-3 text-gray-900">
             <div className="font-medium text-textcolor text-md xl:text-lg capitalize ">
