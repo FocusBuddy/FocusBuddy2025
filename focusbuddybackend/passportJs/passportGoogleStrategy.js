@@ -22,13 +22,6 @@ async function getSubscriptionDetails() {
   };
 }
 
-// async function firstNameHaveSpaceOrNot(firstName){
-//   if (firstName.includes(" ")) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
 
 
 passport.use(
@@ -48,6 +41,8 @@ passport.use(
         if (!user) {
           // If user not found in the database, create a new user
           // const location = await getGeoInfo();
+          // Storing a string
+          localStorage.setItem("automaticallyPopUpWelcome", true);
 
           const firstName = profile.name.givenName.split(" ").join('');
           const lastName = profile.name.familyName.split(" ").join('');
