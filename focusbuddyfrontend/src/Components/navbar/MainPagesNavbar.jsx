@@ -69,6 +69,7 @@ console.log(openNav,openDropdown)
               <button
                 id="productdropdownbutton"
                 data-dropdown-toggle="productdropdown"
+                data-dropdown-placement="bottom-start"
                 className="flex items-center justify-between w-full py-2 px-3 text-md xl:text-lg text-textcolor md:text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 ps-4 md:ps-0 md:p-0 md:w-auto"
 
                 onClick={() => setOpenDropdown(!openDropdown)}
