@@ -70,8 +70,8 @@ const DashboardNavbar = () => {
         console.log(data);
   
         if (response.ok) {
-          setUserProfile(data.updateduser);
-          setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome);
+          // setUserProfile(data.updateduser);
+          // setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome);
           localStorage.setItem("automaticallyPopUpWelcome",false);
         }
       } catch (err) {
