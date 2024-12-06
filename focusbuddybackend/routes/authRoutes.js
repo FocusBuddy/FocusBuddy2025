@@ -241,7 +241,7 @@ router.post(
 
       }
 
-      localStorage.setItem("automaticallyPopUpWelcome", true);
+      // localStorage.setItem("automaticallyPopUpWelcome", true);
 
         user = new userModel({
           googleId: crypto.randomUUID(),

@@ -42,7 +42,7 @@ passport.use(
           // If user not found in the database, create a new user
           // const location = await getGeoInfo();
           // Storing a string
-          localStorage.setItem("automaticallyPopUpWelcome", true);
+          // localStorage.setItem("automaticallyPopUpWelcome", true);
 
           const firstName = profile.name.givenName.split(" ").join('');
           const lastName = profile.name.familyName.split(" ").join('');

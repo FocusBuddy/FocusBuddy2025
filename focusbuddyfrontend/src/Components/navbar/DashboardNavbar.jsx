@@ -52,6 +52,9 @@ const DashboardNavbar = () => {
 
   useEffect(() => {
     initFlowbite();
+    if(userProfile.automaticallyPopUpWelcome){
+      localStorage.setItem("automaticallyPopUpWelcome", true);
+    }
   },[])
 
   useEffect(() => {
@@ -69,7 +72,7 @@ const DashboardNavbar = () => {
         if (response.ok) {
           setUserProfile(data.updateduser);
           setOpenChecklistAutomatically(data.updateduser.automaticallyPopUpWelcome);
-          localStorage.removeItem("automaticallyPopUpWelcome");
+          localStorage.setItem("automaticallyPopUpWelcome",false);
         }
       } catch (err) {
         console.log(err);
