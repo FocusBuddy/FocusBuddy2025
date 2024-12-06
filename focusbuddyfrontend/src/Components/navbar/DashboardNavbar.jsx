@@ -107,9 +107,10 @@ const DashboardNavbar = () => {
   };
 // console.log(location.pathname);
 
-
+console.log("WCLM",welcomeCheckListModal,"OCLA",openChecklistAutomatically,"CCL",closeCheckList,"local",localStorage.getItem("automaticallyPopUpWelcome"))
 
 const handleClose = async () => {
+  console.log("handle close")
   setWelcomeCheckListModal(false);
   setCloseCheckList(true);
   setOpenChecklistAutomatically(false)
