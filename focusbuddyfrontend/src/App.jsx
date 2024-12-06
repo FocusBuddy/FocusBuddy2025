@@ -9,6 +9,7 @@ import Loading from "./Components/UI/LoadingComponent/Loading.jsx";
 import Allpartners from "./Pages/Profile/AllPartners.jsx";
 import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
 import ReminderNotification from "./Components/UI/ReminderNotification/ReminderNotification.jsx";
+import SessionsList from "./Pages/SessionTab/SessionsList.jsx";
 
 const DashBoardContextWrapper = lazy(() =>
   import("./Pages/Dashboard/Dashboard-Context/DashboardContextWrapper.jsx")
@@ -51,7 +52,7 @@ const EditProfileQuestions = lazy(() =>
 const PeopleFavorites = lazy(() =>
   import("./Pages/Profile/PeopleFavorites.jsx")
 );
-const SessionsList = lazy(() => import("./Pages/SessionTab/SessionsList.jsx"));
+// const SessionsList = lazy(() => import("./Pages/SessionTab/SessionsList.jsx"));
 const Settings = lazy(() => import("./Pages/Profile/Settings.jsx"));
 const AvailabilityCheck = lazy(() =>
   import("./Pages/Profile/AvailabilityCheck.jsx")
