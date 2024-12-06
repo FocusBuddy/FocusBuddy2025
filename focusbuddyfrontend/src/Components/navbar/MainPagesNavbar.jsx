@@ -13,7 +13,7 @@ export default function RegisterPagesNavbar() {
   useEffect(() => {
     setOpenDropdown(false);
     setOpenNav(false);
-  },[location.key])
+  },[location.key]);
   
 useEffect(() => {
   initFlowbite();
@@ -72,7 +72,7 @@ console.log(openNav,openDropdown)
                 data-dropdown-placement="bottom-start"
                 className="flex items-center justify-between w-full py-2 px-3 text-md xl:text-lg text-textcolor md:text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 ps-4 md:ps-0 md:p-0 md:w-auto"
 
-                onClick={() => setOpenDropdown(!openDropdown)}
+                // onClick={() => setOpenDropdown(!openDropdown)}
               >
                 Product{" "}
                 <svg
@@ -94,8 +94,9 @@ console.log(openNav,openDropdown)
 
               <div
                 id="productdropdown"
-                className={`z-10 ${openDropdown ? 'block' : 'hidden'} divide-y bg-white divide-gray-100 rounded-lg shadow w-80`}
-                style={{ minWidth: '10rem', top: '100%' }}
+                // className={`z-10 ${openDropdown ? 'block' : 'hidden'} divide-y bg-white divide-gray-100 rounded-lg shadow w-80`}
+                className="hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+                // style={{ minWidth: '10rem', top: '100%' }}
               >
                 <ul
                   aria-labelledby="productdropdownbutton"
