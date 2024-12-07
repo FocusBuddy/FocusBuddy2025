@@ -53,7 +53,7 @@ export default function VideoHeader({ availableEvents, call }) {
   //50 min  
   const [remainingMs, setRemainingMs] = useState(new Date(availableEvents[0].end).getTime() - new Date().getTime());
  //60min   
-  const [remainingMs2,setRemainingMs2] = useState(Number.NaN);
+  // const [remainingMs2,setRemainingMs2] = useState(Number.NaN);
     // console.log(Date.now(),new Date(availableEvents[0].start).getTime());
 
     useEffect(() => {
@@ -72,21 +72,20 @@ export default function VideoHeader({ availableEvents, call }) {
       const call_start = new Date(availableEvents[0].start).getTime();
       // console.log(call_start);
       const call_end = call_start + 3000000; //50min
-      const call_end_60 = call_start + 3600000; //60min
-      // console.log(call_end);
       if (Date.now() > call_start) {
         handle = setInterval(() => {
           const now = new Date().getTime();
           const remainingMs = +call_end - +now;
-          const remainingMs2 = +call_end_60 - +now;
           setRemainingMs(remainingMs);
-          setRemainingMs2(remainingMs2)
+          if (remainingMs <= 0) {
+            clearInterval(timer50);
+          }
         }, 500);
       }
       return () => clearInterval(handle);
     }, [session]);
 
-    return {remainingMs,remainingMs2};
+    return {remainingMs};
   };
 
   // console.log("PARTICIPANT", participants);
@@ -148,7 +147,7 @@ export default function VideoHeader({ availableEvents, call }) {
   };
 
   const SessionTimer = () => {
-    const {remainingMs,remainingMs2} = useSessionTimer();
+    const {remainingMs} = useSessionTimer();
     // console.log("remainingMs",remainingMs, Date.now());
 
     {availableEvents[0].matchedPersonFullName === "Matching..." ? null :  useSessionTimerAlert(remainingMs, 2400 * 1000, handleShowAlert);}
@@ -162,14 +161,26 @@ export default function VideoHeader({ availableEvents, call }) {
     useEffect(() => {
       if (remainingMs <= 0) {
         handleSessionFinised();
+        timer_after_50();
       }
     }, [remainingMs]);
 
-    useEffect(() => {
-      if (remainingMs2 <= 0) {
-        endCall();
-      }
-    }, [remainingMs2]);
+  
+    // Start the 10-minute timer after the 50-minute timer ends
+   const timer_after_50 = () => {
+    const tenmingap = new Date(availableEvents[0].end).getTime(); + 10 * 60 * 1000;
+    const tenMinuteEnd = new Date().getTime() - new Date(availableEvents[0].end).getTime();
+      const timer10 = setInterval(() => {
+        console.log('timer10');
+        const remaining = tenmingap - tenMinuteEnd;
+        // setRemainingMs10(remaining);
+        if (remaining <= 0) {
+          clearInterval(timer10);
+          endCall();  // End the call after 10 minutes
+        }
+      }, 500);
+      return () => clearInterval(timer10);
+   }
 
     
 
