@@ -154,6 +154,11 @@ export default function VideoHeader({ availableEvents, call }) {
     {availableEvents[0].matchedPersonFullName === "Matching..." ? null :  useSessionTimerAlert(remainingMs, 2400 * 1000, handleShowAlert);}
     // useSessionTimerAlert(remainingMs, 600 * 1000, handleSessionFinised);// this alert is shown 10min before end
 
+    const endCall = async () => {
+      await call.endCall();
+      navigate("/session-ended");
+    };
+
     useEffect(() => {
       if (remainingMs <= 0) {
         handleSessionFinised();
@@ -166,10 +171,7 @@ export default function VideoHeader({ availableEvents, call }) {
       }
     }, [remainingMs2]);
 
-    const endCall = async () => {
-      await call.endCall();
-      navigate("/session-ended");
-    };
+    
 
     const end = Date.now() + remainingMs;
     // console.log(end, Date.now());
