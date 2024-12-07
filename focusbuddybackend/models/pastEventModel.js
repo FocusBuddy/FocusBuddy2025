@@ -54,6 +54,7 @@ const pastEventSchema = new mongoose.Schema({
 
   async function movePastEvents() {
     const now = new Date();
+    now.setMinutes(now.getMinutes() - 10); // Subtract 10 minutes from the current time
     const io = getIo();
 
     try {
