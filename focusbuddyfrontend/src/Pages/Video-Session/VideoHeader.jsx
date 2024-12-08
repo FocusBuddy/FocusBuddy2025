@@ -33,7 +33,7 @@ export default function VideoHeader({ availableEvents, call }) {
   const [matchedUser, setMatchedUser] = useState([]);
   const [matchedUserEvent, setMatchedUserEvent] = useState([]);
   const [callSession, setCallSession] = useState(null);
-  const didAlert = useRef(false);
+  // const didAlert = useRef(false);
   const [showAlert, setShowAlert] = useState(false);
   const apiCallMade = useRef(false);
   const [otherMissedStatus, setOtherMissedStatus] = useState(
@@ -90,10 +90,15 @@ export default function VideoHeader({ availableEvents, call }) {
   // console.log("PARTICIPANT", participants);
   const useSessionTimerAlert = (remainingMs, threshold, onAlert) => {
     // console.log(remainingMs,threshold);
+    const didAlert = useRef(
+      JSON.parse(localStorage.getItem("didAlert")) || false
+    );
+    
     useEffect(() => {
       if (!didAlert.current && remainingMs < threshold) {
         onAlert();
-        didAlert.current = true;
+
+        localStorage.setItem("didAlert", true);
       }
     }, [onAlert, remainingMs, threshold]);
   };
@@ -152,7 +157,7 @@ export default function VideoHeader({ availableEvents, call }) {
     {
       availableEvents[0].matchedPersonFullName === "Matching..."
         ? null
-        : useSessionTimerAlert(remainingMs, 2400 * 1000, handleShowAlert);
+        : useSessionTimerAlert(remainingMs,  600 * 1000, handleShowAlert);
     }
     // useSessionTimerAlert(remainingMs, 600 * 1000, handleSessionFinised);// this alert is shown 10min before end
 

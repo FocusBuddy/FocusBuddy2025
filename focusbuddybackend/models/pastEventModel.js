@@ -93,53 +93,6 @@ const pastEventSchema = new mongoose.Schema({
         }));
 
 
-
-        //when there is someone
-        //1st user join , join time, 2ns join , leave , 2nd will have leave time because there is someone
-        //join 10, leave 10:03 then directyle join on 10:06 
-        // in call
-        //when there is no one he can choose to stay in call or leave it in this case we should not change its attendance
-        
-        //1st user join time after 5 minute on one joined isliye otherPersonMissedCall will be true
-        //if this user close call by button leave time and duration will be there but if he close window then only join will be there,
-        //if he does this before 5 min then dec attend after 5 min no change
-      
-        //1st user join waited for 5 min other user didn't join so otherPersonMissedCall become true and then
-        //user can choose to stay or leave if he leave by call leave button click or close window directly in
-        //both case we will not get leave time and duration, we will get only join time 
-
-        //1st user joined and left within 5min and other user didn't joined
-        // const eventsWithEmptyLeaveDurationAndMissLeftBefore5min = pastEvents.filter(
-        //   (event) => (event.callJoin !== 0 && event.totalDuration === NaN && otherPersonMissedCall === false)
-        // )
-
-        // eventsWithEmptyLeaveDurationAndMissLeftBefore5min.forEach((event) => {
-        //   const makeChanges = async () => {
-        //     const user_to_which_this_event_belong_to = await User.findOneAndUpdate(
-        //       {displayName: event.fullName},
-        //       {
-        //         $set: { missedMeeting: true }, // Use $set to update specific fields
-        //         $inc: { missedMeetingCount: 1 } // Use $inc to increment the count
-        //       },
-        //       { new: true } 
-        //     );
-  
-        //     let getCount = await getAttendanceScrore(user_to_which_this_event_belong_to);
-        //     const updated = await User.findOneAndUpdate(
-        //       { _id: user_to_which_this_event_belong_to._id },
-        //       { attendanceScore: getCount },
-        //       { new: true }
-        //     );
-        //   }
-        //   makeChanges();
-        // })
-
-        //1st user joined and left after 5min and other user didn't joined
-        // const eventsWithEmptyLeaveDurationAndMissLeftAfter5min = pastEvents.filter(
-        //   (event) => (event.callJoin !== "" && event.totalDuration === NaN && otherPersonMissedCall === true)
-        // )
-
-
         //user A join  after 5 min callJoin !== 0 and otherPersonMissedCall=true because user B is joining after 
         //5min B will have callJoin !===0 otherPersonMissedCall false
         const eventsWithJoinAndOtherUserLate = pastEvents.filter(
@@ -182,23 +135,6 @@ const pastEventSchema = new mongoose.Schema({
 
         eventsWithJoinLeaveDurationAndNoMiss.forEach((event) => {
           const makeChanges = async () => {
-            // if(event.totalCallDuration < 24000000){
-            //   const user_to_which_this_event_belong_to = await User.findOneAndUpdate(
-            //   {displayName: event.fullName},
-            //   {
-            //     $inc: { missedMeetingCount: 1 } // Use $inc to increment the count
-            //   },
-            //   { new: true } 
-            // );
-
-            // let getCount = await getAttendanceScrore(user_to_which_this_event_belong_to);
-
-            // const updated = await User.findOneAndUpdate(
-            //   { _id: user_to_which_this_event_belong_to._id },
-            //   { attendanceScore: getCount },
-            //   { new: true }
-            // );
-            // }else{
               const user_to_which_this_event_belong_to = await User.findOneAndUpdate(
                 {displayName: event.fullName},
                 {
@@ -295,3 +231,51 @@ cron.schedule('*/10 * * * *', movePastEvents);
 
 
 module.exports = pastEvent;
+
+
+
+
+//when there is someone
+        //1st user join , join time, 2ns join , leave , 2nd will have leave time because there is someone
+        //join 10, leave 10:03 then directyle join on 10:06 
+        // in call
+        //when there is no one he can choose to stay in call or leave it in this case we should not change its attendance
+        
+        //1st user join time after 5 minute on one joined isliye otherPersonMissedCall will be true
+        //if this user close call by button leave time and duration will be there but if he close window then only join will be there,
+        //if he does this before 5 min then dec attend after 5 min no change
+      
+        //1st user join waited for 5 min other user didn't join so otherPersonMissedCall become true and then
+        //user can choose to stay or leave if he leave by call leave button click or close window directly in
+        //both case we will not get leave time and duration, we will get only join time 
+
+        //1st user joined and left within 5min and other user didn't joined
+        // const eventsWithEmptyLeaveDurationAndMissLeftBefore5min = pastEvents.filter(
+        //   (event) => (event.callJoin !== 0 && event.totalDuration === NaN && otherPersonMissedCall === false)
+        // )
+
+        // eventsWithEmptyLeaveDurationAndMissLeftBefore5min.forEach((event) => {
+        //   const makeChanges = async () => {
+        //     const user_to_which_this_event_belong_to = await User.findOneAndUpdate(
+        //       {displayName: event.fullName},
+        //       {
+        //         $set: { missedMeeting: true }, // Use $set to update specific fields
+        //         $inc: { missedMeetingCount: 1 } // Use $inc to increment the count
+        //       },
+        //       { new: true } 
+        //     );
+  
+        //     let getCount = await getAttendanceScrore(user_to_which_this_event_belong_to);
+        //     const updated = await User.findOneAndUpdate(
+        //       { _id: user_to_which_this_event_belong_to._id },
+        //       { attendanceScore: getCount },
+        //       { new: true }
+        //     );
+        //   }
+        //   makeChanges();
+        // })
+
+        //1st user joined and left after 5min and other user didn't joined
+        // const eventsWithEmptyLeaveDurationAndMissLeftAfter5min = pastEvents.filter(
+        //   (event) => (event.callJoin !== "" && event.totalDuration === NaN && otherPersonMissedCall === true)
+        // )
