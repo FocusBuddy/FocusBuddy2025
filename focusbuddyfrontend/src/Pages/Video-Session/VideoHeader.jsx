@@ -168,11 +168,12 @@ export default function VideoHeader({ availableEvents, call }) {
   
     // Start the 10-minute timer after the 50-minute timer ends
    const timer_after_50 = () => {
-    const tenmingap = new Date(availableEvents[0].end).getTime(); + 10 * 60 * 1000;
-    const tenMinuteEnd = new Date().getTime() - new Date(availableEvents[0].end).getTime();
+    const tenmingap = new Date(availableEvents[0].end).getTime() + 10 * 60 * 1000;
+    const now = Date.now();
+    // const tenMinuteEnd = new Date().getTime() - new Date(availableEvents[0].end).getTime();
       const timer10 = setInterval(() => {
         console.log('timer10');
-        const remaining = tenmingap - tenMinuteEnd;
+        const remaining = tenmingap - now;
         // setRemainingMs10(remaining);
         if (remaining <= 0) {
           clearInterval(timer10);
