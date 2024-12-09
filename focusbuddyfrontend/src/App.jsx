@@ -2,79 +2,74 @@ import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorFallback from "./ErrorFallback";
-import ErrorPage from "./Pages/Error/ErrorPage.jsx";
 import { PrivateRoutes } from "./utils/PrivateRoutes.jsx";
 import NotFoundPage from "./Pages/NotFound/NotFoundPage.jsx";
 import Loading from "./Components/UI/LoadingComponent/Loading.jsx";
-import Allpartners from "./Pages/Profile/AllPartners.jsx";
 import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
 import ReminderNotification from "./Components/UI/ReminderNotification/ReminderNotification.jsx";
 import SessionsList from "./Pages/SessionTab/SessionsList.jsx";
 
-const DashBoardContextWrapper = lazy(() =>
-  import("./Pages/Dashboard/Dashboard-Context/DashboardContextWrapper.jsx")
-);
-const Layout = lazy(() => import("./Layout/Layout.jsx"));
-const Signup = lazy(() => import("./Pages/Login-and-register/Signup.jsx"));
-const Home = lazy(() => import("./Pages/Home/Home.jsx"));
-const Login = lazy(() => import("./Pages/Login-and-register/Login.jsx"));
-const UserProfile = lazy(() => import("./Pages/Profile/UserProfile.jsx"));
+
+const Layout = lazy(() => import("./Layout/Layout.jsx"));//
+const Signup = lazy(() => import("./Pages/Login-and-register/Signup.jsx"));//
+const Home = lazy(() => import("./Pages/Home/Home.jsx"));//
+const Login = lazy(() => import("./Pages/Login-and-register/Login.jsx"));//
+const UserProfile = lazy(() => import("./Pages/Profile/UserProfile.jsx"));//
 const SignupProfile = lazy(() =>
-  import("./Pages/Login-and-register/SignupProfile.jsx")
+  import("./Pages/Login-and-register/SignupProfile.jsx")//
 );
-const Privacy = lazy(() => import("./Pages/Privacy/Privacy.jsx"));
-const Terms = lazy(() => import("./Pages/Terms/Terms.jsx"));
-const FAQ = lazy(() => import("./Pages/FAQ/FAQ.jsx"));
-const About = lazy(() => import("./Pages/About/About.jsx"));
+const Privacy = lazy(() => import("./Pages/Privacy/Privacy.jsx"));//
+const Terms = lazy(() => import("./Pages/Terms/Terms.jsx"));//
+const FAQ = lazy(() => import("./Pages/FAQ/FAQ.jsx"));//
+const About = lazy(() => import("./Pages/About/About.jsx"));//
 const HowItWorks = lazy(() =>
-  import("./Pages/Product/HowItWorks/HowItWorks.jsx")
+  import("./Pages/Product/HowItWorks/HowItWorks.jsx")//
 );
-const Features = lazy(() => import("./Pages/Product/Features/Features.jsx"));
-const UseCases = lazy(() => import("./Pages/Product/UseCases/UseCases.jsx"));
-const Pricing = lazy(() => import("./Pages/Product/Pricing/Pricing.jsx"));
+const Features = lazy(() => import("./Pages/Product/Features/Features.jsx"));//
+const UseCases = lazy(() => import("./Pages/Product/UseCases/UseCases.jsx"));//
+const Pricing = lazy(() => import("./Pages/Product/Pricing/Pricing.jsx"));//
 const FocusBuddyScience = lazy(() =>
-  import("./Pages/Product/Science/FocusBuddyScience.jsx")
+  import("./Pages/Product/Science/FocusBuddyScience.jsx")//
 );
-const Community = lazy(() => import("./Pages/Community/Community.jsx"));
-const Contact = lazy(() => import("./Pages/Contact/Contact.jsx"));
+const Community = lazy(() => import("./Pages/Community/Community.jsx"));//
+const Contact = lazy(() => import("./Pages/Contact/Contact.jsx"));//
 const RestPassword = lazy(() =>
-  import("./Pages/Login-and-register/RestPassword.jsx")
+  import("./Pages/Login-and-register/RestPassword.jsx")//
 );
 const ConfirmPassword = lazy(() =>
-  import("./Pages/Login-and-register/ConfirmPassword.jsx")
+  import("./Pages/Login-and-register/ConfirmPassword.jsx")//
 );
 const MainProfileWithQuestions = lazy(() =>
-  import("./Pages/Profile/MainProfileWithQuestions.jsx")
+  import("./Pages/Profile/MainProfileWithQuestions.jsx")//
 );
 const EditProfileQuestions = lazy(() =>
-  import("./Pages/Profile/EditProfileQuestions.jsx")
+  import("./Pages/Profile/EditProfileQuestions.jsx")//
 );
 const PeopleFavorites = lazy(() =>
-  import("./Pages/Profile/PeopleFavorites.jsx")
+  import("./Pages/Profile/PeopleFavorites.jsx")//
 );
 // const SessionsList = lazy(() => import("./Pages/SessionTab/SessionsList.jsx"));
-const Settings = lazy(() => import("./Pages/Profile/Settings.jsx"));
+const Settings = lazy(() => import("./Pages/Profile/Settings.jsx"));//
 const AvailabilityCheck = lazy(() =>
-  import("./Pages/Profile/AvailabilityCheck.jsx")
+  import("./Pages/Profile/AvailabilityCheck.jsx")//
 );
 const AllFavoritesAvailability = lazy(() =>
-  import("./Pages/Profile/AllFavoritesAvailability.jsx")
+  import("./Pages/Profile/AllFavoritesAvailability.jsx")//
 );
 const AccountUpgrade = lazy(() =>
-  import("./Pages/AccountUpgrade/AccountUpgrade.jsx")
+  import("./Pages/AccountUpgrade/AccountUpgrade.jsx")//
 );
-const AllPartners = lazy(() => import("./Pages/Profile/AllPartners.jsx"));
+const AllPartners = lazy(() => import("./Pages/Profile/AllPartners.jsx"));//
 const LaunchTestSession = lazy(() =>
-  import("./Pages/Lauch-Test-Session/LauchTestSession.jsx")
+  import("./Pages/Lauch-Test-Session/LauchTestSession.jsx")//
 );
-const DeleteAccount = lazy(() => import('./Pages/DeleteAccount/DeleteAccount.jsx'));
-const TrailEnd = lazy(() => import('./Pages/TrailEnd/TrailEnd.jsx'));
-const VideoSDK = lazy(() => import('./Pages/Video-Session/VideoSDK.jsx'));
-const SessionEnded = lazy(() => import('./Pages/Video-Session/SessionEnded.jsx'));
-const ManageSubscription = lazy(() => import('./Pages/ManageSubscription/ManageSubscription.jsx'));
+const DeleteAccount = lazy(() => import('./Pages/DeleteAccount/DeleteAccount.jsx'));//
+const TrailEnd = lazy(() => import('./Pages/TrailEnd/TrailEnd.jsx'));//
+const VideoSDK = lazy(() => import('./Pages/Video-Session/VideoSDK.jsx'));//
+const SessionEnded = lazy(() => import('./Pages/Video-Session/SessionEnded.jsx'));//
+const ManageSubscription = lazy(() => import('./Pages/ManageSubscription/ManageSubscription.jsx'));//
 const PaymentSuccess = lazy(() => import('./Pages/PaymentSuccess/PaymentSuccess.jsx'));
-const AccountBanned = lazy(() => import('./Pages/AccountBanned/AccountBanned.jsx'));
-const DemoVideo  = lazy(() => import("./Pages/Video-Session/DemoVideo.jsx"));
+const AccountBanned = lazy(() => import('./Pages/AccountBanned/AccountBanned.jsx'));//
 
 
 function App() {
@@ -143,7 +138,7 @@ function App() {
           
           <Route path="/" element={<PrivateRoutes />}>
           {/* <Route path="/videoSDK" element={<VideoSDK />} /> */}
-          <Route path="/demovideo" element={<DemoVideo />} />
+          {/* <Route path="/demovideo" element={<DemoVideo />} /> */}
           <Route path="/session-ended" element={<SessionEnded />} />
             <Route
               path="dashboard"
