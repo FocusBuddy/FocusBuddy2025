@@ -125,7 +125,7 @@ export default function Pricing() {
             <BrownButtonOnWhite
               style={{
                 padding: "18px 28px",
-                fontSize: "18px",
+                fontSize: "17px",
               }}
               text={"Have More Questions? Visit Our FAQ"}
             />

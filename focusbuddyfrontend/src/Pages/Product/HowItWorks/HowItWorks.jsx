@@ -105,7 +105,7 @@ export default function HowItWorks() {
             <BrownButtonOnWhite
               style={{
                 padding: "18px",
-                fontSize: "20px",
+                fontSize: "17px",
                 borderRadius: "8px",
                 width: "70%",
               }}

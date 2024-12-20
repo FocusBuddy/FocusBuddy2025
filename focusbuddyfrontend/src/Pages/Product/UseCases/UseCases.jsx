@@ -156,7 +156,7 @@ export default function UseCases() {
             <Link className="text-formgray text-md xl:text-lg">
               <BrownButtonOnWhite
                 text={"Join for free"}
-                style={{ fontSize: "18px", padding: "14px", width: "100%" }}
+                style={{ fontSize: "17px", padding: "14px", width: "100%" }}
               />
             </Link>
           </div>
@@ -169,7 +169,7 @@ export default function UseCases() {
             <BrownButtonOnWhite
               style={{
                 padding: "18px 28px",
-                fontSize: "18px",
+                fontSize: "17px",
               }}
               text={"Have More Questions? Visit Our FAQ"}
             />

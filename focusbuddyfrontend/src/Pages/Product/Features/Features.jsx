@@ -45,7 +45,7 @@ export default function Features() {
             </p>
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-4">
+        <div className="mt-20 mb-10 lg:my-36 flex flex-col lg:flex-row gap-10 lg:gap-4">
           <div className="basis-1/2 flex flex-col self-center text-start bg-white rounded-lg p-10 shadow-2xl shadow-lightbg ">
             <h2 className="text-2xl font-medium text-greenbg">Effortless Session Access</h2>
             <p className="text-md xl:text-lg text-formgray mt-4 mb-8">
@@ -67,7 +67,7 @@ export default function Features() {
             </p>
           </div>
         </div> */}
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-4">
+        <div className="mt-20 flex flex-col-reverse lg:flex-row gap-10 lg:gap-4">
         <div className="my-8 lg:my-0 basis-1/2 self-center flex justify-center">
             <img src={quitemode} alt="quite mode image" loading="lazy" className="h-52 lg:h-60"/>
           </div>
