@@ -155,7 +155,7 @@ export default function Home() {
      
 
       <div className="flex flex-col-reverse lg:flex-row gap-10 lg:gap-4  px-6  md:max-w-screen-md lg:max-w-screen-xl mx-auto">
-        <div className="mt-6 lg:mt-0 basis-1/2 self-center">
+        <div className="mt-6 lg:mt-0 flex justify-center basis-1/2 self-center">
           <img src={adaptation} alt="time slot image" loading="lazy" className="h-64 md:h-72"/>
         </div>
         <div className="basis-1/2 flex flex-col self-center bg-white rounded-lg p-10 shadow-2xl shadow-lightbg ">
@@ -166,7 +166,7 @@ export default function Home() {
             tasks (like cleaning utensils) or conquering major endeavors (like
             completing thesis).
           </p>
-          <Link to={'/features'} className="w-[75%] -translate-y-0 hover:-translate-y-2 transition-all duration-500 ease-in-out"><BrownButtonOnWhite text={'Discover more features'} style={{padding: '16px', fontSize:'16px'}}/></Link>
+          <Link to={'/features'} className="w-full lg:w-[75%] -translate-y-0 hover:-translate-y-2 transition-all duration-500 ease-in-out"><BrownButtonOnWhite text={'Discover more features'} style={{padding: '16px', fontSize:'16px'}}/></Link>
         </div>
       </div>
 
@@ -176,7 +176,7 @@ export default function Home() {
           <p className="text-md xl:text-lg text-formgray mt-4 mb-8">
           Join forces with students, engineers, homemakers, and more from over 150 countries to achieve your goals. Easily find study buddies or coworkers and book sessions hassle-free!
           </p>
-          <Link to={'/features'} className="w-[75%] -translate-y-0 hover:-translate-y-2 transition-all duration-500 ease-in-out"><BrownButtonOnWhite text={'Discover more features'} style={{padding: '16px', fontSize:'16px'}}/></Link>
+          <Link to={'/features'} className="w-full lg:w-[75%] -translate-y-0 hover:-translate-y-2 transition-all duration-500 ease-in-out"><BrownButtonOnWhite text={'Discover more features'} style={{padding: '16px', fontSize:'16px'}}/></Link>
         </div>
         <div className="mt-6 lg:mt-0 basis-1/2 flex justify-center items-center">
               <img src={map} alt="people around world" loading="lazy" className="h-68 md:h-96"/>
@@ -193,7 +193,7 @@ export default function Home() {
           Effortlessly Achieve Tasks
           Schedule sessions, and join video calls directly from your browser, on desktop or mobile. No extra downloads needed.
           </p>
-          <Link to={'/features'} className="w-[75%] -translate-y-0 hover:-translate-y-2 transition-all duration-500 ease-in-out"><BrownButtonOnWhite text={'Discover more features'} style={{padding: '16px', fontSize:'16px'}}/></Link>
+          <Link to={'/features'} className="w-full lg:w-[75%] -translate-y-0 hover:-translate-y-2 transition-all duration-500 ease-in-out"><BrownButtonOnWhite text={'Discover more features'} style={{padding: '16px', fontSize:'16px'}}/></Link>
         </div>
       </div>
 
