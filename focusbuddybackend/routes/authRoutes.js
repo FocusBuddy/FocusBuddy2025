@@ -144,16 +144,17 @@ router.post("/local/checkregister", async (req, res) => {
 
 async function addMonths(date, months) {
   const newDate = new Date(date);
-  Math.floor(newDate.setMonth(newDate.getMonth() + months) / 1000);
-  return newDate;
+  newDate.setMonth(newDate.getMonth() + months);
+  return Math.floor(newDate.getTime() / 1000); // Convert to UNIX timestamp in seconds
 }
 
 async function getSubscriptionDetails() {
   const today = Math.floor(new Date()/1000);
-  const sevenDaysLater = today + 7 * 24 * 60 * 60;
+  const nextMonthDate = await addMonths(today, 1);
+  // const sevenDaysLater = today + 7 * 24 * 60 * 60;
 
   const plan_start_date = today;
-  const plan_end_date = sevenDaysLater;
+  const plan_end_date = nextMonthDate;
   const plan_status = "created";
   const plan_type = "free";
 
