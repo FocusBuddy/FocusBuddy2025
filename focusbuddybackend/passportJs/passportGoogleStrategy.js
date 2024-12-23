@@ -7,9 +7,9 @@ const generateUserProfileLink = require("../utils/generateUserProfileLink.js");
 
 
 async function addMonths(date, months) {
-  const newDate = new Date(date);
+  const newDate = new Date(date * 1000);
   newDate.setMonth(newDate.getMonth() + months);
-  return Math.floor(newDate.getTime() / 1000); // Convert to UNIX timestamp in seconds
+  return Math.floor(newDate.getTime() / 1000);
 }
 
 async function getSubscriptionDetails() {
