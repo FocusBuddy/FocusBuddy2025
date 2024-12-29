@@ -954,4 +954,74 @@ router.post('/verifypayment', async (req, res) => {
 });
 
 
+
+ router.post('/updateCardSubscription', async (req,res) => {
+    const {newPlan,userEmail,sub_id} = req.body;
+    try{
+      let newPlanID;
+      if(newPlan === 'plus_monthly'){
+        newPlanID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
+      }else{
+        newPlanID = process.env.RAZORPAY_YEARLY_PLAN_ID;
+      }
+  
+      const options = {
+        plan_id: newPlanID,
+        quantity: 1,
+        remaining_count: 50
+      };
+  
+      const updatedsubscription = await razorpay_instance.subscriptions.update(sub_id,options)
+      console.log("updatedsubscription",updatedsubscription)
+  
+     res.status(200).json({message: "subscription updated.",updatedsubscription})
+  
+    }catch(err){
+      console.log(err);
+      res.status(500).json({ message: "error while updating subscription." });
+    }
+  });
+  
+  
+  router.post('/updateUpiSubscription', async (req,res) => {
+    const {newPlan,userEmail,sub_id} = req.body;
+    try{
+  
+      let newPlanID;
+      if(newPlan === 'plus_monthly'){
+        newPlanID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
+      }else{
+        newPlanID = process.env.RAZORPAY_YEARLY_PLAN_ID;
+      }
+    
+  //cancel subscription at billing cycle end
+      const cancelsubscription = await razorpay_instance.subscriptions.cancel(sub_id,true)
+      console.log("updatedsubscription",cancelsubscription);
+  
+      const subscription = await razorpay_instance.subscriptions.create({
+        plan_id: newPlanID, 
+        total_count: 50, 
+        customer_notify: 1, 
+        start_at : cancelsubscription.current_end
+      });
+  
+      const save_sub = await userModel.findOneAndUpdate(
+        {email: userEmail},
+        {
+          $set: {
+            "subscription.mainsub_id": subscription.id,
+          },
+        },
+        { new: true }
+      )
+  
+     res.status(200).json({message: "subscription updated."})
+  
+    }catch(err){
+      console.log(err);
+      res.status(500).json({ message: "error while updating subscription." });
+    }
+  });
+
+
 module.exports = router;
