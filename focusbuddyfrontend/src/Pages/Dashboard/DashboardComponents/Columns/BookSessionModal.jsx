@@ -91,6 +91,7 @@ export default function BookSessionModal() {
       const events = [];
       const recurringTime = await recurringEvents(eventDate, eventTime, repeatType, endTimes);
       
+
       recurringTime.forEach((date) => {
         const start = moment(date).toDate();
         const end = moment(start)
@@ -102,10 +103,21 @@ export default function BookSessionModal() {
           start,
           end
         }
+
+        // Push the new event into the events array
+       events.push(newEvent);
         // setBulkEvents(bulkEvents.push(newEvent))
-        setBulkEvents((prevEvents) => [...prevEvents, newEvent]);
+        // setBulkEvents((prevEvents) => [...prevEvents, newEvent]);
       })
-      // setBulkEvents(events)
+      
+
+      // Now update the bulkEvents state with the new events
+  setBulkEvents((prevEvents) => {
+    const updatedEvents = [...prevEvents, ...events];
+    console.log(updatedEvents); // Log the updated events after the state update
+    return updatedEvents;
+  });
+
       console.log(bulkEvents);
       // recurringEventsArray
 
