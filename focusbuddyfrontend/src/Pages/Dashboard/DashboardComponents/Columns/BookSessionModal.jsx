@@ -112,11 +112,11 @@ export default function BookSessionModal() {
       
 
       // Now update the bulkEvents state with the new events
-  setBulkEvents((prevEvents) => {
-    const updatedEvents = [...prevEvents, ...events];
-    console.log(updatedEvents); // Log the updated events after the state update
-    return updatedEvents;
-  });
+      setBulkEvents((prevEvents) => {
+        const updatedEvents = [...prevEvents, ...events];
+        console.log(updatedEvents); // Log the updated events after the state update
+        return updatedEvents;
+      });
 
       console.log(bulkEvents);
       // recurringEventsArray
@@ -127,7 +127,7 @@ export default function BookSessionModal() {
       // console.log(moment(recurringTimes[0]).toDate())
       const newEvent = {
         duration: "50 minutes",
-        recurringEventsArray: bulkEvents,
+        recurringEventsArray: events,
         matchedPersonName: 'Matching...',
         matchedPersonFullName: 'Matching...',
         matchedPersonProfileLink: '',
