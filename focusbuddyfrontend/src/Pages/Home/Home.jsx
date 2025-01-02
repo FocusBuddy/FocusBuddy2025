@@ -7,8 +7,8 @@ import FAQComponent from "../../Components/FAQComponent/FAQComponent";
 import BrownButtonOnWhite from "../../Components/UI/BrownButtonOnWhite.jsx/BrownButtonOnWhite.jsx";
 import Loading from '../../Components/UI/LoadingComponent/Loading.jsx';
 // import homehero from '../../assets/home-hero.webp';
-import home from "../../assets/home.jpg";
-// import newhome from "../../assets/newhome.jpg";
+// import home from "../../assets/home.jpg";
+import newhome from "../../assets/newhome.jpg";
 import adaptation from '../../assets/adaptation.webp';
 import map from '../../assets/map.webp';
 import effortless from '../../assets/effortless.webp';
@@ -145,7 +145,7 @@ export default function Home() {
         </div>
         <div className="basis-1/2 rounded-e-xl">
           <img
-            src={home}
+            src={newhome}
             alt=""
             className="rounded-b-lg lg:rounded-e-lg h-full object-cover"
             loading="lazy"
