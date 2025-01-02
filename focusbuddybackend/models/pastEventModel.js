@@ -21,6 +21,7 @@ const pastEventSchema = new mongoose.Schema({
 
 
   async function getAttendanceScrore(foundUser) {
+    console.log("foundUser",foundUser.displayName);
     const no_of_meeting_missed = foundUser.missedMeetingCount;
     let attendance_score;
     if (no_of_meeting_missed === 0 || no_of_meeting_missed === 1) {
