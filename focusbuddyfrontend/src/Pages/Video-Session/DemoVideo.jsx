@@ -21,7 +21,7 @@ import { useLocation } from "react-router-dom";
 
 // const apiKey = 'mmhfdzb5evj2';
 const apiKey = import.meta.env.VITE_GETSTREAM_KEY;
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3Byb250by5nZXRzdHJlYW0uaW8iLCJzdWIiOiJ1c2VyL1NoYWFrX1RpIiwidXNlcl9pZCI6IlNoYWFrX1RpIiwidmFsaWRpdHlfaW5fc2Vjb25kcyI6NjA0ODAwLCJpYXQiOjE3Mjg4MDk3NzMsImV4cCI6MTcyOTQxNDU3M30.chanW8qpELiDfH3R9zBxuJRN9SjwBBSeVDwa3W0DtCg';
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJjdDl5Y2ZyaDRwcnIiLCJhcGlTZWNyZXQiOiJoeW4zNHdjcXF4a21oamQ3MzQzcWdyYmhxcmhiNm1mYXlta2piamN1Mm1rNms2djR4cmEydjlhY3FicjJ5N2RrIiwidG9rZW5Jc3N1ZSI6MTczNTkwMDM0NywiZXhwIjoxNzM1OTAzOTQ3LCJ1c2VyX2lkIjoiTk9BSF8uIiwicm9sZSI6ImFkbWluIn0.zWTwpvctaGJ2ukPshKshvcVgiaqt2zavmxtAMgBVst8';
 const userId = 'NOAH_.';
 const callId = 'IwXQbkelWfoS';
 
