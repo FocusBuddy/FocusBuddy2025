@@ -1,39 +1,39 @@
-// import {
-//   CallControls,
-//   CallingState,
-//   SpeakerLayout,
-//   StreamCall,
-//   StreamTheme,
-//   StreamVideo,
-//   StreamVideoClient,
-//   useCallStateHooks,
-//   User,
-// } from '@stream-io/video-react-sdk';
-// import VideoHeader from "./VideoHeader";
-// import VideoFooter from "./VideoFooter";
-// import ParticipantsState from "./ParticipantsState";
-// import '@stream-io/video-react-sdk/dist/css/styles.css';
-// import { useEffect, useState, useContext } from "react";
-// import { myContext } from "../../utils/PrivateRoutes";
-// import Loading from "../../Components/UI/LoadingComponent/Loading";
-// import { useLocation } from "react-router-dom";
-// // import './style.css';
+import {
+  CallControls,
+  CallingState,
+  SpeakerLayout,
+  StreamCall,
+  StreamTheme,
+  StreamVideo,
+  StreamVideoClient,
+  useCallStateHooks,
+  User,
+} from '@stream-io/video-react-sdk';
+import VideoHeader from "./VideoHeader";
+import VideoFooter from "./VideoFooter";
+import ParticipantsState from "./ParticipantsState";
+import '@stream-io/video-react-sdk/dist/css/styles.css';
+import { useEffect, useState, useContext } from "react";
+import { myContext } from "../../utils/PrivateRoutes";
+import Loading from "../../Components/UI/LoadingComponent/Loading";
+import { useLocation } from "react-router-dom";
+// import './style.css';
 
-// // const apiKey = 'mmhfdzb5evj2';
-// const apiKey = import.meta.env.VITE_GETSTREAM_KEY;
-// // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3Byb250by5nZXRzdHJlYW0uaW8iLCJzdWIiOiJ1c2VyL1NoYWFrX1RpIiwidXNlcl9pZCI6IlNoYWFrX1RpIiwidmFsaWRpdHlfaW5fc2Vjb25kcyI6NjA0ODAwLCJpYXQiOjE3Mjg4MDk3NzMsImV4cCI6MTcyOTQxNDU3M30.chanW8qpELiDfH3R9zBxuJRN9SjwBBSeVDwa3W0DtCg';
-// // const userId = 'Shaak_Ti';
-// // const callId = 'IwXQbkelWfoS';
+// const apiKey = 'mmhfdzb5evj2';
+const apiKey = import.meta.env.VITE_GETSTREAM_KEY;
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3Byb250by5nZXRzdHJlYW0uaW8iLCJzdWIiOiJ1c2VyL1NoYWFrX1RpIiwidXNlcl9pZCI6IlNoYWFrX1RpIiwidmFsaWRpdHlfaW5fc2Vjb25kcyI6NjA0ODAwLCJpYXQiOjE3Mjg4MDk3NzMsImV4cCI6MTcyOTQxNDU3M30.chanW8qpELiDfH3R9zBxuJRN9SjwBBSeVDwa3W0DtCg';
+const userId = 'NOAH_.';
+const callId = 'IwXQbkelWfoS';
 
-// // const user = {
-// //   id: userId,
-// //   name: 'Oliver',
-// //   image: 'https://getstream.io/random_svg/?id=oliver&name=Oliver',
-// // };
+const user = {
+  id: userId,
+  name: 'Oliver',
+  image: 'https://getstream.io/random_svg/?id=oliver&name=Oliver',
+};
 
-// // const client = new StreamVideoClient({ apiKey, user, token });
-// // const call = client.call('default', callId);
-// // call.join({ create: true });
+const client = new StreamVideoClient({ apiKey, user, token });
+const call = client.call('default', callId);
+call.join({ create: true });
 
 // export default function App() {
 

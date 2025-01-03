@@ -138,7 +138,7 @@ function App() {
           
           <Route path="/" element={<PrivateRoutes />}>
           {/* <Route path="/videoSDK" element={<VideoSDK />} /> */}
-          {/* <Route path="/demovideo" element={<DemoVideo />} /> */}
+          <Route path="/demovideo" element={<DemoVideo />} />
           <Route path="/session-ended" element={<SessionEnded />} />
             <Route
               path="dashboard"
