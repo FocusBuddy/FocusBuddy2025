@@ -173,7 +173,7 @@ export default function SignupProfile() {
             <div className="relative">
               <input
                 value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => setFirstName(e.target.value.replace(/\./g, ''))}
                 type="text"
                 required
                 id="fname_floating_outlined"
@@ -193,7 +193,7 @@ export default function SignupProfile() {
             <div className="relative">
               <input
                 value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                onChange={(e) => setLastName(e.target.value.replace(/\./g, ''))}
                 type="text"
                 required
                 id="lname_floating_outlined"

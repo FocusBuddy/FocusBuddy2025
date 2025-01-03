@@ -52,8 +52,8 @@ passport.use(
           // Storing a string
           // localStorage.setItem("automaticallyPopUpWelcome", true);
 
-          const firstName = profile.name.givenName.split(" ").join('');
-          const lastName = profile.name.familyName.split(" ").join('');
+          const firstName = profile.name.givenName.split(" ").join('').replace(/\./g,'');
+          const lastName = profile.name.familyName.split(" ").join('').replace(/\./g,'');
 
           const link = await generateUserProfileLink(firstName,lastName);
 

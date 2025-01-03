@@ -70,7 +70,7 @@ const SessionEnded = lazy(() => import('./Pages/Video-Session/SessionEnded.jsx')
 const ManageSubscription = lazy(() => import('./Pages/ManageSubscription/ManageSubscription.jsx'));//
 const PaymentSuccess = lazy(() => import('./Pages/PaymentSuccess/PaymentSuccess.jsx'));
 const AccountBanned = lazy(() => import('./Pages/AccountBanned/AccountBanned.jsx'));//
-const DemoVideo = lazy(() => import('./Pages/Video-Session/DemoVideo.jsx'));//
+// const DemoVideo = lazy(() => import('./Pages/Video-Session/DemoVideo.jsx'));//
 
 
 function App() {
@@ -139,7 +139,7 @@ function App() {
           
           <Route path="/" element={<PrivateRoutes />}>
           {/* <Route path="/videoSDK" element={<VideoSDK />} /> */}
-          <Route path="/demovideo" element={<DemoVideo />} />
+          {/* <Route path="/demovideo" element={<DemoVideo />} /> */}
           <Route path="/session-ended" element={<SessionEnded />} />
             <Route
               path="dashboard"
