@@ -31,6 +31,8 @@ const user = {
   image: 'https://getstream.io/random_svg/?id=oliver&name=Oliver',
 };
 
+
+
 const client = new StreamVideoClient({ apiKey, user, token });
 const call = client.call('default', callId);
 call.join({ create: true });
