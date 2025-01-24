@@ -59,13 +59,7 @@ export default function BookSession({
     setIsPastDate(selectedDate.isBefore(now, "day"));
   }, [eventDate]);
 
-  useEffect(() => {
-    if(repeatType == 'Do not repeat'){
-      setIsDoNotRepeat(true);
-    }else{
-      setIsDoNotRepeat(false)
-    }
-  },[repeatType])
+  
 
   return (
     <>
