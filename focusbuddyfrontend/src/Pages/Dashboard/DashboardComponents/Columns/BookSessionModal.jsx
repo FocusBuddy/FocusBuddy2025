@@ -6,6 +6,7 @@ import { useState , useContext } from "react";
 import { myContext } from "../../../../utils/PrivateRoutes";
 import postEvents from "../../../../utils/postEvents/postEvents";
 import BookSession from "../../../../Components/UI/BookSession/BookSession";
+import recurringEvents from "../../../../utils/recurringEvents/recurringEvents";
 
 export default function BookSessionModal() {
   const {
@@ -24,6 +25,11 @@ export default function BookSessionModal() {
   const [openModal, setOpenModal] = useState(false);
   const [eventDate, setEventDate] = useState(moment().format("YYYY-MM-DD"));
   const [eventTime, setEventTime] = useState("12:00am");
+  // const [eventLength, setEventLength] = useState("30 minutes");
+  const [repeatType,setRepeatType] = useState("Do not repeat")
+  const [endTimes,setEndTimes] = useState("");
+  // const [recurringEventStartTimes,setRecurringEventStartTimes] = useState([]);
+  const [bulkEvents,setBulkEvents] = useState([]);
 
   
   function onCloseModal() {
@@ -60,19 +66,114 @@ export default function BookSessionModal() {
     e.preventDefault();
     console.log(
       eventDate,
+      // eventLength,
       eventTime,
+      // activeEventTab,
       activePartnerTab,
       quiteMode,
+      repeatType, endTimes
     );
 
+    // setEventLength("30 minutes");
     setEventTime('12:00am');
+    // setActiveEventTab('deskEvent');
     setActivePartnerTab('anyonePartner');
     setQuiteMode(false);
+    setRepeatType("Do not repeat");
+
+    const getRecurringTime = async () => {
+      const events = [];
+      const recurringTime = await recurringEvents(eventDate, eventTime, repeatType, endTimes);
+      
+
+      recurringTime.forEach((date) => {
+        const start = moment(date).toDate();
+        const end = moment(start)
+        .add(50, "minutes")
+        .toDate();
+
+        const newEvent = {
+          myID: crypto.randomUUID(),
+          start,
+          end
+        }
+
+        // Push the new event into the events array
+       events.push(newEvent);
+        // setBulkEvents(bulkEvents.push(newEvent))
+        // setBulkEvents((prevEvents) => [...prevEvents, newEvent]);
+      })
+      
+
+      // Now update the bulkEvents state with the new events
+      setBulkEvents((prevEvents) => {
+        const updatedEvents = [...prevEvents, ...events];
+        console.log(updatedEvents); // Log the updated events after the state update
+        return updatedEvents;
+      });
+
+      console.log(bulkEvents);
+      // recurringEventsArray
 
   
-    // if (repeatType !== 'Do not repeat') {
-    //   getRecurringTime();
-    // } else {
+
+      // console.log(recurringTimes[0]);
+      // console.log(moment(recurringTimes[0]).toDate())
+      const newEvent = {
+        duration: "50 minutes",
+        recurringEventsArray: events,
+        matchedPersonName: 'Matching...',
+        matchedPersonFullName: 'Matching...',
+        matchedPersonProfileLink: '',
+        matchedPersonProfilePic: `https://res.cloudinary.com/dnbiuntjt/image/upload/v1732370053/search_rydjkq.jpg`,
+        name: userProfile.givenName + ' ' + userProfile.familyName[0],
+      fullName: userProfile.givenName + ' ' + userProfile.familyName,
+        profilePic: userProfile.profilePic,
+        profileLink: userProfile.userProfileLink,
+        // taskType: activeEventTab,
+        partner: activePartnerTab,
+        quiteModeOn: quiteMode,
+        callID: crypto.randomUUID(),
+      callJoin: 0,
+      otherPersonMissedCall: false
+      };
+
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/events/recurring_events`,{
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body:  JSON.stringify(newEvent)
+      });
+      const data = await response.json();
+      console.log(data);
+      if(response.ok){
+            setOpenModal(false);
+          setIsSuccess(true);
+          setFilteredEvents([...filteredEvents, ...data.updatedEvent])
+            setIsThereError(false);
+            setWaiting(false);
+            if(data.updatedEvent || data.firstUserChange){
+              console.log('1')
+              setFilteredEvents([...filteredEvents, data.updatedEvent]);
+            }else if(data.firstUserChange){
+              console.log('2')
+              setFilteredEvents([...filteredEvents , data.firstUserChange]);
+            }else{
+              console.log('3')
+              setFilteredEvents([...filteredEvents, newEvent]);
+            }
+      }
+      setOpenModal(false);
+          setIsSuccess(false);
+          // setWaiting(false);
+          // setIsThereTextError(true);
+
+    };
+  
+    if (repeatType !== 'Do not repeat') {
+      getRecurringTime();
+    } else {
     
       const startDateTime = moment(
         `${eventDate} ${eventTime}`,
@@ -138,7 +239,7 @@ export default function BookSessionModal() {
       setIsSuccess(true);
 
 
-    // }
+    }
   }
   return (
     <>
@@ -166,7 +267,10 @@ export default function BookSessionModal() {
           setEventTime={setEventTime}
           handleToggleChange={handleToggleChange}
           handleModalSubmit={handleModalSubmit}
-          />
+          repeatType={repeatType}
+          setRepeatType={setRepeatType}
+          endTimes={endTimes}
+          setEndTimes={setEndTimes}/>
         </Modal.Body>
       </Modal>
       {/* <Tooltip id="my-tooltip" /> */}

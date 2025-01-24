@@ -884,5 +884,250 @@ router.post("/automaticallypopupchecklist", async(req,res) => {
 })
 
 
+router.post('/create-subscription',async (req,res) => {
+  const {plan_type,userEmail} = req.body;
+  try{
+
+    // let planID;
+    // switch (plan_type) {
+    //   case "plus_monthly":
+    //     planID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
+    //     break;
+    //   case "plus_yearly":
+    //     planID = process.env.RAZORPAY_YEARLY_PLAN_ID;
+    //     break;
+    //   default:
+    //     planID = 'free';
+    //     break;
+    // }
+    const subscription = await razorpay_instance.subscriptions.create({
+      // plan_id: 'plan_OtPbXyiQAvQ979', //focusbuddy_plus_monthly
+      plan_id: process.env.RAZORPAY_MONTHLY_PLAN_ID, //focusbuddy_plus_monthly
+      total_count: 50, // 0 for unlimited billing cycles
+      customer_notify: 1, // Send email notification to the customer
+    });
+
+    const save_sub = await userModel.findOneAndUpdate(
+      {email: userEmail},
+      {
+        $set: {
+          "subscription.upgradesub_id": subscription.id,
+        },
+      },
+      { new: true }
+    )
+
+      res.json({ subscription: subscription });
+
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: "error while  creating subscription." });
+  }
+})
+
+router.post('/verifypayment', async (req, res) => {
+  try{
+  const { payment_id, razorpay_signature, userEmail } = req.body;
+
+  // Replace with your Razorpay key secret
+  const key_secret = process.env.RAZORPAY_KEY_SECRET;
+  const subID = await userModel.findOne({email: userEmail});
+
+  // Create the HMAC SHA256 signature
+  const generated_signature = crypto
+    .createHmac('sha256', key_secret)
+    .update(`${payment_id}|${subID.subscription.upgradesub_id}`)
+    .digest('hex');
+
+  // Compare the generated signature with the signature received from Razorpay
+  if (generated_signature === razorpay_signature) {
+    // Payment is authentic
+    res.json({ success: true, message: 'Payment verified successfully' });
+  } else {
+    // Payment verification failed
+    res.json({ success: false, message: 'Payment verification failed' });
+  }
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: "error while verifying payment." });
+  }
+});
+
+router.post('/getSubcription', async (req,res) => {
+  const {sub_id,pay_id} = req.body;
+  let activeSubPayment;
+  console.log(sub_id,pay_id);
+  try{
+    const activeSub = await razorpay_instance.subscriptions.fetch(sub_id);
+    if(activeSub.payment_method === "card"){
+      activeSubPayment = await razorpay_instance.payments.fetch(pay_id,{"expand[]":"card"});
+    }else{
+      activeSubPayment = await razorpay_instance.payments.fetch(pay_id)
+    }
+
+    const paymentInvoice = await razorpay_instance.invoices.all();
+    res.status(200).json({activeSub,activeSubPayment,paymentInvoice});
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: "error while verifying payment." });
+  }
+})
+
+
+router.post('/cancelSubcription',async (req,res) =>{
+  const {sub_id, userEmail} = req.body;
+  try{
+
+    const pausesub = await razorpay_instance.subscriptions.pause(sub_id,{
+      pause_at : 'now'
+    })
+    console.log(pausesub);
+
+      const userupdate = await userModel.findOneAndUpdate(
+        {email: userEmail},
+        {
+          $set: {
+            "subscription.planStatus": pausesub.status,
+            "subscription.cancel_at_cycle_end": true,
+          },
+        },
+        { new: true }
+      ) 
+    res.status(200).json({userupdate});
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: "error while canceling subscription." });
+  }
+})
+
+
+router.post('/renewSubscription',async (req,res) => {
+  const {userEmail,currentSubEnd} = req.body;
+  try{
+    const resumesub = await razorpay_instance.subscriptions.resume(currentSubEnd,{
+      resume_at : 'now'
+    })
+    console.log("resumesub",resumesub)
+
+    const save_sub = await userModel.findOneAndUpdate(
+      {email: userEmail},
+      {
+        $set: {
+          "subscription.planStatus": resumesub.status,
+          "subscription.cancel_at_cycle_end": false
+        },
+      },
+      { new: true }
+    )
+
+      res.json({ userupdate: save_sub });
+
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: "error while  renewing subscription." });
+  }
+})
+
+
+//  router.post('/updateCardSubscription', async (req,res) => {
+//     const {newPlan,userEmail,sub_id} = req.body;
+//     try{
+//       let newPlanID;
+//       if(newPlan === 'plus_monthly'){
+//         newPlanID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
+//       }else{
+//         newPlanID = process.env.RAZORPAY_YEARLY_PLAN_ID;
+//       }
+  
+//       const options = {
+//         plan_id: newPlanID,
+//         quantity: 1,
+//         remaining_count: 50
+//       };
+  
+//       const updatedsubscription = await razorpay_instance.subscriptions.update(sub_id,options)
+//       console.log("updatedsubscription",updatedsubscription)
+  
+//      res.status(200).json({message: "subscription updated.",updatedsubscription})
+  
+//     }catch(err){
+//       console.log(err);
+//       res.status(500).json({ message: "error while updating subscription." });
+//     }
+//   });
+  
+  
+//   router.post('/updateUpiSubscription', async (req,res) => {
+//     const {newPlan,userEmail,sub_id} = req.body;
+//     try{
+  
+//       let newPlanID;
+//       if(newPlan === 'plus_monthly'){
+//         newPlanID = process.env.RAZORPAY_MONTHLY_PLAN_ID;
+//       }else{
+//         newPlanID = process.env.RAZORPAY_YEARLY_PLAN_ID;
+//       }
+    
+//   //cancel subscription at billing cycle end
+//       const cancelsubscription = await razorpay_instance.subscriptions.cancel(sub_id,true)
+//       console.log("updatedsubscription",cancelsubscription);
+  
+//       const subscription = await razorpay_instance.subscriptions.create({
+//         plan_id: newPlanID, 
+//         total_count: 50, 
+//         customer_notify: 1, 
+//         start_at : cancelsubscription.current_end
+//       });
+  
+//       const save_sub = await userModel.findOneAndUpdate(
+//         {email: userEmail},
+//         {
+//           $set: {
+//             "subscription.mainsub_id": subscription.id,
+//           },
+//         },
+//         { new: true }
+//       )
+  
+//      res.status(200).json({message: "subscription updated."})
+  
+//     }catch(err){
+//       console.log(err);
+//       res.status(500).json({ message: "error while updating subscription." });
+//     }
+//   });
+
+
+  cron.schedule('0 0 1 * *', async () => {
+    console.log('Running monthly task to cancel paused subscriptions...');
+  
+    // Get today's date without the time part
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const today_in_seconds = Math.floor(today.getTime() / 1000);
+  
+    try {
+      // Query to find users with paused subscription and planEndDate less than today
+      const users = await userModel.find({
+        'subscription.planStatus': 'pause',
+        'subscription.planEndDate': { $lt: today_in_seconds },
+      });
+  
+      console.log(users);
+  
+      // Loop through the users and cancel subscriptions
+      for (const user of users) {
+        try {
+          // Cancel the subscription using Razorpay
+          const cancel = await razorpay_instance.subscriptions.cancel(user.mainsub_id,false);
+          console.log(`Subscription cancelled for user: ${user.displayName}`);
+        } catch (cancelError) {
+          console.error(`Error cancelling subscription for user: ${user.displayName}`, cancelError);
+        }
+      }
+    } catch (error) {
+      console.error('Error finding paused users or cancelling subscriptions:', error);
+    }
+  });
 
 module.exports = router;

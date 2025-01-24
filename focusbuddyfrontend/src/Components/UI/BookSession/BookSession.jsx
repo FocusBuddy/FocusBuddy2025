@@ -40,6 +40,12 @@ export default function BookSession({
   setEventDate,
   eventTime,
   setEventTime,
+  // eventLength,
+  // setEventLength,
+  repeatType,
+  setRepeatType,
+  endTimes,
+  setEndTimes,
   handleToggleChange,
   handleModalSubmit,
 }) {
@@ -47,8 +53,8 @@ export default function BookSession({
 
   const [timeOptions, setTimeOptions] = useState(generateTimeOptions(eventDate));
   const [isPastDate, setIsPastDate] = useState(false);
-  // const [showAdvance, setShowAdvance] = useState(false);
-  // const [isDoNotRepeat,setIsDoNotRepeat] = useState(false);
+  const [showAdvance, setShowAdvance] = useState(false);
+  const [isDoNotRepeat,setIsDoNotRepeat] = useState(false);
 
 
   useEffect(() => {
@@ -59,7 +65,13 @@ export default function BookSession({
     setIsPastDate(selectedDate.isBefore(now, "day"));
   }, [eventDate]);
 
-  
+  useEffect(() => {
+    if(repeatType == 'Do not repeat'){
+      setIsDoNotRepeat(true);
+    }else{
+      setIsDoNotRepeat(false)
+    }
+  },[repeatType])
 
   return (
     <>
@@ -268,6 +280,96 @@ export default function BookSession({
           </div>
         </div>
 
+{
+  !showAdvance &&
+
+        <div
+          onClick={() => setShowAdvance(true)}
+          className="w-fit mx-auto pt-6 flex gap-2 justify-center font-medium items-center text-textcolor"
+        >
+          <IoMdArrowDropdown />
+          <p className="text-md cursor-pointer">Show advanced options</p>
+        </div>
+        }
+        {
+          showAdvance 
+          ?
+          <div className="pt-6 flex gap-2">
+          <div className="basis-1/2">
+            <div className="mb-1 block">
+              <Label
+                htmlFor="repeatType"
+                value="Repeat"
+                className="text-md font-normal"
+              />
+            </div>
+            <Select
+              id="repeatType"
+              name="repeatType"
+              value={repeatType}
+              onChange={(e) => setRepeatType(e.target.value)}
+              style={{
+                border: "1px solid #008080",
+                borderRadius: "0px",
+                backgroundColor: "white",
+              }}
+              required
+            >
+              <option>Do not repeat</option>
+              <option>Repeat weekly</option>
+              <option>Repeat daily</option>
+            </Select>
+          </div>
+          <div className="basis-1/2">
+            <div className="mb-1 block">
+              <Label
+                htmlFor="endTimes"
+                value="End after"
+                className="text-md font-normal"
+              />
+            </div>
+            <Select
+            disabled={isDoNotRepeat}
+              id="endTimes"
+              name="endTimes"
+              value={endTimes}
+              onChange={(e) => setEndTimes(e.target.value)}
+              style={{
+                border: "1px solid #008080",
+                borderRadius: "0px",
+                backgroundColor: "white",
+              }}
+              className={`${isDoNotRepeat ? 'bg-bordercolor border border-formgray':null}`}
+              required
+            >
+              {isDoNotRepeat ? <option> </option>: null}
+              <option value={1}>1 Times</option>
+              <option value={2}>2 Times</option>
+              <option value={3}>3 Times</option>
+              <option value={4}>4 Times</option>
+              <option value={5}>5 Times</option>
+              <option value={6}>6 Times</option>
+              <option value={7}>7 Times</option>
+              <option value={8}>8 Times</option>
+              <option value={9}>9 Times</option>
+              <option value={10}>10 Times</option>
+            </Select>
+          </div>
+        </div>
+        :
+        null
+        }
+        
+        {
+          showAdvance &&
+          <div
+          onClick={() => setShowAdvance(false)}
+          className="w-fit mx-auto pt-6 flex gap-2 justify-center font-medium items-center text-textcolor"
+        >
+          <IoMdArrowDropup/>
+          <p className="text-md cursor-pointer">Hide advanced options</p>
+        </div>
+        }
         
         <div id="modalFormBookButton" className="w-full mt-10">
           <button

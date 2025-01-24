@@ -70,6 +70,7 @@ const SessionEnded = lazy(() => import('./Pages/Video-Session/SessionEnded.jsx')
 const ManageSubscription = lazy(() => import('./Pages/ManageSubscription/ManageSubscription.jsx'));//
 const AccountBanned = lazy(() => import('./Pages/AccountBanned/AccountBanned.jsx'));//
 // const DemoVideo = lazy(() => import('./Pages/Video-Session/DemoVideo.jsx'));//
+const PaymentSuccess = lazy(() => import('./Pages/PaymentSuccess/PaymentSuccess.jsx'));
 
 
 function App() {
@@ -150,7 +151,7 @@ function App() {
               element={<LaunchTestSession />}
             />
             <Route path="/account/upgrade" element={<AccountUpgrade />} />
-            {/* <Route path="/account/plan/success" element={<PaymentSuccess />} /> */}
+            <Route path="/account/plan/success" element={<PaymentSuccess />} />
             <Route path="/account/plan/manage-subscription" element={<ManageSubscription />} />
             <Route path="/account/delete" element={<DeleteAccount />} />
             <Route
