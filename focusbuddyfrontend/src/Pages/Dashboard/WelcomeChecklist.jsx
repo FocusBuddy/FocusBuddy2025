@@ -22,9 +22,6 @@ export default function WelcomeCheckList({
   
   const [eventDate, setEventDate] = useState(moment().format("YYYY-MM-DD"));
   const [eventTime, setEventTime] = useState("12:00am");
-  // const [eventLength, setEventLength] = useState("50 minutes");
-  const [repeatType,setRepeatType] = useState("Do not repeat")
-  const [endTimes,setEndTimes] = useState("")
 
   const {
     userProfile,
@@ -56,13 +53,6 @@ export default function WelcomeCheckList({
   };
 
   function handleTabSetting(tabSetting) {
-    // if (tabSetting === "deskEvent") {
-    //   setActiveEventTab("deskEvent");
-    // } else if (tabSetting === "movingEvent") {
-    //   setActiveEventTab("movingEvent");
-    // } else if (tabSetting === "anythingEvent") {
-    //   setActiveEventTab("anythingEvent");
-    // } else 
     if (tabSetting === "anyonePartner") {
       setActivePartnerTab("anyonePartner");
     } else if (tabSetting === "favoritePartner") {
@@ -514,10 +504,7 @@ export default function WelcomeCheckList({
                   handleModalSubmit={handleModalSubmit}
                   setActiveTab={setActiveTab} 
                   setBookingDone={setBookingDone}
-                  repeatType={repeatType}
-          setRepeatType={setRepeatType}
-          endTimes={endTimes}
-          setEndTimes={setEndTimes}/>
+                  />
                   {/* <div className="my-8 rounded-b">
                     <button
                       className="w-full bg-textcolor py-3 md:py-4 text-md hover:bg-darkbrown text-white rounded-md transition-all duration-500 ease-in-out"
