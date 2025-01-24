@@ -68,7 +68,6 @@ const TrailEnd = lazy(() => import('./Pages/TrailEnd/TrailEnd.jsx'));//
 const VideoSDK = lazy(() => import('./Pages/Video-Session/VideoSDK.jsx'));//
 const SessionEnded = lazy(() => import('./Pages/Video-Session/SessionEnded.jsx'));//
 const ManageSubscription = lazy(() => import('./Pages/ManageSubscription/ManageSubscription.jsx'));//
-const PaymentSuccess = lazy(() => import('./Pages/PaymentSuccess/PaymentSuccess.jsx'));
 const AccountBanned = lazy(() => import('./Pages/AccountBanned/AccountBanned.jsx'));//
 // const DemoVideo = lazy(() => import('./Pages/Video-Session/DemoVideo.jsx'));//
 
@@ -151,7 +150,7 @@ function App() {
               element={<LaunchTestSession />}
             />
             <Route path="/account/upgrade" element={<AccountUpgrade />} />
-            <Route path="/account/plan/success" element={<PaymentSuccess />} />
+            {/* <Route path="/account/plan/success" element={<PaymentSuccess />} /> */}
             <Route path="/account/plan/manage-subscription" element={<ManageSubscription />} />
             <Route path="/account/delete" element={<DeleteAccount />} />
             <Route
