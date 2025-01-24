@@ -113,7 +113,7 @@ export default function Home() {
       setShowMessage(false);
     }, 2000);
   }
-
+console.log(`${import.meta.env.VITE_BACKEND_PRO_URL}`);
 
   if (loading) {
     return <Loading/>;
