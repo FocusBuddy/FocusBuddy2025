@@ -132,7 +132,10 @@ export default function ManageSubscription() {
 
   console.log(subDetails, paymentDetails);
 
-  if (!subDetails && !paymentDetails && !paymentInvoices) return <Loading />;
+  if (userProfile.subscription.planType !== "free" && (!subDetails && !paymentDetails && !paymentInvoices)) {
+    return <Loading />;
+  }
+  
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
