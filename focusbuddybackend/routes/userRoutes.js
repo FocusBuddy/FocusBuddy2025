@@ -372,7 +372,7 @@ router.post("/reset-password-request", async (req, res) => {
 
     var mailOptions = {
       from: "FocusBuddy <rupeshchincholkar14@gmail.com>",
-      to: "rupeshchincholkar07@gmail.com",
+      to: email,
       subject: "Reset your password for FocusBuddy",
       //   text: `That was easy!: http://localhost:5173/reset-password/${findUser.googleId}/${sdkJWT}`,
       html: `
