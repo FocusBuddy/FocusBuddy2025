@@ -64,15 +64,15 @@ export default function BookSessionModal() {
 
   function handleModalSubmit(e) {
     e.preventDefault();
-    console.log(
-      eventDate,
-      // eventLength,
-      eventTime,
-      // activeEventTab,
-      activePartnerTab,
-      quiteMode,
-      repeatType, endTimes
-    );
+    // console.log(
+    //   eventDate,
+    //   // eventLength,
+    //   eventTime,
+    //   // activeEventTab,
+    //   activePartnerTab,
+    //   quiteMode,
+    //   repeatType, endTimes
+    // );
 
     // setEventLength("30 minutes");
     setEventTime('12:00am');
@@ -108,11 +108,11 @@ export default function BookSessionModal() {
       // Now update the bulkEvents state with the new events
       setBulkEvents((prevEvents) => {
         const updatedEvents = [...prevEvents, ...events];
-        console.log(updatedEvents); // Log the updated events after the state update
+        // console.log(updatedEvents); // Log the updated events after the state update
         return updatedEvents;
       });
 
-      console.log(bulkEvents);
+      // console.log(bulkEvents);
       // recurringEventsArray
 
   
@@ -146,7 +146,7 @@ export default function BookSessionModal() {
         body:  JSON.stringify(newEvent)
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if(response.ok){
             setOpenModal(false);
           setIsSuccess(true);
@@ -154,13 +154,13 @@ export default function BookSessionModal() {
             setIsThereError(false);
             setWaiting(false);
             if(data.updatedEvent || data.firstUserChange){
-              console.log('1')
+              // console.log('1')
               setFilteredEvents([...filteredEvents, data.updatedEvent]);
             }else if(data.firstUserChange){
-              console.log('2')
+              // console.log('2')
               setFilteredEvents([...filteredEvents , data.firstUserChange]);
             }else{
-              console.log('3')
+              // console.log('3')
               setFilteredEvents([...filteredEvents, newEvent]);
             }
       }
@@ -184,7 +184,7 @@ export default function BookSessionModal() {
         .add(50, "minutes")
         .toDate();
   
-      console.log(startDateTime, endDateTime);
+      // console.log(startDateTime, endDateTime);
       const eventID = crypto.randomUUID();
   
 
@@ -212,10 +212,10 @@ export default function BookSessionModal() {
       otherPersonMissedCall: false
       };
   
-      console.log(newEvent);
+      // console.log(newEvent);
       const addEvent = async () => {
         const response = await postEvents(newEvent);
-        console.log(response);
+        // console.log(response);
         if(response.message === 'success'){
           if(response.updatedEvent || response.firstUserChange){
             setFilteredEvents([...filteredEvents, response.updatedEvent]);

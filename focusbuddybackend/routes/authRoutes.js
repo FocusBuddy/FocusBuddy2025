@@ -170,7 +170,7 @@ router.post(
   "/local/register",
   upload.single("profilePhoto"),
   async (req, res) => {
-    console.log(req.file, req.body);
+    console.log(req.file, "local register",email,profilePic,oldPic,firstname,lastname,state,district);
     try {
       // console.log(req.body);
       const { email, password, profilePic, oldPic, firstname, lastname, state, district } =

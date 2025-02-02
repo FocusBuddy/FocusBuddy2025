@@ -37,7 +37,7 @@ export default function AvailabilityCheck() {
   //   setQuiteMode(!quiteMode)
   // }
 
-  console.log("quitemode", quiteMode);
+  // console.log("quitemode", quiteMode);
 
   const tabSelected = {
     backgroundColor: "#008080",
@@ -63,7 +63,7 @@ export default function AvailabilityCheck() {
     let filteredUser = userProfile.favorites.filter(
       (fav) => fav.name === name.split("-").join(" ")
     );
-    console.log(filteredUser);
+    // console.log(filteredUser);
     setFavImg(filteredUser[0].link);
   }, []);
 

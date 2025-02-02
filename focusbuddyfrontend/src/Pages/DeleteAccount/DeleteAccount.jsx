@@ -22,7 +22,7 @@ const [success,setSuccess] = useState(false);
                 body: JSON.stringify({userToDeleteEmail: userProfile.email})
             });
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             if(response.ok){
                 setSuccess(true);
         setTimeout(() => {

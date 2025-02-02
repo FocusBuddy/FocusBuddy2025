@@ -98,7 +98,7 @@ const DashboardNavbar = () => {
         navigate("/");
       } else {
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
       }
     } catch (err) {
       console.log(err);
@@ -107,10 +107,10 @@ const DashboardNavbar = () => {
   };
 // console.log(location.pathname);
 
-console.log("WCLM",welcomeCheckListModal,"OCLA",openChecklistAutomatically,"local",localStorage.getItem("automaticallyPopUpWelcome"))
+// console.log("WCLM",welcomeCheckListModal,"OCLA",openChecklistAutomatically,"local",localStorage.getItem("automaticallyPopUpWelcome"))
 
 const handleClose = async () => {
-  console.log("handle close")
+  // console.log("handle close")
   setWelcomeCheckListModal(false);
   // setCloseCheckList(true);
   setOpenChecklistAutomatically(false);
@@ -124,7 +124,7 @@ const handleClose = async () => {
       });
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if (response.ok) {
         // setUserProfile(data.updateduser);

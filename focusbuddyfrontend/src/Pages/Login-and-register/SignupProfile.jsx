@@ -61,7 +61,7 @@ export default function SignupProfile() {
         "POST",
         formData
       );
-      console.log(response);
+      // console.log(response);
       setSelectedFile(response.profilePic);
       setOldPic(response.profilePic);
     } catch (err) {
@@ -86,7 +86,7 @@ export default function SignupProfile() {
     setSelectedState("");
     setDistrictsArr([]);
     setDistrict("");
-    console.log(email, password, selectedFile,selectedState,district, agree, firstName, lastName);
+    // console.log(email, password, selectedFile,selectedState,district, agree, firstName, lastName);
 
       const userDetails = {
         email,
@@ -109,7 +109,7 @@ export default function SignupProfile() {
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setSelectedFile(data.profilePic);
       if (response.ok) {
         setLoading(false);

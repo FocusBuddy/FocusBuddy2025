@@ -22,7 +22,7 @@ export default function EditNameModal({
 
   const handleAddLocation = async (e) => {
     e.preventDefault();
-    console.log(selectedState, district);
+    // console.log(selectedState, district);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_DEV_URL}/api/user/add_user_location`,
@@ -39,7 +39,7 @@ export default function EditNameModal({
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (response.ok) {
         setUserProfile(data.updatedUser);
         setSuccess(true);

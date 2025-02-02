@@ -12,7 +12,7 @@ import {initFlowbite} from 'flowbite'
 
 export default function PeopleFavorites() {
   const { userProfile, profile, setProfile } = useContext(myContext);
-  console.log(userProfile);
+  // console.log(userProfile);
   const [favClick, setFavClick] = useState(() => {
     const initialFavClick = {};
     userProfile.favorites.forEach((fav) => {
@@ -41,7 +41,7 @@ export default function PeopleFavorites() {
   // };
 
   const handleFavIconClick = async (name, email) => {
-    console.log(name, email);
+    // console.log(name, email);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/removefavorites`,
@@ -59,7 +59,7 @@ export default function PeopleFavorites() {
       }
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setProfile(data.user); // Update profile state with modified favorites
       setFavClick((prev) => ({ ...prev, [email]: !prev[email] })); // Toggle favClick state after successful update
       if (favClick) {

@@ -15,7 +15,7 @@ function generateToken(user_id,api_key,api_secret){
 // issuedAt should be unix timestamp
   const issuedAt = Math.floor(Date.now() / 1000);
   const exp = Math.round(new Date().getTime() / 1000) + 60 * 60;
-  console.log(exp);
+  // console.log(exp);
   const oHeader = { alg: 'HS256', typ: 'JWT' }
 
   const oPayload = {

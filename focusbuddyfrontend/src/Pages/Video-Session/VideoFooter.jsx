@@ -13,7 +13,7 @@ export default function VideoFooter({mainToken,testToken,availableEvents,call}) 
   const navigate = useNavigate();
 
   async function handleCallEnd(){
-      console.log('call leave')
+      // console.log('call leave')
       await call.leave();
       navigate('/dashboard');
   }

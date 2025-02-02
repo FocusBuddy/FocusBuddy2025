@@ -53,7 +53,7 @@ export default function EditProfileQuestions() {
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (response.ok) {
         setSuccess(true);
         setTimeout(() => {

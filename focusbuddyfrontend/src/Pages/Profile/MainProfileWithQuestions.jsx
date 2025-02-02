@@ -20,13 +20,13 @@ const extractName = (str) => {
 export default function MainProfileWithQuestions() {
   const { userProfile, setUserProfile, setProfile, profile } =
     useContext(myContext);
-  console.log(userProfile);
+  // console.log(userProfile);
   const [otherUserProfile, setOtherUserProfile] = useState(null);
-  console.log(otherUserProfile);
+  // console.log(otherUserProfile);
   // console.log(userProfile.favorites.some(user => user.name === USERNAME));
   const [noQuesAns, setNoQuesAns] = useState(false);
   const { name } = useParams();
-  console.log(name);
+  // console.log(name);
   const [favClick, setFavClick] = useState(() => {
     USERNAME = extractName(name);
     return userProfile.favorites.some((user) => user.name === USERNAME);
@@ -43,7 +43,7 @@ export default function MainProfileWithQuestions() {
         });
 
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setNoQuesAns(
           Object.values(data.user.userProfileQuestions).every(
             (value) => value === ""
@@ -61,7 +61,7 @@ export default function MainProfileWithQuestions() {
 
   const handleFavIconClick = async () => {
     USERNAME = await extractName(name);
-    console.log("USERNAME", USERNAME);
+    // console.log("USERNAME", USERNAME);
 
     try {
       const response = await fetch(
@@ -101,7 +101,7 @@ export default function MainProfileWithQuestions() {
     }
   };
 
-  console.log("favClick", favClick);
+  // console.log("favClick", favClick);
 
   return (
     <>

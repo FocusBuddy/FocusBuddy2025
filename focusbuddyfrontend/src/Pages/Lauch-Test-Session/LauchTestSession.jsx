@@ -39,7 +39,7 @@ export default function LauchTestSession() {
           }
         );
         const mainUserTokenData = await mainUserTokenResponse.json();
-        console.log('Main user token:', mainUserTokenData.token);
+        // console.log('Main user token:', mainUserTokenData.token);
         setMainToken(mainUserTokenData.token);
 
         const testUserTokenResponse = await fetch(
@@ -51,7 +51,7 @@ export default function LauchTestSession() {
           }
         );
         const testUserTokenData = await testUserTokenResponse.json();
-        console.log('Test user token:', testUserTokenData.token);
+        // console.log('Test user token:', testUserTokenData.token);
         setTestToken(testUserTokenData.token);
       } catch (error) {
         console.error('Error fetching tokens:', error);

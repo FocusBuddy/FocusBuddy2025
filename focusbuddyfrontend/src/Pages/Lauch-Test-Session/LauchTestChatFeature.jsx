@@ -52,7 +52,7 @@ export default function LauchTestChatFeature({ mainToken,testToken, availableEve
       }
     };
   }, [mainchatclient]);
-console.log("chatclient",mainchatclient)
+// console.log("chatclient",mainchatclient)
   if (!mainchatclient || !channel) return <div>Loading...</div>;
 
   return (

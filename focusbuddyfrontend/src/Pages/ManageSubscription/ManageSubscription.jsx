@@ -12,7 +12,7 @@ import RenewSubscription from "./RenewSubscription";
 
 export default function ManageSubscription() {
   const { userProfile, setUserProfile } = useContext(myContext);
-  console.log(userProfile);
+  // console.log(userProfile);
   const [subDetails, setSubDetails] = useState(null);
   const [paymentDetails, setPaymentDetails] = useState(null);
   const [paymentInvoices, setPaymentInvoices] = useState(null);
@@ -24,7 +24,7 @@ export default function ManageSubscription() {
   const [renewSub,setRenewSub] = useState(false);
 
   const getActiveSub = async () => {
-    console.log("getActiveSub called");
+    // console.log("getActiveSub called");
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/getSubcription`,
@@ -40,7 +40,7 @@ export default function ManageSubscription() {
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (response.ok) {
         setSubDetails(data?.activeSub);
         setPaymentDetails(data?.activeSubPayment);
@@ -73,7 +73,7 @@ export default function ManageSubscription() {
         }
       );
       const data = await response.json();
-      console.log(data.userupdate);
+      // console.log(data.userupdate);
       if (response.ok) {
         setUserProfile(data.userupdate);
         setCancelSuccess(true);
@@ -110,7 +110,7 @@ export default function ManageSubscription() {
         }
       );
       const data = await response.json();
-      console.log(data.userupdate);
+      // console.log(data.userupdate);
       if (response.ok) {
         setUserProfile(data.userupdate);
         setRenewSuccess(true);
@@ -130,7 +130,7 @@ export default function ManageSubscription() {
     }
   }
 
-  console.log(subDetails, paymentDetails);
+  // console.log(subDetails, paymentDetails);
 
   if (userProfile.subscription.planType !== "free" && (!subDetails && !paymentDetails && !paymentInvoices)) {
     return <Loading />;

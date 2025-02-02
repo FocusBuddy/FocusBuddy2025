@@ -57,7 +57,7 @@ function PrivateRoutes (){
 
 
   useEffect(() => {
-    console.log('fetch events');
+    // console.log('fetch events');
     if(window.screen.width < 1024){
       setColumns(false);
     }
@@ -80,7 +80,7 @@ function PrivateRoutes (){
         })
         const data = await response.json();
 
-        console.log(data);
+        // console.log(data);
         if(response.ok){
           setAuthenticated(data.status);
           setUserProfile(data.user);

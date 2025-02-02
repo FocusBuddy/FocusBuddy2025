@@ -159,14 +159,14 @@ export default function WelcomeCheckList({
     e.preventDefault();
     setActiveTab("final");
     checklistGotIt("booking");
-    console.log(
-      eventDate,
-      // eventLength,
-      eventTime,
-      // activeEventTab,
-      activePartnerTab,
-      quiteMode
-    );
+    // console.log(
+    //   eventDate,
+    //   // eventLength,
+    //   eventTime,
+    //   // activeEventTab,
+    //   activePartnerTab,
+    //   quiteMode
+    // );
     // console.log(eventTime.slice(0,2));
     // const startDateTime = moment(
     //   `${eventDate} ${eventTime}`,
@@ -185,7 +185,7 @@ export default function WelcomeCheckList({
       .add(50, "minutes")
       .toDate();
 
-     console.log(startDateTime,endDateTime); 
+    //  console.log(startDateTime,endDateTime); 
     const eventID = crypto.randomUUID()
 
     // console.log(startDateTime,endDateTime)
@@ -211,7 +211,7 @@ export default function WelcomeCheckList({
     };
     const addEvent = async () => {
       const response = await postEvents(newEvent);
-      console.log(response);
+      // console.log(response);
       if(response.message === 'success'){
         if(response.updatedEvent || response.firstUserChange){
           setFilteredEvents([...filteredEvents, response.updatedEvent.updatedEvent]);

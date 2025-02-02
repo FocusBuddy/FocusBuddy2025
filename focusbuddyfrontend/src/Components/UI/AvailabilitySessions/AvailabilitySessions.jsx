@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 export default function AvailabilitySessions({ favEvents, quiteMode }) {
 
   const { userProfile} = useContext(myContext);
-  console.log(userProfile);
+  // console.log(userProfile);
   const [activeSessionIndex, setActiveSessionIndex] = useState(null);
   const [sessionLocked, setSessionLocked]  = useState(false);
   const [fail, setFail] = useState(false);
@@ -32,7 +32,7 @@ const navigate = useNavigate();
     });
 
   const handleLockSession = async (session) => {
-    console.log("session", session);
+    // console.log("session", session);
     const eventID = crypto.randomUUID()
     const newEvent = {
       myID: eventID,
@@ -63,7 +63,7 @@ const navigate = useNavigate();
         body: JSON.stringify({lockWith:newEvent})
       })
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if(response.ok){
         setActiveSessionIndex(null);
         setSessionLocked(true);
@@ -83,7 +83,7 @@ const navigate = useNavigate();
     }
   };
 
-  console.log(favEvents);
+  // console.log(favEvents);
   return (
     <>
     {

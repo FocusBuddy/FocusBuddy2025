@@ -20,7 +20,7 @@ export default function SessionsList() {
   const [sessionToEdit,setSessionToEdit]  = useState([]);
   const {appointments,filteredEvents,setFilteredEvents,showDeleteMsg,setIsSuccess,isSuccess,showEditMsg,setShowEditMsg,} = useContext(myContext);
   const { userProfile } = useContext(myContext);
-  console.log(filteredEvents,userProfile)
+  // console.log(filteredEvents,userProfile)
 
   const isFavorite = (session) => {
     return userProfile.favorites.some(fav => fav.name === session.matchedPersonFullName);
@@ -48,7 +48,7 @@ export default function SessionsList() {
             method: 'GET'
           });
           const data = await response.json();
-          console.log(data); // Handle the fetched data as required
+          // console.log(data); // Handle the fetched data as required
           setAllPastSessions(data.events);
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -61,7 +61,7 @@ export default function SessionsList() {
 
 
   const handleEditClick = (sessionID) => {
-    console.log(sessionID);
+    // console.log(sessionID);
     setOpenModal(true);
     setSessionToEdit(allUpcomingSessions.filter((events) => events.myID === sessionID))
     // console.log(allUpcomingSessions.filter((events) => events.myID === sessionID))
@@ -78,13 +78,13 @@ export default function SessionsList() {
     const data = await response.json();
     // console.log(data);
     if(data.updatedEvent.length > 0){
-      console.log('ops')
+      // console.log('ops')
       setFilteredEvents(
         filteredEvents.filter((appointment) => ((appointment.myID !== data.updatedEvent.updatedEvent.myID) && (appointment.myID !== sessionID) ))
       )
       // setAllUpcomingSessions(allUpcomingSessions.filter((session) => (session.myID !== sessionID)));
     }else{
-      console.log('opsasdas')
+      // console.log('opsasdas')
       setFilteredEvents(
         filteredEvents.filter((appointment) => (appointment.myID !== sessionID) )
       )
@@ -94,7 +94,7 @@ export default function SessionsList() {
   }
   
   
-  console.log(allUpcomingSessions);
+  // console.log(allUpcomingSessions);
   
   if (showEditMsg) {
     setTimeout(() => {

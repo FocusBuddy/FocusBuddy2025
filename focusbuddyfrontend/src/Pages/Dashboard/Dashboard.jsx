@@ -49,7 +49,7 @@ function Dashboard() {
         body: JSON.stringify({updateThis:userProfile.email})
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setUserProfile(data.updatedUser);
     }
     updateStatus();

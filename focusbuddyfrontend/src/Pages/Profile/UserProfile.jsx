@@ -14,7 +14,7 @@ import { Modal } from "flowbite-react";
 
 export default function UserProfile() {
   const { userProfile, setUserProfile, updatedImg, setUpdatedImg } = useContext(myContext);
-  console.log(userProfile);
+  // console.log(userProfile);
   const [selectedFile, setSelectedFile] = useState(null);
   const [upload, setUpload] = useState(false);
   const [name, setName] = useState("");
@@ -29,7 +29,7 @@ export default function UserProfile() {
 
     if (startIndex !== -1) {
       const userPath = url.substring(startIndex + prefix.length);
-      console.log(userPath); // Output: "rupesh-chincholkar"
+      // console.log(userPath); // Output: "rupesh-chincholkar"
       setName(userPath);
     } else {
       console.log("No user path found in the URL");
@@ -61,7 +61,7 @@ export default function UserProfile() {
         "PUT",
         formData
       );
-      console.log(response);
+      // console.log(response);
       setUpdatedImg(response.data.profilePic);
     setPicUpdated(true);
 

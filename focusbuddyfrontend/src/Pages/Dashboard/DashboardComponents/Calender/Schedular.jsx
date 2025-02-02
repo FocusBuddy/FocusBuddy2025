@@ -41,7 +41,7 @@ const Schedular = () => {
   } = useContext(myContext);
 
   const [view, setView] = useState("week");
-  console.log(view);
+  // console.log(view);
   const [weekView, setWeekView] = useState(true);
   const [active, setActive] = useState("50 minutes");
   const [activeDate, setActiveDate] = useState(new Date());
@@ -62,7 +62,7 @@ const Schedular = () => {
     window.addEventListener('resize', updateView); // Update view on resize
 
     socket.on('SessionCreated', (data) => {
-      console.log(data);
+      // console.log(data);
       setFilteredEvents(
         data.filter(
           (appointment) => (
@@ -177,7 +177,7 @@ function handleTabChange(tab){
     }
   }, [view, activeDate]);
 
-  console.log(filteredEvents);
+  // console.log(filteredEvents);
   function handleSelectSlot({ start, end }) {
 
     // setActiveEventTab('deskEvent');
@@ -208,16 +208,16 @@ function handleTabChange(tab){
 
     const addEvent = async () => {
       const response = await postEvents(newEvent);
-      console.log(response);
+      // console.log(response);
       if(response.message === 'success'){
         if(response.updatedEvent || response.firstUserChange){
-          console.log('1')
+          // console.log('1')
           setFilteredEvents([...filteredEvents, response.updatedEvent]);
         }else if(response.firstUserChange){
-          console.log('2')
+          // console.log('2')
           setFilteredEvents([...filteredEvents , response.firstUserChange]);
         }else{
-          console.log('3')
+          // console.log('3')
           setFilteredEvents([...filteredEvents, newEvent]);
         }
         setIsSuccess(true);

@@ -4,7 +4,7 @@ import { myContext } from "../../../../utils/PrivateRoutes";
 
 function AvailableSessions({availableEvents,setSessionAvailable,onGoing,setOnGoing}) {
 
-  console.log(availableEvents);
+  // console.log(availableEvents);
   const {
     showConfirmation,
     setShowConfirmation,

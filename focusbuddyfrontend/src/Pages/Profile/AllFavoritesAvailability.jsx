@@ -33,7 +33,7 @@ const navigate = useNavigate();
     setActiveDurationTab(tab);
   };
 
-  console.log("quitemode", quiteMode);
+  // console.log("quitemode", quiteMode);
 
   const tabSelected = {
     backgroundColor: "#008080",
@@ -50,7 +50,7 @@ const navigate = useNavigate();
   // console.log(all_favorites_events_30, userProfile);
 
   const handleLockSession = async (session) => {
-    console.log("session", session);
+    // console.log("session", session);
     const eventID = crypto.randomUUID();
     const newEvent = {
       myID: eventID,
@@ -86,7 +86,7 @@ const navigate = useNavigate();
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (response.ok) {
         setActiveSessionIndex(null);
         // setSessionLocked(true);

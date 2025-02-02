@@ -32,7 +32,7 @@ export default function ConfirmPassword() {
                         body: JSON.stringify({paramId: id,token: token,newPassword: password})
                     })
                     const data = await response.json();
-                    console.log(data);
+                    // console.log(data);
                     if(response.ok){
                         setSuccess(true);
                         setTimeout(() => {

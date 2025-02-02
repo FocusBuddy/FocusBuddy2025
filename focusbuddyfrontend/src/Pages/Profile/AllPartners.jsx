@@ -25,7 +25,7 @@ export default function AllPartners() {
     });
     return initialFavClick;
   });
-  console.log(favClick);
+  // console.log(favClick);
   const [reportModal, setReportModal] = useState(false);
   const [reportSuccess, setReportSuccess] = useState(false);
 
@@ -34,7 +34,7 @@ export default function AllPartners() {
   const [sending, setSending] = useState(false);
   const [allPastSessions, setAllPastSessions] = useState([]);
   const [reportWho,setReportWho] = useState('');
-  console.log(appointments);
+  // console.log(appointments);
 
   useEffect(() => {
     initFlowbite();
@@ -42,7 +42,7 @@ export default function AllPartners() {
 
 
   const handleFavIconClick = async (name) => {
-    console.log(name);
+    // console.log(name);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/` +
@@ -61,7 +61,7 @@ export default function AllPartners() {
       }
 
       const data = await response.json();
-      console.log(data)
+      // console.log(data)
       setProfile(data.user); // Update profile state with modified favorites
       setFavClick((prev) => ({ ...prev, [name]: !prev[name] }));  // Toggle favClick state after successful update
       if (favClick[name]) {
@@ -99,13 +99,13 @@ export default function AllPartners() {
           }
         );
         const data = await response.json();
-        console.log(data); // Handle the fetched data as required
+        // console.log(data); // Handle the fetched data as required
         const uniqueSessions = data.events.filter((session, index, self) =>
           index === self.findIndex((s) => s.matchedPersonFullName === session.matchedPersonFullName)
         );
         const finalEvents = uniqueSessions.filter((session) => session.matchedPersonFullName !== 'Matching...');
-        console.log("uniqueSessions",uniqueSessions);
-        console.log("uniqueSessions",finalEvents);
+        // console.log("uniqueSessions",uniqueSessions);
+        // console.log("uniqueSessions",finalEvents);
 
         setAllPastSessions(finalEvents);
       } catch (error) {

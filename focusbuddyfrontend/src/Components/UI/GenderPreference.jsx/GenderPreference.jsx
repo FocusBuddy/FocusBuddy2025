@@ -38,7 +38,7 @@ export default function GenderPreference({
         body: JSON.stringify({email: userProfile.email,matchWith,noMatchWith})
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if(response.ok){
         setUserProfile(data.updatedUser);
         setSuccess(true);

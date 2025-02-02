@@ -23,7 +23,7 @@ export default function EditFavoritesModal({
         body: JSON.stringify({email: userProfile.email,availability})
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if(response.ok){
         setUserProfile(data.updatedUser);
         setSuccess(true);

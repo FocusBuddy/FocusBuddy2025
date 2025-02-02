@@ -61,7 +61,7 @@ export default function AccountUpgrade() {
           const handlerResponse = response;
           try {
             // Handle successful payment here
-            console.log("payment-succcess", handlerResponse);
+            // console.log("payment-succcess", handlerResponse);
             // Send payment details to the server for verification
             const response = await fetch(
               `${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/verifypayment`,
@@ -80,7 +80,7 @@ export default function AccountUpgrade() {
             );
             const data = await response.json();
             if (data.success) {
-              console.log(data.message);
+              // console.log(data.message);
               navigate("/account/plan/success");
             } else {
               navigate("/account/plan/payment-failed");

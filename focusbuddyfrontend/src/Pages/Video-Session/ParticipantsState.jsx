@@ -8,7 +8,7 @@ export default function ParticipantsState({ getEvent,availableEvents,call }) {
     const participants = useParticipants();
 
     const handleParticipantJoin = async (event) => {
-        console.log('handleParticipantJoin');
+        // console.log('handleParticipantJoin');
         try{
           const response = await  fetch( `${import.meta.env.VITE_BACKEND_PRO_URL}/api/events/updateUserCallJoinTiming`,{
             method: 'POST',
@@ -21,7 +21,7 @@ export default function ParticipantsState({ getEvent,availableEvents,call }) {
             }),
           });
           const data = await response.json();
-          console.log(data.callDetails);
+          // console.log(data.callDetails);
         }catch(err){
           console.log(err);
           throw new Error("Error while handling participants..")
@@ -30,7 +30,7 @@ export default function ParticipantsState({ getEvent,availableEvents,call }) {
 
     useEffect(() => {
       const participantJoin= (event) => {
-        console.log(event);
+        // console.log(event);
         // Handle the participant left event
         handleParticipantJoin(event);
         getEvent();

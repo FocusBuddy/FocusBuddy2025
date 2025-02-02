@@ -22,7 +22,7 @@ export default function AccountBanned() {
             If you believe this action was taken in error or if you have any
             concerns, please do not hesitate to reach out to our support team at{" "}
             <a
-              href="mailto:rupeshchincholkar14@gmail.com"
+              href="mailto:focusbuddy04@gmail.com"
               className="underline underline-offset-8 text-textcolor"
             >
               [Support Team].

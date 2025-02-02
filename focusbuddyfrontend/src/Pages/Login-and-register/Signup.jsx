@@ -18,7 +18,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
     setEmail("");
     setPassword("");
     setLoading(true);
@@ -35,7 +35,7 @@ function Signup() {
           setShowSignupProfile(true);
           setLoading(false);
           navigate('/signup/profile', {state: {email,password}});
-          console.log(data.message);
+          // console.log(data.message);
         }else if(response.status === 400){
           setShowMessage(true);
           setErrorMsg(data.message)

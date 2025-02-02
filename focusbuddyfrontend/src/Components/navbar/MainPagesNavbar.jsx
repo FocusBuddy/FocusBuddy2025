@@ -8,7 +8,7 @@ export default function RegisterPagesNavbar() {
   const [openNav,setOpenNav] = useState(false);
   const [openDropdown,setOpenDropdown] = useState(false);
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   useEffect(() => {
     // setOpenDropdown(false);
@@ -32,7 +32,7 @@ useEffect(() => {
   });
 }, [location.key]);
 
-console.log(openNav,openDropdown)
+// console.log(openNav,openDropdown)
   return (
     <nav className="sticky top-0 z-50 pb-2 rounded-b-[100px] bg-greenbg border-gray-200">
       <div className="lg:max-w-screen-2xl px-10 md:px-16 2xl:px-0 flex flex-wrap items-center justify-between mx-auto p-4">

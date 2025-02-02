@@ -19,11 +19,18 @@ const cron = require('node-cron');
 const cloudinary = require("../cloudinary/cloudinary.js");
 // const { getIo } = require('../socket');
 
+// var transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: "rupeshchincholkar14@gmail.com",
+//     pass: "mlur bmcf cmny cccm",
+//   },
+// });
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "rupeshchincholkar14@gmail.com",
-    pass: "mlur bmcf cmny cccm",
+    user: "focusbuddy04@gmail.com",
+    pass: "oqyl hejd tkwf yvrb",
   },
 });
 
@@ -371,7 +378,7 @@ router.post("/reset-password-request", async (req, res) => {
     console.log("googleID", findUser.googleId, "token", sdkJWT);
 
     var mailOptions = {
-      from: "FocusBuddy <rupeshchincholkar14@gmail.com>",
+      from: "FocusBuddy <focusbuddy04@gmail.com>",
       to: email,
       subject: "Reset your password for FocusBuddy",
       //   text: `That was easy!: http://localhost:5173/reset-password/${findUser.googleId}/${sdkJWT}`,
@@ -546,8 +553,8 @@ router.post("/reportuser", async (req, res) => {
     }
 
     const mailOptions = {
-      from: "FocusBuddy <rupeshchincholkar14@gmail.com>",
-      to: "rupeshchincholkar07@gmail.com", // whatever email where reporting details are collected
+      from: "FocusBuddy <focusbuddy04@gmail.com>",
+      to: "focusbuddy04@gmail.com", // whatever email where reporting details are collected
       subject: `${reportingUser} wants to report ${
         reportedUser ? reportedUser : reportedUserName
       }`,

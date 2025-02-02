@@ -20,7 +20,7 @@ function Login() {
     setEmail("");
     setPassword("");
     setLoading(true);
-    console.log(email,password);
+    // console.log(email,password);
     try{
       const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/auth/local/login`,{
         method: 'POST',
@@ -31,7 +31,7 @@ function Login() {
         credentials: 'include' 
       })
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if(response.ok){
         setLoading(false);
         navigate('/dashboard');

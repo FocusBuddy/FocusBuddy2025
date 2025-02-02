@@ -34,7 +34,7 @@ export default function EditEventModal({
     // setActiveEventTab,
   } = useContext(myContext);
 
-  console.log('eventtoedit',eventToEdit);
+  // console.log('eventtoedit',eventToEdit);
 
   function handleTabSetting(tabSetting) {
     // if (tabSetting === "deskEvent") {
@@ -54,7 +54,7 @@ export default function EditEventModal({
   // console.log('editeventmodal-',quiteMode);
 
   const handleToggleChange = () => {
-    console.log('togglechange')
+    // console.log('togglechange')
     setQuiteMode(!quiteMode)
   }
 
@@ -76,7 +76,7 @@ export default function EditEventModal({
           body: JSON.stringify({eventid:eventToEdit[0].myID, partner: activePartnerTab, quite: quiteMode})
         })
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setShowEditMsg(true);
       }catch(err){
         console.log(err);

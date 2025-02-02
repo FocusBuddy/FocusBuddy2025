@@ -112,7 +112,7 @@ export default function FAQ(){
             <h1 className="text-greenbg text-center text-4xl md:text-5xl font-normal">
                 Frequently Asked Questions
             </h1>
-            <p className="text-md xl:text-lg leading-8 text-center mt-8">Have a different question and can’t find the answer you’re looking for? Reach out <br/> to our support team by <a  href="mailto:rupeshchincholkar14@gmail.com" className="text-[#DE3535] hover:text-greenbg font-medium text-xl">sending us an email</a> and we’ll get back to you as soon as we can.</p>
+            <p className="text-md xl:text-lg leading-8 text-center mt-8">Have a different question and can’t find the answer you’re looking for? Reach out <br/> to our support team by <a  href="mailto:focusbuddy04@gmail.com" className="text-[#DE3535] hover:text-greenbg font-medium text-xl">sending us an email</a> and we’ll get back to you as soon as we can.</p>
 
                 <FAQComponent data={data}/>
             <FooterJoinButton/>

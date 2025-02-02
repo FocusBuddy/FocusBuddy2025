@@ -14,7 +14,7 @@ export default function EditQuiteModeModal({ userProfile,setUserProfile, setOpen
 
   const handleQuiteModeSave = async (e) => {
     e.preventDefault();
-    console.log(selectedValue)
+    // console.log(selectedValue)
     try{
       const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/setting_change_quitemode_preference`,{
         method: 'PUT',
@@ -24,7 +24,7 @@ export default function EditQuiteModeModal({ userProfile,setUserProfile, setOpen
         body: JSON.stringify({email: userProfile.email,quiteModeState:selectedValue})
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if(response.ok){
         setUserProfile(data.updatedUser);
         setSuccess(true);

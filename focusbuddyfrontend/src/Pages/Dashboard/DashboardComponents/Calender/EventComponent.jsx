@@ -23,7 +23,7 @@ function EventComponent({event}) {
   // console.log(filteredEvents,'asfads');
   function handleConfirm(eventId) {
     setShowConfirmation(true);
-    console.log('id to delete',eventId);
+    // console.log('id to delete',eventId);
     setEventIdToDelete(eventId);
     setShowJoin(false);
     setStartEvent(false);
@@ -38,7 +38,7 @@ function EventComponent({event}) {
       body: JSON.stringify({eventId: eventIdToDelete})
     })
     const data = await response.json();
-    console.log('deleteresponse',data);
+    // console.log('deleteresponse',data);
       if(data.updatedEvent.length > 0){
         setFilteredEvents(
           filteredEvents.filter((appointment) => ((appointment.myID !== data.updatedEvent.updatedEvent.myID) && (appointment.myID !== eventIdToDelete) ))

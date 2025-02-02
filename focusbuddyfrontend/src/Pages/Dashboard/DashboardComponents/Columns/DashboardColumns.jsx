@@ -47,7 +47,7 @@ function DashboardColumns() {
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (response.ok) {
         if (data.upcomingEvent.length > 0) {
           setSessionAvailable(true);

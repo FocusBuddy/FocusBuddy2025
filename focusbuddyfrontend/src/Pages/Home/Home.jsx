@@ -79,7 +79,7 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
     setEmail("");
     setPassword("");
     try {
@@ -96,7 +96,7 @@ export default function Home() {
       const data = await response.json();
       if (response.ok) {
         navigate("/signup/profile", { state: { email, password } });
-        console.log(data.message);
+        // console.log(data.message);
       } else if (response.status === 400) {
         setShowMessage(true);
         setErrorMsg(data.message);
@@ -112,7 +112,7 @@ export default function Home() {
       setShowMessage(false);
     }, 2000);
   }
-console.log(`${import.meta.env.VITE_BACKEND_PRO_URL}`);
+// console.log(`${import.meta.env.VITE_BACKEND_PRO_URL}`);
 
   if (loading) {
     return <Loading/>;

@@ -10,9 +10,9 @@ export default function EditGenderModal({userProfile,setUserProfile,setOpenGende
   const [success,setSuccess] = useState(false);
 
 
-console.log(additionalGender);
+// console.log(additionalGender);
 const handleCheckboxChange = (value) => {
-  console.log(value);
+  // console.log(value);
   setSelectedGender((prev) => {
     if (value === "Prefer not to say") {
       return prev.includes(value) ? [] : [value];
@@ -45,7 +45,7 @@ const handleCheckboxChange = (value) => {
         body: JSON.stringify({email: userProfile.email,gender:selectedGender})
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if(response.ok){
         setUserProfile(data.updatedUser);
         setSuccess(true);

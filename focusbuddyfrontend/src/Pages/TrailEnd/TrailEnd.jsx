@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 export default function TrailEnded() {
   const location = useLocation();
   const { profile } = location.state || {};
-  console.log(profile);
+  // console.log(profile);
   const navigate = useNavigate();
 
   const handleSubscription = async (plan) => {
-    console.log(plan)
+    // console.log(plan)
     try {
       // Replace with the user's details collected from your form
       const userDetails = {
@@ -33,7 +33,7 @@ export default function TrailEnded() {
       );
 
       const data = await response.json();
-      console.log(data.subscription)
+      // console.log(data.subscription)
 
       // Check if subscription data is valid
       if (!data.subscription || !data.subscription.id) {
@@ -53,7 +53,7 @@ export default function TrailEnded() {
           const handlerResponse = response
           try{
           // Handle successful payment here
-          console.log("payment-succcess", handlerResponse);
+          // console.log("payment-succcess", handlerResponse);
           // Send payment details to the server for verification
           const response = await fetch(`${import.meta.env.VITE_BACKEND_PRO_URL}/api/user/verifypayment`, {
             method: "POST",
@@ -69,7 +69,7 @@ export default function TrailEnded() {
           })
             const data = await response.json();
             if(data.success){
-              console.log(data.message);
+              // console.log(data.message);
               navigate('/account/plan/success');
             }else{
               navigate('/signup');
@@ -98,7 +98,7 @@ export default function TrailEnded() {
 
       // Open Razorpay Checkout
       const razorpay = new window.Razorpay(options);
-      console.log(razorpay)
+      // console.log(razorpay)
       razorpay.open();
     } catch (error) {
       console.error("Error creating subscription:", error);

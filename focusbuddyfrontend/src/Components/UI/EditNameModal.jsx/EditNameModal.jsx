@@ -11,7 +11,7 @@ export default function EditNameModal({
 
   const handleEditNameSubmit = async (e) => {
     e.preventDefault();
-    console.log(firstName, lastName);
+    // console.log(firstName, lastName);
     const showName = firstName + ' ' + lastName;
     const previousFullName = userProfile.displayName;
     try{
@@ -23,7 +23,7 @@ export default function EditNameModal({
         body: JSON.stringify({email: userProfile.email,firstName,lastName,showName,previousFullName})
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if(response.ok){
         setUserProfile(data.updatedUser);
         setSuccess(true);

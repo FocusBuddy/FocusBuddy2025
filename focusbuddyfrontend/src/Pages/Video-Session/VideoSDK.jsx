@@ -62,7 +62,7 @@ export default function VideoSDK() {
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setMyEvent(data.event);
     } catch (err) {
       console.log(err);

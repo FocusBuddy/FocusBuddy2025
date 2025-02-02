@@ -77,7 +77,7 @@ function EventBox({ event, handleConfirm }) {
     const event_to_edit = appointments.filter(
       (appointment) => appointment.myID === eventid
     );
-    console.log(event_to_edit);
+    // console.log(event_to_edit);
     setEditEvent(event_to_edit);
   }
 
